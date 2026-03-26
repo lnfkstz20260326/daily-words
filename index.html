@@ -1,241 +1,462 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日英语词汇总览</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
-    background:linear-gradient(135deg,#e8f4f8 0%,#fef9f0 100%);
-    min-height:100vh;padding:16px 12px 60px;color:#2c3e50;
-  }
-  h1{text-align:center;font-size:1.5rem;font-weight:800;color:#1a6e9e;margin-bottom:8px;letter-spacing:1px}
-  .subtitle{text-align:center;font-size:.82rem;color:#7f8c8d;margin-bottom:6px}
-  .search-wrap{
-    max-width:500px;margin:0 auto 16px;
-    position:relative
-  }
-  #searchInput{
-    width:100%;padding:12px 16px;border:2px solid #d5dbdb;border-radius:25px;
-    font-size:.95rem;outline:none;transition:border-color .2s
-  }
-  #searchInput:focus{border-color:#3498db}
-  .filter-wrap{
-    display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap
-  }
-  .filter-btn{
-    padding:6px 16px;border:none;border-radius:20px;font-size:.85rem;
-    font-weight:600;cursor:pointer;background:#ecf0f1;color:#7f8c8d;transition:all .2s
-  }
-  .filter-btn.active{background:#3498db;color:#fff}
-  .stats{
-    text-align:center;font-size:.85rem;color:#7f8c8d;margin-bottom:12px;
-    background:#f8f9fa;padding:6px 12px;border-radius:15px;display:inline-block;
-    margin-left:50%;transform:translateX(-50%)
-  }
-  .month{
-    margin:0 0 20px
-  }
-  .month-title{
-    font-size:1.1rem;font-weight:700;color:#3498db;margin-bottom:10px;
-    padding-bottom:6px;border-bottom:2px solid #ecf0f1
-  }
-  .day-item{
-    background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,.06);cursor:pointer;transition:all .18s;
-    border-left:4px solid #3498db
-  }
-  .day-item:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(0,0,0,.1)}
-  .day-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-  .day-date{font-weight:700;font-size:1rem;color:#2c3e50}
-  .day-type{
-    font-size:.75rem;padding:2px 8px;border-radius:10px;font-weight:600
-  }
-  .type-word{background:#eaf4fb;color:#2980b9}
-  .type-phrase{background:#fef9e7;color:#d68910}
-  .day-items{font-size:.85rem;color:#7f8c8d;display:flex;flex-wrap:wrap;gap:6px}
-  .day-item-tag{
-    background:#f0f3f4;padding:2px 8px;border-radius:5px;font-size:.8rem
-  }
-  .day-actions{display:flex;gap:8px;margin-top:8px}
-  .play-btn{
-    flex:1;padding:7px;border:none;border-radius:8px;font-size:.85rem;
-    font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;
-    justify-content:center;gap:5px
-  }
-  .play-btn:active{transform:scale(.97)}
-  .btn-day{background:#3498db;color:#fff}
-  .btn-word{background:#27ae60;color:#fff}
-  .loading{
-    text-align:center;font-size:.9rem;color:#7f8c8d;padding:20px
-  }
-  .empty{
-    text-align:center;padding:30px;font-size:.95rem;color:#95a5a6
-  }
-  footer{
-    text-align:center;color:#bdc3c7;font-size:.75rem;margin-top:20px;
-    position:fixed;bottom:10px;left:0;right:0
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英语词汇总览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover {
+            background: #d5dbdb;
+        }
+
+        .filter-btn.active {
+            background: #3498db;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+        }
+
+        .day-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .day-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        .day-date {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
+        .day-type {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 15px;
+            background: #e8f4f8;
+            color: #2980b9;
+            font-weight: 600;
+        }
+
+        .day-title {
+            font-size: 1.2rem;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .word-item {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            border-left: 3px solid #3498db;
+        }
+
+        .sentence-list {
+            margin-top: 15px;
+        }
+
+        .sentence-item {
+            background: #f0f3f4;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #34495e;
+            border-left: 3px solid #27ae60;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: #fff;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #95a5a6;
+            font-size: 0.85rem;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
+            .word-list {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>📚 每日英语词汇</h1>
+        <p class="subtitle">积累每一天，进步看得见</p>
 
-<h1>📚 每日英语词汇总览</h1>
-<p class="subtitle">积累每一天，进步看得见</p>
+        <div class="filter-buttons">
+            <button class="filter-btn active" id="filterAll" onclick="setFilter('all')">全部</button>
+            <button class="filter-btn" id="filterWord" onclick="setFilter('word')">单词</button>
+            <button class="filter-btn" id="filterPhrase" onclick="setFilter('phrase')">口语</button>
+        </div>
 
-<div class="search-wrap">
-  <input type="text" id="searchInput" placeholder="搜索单词、例句、中文..." oninput="filterItems()">
-</div>
+        <div id="content">
+            <!-- 内容将通过 JavaScript 动态加载 -->
+        </div>
 
-<div class="filter-wrap">
-  <button class="filter-btn active" id="filterAll" onclick="setFilter('all')">全部</button>
-  <button class="filter-btn" id="filterWord" onclick="setFilter('word')">单词</button>
-  <button class="filter-btn" id="filterPhrase" onclick="setFilter('phrase')">口语</button>
-</div>
+        <div class="footer">
+            🌟 坚持每天学习，一年掌握 1825 个单词！
+        </div>
+    </div>
 
-<div class="stats" id="stats">累计 0 天 · 0 个词汇</div>
+    <script>
+        // 数据
+        const DATA = [
+            {
+                date: "2026-03-26",
+                day: "周三",
+                type: "word",
+                title: "亲子成长 & 日常生活",
+                words: [
+                    { en: "encourage", zh: "鼓励；给某人勇气" },
+                    { en: "patient", zh: "有耐心的；不着急的" },
+                    { en: "remind", zh: "提醒；告诉" },
+                    { en: "curious", zh: "好奇的；想知道的" },
+                    { en: "tidy", zh: "整理；收拾" }
+                ],
+                sentences: [
+                    { en: "You're doing great!", zh: "你做得很好！" },
+                    { en: "Be patient. Learning takes time.", zh: "要耐心。学习需要时间。" },
+                    { en: "Let me remind you.", zh: "让我提醒你一下。" },
+                    { en: "You're so curious!", zh: "你太好奇了！" },
+                    { en: "Can you tidy up your room?", zh: "你能收拾一下你的房间吗？" }
+                ]
+            }
+        ];
 
-<div id="library"></div>
+        let currentFilter = 'all';
 
-<footer>🌟 坚持每天学习，一年掌握 1825 个单词！</footer>
+        // 设置过滤器
+        function setFilter(filter) {
+            currentFilter = filter;
 
-<script>
-/* ── Library Data (will be updated by automation) ── */
-const LIBRARY = [
-  {
-    date: "2026-03-26",
-    weekday: "周四",
-    type: "word",
-    title: "亲子成长 & 日常生活",
-    items: [
-      { en:"encourage", zh:"鼓励；给劲", sentence:"You're doing great! I'll always encourage you." },
-      { en:"patient", zh:"有耐心的；不着急", sentence:"Be patient. Learning takes time." },
-      { en:"remind", zh:"提醒；告诉", sentence:"Let me remind you. Pack your bag." },
-      { en:"curious", zh:"好奇的；想知道", sentence:"You're so curious. Keep asking!" },
-      { en:"tidy", zh:"整理；收拾", sentence:"Can you tidy up your room?" }
-    ]
-  }
-];
+            // 更新按钮状态
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
 
-/* ── State ── */
-let currentFilter = 'all';
+            if (filter === 'all') {
+                document.getElementById('filterAll').classList.add('active');
+            } else if (filter === 'word') {
+                document.getElementById('filterWord').classList.add('active');
+            } else if (filter === 'phrase') {
+                document.getElementById('filterPhrase').classList.add('active');
+            }
 
-/* ── Render Library ── */
-function renderLibrary() {
-  const lib = document.getElementById('library');
-  const search = document.getElementById('searchInput').value.toLowerCase();
-  
-  let filtered = LIBRARY.filter(item => {
-    // Type filter
-    if (currentFilter !== 'all' && item.type !== currentFilter) return false;
-    
-    // Search filter
-    if (search) {
-      const text = item.items.map(i => i.en + ' ' + i.zh + ' ' + (i.sentence || '')).join(' ').toLowerCase();
-      if (!text.includes(search)) return false;
-    }
-    return true;
-  });
+            renderContent();
+        }
 
-  // Group by month
-  const grouped = {};
-  filtered.forEach(item => {
-    const month = item.date.substring(0, 7); // YYYY-MM
-    if (!grouped[month]) grouped[month] = [];
-    grouped[month].push(item);
-  });
+        // 渲染内容
+        function renderContent() {
+            const contentDiv = document.getElementById('content');
+            let html = '';
 
-  // Render
-  let html = '';
-  const monthNames = ['01','02','03','04','05','06','07','08','09','10','11','12'];
-  
-  for (const [month, items] of Object.entries(grouped).sort().reverse()) {
-    html += `<div class="month">`;
-    html += `<div class="month-title">${month}</div>`;
-    
-    items.forEach(item => {
-      const typeClass = item.type === 'word' ? 'type-word' : 'type-phrase';
-      const typeText = item.type === 'word' ? '单词' : '口语';
-      
-      html += `<div class="day-item" onclick="openDay('${item.date}')">`;
-      html += `<div class="day-header">`;
-      html += `<span class="day-date">${item.weekday} · ${item.date}</span>`;
-      html += `<span class="day-type ${typeClass}">${typeText}</span>`;
-      html += `</div>`;
-      html += `<div style="font-size:.85rem;color:#7f8c8d;margin-bottom:6px">${item.title}</div>`;
-      html += `<div class="day-items">`;
-      item.items.forEach(i => {
-        html += `<span class="day-item-tag">${i.en}</span>`;
-      });
-      html += `</div>`;
-      html += `<div class="day-actions" onclick="event.stopPropagation()">`;
-      html += `<button class="play-btn btn-day" onclick="playDay('${item.date}')">▶️ 全天播放</button>`;
-      html += `</div>`;
-      html += `</div>`;
-    });
-    
-    html += `</div>`;
-  }
+            const filteredData = DATA.filter(item => {
+                if (currentFilter === 'all') return true;
+                return item.type === currentFilter;
+            });
 
-  if (!html) {
-    html = `<div class="empty">没有找到匹配的内容</div>`;
-  }
+            if (filteredData.length === 0) {
+                html = '<div class="empty">没有找到匹配的内容</div>';
+            } else {
+                filteredData.forEach(item => {
+                    html += `
+                        <div class="day-item">
+                            <div class="day-header">
+                                <span class="day-date">${item.date} ${item.day}</span>
+                                <span class="day-type">${item.type === 'word' ? '单词' : '口语'}</span>
+                            </div>
+                            <div class="day-title">${item.title}</div>
+                    `;
 
-  lib.innerHTML = html;
-  updateStats(filtered);
-}
+                    if (item.words && item.words.length > 0) {
+                        html += '<div class="word-list">';
+                        item.words.forEach(word => {
+                            html += `
+                                <div class="word-item">
+                                    <strong>${word.en}</strong><br>
+                                    <span style="color: #7f8c8d;">${word.zh}</span>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                    }
 
-/* ── Update Stats ── */
-function updateStats(items) {
-  const days = items.length;
-  const words = items.reduce((sum, item) => sum + item.items.length, 0);
-  document.getElementById('stats').textContent = `累计 ${days} 天 · ${words} 个词汇`;
-}
+                    if (item.sentences && item.sentences.length > 0) {
+                        html += '<div class="sentence-list">';
+                        item.sentences.forEach(sentence => {
+                            html += `
+                                <div class="sentence-item">
+                                    "${sentence.en}"<br>
+                                    <span style="color: #7f8c8d;">${sentence.zh}</span>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                    }
 
-/* ── Filter ── */
-function setFilter(filter) {
-  currentFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-  document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1)).classList.add('active');
-  renderLibrary();
-}
+                    html += `
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="playWords('${item.date}')">
+                                    <span>▶️</span> 单词播放
+                                </button>
+                                <button class="btn btn-success" onclick="playSentences('${item.date}')">
+                                    <span>▶️</span> 口语播放
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
 
-function filterItems() {
-  renderLibrary();
-}
+            contentDiv.innerHTML = html;
+        }
 
-/* ── Open Day Page ── */
-function openDay(date) {
-  const url = `file:///c:/Users/Lenovo/WorkBuddy/Claw/.workbuddy/daily-words/${date}.html`;
-  window.open(url, '_blank');
-}
+        // 播放单词
+        function playWords(date) {
+            const item = DATA.find(d => d.date === date);
+            if (!item || !item.words) return;
 
-/* ── Play Day (simple implementation using browser speech) ── */
-async function playDay(date) {
-  const item = LIBRARY.find(i => i.date === date);
-  if (!item) return;
-  
-  if (!confirm(`开始播放 ${item.weekday} 的内容？`)) return;
-  
-  for (const word of item.items) {
-    if (typeof speechSynthesis === 'undefined') {
-      alert('您的浏览器不支持语音播放'); return;
-    }
-    
-    const u = new SpeechSynthesisUtterance(word.en);
-    u.lang = 'en-US';
-    u.rate = 0.85;
-    speechSynthesis.speak(u);
-    await new Promise(r => setTimeout(r, 2000));
-  }
-}
+            // 确认播放
+            if (!confirm(`开始播放 ${item.date} 的单词？`)) return;
 
-/* ── Initialize ── */
-window.addEventListener('load', () => {
-  renderLibrary();
-});
-</script>
+            // 播放每个单词
+            let index = 0;
+            function playNext() {
+                if (index >= item.words.length) {
+                    alert('播放完成！');
+                    return;
+                }
+
+                const word = item.words[index];
+                const utterance = new SpeechSynthesisUtterance(word.en);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+
+                utterance.onend = () => {
+                    // 等待 1 秒后播放中文翻译
+                    setTimeout(() => {
+                        const zhUtterance = new SpeechSynthesisUtterance(word.zh);
+                        zhUtterance.lang = 'zh-CN';
+                        zhUtterance.rate = 0.8;
+
+                        zhUtterance.onend = () => {
+                            // 再读一遍英语
+                            setTimeout(() => {
+                                const enUtterance2 = new SpeechSynthesisUtterance(word.en);
+                                enUtterance2.lang = 'en-US';
+                                enUtterance2.rate = 0.8;
+
+                                enUtterance2.onend = () => {
+                                    index++;
+                                    setTimeout(playNext, 500);
+                                };
+
+                                speechSynthesis.speak(enUtterance2);
+                            }, 500);
+                        };
+
+                        speechSynthesis.speak(zhUtterance);
+                    }, 500);
+                };
+
+                speechSynthesis.speak(utterance);
+            }
+
+            playNext();
+        }
+
+        // 播放句子
+        function playSentences(date) {
+            const item = DATA.find(d => d.date === date);
+            if (!item || !item.sentences) return;
+
+            // 确认播放
+            if (!confirm(`开始播放 ${item.date} 的口语句子？`)) return;
+
+            // 播放每个句子
+            let index = 0;
+            function playNext() {
+                if (index >= item.sentences.length) {
+                    alert('播放完成！');
+                    return;
+                }
+
+                const sentence = item.sentences[index];
+
+                // 读英语句子
+                const utterance = new SpeechSynthesisUtterance(sentence.en);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.7;
+
+                utterance.onend = () => {
+                    // 等待 1 秒后播放中文翻译
+                    setTimeout(() => {
+                        const zhUtterance = new SpeechSynthesisUtterance(sentence.zh);
+                        zhUtterance.lang = 'zh-CN';
+                        zhUtterance.rate = 0.8;
+
+                        zhUtterance.onend = () => {
+                            index++;
+                            setTimeout(playNext, 500);
+                        };
+
+                        speechSynthesis.speak(zhUtterance);
+                    }, 1000);
+                };
+
+                speechSynthesis.speak(utterance);
+            }
+
+            playNext();
+        }
+
+        // 初始化
+        window.addEventListener('load', () => {
+            renderContent();
+        });
+    </script>
 </body>
 </html>
