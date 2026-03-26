@@ -182,6 +182,11 @@
             color: #fff;
         }
 
+        .btn-danger {
+            background: #e74c3c;
+            color: #fff;
+        }
+
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -345,6 +350,9 @@
                                 <button class="btn btn-success" onclick="playSentences('${item.date}')">
                                     <span>▶️</span> 口语播放
                                 </button>
+                                <button class="btn btn-danger" onclick="stopPlay()">
+                                    <span>⏹️</span> 停止
+                                </button>
                             </div>
                         </div>
                     `;
@@ -354,7 +362,139 @@
             contentDiv.innerHTML = html;
         }
 
-        // 获取最佳英语语音
+        // ========== 讯飞语音合成 API 配置 ==========
+        const XUNFEI_CONFIG = {
+            appId: 'b8d77b4e',
+            apiKey: '34ec39520db2eb6ead72707b1c8afe38',
+            apiSecret: 'YjlyMmNmM2M0MDk4OTRkN2E2MjZiOTkw',
+            host: 'tts-api.xfyun.cn',
+            path: '/v2/tts',
+            voiceName: 'xiaoyan', // 讯飞小燕
+        };
+
+        // WebSocket 状态
+        let ws = null;
+        let stopRequested = false;
+        let isPlaying = false;
+
+        // 生成讯飞 API 鉴权 URL
+        function generateAuthUrl() {
+            const date = new Date().toUTCString();
+            const signatureOrigin = `host: ${XUNFEI_CONFIG.host}\ndate: ${date}\nGET ${XUNFEI_CONFIG.path} HTTP/1.1`;
+            
+            // 使用 Web Crypto API 进行 HMAC-SHA256 签名
+            const encoder = new TextEncoder();
+            const keyData = encoder.encode(XUNFEI_CONFIG.apiSecret);
+            const messageData = encoder.encode(signatureOrigin);
+            
+            return crypto.subtle.importKey(
+                'raw',
+                keyData,
+                { name: 'HMAC', hash: 'SHA-256' },
+                false,
+                ['sign']
+            ).then(key => {
+                return crypto.subtle.sign('HMAC', key, messageData);
+            }).then(signature => {
+                const signatureBase64 = btoa(String.fromCharCode(...new Uint8Array(signature)));
+                const authorization = `api_key="${XUNFEI_CONFIG.apiKey}", algorithm="hmac-sha256", headers="host date request-line", signature="${signatureBase64}"`;
+                const authorizationBase64 = btoa(authorization);
+                
+                return `wss://${XUNFEI_CONFIG.host}${XUNFEI_CONFIG.path}?authorization=${authorizationBase64}&date=${encodeURIComponent(date)}&host=${XUNFEI_CONFIG.host}`;
+            });
+        }
+
+        // 使用讯飞语音合成播放文本
+        function playWithXunfei(text, lang = 'en-us') {
+            return new Promise((resolve, reject) => {
+                if (stopRequested) {
+                    resolve();
+                    return;
+                }
+
+                generateAuthUrl().then(url => {
+                    ws = new WebSocket(url);
+                    
+                    ws.onopen = () => {
+                        console.log('WebSocket 已连接');
+                        
+                        // 构造请求数据
+                        const params = {
+                            header: {
+                                app_id: XUNFEI_CONFIG.appId,
+                                status: 3 // 3 表示最后一个数据包
+                            },
+                            parameter: {
+                                tts: {
+                                    vcn: XUNFEI_CONFIG.voiceName,
+                                    speed: 50,
+                                    volume: 50,
+                                    pitch: 50,
+                                    encoding: 'raw',
+                                    aue: 'raw'
+                                }
+                            },
+                            payload: {
+                                data: {
+                                    status: 3,
+                                    encoding: 'utf8',
+                                    text: Buffer.from(text).toString('base64'),
+                                    seq: 0
+                                }
+                            }
+                        };
+                        
+                        ws.send(JSON.stringify(params));
+                    };
+                    
+                    ws.onmessage = (event) => {
+                        const response = JSON.parse(event.data);
+                        
+                        if (response.header.code !== 0) {
+                            console.error('讯飞 API 错误:', response.header.message);
+                            reject(new Error(response.header.message));
+                            return;
+                        }
+                        
+                        if (response.payload && response.payload.data && response.payload.data.audio) {
+                            // 播放音频
+                            const audioData = atob(response.payload.data.audio);
+                            const audioBuffer = new ArrayBuffer(audioData.length);
+                            const audioView = new Uint8Array(audioBuffer);
+                            
+                            for (let i = 0; i < audioData.length; i++) {
+                                audioView[i] = audioData.charCodeAt(i);
+                            }
+                            
+                            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                            audioContext.decodeAudioData(audioBuffer).then(audioBuffer => {
+                                const source = audioContext.createBufferSource();
+                                source.buffer = audioBuffer;
+                                source.connect(audioContext.destination);
+                                source.start(0);
+                                source.onended = () => {
+                                    if (ws) {
+                                        ws.close();
+                                    }
+                                    resolve();
+                                };
+                            }).catch(reject);
+                        }
+                    };
+                    
+                    ws.onerror = (error) => {
+                        console.error('WebSocket 错误:', error);
+                        reject(error);
+                    };
+                    
+                    ws.onclose = () => {
+                        console.log('WebSocket 已关闭');
+                    };
+                }).catch(reject);
+            });
+        }
+
+        // 获取最佳英语语音（备用方案）
         function getBestEnglishVoice() {
             const voices = speechSynthesis.getVoices();
             
@@ -387,8 +527,8 @@
             return null;
         }
 
-        // 播放单词
-        function playWords(date) {
+        // 播放单词（使用讯飞语音合成）
+        async function playWords(date) {
             console.log('playWords 被调用，日期:', date);
             
             const item = DATA.find(d => d.date === date);
@@ -406,75 +546,109 @@
             }
 
             console.log('开始播放...');
-            
-            // 获取最佳语音
-            const voice = getBestEnglishVoice();
-            if (!voice) {
-                console.error('未找到英语语音');
-                alert('未找到英语语音，请检查浏览器设置');
-                return;
-            }
+            isPlaying = true;
+            stopRequested = false;
 
             // 播放每个单词
-            let index = 0;
-            function playNext() {
-                if (index >= item.words.length) {
-                    console.log('播放完成');
-                    alert('播放完成！');
-                    return;
+            for (let wordIndex = 0; wordIndex < item.words.length; wordIndex++) {
+                if (stopRequested) {
+                    console.log('用户停止播放');
+                    break;
                 }
 
-                const word = item.words[index];
-                console.log(`播放第 ${index + 1} 个单词:`, word.en);
-                
-                const utterance = new SpeechSynthesisUtterance(word.en);
-                utterance.voice = voice;
-                utterance.lang = 'en-US';
-                utterance.rate = 0.8;
+                const word = item.words[wordIndex];
+                console.log(`播放第 ${wordIndex + 1} 个单词:`, word.en);
 
-                utterance.onend = () => {
-                    console.log('英语播放完成，等待播放中文...');
-                    // 等待 1 秒后播放中文翻译
-                    setTimeout(() => {
-                        const zhUtterance = new SpeechSynthesisUtterance(word.zh);
-                        zhUtterance.lang = 'zh-CN';
-                        zhUtterance.rate = 0.8;
+                // 单词朗读规则：英语 × 6遍（第1遍后读汉语）
+                for (let i = 0; i < 6; i++) {
+                    if (stopRequested) break;
 
-                        zhUtterance.onend = () => {
-                            console.log('中文播放完成，再次播放英语...');
-                            // 再读一遍英语
-                            setTimeout(() => {
-                                const enUtterance2 = new SpeechSynthesisUtterance(word.en);
-                                enUtterance2.voice = voice;
-                                enUtterance2.lang = 'en-US';
-                                enUtterance2.rate = 0.8;
+                    console.log(`第 ${i + 1} 遍: ${word.en}`);
+                    
+                    try {
+                        await playWithXunfei(word.en, 'en-us');
+                    } catch (error) {
+                        console.error('播放失败:', error);
+                        alert('播放失败，请检查网络连接');
+                        isPlaying = false;
+                        return;
+                    }
 
-                                enUtterance2.onend = () => {
-                                    console.log('第 2 次英语播放完成，播放下一个单词');
-                                    index++;
-                                    setTimeout(playNext, 500);
-                                };
+                    // 第1遍后读汉语
+                    if (i === 0) {
+                        if (stopRequested) break;
+                        console.log(`读汉语: ${word.zh}`);
+                        await sleep(500);
+                        
+                        try {
+                            await playWithXunfei(word.zh, 'zh-cn');
+                        } catch (error) {
+                            console.error('播放失败:', error);
+                        }
+                    }
 
-                                speechSynthesis.speak(enUtterance2);
-                            }, 500);
-                        };
+                    // 间隔 0.5 秒
+                    await sleep(500);
+                }
 
-                        speechSynthesis.speak(zhUtterance);
-                    }, 500);
-                };
-
-                utterance.onerror = (error) => {
-                    console.error('语音合成错误:', error);
-                };
-
-                speechSynthesis.speak(utterance);
+                // 单词之间的间隔
+                await sleep(1000);
             }
 
-            playNext();
+            isPlaying = false;
+            if (!stopRequested) {
+                console.log('播放完成');
+                alert('播放完成！');
+            }
         }
 
-        // 播放句子
-        function playSentences(date) {
+        // 延迟函数
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // 停止播放
+        function stopPlay() {
+            console.log('用户点击停止按钮');
+            stopRequested = true;
+            
+            // 关闭 WebSocket 连接
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+            
+            // 停止浏览器语音合成
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+            }
+            
+            isPlaying = false;
+            alert('已停止播放');
+        }
+
+        // 自动播放（页面打开后 3 秒自动播放）
+        function autoPlay() {
+            console.log('3 秒后自动播放今天的单词...');
+            setTimeout(() => {
+                const today = new Date().toISOString().split('T')[0];
+                const item = DATA.find(d => d.date === today);
+                
+                if (item) {
+                    console.log('找到今天的数据:', item);
+                    if (item.words && item.words.length > 0) {
+                        playWords(today);
+                    } else if (item.sentences && item.sentences.length > 0) {
+                        playSentences(today);
+                    }
+                } else {
+                    console.log('今天没有数据，不自动播放');
+                }
+            }, 3000);
+        }
+
+        // 播放句子（使用讯飞语音合成）
+        async function playSentences(date) {
             console.log('playSentences 被调用，日期:', date);
             
             const item = DATA.find(d => d.date === date);
@@ -492,59 +666,60 @@
             }
 
             console.log('开始播放...');
-            
-            // 获取最佳语音
-            const voice = getBestEnglishVoice();
-            if (!voice) {
-                console.error('未找到英语语音');
-                alert('未找到英语语音，请检查浏览器设置');
-                return;
-            }
+            isPlaying = true;
+            stopRequested = false;
 
             // 播放每个句子
-            let index = 0;
-            function playNext() {
-                if (index >= item.sentences.length) {
-                    console.log('播放完成');
-                    alert('播放完成！');
-                    return;
+            for (let sentenceIndex = 0; sentenceIndex < item.sentences.length; sentenceIndex++) {
+                if (stopRequested) {
+                    console.log('用户停止播放');
+                    break;
                 }
 
-                const sentence = item.sentences[index];
-                console.log(`播放第 ${index + 1} 个句子:`, sentence.en);
+                const sentence = item.sentences[sentenceIndex];
+                console.log(`播放第 ${sentenceIndex + 1} 个句子:`, sentence.en);
 
-                // 读英语句子
-                const utterance = new SpeechSynthesisUtterance(sentence.en);
-                utterance.voice = voice;
-                utterance.lang = 'en-US';
-                utterance.rate = 0.7;
+                // 句子朗读规则：英语 × 6遍（第1遍后读汉语）
+                for (let i = 0; i < 6; i++) {
+                    if (stopRequested) break;
 
-                utterance.onend = () => {
-                    console.log('英语播放完成，等待播放中文...');
-                    // 等待 1 秒后播放中文翻译
-                    setTimeout(() => {
-                        const zhUtterance = new SpeechSynthesisUtterance(sentence.zh);
-                        zhUtterance.lang = 'zh-CN';
-                        zhUtterance.rate = 0.8;
+                    console.log(`第 ${i + 1} 遍: ${sentence.en}`);
+                    
+                    try {
+                        await playWithXunfei(sentence.en, 'en-us');
+                    } catch (error) {
+                        console.error('播放失败:', error);
+                        alert('播放失败，请检查网络连接');
+                        isPlaying = false;
+                        return;
+                    }
 
-                        zhUtterance.onend = () => {
-                            console.log('中文播放完成，播放下一个句子');
-                            index++;
-                            setTimeout(playNext, 500);
-                        };
+                    // 第1遍后读汉语
+                    if (i === 0) {
+                        if (stopRequested) break;
+                        console.log(`读汉语: ${sentence.zh}`);
+                        await sleep(500);
+                        
+                        try {
+                            await playWithXunfei(sentence.zh, 'zh-cn');
+                        } catch (error) {
+                            console.error('播放失败:', error);
+                        }
+                    }
 
-                        speechSynthesis.speak(zhUtterance);
-                    }, 1000);
-                };
+                    // 间隔 0.5 秒
+                    await sleep(500);
+                }
 
-                utterance.onerror = (error) => {
-                    console.error('语音合成错误:', error);
-                };
-
-                speechSynthesis.speak(utterance);
+                // 句子之间的间隔
+                await sleep(1000);
             }
 
-            playNext();
+            isPlaying = false;
+            if (!stopRequested) {
+                console.log('播放完成');
+                alert('播放完成！');
+            }
         }
 
         // 语音初始化（解决 Chrome 浏览器语音合成问题）
@@ -587,6 +762,8 @@
         window.addEventListener('load', () => {
             renderContent();
             initSpeech();
+            // 启动自动播放
+            autoPlay();
         });
     </script>
 </body>
