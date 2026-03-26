@@ -438,7 +438,7 @@
                                 data: {
                                     status: 3,
                                     encoding: 'utf8',
-                                    text: Buffer.from(text).toString('base64'),
+                                    text: btoa(unescape(encodeURIComponent(text))),
                                     seq: 0
                                 }
                             }
