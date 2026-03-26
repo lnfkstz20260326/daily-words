@@ -356,26 +356,42 @@
 
         // 播放单词
         function playWords(date) {
+            console.log('playWords 被调用，日期:', date);
+            
             const item = DATA.find(d => d.date === date);
-            if (!item || !item.words) return;
+            if (!item || !item.words) {
+                console.error('未找到数据:', item);
+                return;
+            }
+
+            console.log('找到数据:', item);
 
             // 确认播放
-            if (!confirm(`开始播放 ${item.date} 的单词？`)) return;
+            if (!confirm(`开始播放 ${item.date} 的单词？`)) {
+                console.log('用户取消播放');
+                return;
+            }
+
+            console.log('开始播放...');
 
             // 播放每个单词
             let index = 0;
             function playNext() {
                 if (index >= item.words.length) {
+                    console.log('播放完成');
                     alert('播放完成！');
                     return;
                 }
 
                 const word = item.words[index];
+                console.log(`播放第 ${index + 1} 个单词:`, word.en);
+                
                 const utterance = new SpeechSynthesisUtterance(word.en);
                 utterance.lang = 'en-US';
                 utterance.rate = 0.8;
 
                 utterance.onend = () => {
+                    console.log('英语播放完成，等待播放中文...');
                     // 等待 1 秒后播放中文翻译
                     setTimeout(() => {
                         const zhUtterance = new SpeechSynthesisUtterance(word.zh);
@@ -383,6 +399,7 @@
                         zhUtterance.rate = 0.8;
 
                         zhUtterance.onend = () => {
+                            console.log('中文播放完成，再次播放英语...');
                             // 再读一遍英语
                             setTimeout(() => {
                                 const enUtterance2 = new SpeechSynthesisUtterance(word.en);
@@ -390,6 +407,7 @@
                                 enUtterance2.rate = 0.8;
 
                                 enUtterance2.onend = () => {
+                                    console.log('第 2 次英语播放完成，播放下一个单词');
                                     index++;
                                     setTimeout(playNext, 500);
                                 };
@@ -402,6 +420,10 @@
                     }, 500);
                 };
 
+                utterance.onerror = (error) => {
+                    console.error('语音合成错误:', error);
+                };
+
                 speechSynthesis.speak(utterance);
             }
 
@@ -410,21 +432,35 @@
 
         // 播放句子
         function playSentences(date) {
+            console.log('playSentences 被调用，日期:', date);
+            
             const item = DATA.find(d => d.date === date);
-            if (!item || !item.sentences) return;
+            if (!item || !item.sentences) {
+                console.error('未找到数据:', item);
+                return;
+            }
+
+            console.log('找到数据:', item);
 
             // 确认播放
-            if (!confirm(`开始播放 ${item.date} 的口语句子？`)) return;
+            if (!confirm(`开始播放 ${item.date} 的口语句子？`)) {
+                console.log('用户取消播放');
+                return;
+            }
+
+            console.log('开始播放...');
 
             // 播放每个句子
             let index = 0;
             function playNext() {
                 if (index >= item.sentences.length) {
+                    console.log('播放完成');
                     alert('播放完成！');
                     return;
                 }
 
                 const sentence = item.sentences[index];
+                console.log(`播放第 ${index + 1} 个句子:`, sentence.en);
 
                 // 读英语句子
                 const utterance = new SpeechSynthesisUtterance(sentence.en);
@@ -432,6 +468,7 @@
                 utterance.rate = 0.7;
 
                 utterance.onend = () => {
+                    console.log('英语播放完成，等待播放中文...');
                     // 等待 1 秒后播放中文翻译
                     setTimeout(() => {
                         const zhUtterance = new SpeechSynthesisUtterance(sentence.zh);
@@ -439,12 +476,17 @@
                         zhUtterance.rate = 0.8;
 
                         zhUtterance.onend = () => {
+                            console.log('中文播放完成，播放下一个句子');
                             index++;
                             setTimeout(playNext, 500);
                         };
 
                         speechSynthesis.speak(zhUtterance);
                     }, 1000);
+                };
+
+                utterance.onerror = (error) => {
+                    console.error('语音合成错误:', error);
                 };
 
                 speechSynthesis.speak(utterance);
