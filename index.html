@@ -354,6 +354,39 @@
             contentDiv.innerHTML = html;
         }
 
+        // 获取最佳英语语音
+        function getBestEnglishVoice() {
+            const voices = speechSynthesis.getVoices();
+            
+            // 优先级列表（从高到低）
+            const preferredVoices = [
+                'Microsoft Jenny Online',
+                'Aria Online',
+                'Google US English',
+                'Microsoft Aria Online',
+                'Samantha',
+                'Microsoft David',
+                'en-US'
+            ];
+            
+            for (const preferred of preferredVoices) {
+                const voice = voices.find(v => v.name.includes(preferred));
+                if (voice) {
+                    console.log('选择语音:', voice.name);
+                    return voice;
+                }
+            }
+            
+            // 如果没有找到，选择第一个英语语音
+            const enVoice = voices.find(v => v.lang.startsWith('en'));
+            if (enVoice) {
+                console.log('选择语音:', enVoice.name);
+                return enVoice;
+            }
+            
+            return null;
+        }
+
         // 播放单词
         function playWords(date) {
             console.log('playWords 被调用，日期:', date);
@@ -373,6 +406,14 @@
             }
 
             console.log('开始播放...');
+            
+            // 获取最佳语音
+            const voice = getBestEnglishVoice();
+            if (!voice) {
+                console.error('未找到英语语音');
+                alert('未找到英语语音，请检查浏览器设置');
+                return;
+            }
 
             // 播放每个单词
             let index = 0;
@@ -387,6 +428,7 @@
                 console.log(`播放第 ${index + 1} 个单词:`, word.en);
                 
                 const utterance = new SpeechSynthesisUtterance(word.en);
+                utterance.voice = voice;
                 utterance.lang = 'en-US';
                 utterance.rate = 0.8;
 
@@ -403,6 +445,7 @@
                             // 再读一遍英语
                             setTimeout(() => {
                                 const enUtterance2 = new SpeechSynthesisUtterance(word.en);
+                                enUtterance2.voice = voice;
                                 enUtterance2.lang = 'en-US';
                                 enUtterance2.rate = 0.8;
 
@@ -449,6 +492,14 @@
             }
 
             console.log('开始播放...');
+            
+            // 获取最佳语音
+            const voice = getBestEnglishVoice();
+            if (!voice) {
+                console.error('未找到英语语音');
+                alert('未找到英语语音，请检查浏览器设置');
+                return;
+            }
 
             // 播放每个句子
             let index = 0;
@@ -464,6 +515,7 @@
 
                 // 读英语句子
                 const utterance = new SpeechSynthesisUtterance(sentence.en);
+                utterance.voice = voice;
                 utterance.lang = 'en-US';
                 utterance.rate = 0.7;
 
@@ -495,9 +547,46 @@
             playNext();
         }
 
+        // 语音初始化（解决 Chrome 浏览器语音合成问题）
+        function initSpeech() {
+            console.log('初始化语音合成...');
+            
+            // 检查浏览器是否支持语音合成
+            if (!('speechSynthesis' in window)) {
+                console.error('浏览器不支持语音合成');
+                alert('您的浏览器不支持语音合成功能，请使用 Edge 或 Chrome 浏览器');
+                return;
+            }
+            
+            // 预加载语音列表（Chrome 需要这个步骤）
+            const voices = speechSynthesis.getVoices();
+            console.log('可用语音数量:', voices.length);
+            
+            if (voices.length === 0) {
+                // 语音列表还没加载完成，等待加载
+                speechSynthesis.onvoiceschanged = () => {
+                    const loadedVoices = speechSynthesis.getVoices();
+                    console.log('语音列表已加载，可用语音数量:', loadedVoices.length);
+                };
+            } else {
+                // 显示可用的英语语音
+                const enVoices = voices.filter(v => v.lang.startsWith('en'));
+                console.log('可用英语语音:', enVoices.map(v => `${v.name} (${v.lang})`).join(', '));
+            }
+            
+            // Chrome 需要这个步骤来激活语音合成
+            const dummyUtterance = new SpeechSynthesisUtterance('');
+            dummyUtterance.volume = 0;
+            speechSynthesis.speak(dummyUtterance);
+            speechSynthesis.cancel();
+            
+            console.log('语音初始化完成');
+        }
+
         // 初始化
         window.addEventListener('load', () => {
             renderContent();
+            initSpeech();
         });
     </script>
 </body>
