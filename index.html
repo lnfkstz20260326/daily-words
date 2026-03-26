@@ -100,76 +100,68 @@
         .day-type {
             font-size: 0.85rem;
             padding: 4px 12px;
-            border-radius: 15px;
-            background: #e8f4f8;
-            color: #2980b9;
-            font-weight: 600;
+            border-radius: 12px;
+            background: #3498db;
+            color: #fff;
         }
 
-        .day-title {
-            font-size: 1.2rem;
-            color: #34495e;
-            margin-bottom: 15px;
+        .day-type.sentence {
+            background: #27ae60;
         }
 
-        .word-list {
+        .word-list, .sentence-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 12px;
             margin-bottom: 15px;
         }
 
-        .word-item {
+        .word-item, .sentence-item {
             background: #f8f9fa;
-            padding: 10px 15px;
+            padding: 12px;
             border-radius: 8px;
-            font-size: 0.95rem;
-            color: #2c3e50;
             border-left: 3px solid #3498db;
         }
 
-        .sentence-list {
-            margin-top: 15px;
+        .sentence-item {
+            border-left-color: #27ae60;
         }
 
-        .sentence-item {
-            background: #f0f3f4;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
+        .word-en {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .word-zh, .sentence-zh {
             font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .sentence-en {
+            font-style: italic;
             color: #34495e;
-            border-left: 3px solid #27ae60;
+            margin-bottom: 4px;
         }
 
         .action-buttons {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            flex: 1;
-            padding: 12px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 25px;
             cursor: pointer;
+            transition: all 0.3s ease;
             font-size: 0.95rem;
             font-weight: 600;
-            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn:active {
-            transform: translateY(0);
+            gap: 6px;
         }
 
         .btn-primary {
@@ -177,9 +169,21 @@
             color: #fff;
         }
 
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
         .btn-success {
             background: #27ae60;
             color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
         }
 
         .btn-danger {
@@ -187,18 +191,24 @@
             color: #fff;
         }
 
+        .btn-danger:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
         .footer {
             text-align: center;
             margin-top: 40px;
-            color: #95a5a6;
-            font-size: 0.85rem;
-        }
-
-        .empty {
-            text-align: center;
-            padding: 60px 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
             color: #7f8c8d;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
 
         /* 响应式设计 */
@@ -229,12 +239,12 @@
 <body>
     <div class="container">
         <h1>📚 每日英语词汇</h1>
-        <p class="subtitle">积累每一天，进步看得见</p>
+        <p class="subtitle">坚持每天学习，一年掌握 1825 个单词！</p>
 
         <div class="filter-buttons">
             <button class="filter-btn active" id="filterAll" onclick="setFilter('all')">全部</button>
             <button class="filter-btn" id="filterWord" onclick="setFilter('word')">单词</button>
-            <button class="filter-btn" id="filterPhrase" onclick="setFilter('phrase')">口语</button>
+            <button class="filter-btn" id="filterSentence" onclick="setFilter('sentence')">口语</button>
         </div>
 
         <div id="content">
@@ -251,15 +261,15 @@
         const DATA = [
             {
                 date: "2026-03-26",
-                day: "周三",
+                day: "周四",
                 type: "word",
-                title: "亲子成长 & 日常生活",
+                title: "日常词汇",
                 words: [
-                    { en: "encourage", zh: "鼓励；给某人勇气" },
-                    { en: "patient", zh: "有耐心的；不着急的" },
-                    { en: "remind", zh: "提醒；告诉" },
-                    { en: "curious", zh: "好奇的；想知道的" },
-                    { en: "tidy", zh: "整理；收拾" }
+                    { en: "encourage", zh: "鼓励；激励" },
+                    { en: "patient", zh: "有耐心的" },
+                    { en: "remind", zh: "提醒" },
+                    { en: "curious", zh: "好奇的" },
+                    { en: "tidy", zh: "整洁的" }
                 ],
                 sentences: [
                     { en: "You're doing great!", zh: "你做得很好！" },
@@ -286,8 +296,8 @@
                 document.getElementById('filterAll').classList.add('active');
             } else if (filter === 'word') {
                 document.getElementById('filterWord').classList.add('active');
-            } else if (filter === 'phrase') {
-                document.getElementById('filterPhrase').classList.add('active');
+            } else if (filter === 'sentence') {
+                document.getElementById('filterSentence').classList.add('active');
             }
 
             renderContent();
@@ -298,203 +308,121 @@
             const contentDiv = document.getElementById('content');
             let html = '';
 
+            // 根据当前过滤器过滤数据
             const filteredData = DATA.filter(item => {
                 if (currentFilter === 'all') return true;
                 return item.type === currentFilter;
             });
 
-            if (filteredData.length === 0) {
-                html = '<div class="empty">没有找到匹配的内容</div>';
-            } else {
-                filteredData.forEach(item => {
-                    html += `
-                        <div class="day-item">
-                            <div class="day-header">
-                                <span class="day-date">${item.date} ${item.day}</span>
-                                <span class="day-type">${item.type === 'word' ? '单词' : '口语'}</span>
-                            </div>
-                            <div class="day-title">${item.title}</div>
-                    `;
-
-                    if (item.words && item.words.length > 0) {
-                        html += '<div class="word-list">';
-                        item.words.forEach(word => {
-                            html += `
-                                <div class="word-item">
-                                    <strong>${word.en}</strong><br>
-                                    <span style="color: #7f8c8d;">${word.zh}</span>
+            // 渲染数据
+            filteredData.forEach(item => {
+                html += `
+                    <div class="day-item">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-date">${item.date} (${item.day})</div>
+                                <div class="day-type ${item.type === 'sentence' ? 'sentence' : ''}">
+                                    ${item.type === 'word' ? '单词' : '口语'}
                                 </div>
-                            `;
-                        });
-                        html += '</div>';
-                    }
-
-                    if (item.sentences && item.sentences.length > 0) {
-                        html += '<div class="sentence-list">';
-                        item.sentences.forEach(sentence => {
-                            html += `
-                                <div class="sentence-item">
-                                    "${sentence.en}"<br>
-                                    <span style="color: #7f8c8d;">${sentence.zh}</span>
-                                </div>
-                            `;
-                        });
-                        html += '</div>';
-                    }
-
-                    html += `
-                            <div class="action-buttons">
-                                <button class="btn btn-primary" onclick="playWords('${item.date}')">
-                                    <span>▶️</span> 单词播放
-                                </button>
-                                <button class="btn btn-success" onclick="playSentences('${item.date}')">
-                                    <span>▶️</span> 口语播放
-                                </button>
-                                <button class="btn btn-danger" onclick="stopPlay()">
-                                    <span>⏹️</span> 停止
-                                </button>
                             </div>
+                            <div>${item.title}</div>
                         </div>
-                    `;
-                });
-            }
+                `;
+
+                if (item.words && item.words.length > 0) {
+                    html += '<div class="word-list">';
+                    item.words.forEach(word => {
+                        html += `
+                            <div class="word-item">
+                                <div class="word-en">${word.en}</div>
+                                <div class="word-zh">${word.zh}</div>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                }
+
+                if (item.sentences && item.sentences.length > 0) {
+                    html += '<div class="sentence-list">';
+                    item.sentences.forEach(sentence => {
+                        html += `
+                            <div class="sentence-item">
+                                <div class="sentence-en">${sentence.en}</div>
+                                <div class="sentence-zh">${sentence.zh}</div>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                }
+
+                html += `
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="playWords('${item.date}')">
+                            <span>▶️</span> 单词播放
+                        </button>
+                        <button class="btn btn-success" onclick="playSentences('${item.date}')">
+                            <span>▶️</span> 口语播放
+                        </button>
+                        <button class="btn btn-danger" onclick="stopPlay()">
+                            <span>⏹️</span> 停止
+                        </button>
+                    </div>
+                </div>
+                `;
+            });
 
             contentDiv.innerHTML = html;
         }
 
-        // ========== 讯飞语音合成 API 配置 ==========
-        const XUNFEI_CONFIG = {
-            appId: 'b8d77b4e',
-            apiKey: '34ec39520db2eb6ead72707b1c8afe38',
-            apiSecret: 'YjlyMmNmM2M0MDk4OTRkN2E2MjZiOTkw',
-            host: 'tts-api.xfyun.cn',
-            path: '/v2/tts',
-            voiceName: 'xiaoyan', // 讯飞小燕
-        };
-
-        // WebSocket 状态
-        let ws = null;
-        let stopRequested = false;
-        let isPlaying = false;
-
-        // 生成讯飞 API 鉴权 URL
-        function generateAuthUrl() {
-            const date = new Date().toUTCString();
-            const signatureOrigin = `host: ${XUNFEI_CONFIG.host}\ndate: ${date}\nGET ${XUNFEI_CONFIG.path} HTTP/1.1`;
+        // ========== 语音合成相关 ==========
+        
+        // 语音初始化
+        function initSpeech() {
+            console.log('初始化语音合成...');
             
-            // 使用 Web Crypto API 进行 HMAC-SHA256 签名
-            const encoder = new TextEncoder();
-            const keyData = encoder.encode(XUNFEI_CONFIG.apiSecret);
-            const messageData = encoder.encode(signatureOrigin);
+            // 检查浏览器是否支持语音合成
+            if (!('speechSynthesis' in window)) {
+                console.error('浏览器不支持语音合成');
+                alert('您的浏览器不支持语音合成功能，请使用 Edge 或 Chrome 浏览器');
+                return;
+            }
             
-            return crypto.subtle.importKey(
-                'raw',
-                keyData,
-                { name: 'HMAC', hash: 'SHA-256' },
-                false,
-                ['sign']
-            ).then(key => {
-                return crypto.subtle.sign('HMAC', key, messageData);
-            }).then(signature => {
-                const signatureBase64 = btoa(String.fromCharCode(...new Uint8Array(signature)));
-                const authorization = `api_key="${XUNFEI_CONFIG.apiKey}", algorithm="hmac-sha256", headers="host date request-line", signature="${signatureBase64}"`;
-                const authorizationBase64 = btoa(authorization);
-                
-                return `wss://${XUNFEI_CONFIG.host}${XUNFEI_CONFIG.path}?authorization=${authorizationBase64}&date=${encodeURIComponent(date)}&host=${XUNFEI_CONFIG.host}`;
-            });
+            // 预加载语音列表
+            let voices = speechSynthesis.getVoices();
+            console.log('可用语音数量:', voices.length);
+            
+            if (voices.length === 0) {
+                // 语音列表还没加载完成，等待加载
+                speechSynthesis.onvoiceschanged = () => {
+                    voices = speechSynthesis.getVoices();
+                    console.log('语音列表已加载，可用语音数量:', voices.length);
+                    logVoices(voices);
+                };
+            } else {
+                logVoices(voices);
+            }
+            
+            // Chrome 需要这个步骤来激活语音合成
+            const dummyUtterance = new SpeechSynthesisUtterance('');
+            dummyUtterance.volume = 0;
+            speechSynthesis.speak(dummyUtterance);
+            speechSynthesis.cancel();
+            
+            console.log('语音初始化完成');
         }
 
-        // 使用讯飞语音合成播放文本
-        function playWithXunfei(text, lang = 'en-us') {
-            return new Promise((resolve, reject) => {
-                if (stopRequested) {
-                    resolve();
-                    return;
-                }
-
-                generateAuthUrl().then(url => {
-                    ws = new WebSocket(url);
-                    
-                    ws.onopen = () => {
-                        console.log('WebSocket 已连接');
-                        
-                        // 构造请求数据
-                        const params = {
-                            header: {
-                                app_id: XUNFEI_CONFIG.appId,
-                                status: 3 // 3 表示最后一个数据包
-                            },
-                            parameter: {
-                                tts: {
-                                    vcn: XUNFEI_CONFIG.voiceName,
-                                    speed: 50,
-                                    volume: 50,
-                                    pitch: 50,
-                                    encoding: 'raw',
-                                    aue: 'raw'
-                                }
-                            },
-                            payload: {
-                                data: {
-                                    status: 3,
-                                    encoding: 'utf8',
-                                    text: btoa(unescape(encodeURIComponent(text))),
-                                    seq: 0
-                                }
-                            }
-                        };
-                        
-                        ws.send(JSON.stringify(params));
-                    };
-                    
-                    ws.onmessage = (event) => {
-                        const response = JSON.parse(event.data);
-                        
-                        if (response.header.code !== 0) {
-                            console.error('讯飞 API 错误:', response.header.message);
-                            reject(new Error(response.header.message));
-                            return;
-                        }
-                        
-                        if (response.payload && response.payload.data && response.payload.data.audio) {
-                            // 播放音频
-                            const audioData = atob(response.payload.data.audio);
-                            const audioBuffer = new ArrayBuffer(audioData.length);
-                            const audioView = new Uint8Array(audioBuffer);
-                            
-                            for (let i = 0; i < audioData.length; i++) {
-                                audioView[i] = audioData.charCodeAt(i);
-                            }
-                            
-                            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                            audioContext.decodeAudioData(audioBuffer).then(audioBuffer => {
-                                const source = audioContext.createBufferSource();
-                                source.buffer = audioBuffer;
-                                source.connect(audioContext.destination);
-                                source.start(0);
-                                source.onended = () => {
-                                    if (ws) {
-                                        ws.close();
-                                    }
-                                    resolve();
-                                };
-                            }).catch(reject);
-                        }
-                    };
-                    
-                    ws.onerror = (error) => {
-                        console.error('WebSocket 错误:', error);
-                        reject(error);
-                    };
-                    
-                    ws.onclose = () => {
-                        console.log('WebSocket 已关闭');
-                    };
-                }).catch(reject);
-            });
+        // 记录可用语音
+        function logVoices(voices) {
+            // 显示可用的英语语音
+            const enVoices = voices.filter(v => v.lang.startsWith('en'));
+            console.log('可用英语语音:', enVoices.map(v => `${v.name} (${v.lang})`).join(', '));
+            
+            // 显示可用的中文语音
+            const zhVoices = voices.filter(v => v.lang.startsWith('zh'));
+            console.log('可用中文语音:', zhVoices.map(v => `${v.name} (${v.lang})`).join(', '));
         }
 
-        // 获取最佳英语语音（备用方案）
+        // 获取最佳英语语音
         function getBestEnglishVoice() {
             const voices = speechSynthesis.getVoices();
             
@@ -527,7 +455,37 @@
             return null;
         }
 
-        // 播放单词（使用讯飞语音合成）
+        // 获取最佳中文语音
+        function getBestChineseVoice() {
+            const voices = speechSynthesis.getVoices();
+            
+            // 优先级列表
+            const preferredVoices = [
+                'Microsoft Yaoyao Online',
+                'Microsoft Kangkang Online',
+                'Microsoft Huihui Online',
+                'zh-CN'
+            ];
+            
+            for (const preferred of preferredVoices) {
+                const voice = voices.find(v => v.name.includes(preferred));
+                if (voice) {
+                    console.log('选择中文语音:', voice.name);
+                    return voice;
+                }
+            }
+            
+            // 如果没有找到，选择第一个中文语音
+            const zhVoice = voices.find(v => v.lang.startsWith('zh'));
+            if (zhVoice) {
+                console.log('选择中文语音:', zhVoice.name);
+                return zhVoice;
+            }
+            
+            return null;
+        }
+
+        // 播放单词
         async function playWords(date) {
             console.log('playWords 被调用，日期:', date);
             
@@ -546,44 +504,67 @@
             }
 
             console.log('开始播放...');
-            isPlaying = true;
-            stopRequested = false;
+            
+            // 获取最佳语音
+            const voice = getBestEnglishVoice();
+            if (!voice) {
+                console.error('未找到英语语音');
+                alert('未找到英语语音，请检查浏览器设置');
+                return;
+            }
+
+            const zhVoice = getBestChineseVoice();
 
             // 播放每个单词
             for (let wordIndex = 0; wordIndex < item.words.length; wordIndex++) {
-                if (stopRequested) {
-                    console.log('用户停止播放');
-                    break;
-                }
-
                 const word = item.words[wordIndex];
                 console.log(`播放第 ${wordIndex + 1} 个单词:`, word.en);
 
                 // 单词朗读规则：英语 × 6遍（第1遍后读汉语）
                 for (let i = 0; i < 6; i++) {
-                    if (stopRequested) break;
-
                     console.log(`第 ${i + 1} 遍: ${word.en}`);
                     
-                    try {
-                        await playWithXunfei(word.en, 'en-us');
-                    } catch (error) {
-                        console.error('播放失败:', error);
-                        alert('播放失败，请检查网络连接');
-                        isPlaying = false;
-                        return;
-                    }
+                    const utterance = new SpeechSynthesisUtterance(word.en);
+                    utterance.voice = voice;
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 1.0;
+
+                    await new Promise((resolve, reject) => {
+                        utterance.onend = () => {
+                            console.log('英语播放完成');
+                            resolve();
+                        };
+                        utterance.onerror = (error) => {
+                            console.error('语音合成错误:', error);
+                            reject(error);
+                        };
+                        speechSynthesis.speak(utterance);
+                    });
 
                     // 第1遍后读汉语
                     if (i === 0) {
-                        if (stopRequested) break;
                         console.log(`读汉语: ${word.zh}`);
                         await sleep(500);
                         
-                        try {
-                            await playWithXunfei(word.zh, 'zh-cn');
-                        } catch (error) {
-                            console.error('播放失败:', error);
+                        if (zhVoice) {
+                            const zhUtterance = new SpeechSynthesisUtterance(word.zh);
+                            zhUtterance.voice = zhVoice;
+                            zhUtterance.lang = 'zh-CN';
+                            zhUtterance.rate = 0.8;
+                            
+                            await new Promise((resolve, reject) => {
+                                zhUtterance.onend = () => {
+                                    console.log('中文播放完成');
+                                    resolve();
+                                };
+                                zhUtterance.onerror = (error) => {
+                                    console.error('中文语音合成错误:', error);
+                                    reject(error);
+                                };
+                                speechSynthesis.speak(zhUtterance);
+                            });
                         }
                     }
 
@@ -595,59 +576,11 @@
                 await sleep(1000);
             }
 
-            isPlaying = false;
-            if (!stopRequested) {
-                console.log('播放完成');
-                alert('播放完成！');
-            }
+            console.log('播放完成');
+            alert('播放完成！');
         }
 
-        // 延迟函数
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        // 停止播放
-        function stopPlay() {
-            console.log('用户点击停止按钮');
-            stopRequested = true;
-            
-            // 关闭 WebSocket 连接
-            if (ws) {
-                ws.close();
-                ws = null;
-            }
-            
-            // 停止浏览器语音合成
-            if ('speechSynthesis' in window) {
-                speechSynthesis.cancel();
-            }
-            
-            isPlaying = false;
-            alert('已停止播放');
-        }
-
-        // 自动播放（页面打开后 3 秒自动播放）
-        function autoPlay() {
-            console.log('3 秒后自动播放今天的单词...');
-            setTimeout(() => {
-                const today = new Date().toISOString().split('T')[0];
-                const item = DATA.find(d => d.date === today);
-                
-                if (item) {
-                    console.log('找到今天的数据:', item);
-                    if (item.words && item.words.length > 0) {
-                        playWords(today);
-                    } else if (item.sentences && item.sentences.length > 0) {
-                        playSentences(today);
-                    }
-                } else {
-                    console.log('今天没有数据，不自动播放');
-                }
-            }, 3000);
-        }
-
-        // 播放句子（使用讯飞语音合成）
+        // 播放句子
         async function playSentences(date) {
             console.log('playSentences 被调用，日期:', date);
             
@@ -666,44 +599,67 @@
             }
 
             console.log('开始播放...');
-            isPlaying = true;
-            stopRequested = false;
+            
+            // 获取最佳语音
+            const voice = getBestEnglishVoice();
+            if (!voice) {
+                console.error('未找到英语语音');
+                alert('未找到英语语音，请检查浏览器设置');
+                return;
+            }
+
+            const zhVoice = getBestChineseVoice();
 
             // 播放每个句子
             for (let sentenceIndex = 0; sentenceIndex < item.sentences.length; sentenceIndex++) {
-                if (stopRequested) {
-                    console.log('用户停止播放');
-                    break;
-                }
-
                 const sentence = item.sentences[sentenceIndex];
                 console.log(`播放第 ${sentenceIndex + 1} 个句子:`, sentence.en);
 
                 // 句子朗读规则：英语 × 6遍（第1遍后读汉语）
                 for (let i = 0; i < 6; i++) {
-                    if (stopRequested) break;
-
                     console.log(`第 ${i + 1} 遍: ${sentence.en}`);
                     
-                    try {
-                        await playWithXunfei(sentence.en, 'en-us');
-                    } catch (error) {
-                        console.error('播放失败:', error);
-                        alert('播放失败，请检查网络连接');
-                        isPlaying = false;
-                        return;
-                    }
+                    const utterance = new SpeechSynthesisUtterance(sentence.en);
+                    utterance.voice = voice;
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.7;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 1.0;
+
+                    await new Promise((resolve, reject) => {
+                        utterance.onend = () => {
+                            console.log('英语播放完成');
+                            resolve();
+                        };
+                        utterance.onerror = (error) => {
+                            console.error('语音合成错误:', error);
+                            reject(error);
+                        };
+                        speechSynthesis.speak(utterance);
+                    });
 
                     // 第1遍后读汉语
                     if (i === 0) {
-                        if (stopRequested) break;
                         console.log(`读汉语: ${sentence.zh}`);
                         await sleep(500);
                         
-                        try {
-                            await playWithXunfei(sentence.zh, 'zh-cn');
-                        } catch (error) {
-                            console.error('播放失败:', error);
+                        if (zhVoice) {
+                            const zhUtterance = new SpeechSynthesisUtterance(sentence.zh);
+                            zhUtterance.voice = zhVoice;
+                            zhUtterance.lang = 'zh-CN';
+                            zhUtterance.rate = 0.8;
+                            
+                            await new Promise((resolve, reject) => {
+                                zhUtterance.onend = () => {
+                                    console.log('中文播放完成');
+                                    resolve();
+                                };
+                                zhUtterance.onerror = (error) => {
+                                    console.error('中文语音合成错误:', error);
+                                    reject(error);
+                                };
+                                speechSynthesis.speak(zhUtterance);
+                            });
                         }
                     }
 
@@ -715,55 +671,26 @@
                 await sleep(1000);
             }
 
-            isPlaying = false;
-            if (!stopRequested) {
-                console.log('播放完成');
-                alert('播放完成！');
-            }
+            console.log('播放完成');
+            alert('播放完成！');
         }
 
-        // 语音初始化（解决 Chrome 浏览器语音合成问题）
-        function initSpeech() {
-            console.log('初始化语音合成...');
-            
-            // 检查浏览器是否支持语音合成
-            if (!('speechSynthesis' in window)) {
-                console.error('浏览器不支持语音合成');
-                alert('您的浏览器不支持语音合成功能，请使用 Edge 或 Chrome 浏览器');
-                return;
-            }
-            
-            // 预加载语音列表（Chrome 需要这个步骤）
-            const voices = speechSynthesis.getVoices();
-            console.log('可用语音数量:', voices.length);
-            
-            if (voices.length === 0) {
-                // 语音列表还没加载完成，等待加载
-                speechSynthesis.onvoiceschanged = () => {
-                    const loadedVoices = speechSynthesis.getVoices();
-                    console.log('语音列表已加载，可用语音数量:', loadedVoices.length);
-                };
-            } else {
-                // 显示可用的英语语音
-                const enVoices = voices.filter(v => v.lang.startsWith('en'));
-                console.log('可用英语语音:', enVoices.map(v => `${v.name} (${v.lang})`).join(', '));
-            }
-            
-            // Chrome 需要这个步骤来激活语音合成
-            const dummyUtterance = new SpeechSynthesisUtterance('');
-            dummyUtterance.volume = 0;
-            speechSynthesis.speak(dummyUtterance);
+        // 停止播放
+        function stopPlay() {
+            console.log('用户点击停止按钮');
             speechSynthesis.cancel();
-            
-            console.log('语音初始化完成');
+            alert('已停止播放');
+        }
+
+        // 延迟函数
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
         // 初始化
         window.addEventListener('load', () => {
             renderContent();
             initSpeech();
-            // 启动自动播放
-            autoPlay();
         });
     </script>
 </body>
