@@ -61,6 +61,14 @@
     color:#95a5a6;
     margin-top:20px
   }
+  .btn-back-to-page{
+    background:linear-gradient(135deg,#f39c12,#e67e22);color:#fff;
+    font-size:.9rem;padding:10px 24px;border-radius:50px;border:none;cursor:pointer;
+    box-shadow:0 4px 14px rgba(230,126,34,.35);font-weight:600;letter-spacing:0.5px;
+    transition:all .2s;margin-top:20px;display:none
+  }
+  .btn-back-to-page:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,126,34,.4)}
+  .btn-back-to-page.visible{display:inline-block}
 </style>
 </head>
 <body>
@@ -71,6 +79,8 @@
   
   <div class="date-grid" id="dateGrid"></div>
   
+  <button class="btn-back-to-page" id="btnBackToPage" onclick="goToLastPage()">🔄 返回上次学习</button>
+  
   <p class="footer">AI英语学习工具 · 从听力抓起 · 每日积累</p>
 </div>
 
@@ -79,6 +89,25 @@
 const dateGrid = document.getElementById('dateGrid');
 const today = new Date();
 const availableDates = [];
+
+// 从URL获取上次访问的页面
+const urlParams = new URLSearchParams(window.location.search);
+const lastPage = urlParams.get('from');
+
+// 如果有上次访问的页面，显示"返回上次学习"按钮
+if (lastPage) {
+  const btnBackToPage = document.getElementById('btnBackToPage');
+  if (btnBackToPage) {
+    btnBackToPage.classList.add('visible');
+  }
+}
+
+// 返回上次学习的页面
+function goToLastPage() {
+  if (lastPage) {
+    window.location.href = lastPage;
+  }
+}
 
 // 从3月27日开始往后生成30天的日期
 for (let i = 0; i < 30; i++) {
@@ -129,6 +158,11 @@ document.querySelectorAll('button').forEach(btn => {
     clearTimeout(autoJumpTimeout);
   });
 });
+
+// 如果有from参数，取消自动跳转（因为用户是从其他页面跳转回来的）
+if (lastPage) {
+  clearTimeout(autoJumpTimeout);
+}
 </script>
 
 </body>
