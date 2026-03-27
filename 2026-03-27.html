@@ -370,6 +370,9 @@ function stopCard(i) {
 
 /* ── Single word: 6 reps ── */
 async function doWord(i) {
+  // 停止所有正在播放的音频
+  speechSynthesis.cancel();
+  
   if (cardBusy[i]) return;
   cardBusy[i] = true;
   stopRequested = false;
