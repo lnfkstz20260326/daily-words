@@ -115,13 +115,20 @@ availableDates.forEach((date, index) => {
   dateGrid.appendChild(btn);
 });
 
-// 自动检测并跳转到今天（如果停留超过2秒）
-setTimeout(() => {
+// 自动检测并跳转到今天（如果停留超过5秒）
+let autoJumpTimeout = setTimeout(() => {
   const stay = new URLSearchParams(window.location.search).get('stay');
   if (!stay) {
     window.location.href = '2026-03-27.html';
   }
-}, 2000);
+}, 5000);
+
+// 用户点击任何按钮时取消自动跳转
+document.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    clearTimeout(autoJumpTimeout);
+  });
+});
 </script>
 
 </body>
