@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>每日英语词汇总览</title>
+    <script>
+        // 自动跳转到今日页面
+        (function() {
+            const now = new Date();
+            const y = now.getFullYear();
+            const m = String(now.getMonth() + 1).padStart(2, '0');
+            const d = String(now.getDate()).padStart(2, '0');
+            const todayFile = `${y}-${m}-${d}.html`;
+            // 检查今日文件是否存在，存在则跳转
+            fetch(todayFile, { method: 'HEAD' })
+                .then(res => {
+                    if (res.ok) {
+                        window.location.href = todayFile;
+                    }
+                })
+                .catch(() => {}); // 文件不存在则留在首页
+        })();
+    </script>
     <style>
         * {
             margin: 0;
@@ -277,6 +295,26 @@
                     { en: "Let me remind you.", zh: "让我提醒你一下。" },
                     { en: "You're so curious!", zh: "你太好奇了！" },
                     { en: "Can you tidy up your room?", zh: "你能收拾一下你的房间吗？" }
+                ]
+            },
+            {
+                date: "2026-03-27",
+                day: "周五",
+                type: "word",
+                title: "亲子出行 & 周末准备",
+                words: [
+                    { en: "prepare", zh: "准备；做好准备" },
+                    { en: "excited", zh: "兴奋的；激动的" },
+                    { en: "arrive", zh: "到达；到了" },
+                    { en: "choose", zh: "选择；挑选" },
+                    { en: "share", zh: "分享；一起用" }
+                ],
+                sentences: [
+                    { en: "Let's prepare for the trip tomorrow.", zh: "我们来为明天的出行做好准备吧。" },
+                    { en: "I'm so excited about the weekend!", zh: "我对这个周末超级期待！" },
+                    { en: "We will arrive there in one hour.", zh: "我们一个小时后就到了。" },
+                    { en: "You can choose what to wear today.", zh: "今天你可以自己选穿什么。" },
+                    { en: "Can you share your snacks with me?", zh: "你能把零食分我一点吗？" }
                 ]
             }
         ];
