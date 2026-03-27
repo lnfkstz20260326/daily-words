@@ -56,11 +56,11 @@
     padding:9px 13px;font-size:.85rem;color:#7d5a00;
     margin-top:12px;display:flex;align-items:flex-start;gap:7px
   }
-  .btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
   .btn{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:7px 15px;border:none;border-radius:50px;
-    font-size:.86rem;font-weight:600;cursor:pointer;transition:all .18s;outline:none
+    display:inline-flex;align-items:center;gap:4px;
+    padding:7px 13px;border:none;border-radius:50px;
+    font-size:.85rem;font-weight:600;cursor:pointer;transition:all .18s;outline:none
   }
   .btn:active{transform:scale(.96)}
   .btn-w{background:#3498db;color:#fff}
@@ -71,6 +71,9 @@
   .btn-e{background:#ecf0f1;color:#2c3e50;border:1px solid #bdc3c7}
   .btn-e:hover{background:#dfe6e9}
   .btn-s{background:#e74c3c;color:#fff}
+  .btn-slow{background:#f39c12;color:#fff}  /* 慢速按钮颜色 */
+  .btn-normal{background:#3498db;color:#fff}  /* 匀速按钮颜色 */
+  .btn-fast{background:#27ae60;color:#fff}  /* 常速按钮颜色 */
   .btn:disabled{opacity:.5;cursor:not-allowed}
   .pbar{height:4px;background:#ecf0f1;border-radius:4px;margin-top:8px;overflow:hidden;display:none}
   .pfill{height:100%;background:#3498db;border-radius:4px;width:0%;transition:width .3s}
@@ -85,494 +88,755 @@
   .btn-all:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(39,174,96,.4)}
   .btn-all:disabled{opacity:.55;cursor:not-allowed;transform:none}
   footer{text-align:center;color:#bdc3c7;font-size:.76rem;margin-top:8px}
-  .countdown{
-    text-align:center;font-size:.88rem;color:#e67e22;
-    font-weight:700;margin-bottom:10px;min-height:20px
-  }
-  .loop-badge{
-    text-align:center;font-size:.75rem;color:#7f8c8d;margin-bottom:8px;
-    background:#fff9f0;padding:4px 12px;border-radius:20px;display:inline-block;margin-left:50%;transform:translateX(-50%)
-  }
 </style>
 </head>
 <body>
 
 <h1>📚 每日英语单词</h1>
-<p class="subtitle">2026年3月27日（周五）· 亲子出行 &amp; 周末准备</p>
-<div class="loop-badge">🔄 自动循环朗读</div>
+<p class="subtitle">2026年3月27日（周五）· 小学五年级日常口语</p>
 <div class="auto-notice">📱 建议使用 Chrome 或 Edge 浏览器，语音效果更好！</div>
-<div class="countdown" id="countdown"></div>
 
 <div class="play-all-wrap">
   <button class="btn-all" id="btnAll" onclick="toggleAll()">▶ 开始循环朗读</button>
 </div>
 
 <!-- CARD 1 -->
-<div class="card" id="c0">
+<div class="card">
   <div class="card-header">
     <div class="num">1</div>
     <div>
-      <div class="word-en">prepare</div>
-      <div class="phonetic">/prɪˈpeər/</div>
-      <span class="tag">v.</span><span class="zh">准备；做好准备</span>
+      <div class="word-en">get up</div>
+      <div class="phonetic">/ɡet ʌp/</div>
+      <div class="tag">日常</div>
+      <div class="zh">起床</div>
     </div>
   </div>
   <div class="sec">例句</div>
   <div class="eg">
-    <div class="eg-en">Let's prepare for the trip tomorrow.</div>
-    <div class="eg-zh">我们来为明天的出行做好准备吧。</div>
+    <div class="eg-en">I get up at seven every morning.</div>
+    <div class="eg-zh">我每天早上七点起床。</div>
   </div>
-  <div class="tip"><span>💡</span><span>pre-（提前）+ pare（安排）→ 提前安排好 = 准备</span></div>
   <div class="btns">
-    <button class="btn btn-w" id="bw0" onclick="doWord(0)">🔊 朗读单词×6</button>
-    <button class="btn btn-e" id="be0" onclick="doExample(0)">🔁 例句×6遍</button>
-    <button class="btn btn-s" id="bs0" onclick="stopCard(0)">⏹ 停止</button>
-  </div>
-  <div class="pbar" id="pb0"><div class="pfill" id="pf0"></div></div>
-  <div class="st" id="st0"></div>
-</div>
-
-<!-- CARD 2 -->
-<div class="card" id="c1">
-  <div class="card-header">
-    <div class="num">2</div>
-    <div>
-      <div class="word-en">excited</div>
-      <div class="phonetic">/ɪkˈsaɪtɪd/</div>
-      <span class="tag">adj.</span><span class="zh">兴奋的；激动的</span>
-    </div>
-  </div>
-  <div class="sec">例句</div>
-  <div class="eg">
-    <div class="eg-en">I'm so excited about the weekend!</div>
-    <div class="eg-zh">我对这个周末超级期待！</div>
-  </div>
-  <div class="tip"><span>💡</span><span>excite（让人兴奋）+ -ed → 被激动到了 = 兴奋的</span></div>
-  <div class="btns">
-    <button class="btn btn-w" id="bw1" onclick="doWord(1)">🔊 朗读单词×6</button>
-    <button class="btn btn-e" id="be1" onclick="doExample(1)">🔁 例句×6遍</button>
-    <button class="btn btn-s" id="bs1" onclick="stopCard(1)">⏹ 停止</button>
+    <button class="btn btn-slow" id="ws1" onclick="playSlowWord(0)">🐢 慢速词×3</button>
+    <button class="btn btn-normal" id="wn1" onclick="playNormalWord(0)">🚀 匀速词×3</button>
+    <button class="btn btn-slow" id="es1" onclick="playSlowSentence(0)">🐢 慢速句×3</button>
+    <button class="btn btn-normal" id="en1" onclick="playNormalSentence(0)">🚀 匀速句×3</button>
+    <button class="btn btn-fast" id="ef1" onclick="playFastSentence(0)">⚡ 常速句×3</button>
+    <button class="btn btn-s" id="s1" onclick="stopCard(0)">⏹ 停止</button>
   </div>
   <div class="pbar" id="pb1"><div class="pfill" id="pf1"></div></div>
   <div class="st" id="st1"></div>
 </div>
 
-<!-- CARD 3 -->
-<div class="card" id="c2">
+<!-- CARD 2 -->
+<div class="card">
   <div class="card-header">
-    <div class="num">3</div>
+    <div class="num">2</div>
     <div>
-      <div class="word-en">arrive</div>
-      <div class="phonetic">/əˈraɪv/</div>
-      <span class="tag">v.</span><span class="zh">到达；到了</span>
+      <div class="word-en">wash face</div>
+      <div class="phonetic">/wɒʃ feɪs/</div>
+      <div class="tag">日常</div>
+      <div class="zh">洗脸</div>
     </div>
   </div>
   <div class="sec">例句</div>
   <div class="eg">
-    <div class="eg-en">We will arrive there in one hour.</div>
-    <div class="eg-zh">我们一个小时后就到了。</div>
+    <div class="eg-en">Wash your face before breakfast.</div>
+    <div class="eg-zh">吃早饭前洗脸。</div>
   </div>
-  <div class="tip"><span>💡</span><span>ar-（到）+ rive（河边）→ 船靠岸了 = 到达</span></div>
   <div class="btns">
-    <button class="btn btn-w" id="bw2" onclick="doWord(2)">🔊 朗读单词×6</button>
-    <button class="btn btn-e" id="be2" onclick="doExample(2)">🔁 例句×6遍</button>
-    <button class="btn btn-s" id="bs2" onclick="stopCard(2)">⏹ 停止</button>
+    <button class="btn btn-slow" id="ws2" onclick="playSlowWord(1)">🐢 慢速词×3</button>
+    <button class="btn btn-normal" id="wn2" onclick="playNormalWord(1)">🚀 匀速词×3</button>
+    <button class="btn btn-slow" id="es2" onclick="playSlowSentence(1)">🐢 慢速句×3</button>
+    <button class="btn btn-normal" id="en2" onclick="playNormalSentence(1)">🚀 匀速句×3</button>
+    <button class="btn btn-fast" id="ef2" onclick="playFastSentence(1)">⚡ 常速句×3</button>
+    <button class="btn btn-s" id="s2" onclick="stopCard(1)">⏹ 停止</button>
   </div>
   <div class="pbar" id="pb2"><div class="pfill" id="pf2"></div></div>
   <div class="st" id="st2"></div>
 </div>
 
-<!-- CARD 4 -->
-<div class="card" id="c3">
+<!-- CARD 3 -->
+<div class="card">
   <div class="card-header">
-    <div class="num">4</div>
+    <div class="num">3</div>
     <div>
-      <div class="word-en">choose</div>
-      <div class="phonetic">/tʃuːz/</div>
-      <span class="tag">v.</span><span class="zh">选择；挑选</span>
+      <div class="word-en">brush teeth</div>
+      <div class="phonetic">/brʌʃ tiːθ/</div>
+      <div class="tag">日常</div>
+      <div class="zh">刷牙</div>
     </div>
   </div>
   <div class="sec">例句</div>
   <div class="eg">
-    <div class="eg-en">You can choose what to wear today.</div>
-    <div class="eg-zh">今天你可以自己选穿什么。</div>
+    <div class="eg-en">I brush my teeth twice a day.</div>
+    <div class="eg-zh">我每天刷两次牙。</div>
   </div>
-  <div class="tip"><span>💡</span><span>超市里挑商品 → choose（挑选）= 选择</span></div>
   <div class="btns">
-    <button class="btn btn-w" id="bw3" onclick="doWord(3)">🔊 朗读单词×6</button>
-    <button class="btn btn-e" id="be3" onclick="doExample(3)">🔁 例句×6遍</button>
-    <button class="btn btn-s" id="bs3" onclick="stopCard(3)">⏹ 停止</button>
+    <button class="btn btn-slow" id="ws3" onclick="playSlowWord(2)">🐢 慢速词×3</button>
+    <button class="btn btn-normal" id="wn3" onclick="playNormalWord(2)">🚀 匀速词×3</button>
+    <button class="btn btn-slow" id="es3" onclick="playSlowSentence(2)">🐢 慢速句×3</button>
+    <button class="btn btn-normal" id="en3" onclick="playNormalSentence(2)">🚀 匀速句×3</button>
+    <button class="btn btn-fast" id="ef3" onclick="playFastSentence(2)">⚡ 常速句×3</button>
+    <button class="btn btn-s" id="s3" onclick="stopCard(2)">⏹ 停止</button>
   </div>
   <div class="pbar" id="pb3"><div class="pfill" id="pf3"></div></div>
   <div class="st" id="st3"></div>
 </div>
 
-<!-- CARD 5 -->
-<div class="card" id="c4">
+<!-- CARD 4 -->
+<div class="card">
   <div class="card-header">
-    <div class="num">5</div>
+    <div class="num">4</div>
     <div>
-      <div class="word-en">share</div>
-      <div class="phonetic">/ʃeər/</div>
-      <span class="tag">v.</span><span class="zh">分享；一起用</span>
+      <div class="word-en">eat breakfast</div>
+      <div class="phonetic">/iːt ˈbrekfəst/</div>
+      <div class="tag">日常</div>
+      <div class="zh">吃早饭</div>
     </div>
   </div>
   <div class="sec">例句</div>
   <div class="eg">
-    <div class="eg-en">Can you share your snacks with me?</div>
-    <div class="eg-zh">你能把零食分我一点吗？</div>
+    <div class="eg-en">Let's eat breakfast together.</div>
+    <div class="eg-zh">让我们一起吃早饭吧。</div>
   </div>
-  <div class="tip"><span>💡</span><span>把一样东西切开分给大家 = share（分享）</span></div>
   <div class="btns">
-    <button class="btn btn-w" id="bw4" onclick="doWord(4)">🔊 朗读单词×6</button>
-    <button class="btn btn-e" id="be4" onclick="doExample(4)">🔁 例句×6遍</button>
-    <button class="btn btn-s" id="bs4" onclick="stopCard(4)">⏹ 停止</button>
+    <button class="btn btn-slow" id="ws4" onclick="playSlowWord(3)">🐢 慢速词×3</button>
+    <button class="btn btn-normal" id="wn4" onclick="playNormalWord(3)">🚀 匀速词×3</button>
+    <button class="btn btn-slow" id="es4" onclick="playSlowSentence(3)">🐢 慢速句×3</button>
+    <button class="btn btn-normal" id="en4" onclick="playNormalSentence(3)">🚀 匀速句×3</button>
+    <button class="btn btn-fast" id="ef4" onclick="playFastSentence(3)">⚡ 常速句×3</button>
+    <button class="btn btn-s" id="s4" onclick="stopCard(3)">⏹ 停止</button>
   </div>
   <div class="pbar" id="pb4"><div class="pfill" id="pf4"></div></div>
   <div class="st" id="st4"></div>
 </div>
 
-<footer>🌟 坚持每天 5 词，一年掌握 1825 个单词！</footer>
+<!-- CARD 5 -->
+<div class="card">
+  <div class="card-header">
+    <div class="num">5</div>
+    <div>
+      <div class="word-en">go to school</div>
+      <div class="phonetic">/ɡəʊ tuː skuːl/</div>
+      <div class="tag">日常</div>
+      <div class="zh">去上学</div>
+    </div>
+  </div>
+  <div class="sec">例句</div>
+  <div class="eg">
+    <div class="eg-en">I go to school by bus.</div>
+    <div class="eg-zh">我坐公交车去上学。</div>
+  </div>
+  <div class="btns">
+    <button class="btn btn-slow" id="ws5" onclick="playSlowWord(4)">🐢 慢速词×3</button>
+    <button class="btn btn-normal" id="wn5" onclick="playNormalWord(4)">🚀 匀速词×3</button>
+    <button class="btn btn-slow" id="es5" onclick="playSlowSentence(4)">🐢 慢速句×3</button>
+    <button class="btn btn-normal" id="en5" onclick="playNormalSentence(4)">🚀 匀速句×3</button>
+    <button class="btn btn-fast" id="ef5" onclick="playFastSentence(4)">⚡ 常速句×3</button>
+    <button class="btn btn-s" id="s5" onclick="stopCard(4)">⏹ 停止</button>
+  </div>
+  <div class="pbar" id="pb5"><div class="pfill" id="pf5"></div></div>
+  <div class="st" id="st5"></div>
+</div>
+
+<footer>AI英语学习工具 · 从听力抓起 · 每日积累</footer>
 
 <script>
-/* ── Data ── */
+// 数据
 const DATA = [
-  { en:"prepare", zh:"准备；做好准备",
-    sentence:"Let's prepare for the trip tomorrow.",
-    sentenceZh:"我们来为明天的出行做好准备吧。" },
-  { en:"excited", zh:"兴奋的；激动的",
-    sentence:"I'm so excited about the weekend!",
-    sentenceZh:"我对这个周末超级期待！" },
-  { en:"arrive", zh:"到达；到了",
-    sentence:"We will arrive there in one hour.",
-    sentenceZh:"我们一个小时后就到了。" },
-  { en:"choose", zh:"选择；挑选",
-    sentence:"You can choose what to wear today.",
-    sentenceZh:"今天你可以自己选穿什么。" },
-  { en:"share", zh:"分享；一起用",
-    sentence:"Can you share your snacks with me?",
-    sentenceZh:"你能把零食分我一点吗？" }
+  {
+    en: "get up",
+    zh: "起床",
+    sentence: "I get up at seven every morning.",
+    sentenceZh: "我每天早上七点起床。"
+  },
+  {
+    en: "wash face",
+    zh: "洗脸",
+    sentence: "Wash your face before breakfast.",
+    sentenceZh: "吃早饭前洗脸。"
+  },
+  {
+    en: "brush teeth",
+    zh: "刷牙",
+    sentence: "I brush my teeth twice a day.",
+    sentenceZh: "我每天刷两次牙。"
+  },
+  {
+    en: "eat breakfast",
+    zh: "吃早饭",
+    sentence: "Let's eat breakfast together.",
+    sentenceZh: "让我们一起吃早饭吧。"
+  },
+  {
+    en: "go to school",
+    zh: "去上学",
+    sentence: "I go to school by bus.",
+    sentenceZh: "我坐公交车去上学。"
+  }
 ];
 
-/* ── Voice selection ── */
-let EV = null, ZV = null;
+// 每个卡片的独立状态
+const cardStates = [
+  { isPlaying: false, stopRequested: false },
+  { isPlaying: false, stopRequested: false },
+  { isPlaying: false, stopRequested: false },
+  { isPlaying: false, stopRequested: false },
+  { isPlaying: false, stopRequested: false }
+];
 
-function pickVoices() {
-  if (typeof speechSynthesis === 'undefined') return;
-  const all = speechSynthesis.getVoices();
-  if (!all.length) return;
+let allRunning = false;
+let allStopRequested = false;
 
-  const enWant = [
-    'Microsoft Jenny Online (Natural)','Microsoft Jenny (Natural)',
-    'Microsoft Aria Online (Natural)','Microsoft Aria (Natural)',
-    'Microsoft Jenny Online','Microsoft Aria Online',
-    'Microsoft Jenny','Microsoft Aria',
-    'Google US English','Samantha','Alex',
-    'Microsoft Zira','Microsoft David'
-  ];
-  for (const name of enWant) {
-    const v = all.find(v => v.name.includes(name));
-    if (v) { EV = v; break; }
-  }
-  if (!EV) EV = all.find(v => v.lang === 'en-US') || all.find(v => v.lang.startsWith('en'));
-
-  const zhWant = [
-    'Microsoft Xiaoxiao Online (Natural)','Microsoft Xiaoxiao (Natural)',
-    'Microsoft Xiaoxiao Online','Microsoft Huihui',
-    'Google 普通话（中国大陆）','Ting-Ting'
-  ];
-  for (const name of zhWant) {
-    const v = all.find(v => v.name.includes(name));
-    if (v) { ZV = v; break; }
-  }
-  if (!ZV) ZV = all.find(v => v.lang === 'zh-CN') || all.find(v => v.lang.startsWith('zh'));
-}
-
-if (typeof speechSynthesis !== 'undefined') {
-  speechSynthesis.onvoiceschanged = pickVoices;
-  pickVoices();
-}
-
-/* ── Core speak ── */
-let currentCardId = null; // 当前正在播放的卡片ID
-
-function speak(text, isZh, rate) {
-  return new Promise(resolve => {
-    if (typeof speechSynthesis === 'undefined') return resolve();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = isZh ? 'zh-CN' : 'en-US';
-    u.rate = rate ?? 0.85;
-    u.pitch = isZh ? 1.05 : 1.0;
-    u.volume = 1.0;
-    if (!isZh && EV) u.voice = EV;
-    if (isZh && ZV) u.voice = ZV;
-    u.onend = resolve;
-    u.onerror = resolve;
-    speechSynthesis.speak(u);
+// 语音合成
+function speak(text, lang, rate = 0.85) {
+  return new Promise((resolve) => {
+    if (typeof speechSynthesis === 'undefined') {
+      resolve();
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = rate;
+    utterance.onend = resolve;
+    utterance.onerror = resolve;
+    speechSynthesis.speak(utterance);
   });
 }
 
-function getRepeatDelay(text, isZh) {
-  const charTime = isZh ? 150 : 120;
-  const duration = text.length * charTime / 1000;
-  return Math.max(duration * 1000, 800);
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
-
-function sleepWithStop(ms) {
-  return new Promise(resolve => {
-    const checkInterval = 50;
-    let elapsed = 0;
-    const interval = setInterval(() => {
-      if (stopRequested) {
-        clearInterval(interval);
-        resolve();
-      } else if (elapsed >= ms) {
-        clearInterval(interval);
-        resolve();
-      } else {
-        elapsed += checkInterval;
-      }
-    }, checkInterval);
-  });
-}
-
-/* ── Card-level control ── */
-let cardBusy = [false, false, false, false, false];
-let stopRequested = false;
-let currentPlayingCard = null; // 当前正在播放的卡片索引
-
+// 停止指定卡片
 function stopCard(i) {
-  // 只停止当前卡片的播放，不停止其他卡片
-  cardBusy[i] = false;
-  // 如果是单个卡片播放（不在循环模式下），才取消语音
-  // 在循环模式下，由循环控制统一管理，避免干扰
-  if (!allRunning) {
-    speechSynthesis.cancel();
-    setTimeout(() => speechSynthesis.cancel(), 50);
+  const state = cardStates[i];
+  if (!state.isPlaying) return;
+  
+  state.stopRequested = true;
+  state.isPlaying = false;
+  
+  // 更新UI
+  const st = document.getElementById('st'+(i+1));
+  const pb = document.getElementById('pb'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  // 重置所有按钮状态
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = false;
   }
-  const st = document.getElementById('st'+i);
-  const pb = document.getElementById('pb'+i);
-  const bw = document.getElementById('bw'+i);
-  const be = document.getElementById('be'+i);
-  const pf = document.getElementById('pf'+i);
+  
   if (st) { st.textContent = '⏹ 已停止'; st.className = 'st'; }
   if (pb) { pb.style.display = 'none'; }
   if (pf) { pf.style.width = '0%'; }
-  if (bw) { bw.disabled = false; }
-  if (be) { be.disabled = false; be.textContent = '🔁 例句×6遍'; }
-  // 清除当前播放状态
-  if (currentPlayingCard === i) {
-    currentPlayingCard = null;
-  }
 }
 
-/* ── Single word: 6 reps ── */
-async function doWord(i) {
-  // 停止所有正在播放的音频
-  speechSynthesis.cancel();
+// 通用播放前准备
+async function preparePlay(i) {
+  const state = cardStates[i];
   
-  if (cardBusy[i]) return;
-  cardBusy[i] = true;
-  stopRequested = false;
-  const d = DATA[i];
-  const st = document.getElementById('st'+i);
-  const pb = document.getElementById('pb'+i);
-  const pf = document.getElementById('pf'+i);
-  const bw = document.getElementById('bw'+i);
-  const be = document.getElementById('be'+i);
-  bw.disabled = true; be.disabled = true;
-  pb.style.display='block'; pf.style.width='0%';
-
-  for (let r=1; r<=6; r++) {
-    if (stopRequested) break;
-    st.className='st on'; st.textContent=`单词第 ${r} 遍...`;
-    pf.style.width=(((r-1)/6)*100)+'%';
-    await speak(d.en, false, 0.85);
-    if (stopRequested) break;
-    if (r === 1) {
-      await sleepWithStop(200);
-      st.textContent='（汉语：'+d.zh+'）';
-      await speak(d.zh, true, 0.85);
-    }
-    if (stopRequested) break;
-    if (r < 6) {
-      const delay = getRepeatDelay(d.en, false);
-      st.textContent='🔄 跟读时间...';
-      await sleepWithStop(delay);
+  // 如果正在播放，先停止
+  if (state.isPlaying) {
+    stopCard(i);
+    await sleep(100);
+  }
+  
+  // 停止其他所有卡片
+  for (let j = 0; j < 5; j++) {
+    if (j !== i && cardStates[j].isPlaying) {
+      stopCard(j);
     }
   }
-  if (cardBusy[i] && !stopRequested) {
-    pf.style.width='100%';
-    st.className='st'; st.textContent='✅ 完成';
+  
+  // 取消所有语音
+  speechSynthesis.cancel();
+  await sleep(50);
+  
+  // 开始播放
+  state.isPlaying = true;
+  state.stopRequested = false;
+  
+  const st = document.getElementById('st'+(i+1));
+  const pb = document.getElementById('pb'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  // 禁用所有按钮
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = true;
   }
-  cardBusy[i] = false;
-  bw.disabled = false; be.disabled = false;
+  
+  pb.style.display = 'block';
+  pf.style.width = '0%';
 }
 
-/* ── Example: 6 reps ── */
-async function doExample(i) {
-  if (cardBusy[i]) return;
-  cardBusy[i] = true;
-  stopRequested = false;
+// 慢速词 ×3遍 (40%速度)
+async function playSlowWord(i) {
+  if (allRunning) return;
+  
+  await preparePlay(i);
+  
   const d = DATA[i];
-  const btn = document.getElementById('be'+i);
-  const bw = document.getElementById('bw'+i);
-  const st  = document.getElementById('st'+i);
-  const pb  = document.getElementById('pb'+i);
-  const pf  = document.getElementById('pf'+i);
-  btn.disabled=true; bw.disabled=true; btn.textContent='⏹ 朗读中...';
-  pb.style.display='block'; pf.style.width='0%';
-
-  for (let r=1; r<=6; r++) {
-    if (stopRequested) break;
-    st.className='st on'; st.textContent=`例句第 ${r} 遍...`;
-    pf.style.width=(((r-1)/6)*100)+'%';
-    await speak(d.sentence, false, 0.85);
-    if (stopRequested) break;
+  const st = document.getElementById('st'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  for (let r = 1; r <= 3; r++) {
+    if (cardStates[i].stopRequested) break;
+    
+    st.className = 'st on';
+    st.textContent = `🐢 慢速词第 ${r} 遍...`;
+    pf.style.width = (((r-1)/3)*100) + '%';
+    
+    await speak(d.en, 'en-US', 0.4);  // 40%速度
+    
+    if (cardStates[i].stopRequested) break;
+    
+    // 第3遍后读汉语
     if (r === 3) {
-      await sleepWithStop(250);
-      st.textContent='（汉语：'+d.sentenceZh+'）';
-      await speak(d.sentenceZh, true, 0.85);
-    }
-    if (stopRequested) break;
-    if (r < 6) {
-      const delay = getRepeatDelay(d.sentence, false);
-      st.textContent='🔄 跟读时间...';
-      await sleepWithStop(delay);
+      await sleep(200);
+      st.textContent = '（汉语：'+d.zh+'）';
+      await speak(d.zh, 'zh-CN', 0.85);
+    } else {
+      // 间隔0.5秒
+      await sleep(500);
     }
   }
-  if (cardBusy[i] && !stopRequested) {
-    pf.style.width='100%';
-    st.className='st'; st.textContent='✅ 完成';
+  
+  if (cardStates[i].isPlaying && !cardStates[i].stopRequested) {
+    pf.style.width = '100%';
+    st.className = 'st';
+    st.textContent = '✅ 慢速词完成';
   }
-  btn.disabled=false; bw.disabled=false; btn.textContent='🔁 例句×6遍';
-  cardBusy[i] = false;
+  
+  cardStates[i].isPlaying = false;
+  
+  // 恢复按钮
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = false;
+  }
 }
 
-/* ── Play All Loop ── */
-let allRunning = false;
+// 匀速词 ×3遍 (80%速度)
+async function playNormalWord(i) {
+  if (allRunning) return;
+  
+  await preparePlay(i);
+  
+  const d = DATA[i];
+  const st = document.getElementById('st'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  for (let r = 1; r <= 3; r++) {
+    if (cardStates[i].stopRequested) break;
+    
+    st.className = 'st on';
+    st.textContent = `🚀 匀速词第 ${r} 遍...`;
+    pf.style.width = (((r-1)/3)*100) + '%';
+    
+    await speak(d.en, 'en-US', 0.8);  // 80%速度
+    
+    if (cardStates[i].stopRequested) break;
+    
+    // 间隔0.5秒（无汉语）
+    await sleep(500);
+  }
+  
+  if (cardStates[i].isPlaying && !cardStates[i].stopRequested) {
+    pf.style.width = '100%';
+    st.className = 'st';
+    st.textContent = '✅ 匀速词完成';
+  }
+  
+  cardStates[i].isPlaying = false;
+  
+  // 恢复按钮
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = false;
+  }
+}
 
-function toggleAll(){
-  if(allRunning){
+// 慢速句 ×3遍 (60%速度)
+async function playSlowSentence(i) {
+  if (allRunning) return;
+  
+  await preparePlay(i);
+  
+  const d = DATA[i];
+  const st = document.getElementById('st'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  for (let r = 1; r <= 3; r++) {
+    if (cardStates[i].stopRequested) break;
+    
+    st.className = 'st on';
+    st.textContent = `🐢 慢速句第 ${r} 遍...`;
+    pf.style.width = (((r-1)/3)*100) + '%';
+    
+    await speak(d.sentence, 'en-US', 0.6);  // 60%速度
+    
+    if (cardStates[i].stopRequested) break;
+    
+    // 第3遍后读汉语
+    if (r === 3) {
+      await sleep(200);
+      st.textContent = '（汉语：'+d.sentenceZh+'）';
+      await speak(d.sentenceZh, 'zh-CN', 0.85);
+    } else {
+      // 间隔0.5秒
+      await sleep(500);
+    }
+  }
+  
+  if (cardStates[i].isPlaying && !cardStates[i].stopRequested) {
+    pf.style.width = '100%';
+    st.className = 'st';
+    st.textContent = '✅ 慢速句完成';
+  }
+  
+  cardStates[i].isPlaying = false;
+  
+  // 恢复按钮
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = false;
+  }
+}
+
+// 匀速句 ×3遍 (80%速度)
+async function playNormalSentence(i) {
+  if (allRunning) return;
+  
+  await preparePlay(i);
+  
+  const d = DATA[i];
+  const st = document.getElementById('st'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  for (let r = 1; r <= 3; r++) {
+    if (cardStates[i].stopRequested) break;
+    
+    st.className = 'st on';
+    st.textContent = `🚀 匀速句第 ${r} 遍...`;
+    pf.style.width = (((r-1)/3)*100) + '%';
+    
+    await speak(d.sentence, 'en-US', 0.8);  // 80%速度
+    
+    if (cardStates[i].stopRequested) break;
+    
+    // 间隔0.5秒（无汉语）
+    await sleep(500);
+  }
+  
+  if (cardStates[i].isPlaying && !cardStates[i].stopRequested) {
+    pf.style.width = '100%';
+    st.className = 'st';
+    st.textContent = '✅ 匀速句完成';
+  }
+  
+  cardStates[i].isPlaying = false;
+  
+  // 恢复按钮
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = false;
+  }
+}
+
+// 常速句 ×3遍 (90%速度)
+async function playFastSentence(i) {
+  if (allRunning) return;
+  
+  await preparePlay(i);
+  
+  const d = DATA[i];
+  const st = document.getElementById('st'+(i+1));
+  const pf = document.getElementById('pf'+(i+1));
+  
+  for (let r = 1; r <= 3; r++) {
+    if (cardStates[i].stopRequested) break;
+    
+    st.className = 'st on';
+    st.textContent = `⚡ 常速句第 ${r} 遍...`;
+    pf.style.width = (((r-1)/3)*100) + '%';
+    
+    await speak(d.sentence, 'en-US', 0.9);  // 90%速度
+    
+    if (cardStates[i].stopRequested) break;
+    
+    // 间隔0.5秒（无汉语）
+    await sleep(500);
+  }
+  
+  if (cardStates[i].isPlaying && !cardStates[i].stopRequested) {
+    pf.style.width = '100%';
+    st.className = 'st';
+    st.textContent = '✅ 常速句完成';
+  }
+  
+  cardStates[i].isPlaying = false;
+  
+  // 恢复按钮
+  for (let btnId of ['ws','wn','es','en','ef']) {
+    const btn = document.getElementById(btnId+(i+1));
+    if (btn) btn.disabled = false;
+  }
+}
+
+// 循环播放所有卡片（完整版：单词6遍 + 例句9遍 = 15遍，循环10轮）
+async function playAllCards() {
+  allRunning = true;
+  allStopRequested = false;
+  
+  const btnAll = document.getElementById('btnAll');
+  btnAll.textContent = '⏹ 停止循环';
+  btnAll.disabled = false;
+  
+  // 禁用所有卡片按钮
+  for (let i = 0; i < 5; i++) {
+    for (let btnId of ['ws','wn','es','en','ef','s']) {
+      const btn = document.getElementById(btnId+(i+1));
+      if (btn) btn.disabled = true;
+    }
+  }
+  
+  // 循环10轮（每轮5个卡片）
+  for (let round = 1; round <= 10; round++) {
+    if (allStopRequested) break;
+    
+    // 更新按钮显示当前轮次
+    btnAll.textContent = `⏹ 停止循环（第${round}/10轮）`;
+    
+    for (let i = 0; i < 5; i++) {
+    if (allStopRequested) break;
+    
+    cardStates[i].isPlaying = true;
+    cardStates[i].stopRequested = false;
+    
+    const d = DATA[i];
+    const st = document.getElementById('st'+(i+1));
+    const pb = document.getElementById('pb'+(i+1));
+    const pf = document.getElementById('pf'+(i+1));
+    
+    pb.style.display = 'block';
+    pf.style.width = '0%';
+    
+    // ========== 单词部分（6遍）==========
+    
+    // 1. 慢速词 ×3遍 (40%速度)
+    for (let r = 1; r <= 3; r++) {
+      if (allStopRequested) break;
+      
+      st.className = 'st on';
+      st.textContent = `卡片${i+1}·🐢慢速词第 ${r} 遍...`;
+      pf.style.width = (((r-1)/15)*100) + '%';
+      
+      await speak(d.en, 'en-US', 0.4);  // 40%速度
+      
+      if (allStopRequested) break;
+      
+      // 第3遍后读汉语
+      if (r === 3) {
+        await sleep(200);
+        st.textContent = '（汉语：'+d.zh+'）';
+        await speak(d.zh, 'zh-CN', 0.85);
+      } else {
+        // 间隔0.5秒
+        await sleep(500);
+      }
+    }
+    
+    if (allStopRequested) break;
+    
+    // 2. 匀速词 ×3遍 (80%速度)
+    for (let r = 1; r <= 3; r++) {
+      if (allStopRequested) break;
+      
+      st.className = 'st on';
+      st.textContent = `卡片${i+1}·🚀匀速词第 ${r} 遍...`;
+      pf.style.width = ((3+r-1)/15*100) + '%';
+      
+      await speak(d.en, 'en-US', 0.8);  // 80%速度
+      
+      if (allStopRequested) break;
+      
+      // 间隔0.5秒（无汉语）
+      await sleep(500);
+    }
+    
+    if (allStopRequested) break;
+    
+    // ========== 例句部分（9遍）==========
+    
+    // 3. 慢速句 ×3遍 (60%速度)
+    for (let r = 1; r <= 3; r++) {
+      if (allStopRequested) break;
+      
+      st.className = 'st on';
+      st.textContent = `卡片${i+1}·🐢慢速句第 ${r} 遍...`;
+      pf.style.width = ((6+r-1)/15*100) + '%';
+      
+      await speak(d.sentence, 'en-US', 0.6);  // 60%速度
+      
+      if (allStopRequested) break;
+      
+      // 第3遍后读汉语
+      if (r === 3) {
+        await sleep(200);
+        st.textContent = '（汉语：'+d.sentenceZh+'）';
+        await speak(d.sentenceZh, 'zh-CN', 0.85);
+      } else {
+        // 间隔0.5秒
+        await sleep(500);
+      }
+    }
+    
+    if (allStopRequested) break;
+    
+    // 4. 匀速句 ×3遍 (80%速度)
+    for (let r = 1; r <= 3; r++) {
+      if (allStopRequested) break;
+      
+      st.className = 'st on';
+      st.textContent = `卡片${i+1}·🚀匀速句第 ${r} 遍...`;
+      pf.style.width = ((9+r-1)/15*100) + '%';
+      
+      await speak(d.sentence, 'en-US', 0.8);  // 80%速度
+      
+      if (allStopRequested) break;
+      
+      // 间隔0.5秒（无汉语）
+      await sleep(500);
+    }
+    
+    if (allStopRequested) break;
+    
+    // 5. 常速句 ×3遍 (90%速度)
+    for (let r = 1; r <= 3; r++) {
+      if (allStopRequested) break;
+      
+      st.className = 'st on';
+      st.textContent = `卡片${i+1}·⚡常速句第 ${r} 遍...`;
+      pf.style.width = ((12+r-1)/15*100) + '%';
+      
+      await speak(d.sentence, 'en-US', 0.9);  // 90%速度
+      
+      if (allStopRequested) break;
+      
+      // 间隔0.5秒（无汉语）
+      await sleep(500);
+    }
+    
+    if (cardStates[i].isPlaying && !allStopRequested) {
+      pf.style.width = '100%';
+      st.className = 'st';
+      st.textContent = '✅ 卡片'+(i+1)+'完成';
+    }
+    
+    cardStates[i].isPlaying = false;
+    
+    // 卡片间隔2秒
+    if (!allStopRequested) {
+      await sleep(2000);
+    }
+  }
+  
+  // 当前轮次结束，开始下一轮
+  if (allStopRequested) break;
+  
+  // 两轮循环之间的间隔3秒
+  await sleep(3000);
+}
+  
+  // 10轮循环完成
+  if (!allStopRequested) {
     allRunning = false;
-    speechSynthesis.cancel();
-    for(let i=0;i<5;i++) cardBusy[i]=false;
-    stopRequested = true;
-    document.getElementById('btnAll').textContent='▶ 开始循环朗读';
-    document.getElementById('btnAll').disabled=false;
-    clearStatus();
-  } else {
-    allRunning = true;
-    stopRequested = false;
-    document.getElementById('btnAll').textContent='⏹ 停止循环';
-    playAllLoop();
-  }
-}
-
-function clearStatus(){
-  for(let i=0;i<5;i++){
-    const s=document.getElementById('st'+i);
-    const p=document.getElementById('pb'+i);
-    const pf=document.getElementById('pf'+i);
-    if(s) s.textContent='';
-    if(p) p.style.display='none';
-    if(pf) pf.style.width='0%';
-    document.getElementById('bw'+i).disabled=false;
-    document.getElementById('be'+i).disabled=false;
-  }
-}
-
-async function playAllLoop() {
-  while (allRunning && !stopRequested) {
-    for (let i=0; i<DATA.length; i++) {
-      if (!allRunning || stopRequested) break;
-      const d = DATA[i];
-      document.getElementById('c'+i).scrollIntoView({behavior:'smooth',block:'center'});
-      const st = document.getElementById('st'+i);
-      const pb = document.getElementById('pb'+i);
-      const pf = document.getElementById('pf'+i);
-      const bw = document.getElementById('bw'+i);
-      const be = document.getElementById('be'+i);
-      pb.style.display='block'; pf.style.width='0%';
-      bw.disabled=true; be.disabled=true;
-
-      /* Word ×6 */
-      for (let r=1; r<=6; r++) {
-        if (!allRunning || stopRequested) break;
-        st.className='st on'; st.textContent=`单词第 ${r} 遍`;
-        pf.style.width=(((r-1)/12)*100)+'%';
-        await speak(d.en, false, 0.85);
-        if (!allRunning || stopRequested) break;
-        if (r===1) {
-          await sleepWithStop(180);
-          st.textContent='（'+d.zh+'）';
-          await speak(d.zh, true, 0.85);
-        }
-        if (!allRunning || stopRequested) break;
-        if (r<6) {
-          const delay = getRepeatDelay(d.en, false);
-          st.textContent='🔄 跟读时间...';
-          await sleepWithStop(delay);
-        }
-      }
-      if (!allRunning || stopRequested) break;
-      await sleepWithStop(600);
-
-      /* Example ×6 */
-      for (let r=1; r<=6; r++) {
-        if (!allRunning || stopRequested) break;
-        st.className='st on'; st.textContent=`例句第 ${r} 遍`;
-        pf.style.width=((50+(r-1)/12*100))+'%';
-        await speak(d.sentence, false, 0.85);
-        if (!allRunning || stopRequested) break;
-        if (r===3) {
-          await sleepWithStop(250);
-          st.textContent='（'+d.sentenceZh+'）';
-          await speak(d.sentenceZh, true, 0.85);
-        }
-        if (!allRunning || stopRequested) break;
-        if (r<6) {
-          const delay = getRepeatDelay(d.sentence, false);
-          st.textContent='🔄 跟读时间...';
-          await sleepWithStop(delay);
-        }
-      }
-
-      if (!allRunning || stopRequested) break;
-      pf.style.width='100%';
-      st.className='st'; st.textContent='✅ 完成';
-      bw.disabled=false; be.disabled=false;
-      await sleepWithStop(1000);
+    btnAll.textContent = '✅ 课程完成';
+    btnAll.disabled = true;
+    
+    const st = document.getElementById('st1');
+    if (st) {
+      st.textContent = '🎉 恭喜！今日课程已完成（10轮循环）';
+      st.className = 'st on';
     }
-    if (allRunning && !stopRequested) {
-      await sleepWithStop(2000);
+    
+    // 禁用所有卡片按钮
+    for (let i = 0; i < 5; i++) {
+      for (let btnId of ['ws','wn','es','en','ef','s']) {
+        const btn = document.getElementById(btnId+(i+1));
+        if (btn) btn.disabled = true;
+      }
+    }
+    
+    // 5秒后提示
+    setTimeout(() => {
+      alert('🎉 恭喜完成今日课程！\n\n课程时长：约50分钟\n循环轮次：10轮\n\n请手动切换到下一个日期继续学习。');
+    }, 1000);
+  } else {
+    // 用户手动停止循环
+    allRunning = false;
+    btnAll.textContent = '▶ 开始循环朗读';
+    btnAll.disabled = false;
+    
+    // 恢复所有卡片按钮
+    for (let i = 0; i < 5; i++) {
+      for (let btnId of ['ws','wn','es','en','ef','s']) {
+        const btn = document.getElementById(btnId+(i+1));
+        if (btn) btn.disabled = false;
+      }
     }
   }
 }
 
-/* ── Auto-start countdown ── */
-let countdownN = 3;
-const cdEl = document.getElementById('countdown');
-
-function startCountdown(){
-  if (countdownN > 0) {
-    cdEl.textContent = `⏱ ${countdownN} 秒后自动开始循环朗读...`;
-    countdownN--;
-    setTimeout(startCountdown, 1000);
-  } else {
-    cdEl.textContent = '';
-    toggleAll();
+// 停止循环
+function stopAll() {
+  allStopRequested = true;
+  allRunning = false;
+  
+  const btnAll = document.getElementById('btnAll');
+  btnAll.textContent = '▶ 开始循环朗读';
+  btnAll.disabled = false;
+  
+  // 停止所有卡片
+  for (let i = 0; i < 5; i++) {
+    cardStates[i].stopRequested = true;
+    cardStates[i].isPlaying = false;
+    
+    const st = document.getElementById('st'+(i+1));
+    const pb = document.getElementById('pb'+(i+1));
+    const pf = document.getElementById('pf'+(i+1));
+    
+    if (st) { st.textContent = '⏹ 已停止'; st.className = 'st'; }
+    if (pb) { pb.style.display = 'none'; }
+    if (pf) { pf.style.width = '0%'; }
+  }
+  
+  speechSynthesis.cancel();
+  setTimeout(() => speechSynthesis.cancel(), 100);
+  
+  // 恢复所有卡片按钮
+  for (let i = 0; i < 5; i++) {
+    for (let btnId of ['ws','wn','es','en','ef','s']) {
+      const btn = document.getElementById(btnId+(i+1));
+      if (btn) btn.disabled = false;
+    }
   }
 }
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    pickVoices();
-    startCountdown();
-  }, 800);
-});
+// 切换循环播放
+function toggleAll() {
+  if (allRunning) {
+    stopAll();
+  } else {
+    playAllCards();
+  }
+}
+
+// 页面加载3秒后自动播放（可选）
+// setTimeout(() => { if (!allRunning) playAllCards(); }, 3000);
 </script>
 </body>
 </html>
