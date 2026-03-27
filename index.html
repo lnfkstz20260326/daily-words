@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>每日英语词汇总览</title>
     <script>
-        // 自动跳转到今日页面
+        // 自动跳转到今日页面（可选）
         (function() {
+            // 检查 URL 参数，如果有 ?stay=true 则不跳转
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('stay') === 'true') {
+                return;
+            }
+
             const now = new Date();
             const y = now.getFullYear();
             const m = String(now.getMonth() + 1).padStart(2, '0');
@@ -107,12 +113,21 @@
             margin-bottom: 15px;
             border-bottom: 1px solid #ecf0f1;
             padding-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .day-date {
             font-weight: bold;
             font-size: 1.1rem;
             color: #2c3e50;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .day-date:hover {
+            color: #3498db;
+            text-decoration: underline;
         }
 
         .day-type {
@@ -121,10 +136,28 @@
             border-radius: 12px;
             background: #3498db;
             color: #fff;
+            cursor: default;
         }
 
         .day-type.sentence {
             background: #27ae60;
+        }
+
+        .open-page-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 15px;
+            background: #9b59b6;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .open-page-btn:hover {
+            background: #8e44ad;
+            transform: translateY(-1px);
         }
 
         .word-list, .sentence-list {
@@ -260,6 +293,12 @@
         <p class="subtitle">坚持每天学习，一年掌握 1825 个单词！</p>
 
         <div class="filter-buttons">
+            <a href="?stay=true" style="text-decoration: none; color: #7f8c8d; font-size: 0.85rem; align-self: center;">
+                🔗 固定链接（不跳转今日页面）
+            </a>
+        </div>
+
+        <div class="filter-buttons">
             <button class="filter-btn active" id="filterAll" onclick="setFilter('all')">全部</button>
             <button class="filter-btn" id="filterWord" onclick="setFilter('word')">单词</button>
             <button class="filter-btn" id="filterSentence" onclick="setFilter('sentence')">口语</button>
@@ -358,12 +397,17 @@
                     <div class="day-item">
                         <div class="day-header">
                             <div>
-                                <div class="day-date">${item.date} (${item.day})</div>
+                                <div class="day-date" onclick="openDayPage('${item.date}')" title="点击打开该日期页面">${item.date} (${item.day})</div>
                                 <div class="day-type ${item.type === 'sentence' ? 'sentence' : ''}">
                                     ${item.type === 'word' ? '单词' : '口语'}
                                 </div>
                             </div>
-                            <div>${item.title}</div>
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <div>${item.title}</div>
+                                <button class="open-page-btn" onclick="openDayPage('${item.date}')">
+                                    📄 打开页面
+                                </button>
+                            </div>
                         </div>
                 `;
 
@@ -723,6 +767,12 @@
         // 延迟函数
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // 打开日期页面
+        function openDayPage(date) {
+            const filename = `${date}.html`;
+            window.open(filename, '_blank');
         }
 
         // 初始化
