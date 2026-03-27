@@ -824,6 +824,11 @@ function stopAll() {
       if (btn) btn.disabled = false;
     }
   }
+  
+  // 1秒后自动跳转到日期选择页
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 1000);
 }
 
 // 切换循环播放
