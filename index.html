@@ -16,7 +16,7 @@
     background:#fff;border-radius:20px;
     box-shadow:0 10px 40px rgba(0,0,0,.3);
     padding:40px 30px;
-    max-width:580px;width:90%;
+    max-width:600px;width:90%;
     text-align:center
   }
   h1{
@@ -24,20 +24,47 @@
     color:#2c3e50;margin-bottom:10px
   }
   .subtitle{
-    font-size:.9rem;color:#7f8c8d;margin-bottom:25px
+    font-size:.9rem;color:#7f8c8d;margin-bottom:20px
+  }
+  .year-selector{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:15px
+  }
+  .year-btn{
+    padding:8px 20px;
+    border:none;
+    border-radius:25px;
+    font-size:.95rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .2s;
+    background:#ecf0f1;
+    color:#2c3e50
+  }
+  .year-btn:hover{
+    background:#9b59b6;
+    color:#fff;
+    transform:translateY(-2px)
+  }
+  .year-btn.active{
+    background:#9b59b6;
+    color:#fff
   }
   .month-selector{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
+    gap:8px;
     justify-content:center;
-    margin-bottom:25px
+    margin-bottom:25px;
+    padding:0 10px
   }
   .month-btn{
-    padding:10px 18px;
+    padding:8px 16px;
     border:none;
-    border-radius:25px;
-    font-size:.9rem;
+    border-radius:20px;
+    font-size:.85rem;
     font-weight:600;
     cursor:pointer;
     transition:all .2s;
@@ -57,27 +84,28 @@
   .month-btn.has-data::after{
     content:'●';
     position:absolute;
-    top:3px;
-    right:3px;
-    font-size:12px;
+    top:2px;
+    right:2px;
+    font-size:10px;
     color:#27ae60
   }
-  .date-list{
+  .date-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
-    gap:12px;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
     margin-bottom:25px
   }
   .date-btn{
-    padding:14px 10px;
+    padding:12px 4px;
     border:none;
-    border-radius:12px;
-    font-size:.95rem;
+    border-radius:10px;
+    font-size:.85rem;
     font-weight:600;
     cursor:pointer;
     transition:all .2s;
     background:#f8f9fa;
-    color:#2c3e50
+    color:#2c3e50;
+    min-height:50px
   }
   .date-btn:hover{
     background:#3498db;
@@ -92,10 +120,33 @@
   .date-btn.today:hover{
     background:#c0392b
   }
-  .footer{
-    font-size:.8rem;
+  .date-btn.has-data{
+    background:#d5f4e6;
+    border:2px solid #27ae60
+  }
+  .date-btn.has-data:hover{
+    background:#27ae60;
+    color:#fff
+  }
+  .date-btn .day{
+    display:block;
+    font-size:.9rem
+  }
+  .date-btn .weekday{
+    display:block;
+    font-size:.7rem;
+    color:#7f8c8d;
+    margin-top:2px
+  }
+  .date-btn.has-data .weekday,
+  .date-btn.today .weekday{
+    color:inherit
+  }
+  .empty-hint{
     color:#95a5a6;
-    margin-top:20px
+    font-size:.9rem;
+    padding:30px 0;
+    font-style:italic
   }
   .btn-back-to-page{
     background:linear-gradient(135deg,#f39c12,#e67e22);color:#fff;
@@ -105,11 +156,27 @@
   }
   .btn-back-to-page:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,126,34,.4)}
   .btn-back-to-page.visible{display:inline-block}
-  .empty-hint{
+  .footer{
+    font-size:.8rem;
     color:#95a5a6;
-    font-size:.9rem;
-    padding:30px 0;
-    font-style:italic
+    margin-top:20px
+  }
+  .month-title{
+    font-size:1.1rem;
+    font-weight:700;
+    color:#2c3e50;
+    margin-bottom:15px
+  }
+  .weekday-header{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+    margin-bottom:8px
+  }
+  .weekday-label{
+    font-size:.75rem;
+    color:#95a5a6;
+    font-weight:600
   }
 </style>
 </head>
@@ -117,13 +184,30 @@
 
 <div class="container">
   <h1>📚 每日英语单词</h1>
-  <p class="subtitle">选择月份和日期开始学习</p>
+  <p class="subtitle">选择年份、月份和日期开始学习</p>
+  
+  <!-- 年份选择器 -->
+  <div class="year-selector" id="yearSelector"></div>
   
   <!-- 月份选择器 -->
   <div class="month-selector" id="monthSelector"></div>
   
+  <!-- 月份标题 -->
+  <div class="month-title" id="monthTitle">2026年3月</div>
+  
+  <!-- 星期标题 -->
+  <div class="weekday-header">
+    <div class="weekday-label">日</div>
+    <div class="weekday-label">一</div>
+    <div class="weekday-label">二</div>
+    <div class="weekday-label">三</div>
+    <div class="weekday-label">四</div>
+    <div class="weekday-label">五</div>
+    <div class="weekday-label">六</div>
+  </div>
+  
   <!-- 日期列表 -->
-  <div class="date-list" id="dateList"></div>
+  <div class="date-grid" id="dateGrid"></div>
   <div class="empty-hint" id="emptyHint" style="display:none">该月份暂无内容</div>
   
   <button class="btn-back-to-page" id="btnBackToPage" onclick="goToLastPage()">🔄 返回上次学习</button>
@@ -132,13 +216,13 @@
 </div>
 
 <script>
-// 可用日期列表（从3月27日开始往后30天）
-const today = new Date('2026-03-27');
+// 配置：可用日期范围（从2026年3月27日开始往后30天）
+const startDate = new Date('2026-03-27');
 const availableDates = [];
 
 for (let i = 0; i < 30; i++) {
-  const date = new Date(today);
-  date.setDate(today.getDate() + i);
+  const date = new Date(startDate);
+  date.setDate(startDate.getDate() + i);
   
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -148,88 +232,132 @@ for (let i = 0; i < 30; i++) {
   availableDates.push({
     dateStr: dateStr,
     year: year,
-    month: month,
-    day: day,
-    weekday: ['周日','周一','周二','周三','周四','周五','周六'][date.getDay()],
+    month: parseInt(month),
+    day: parseInt(day),
+    weekday: date.getDay(),
     isToday: dateStr === '2026-03-27'
   });
 }
 
-// 按月份分组
-const datesByMonth = {};
-availableDates.forEach(d => {
-  const key = `${d.year}-${d.month}`;
-  if (!datesByMonth[key]) {
-    datesByMonth[key] = [];
-  }
-  datesByMonth[key].push(d);
-});
+// 当前选中的年份和月份
+let currentYear = 2026;
+let currentMonth = 3;
 
-// 当前选中的月份
-let currentMonth = Object.keys(datesByMonth)[0];
+// 渲染年份选择器
+const yearSelector = document.getElementById('yearSelector');
+const years = [2026, 2027, 2028];
 
-// 渲染月份选择器
-const monthSelector = document.getElementById('monthSelector');
-const months = Object.keys(datesByMonth).sort();
-
-months.forEach(monthKey => {
-  const [year, month] = monthKey.split('-');
+years.forEach(year => {
   const btn = document.createElement('button');
-  btn.className = 'month-btn';
-  btn.textContent = `${month}月`;
-  btn.dataset.month = monthKey;
+  btn.className = 'year-btn';
+  btn.textContent = year + '年';
+  btn.dataset.year = year;
   
-  // 标记有数据的月份（所有月份都有数据）
-  btn.classList.add('has-data');
-  
-  if (monthKey === currentMonth) {
+  if (year === currentYear) {
     btn.classList.add('active');
   }
   
   btn.onclick = () => {
-    document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentMonth = monthKey;
+    currentYear = year;
+    renderMonths();
     renderDates();
   };
   
-  monthSelector.appendChild(btn);
+  yearSelector.appendChild(btn);
 });
 
+// 渲染月份选择器
+const monthSelector = document.getElementById('monthSelector');
+
+function renderMonths() {
+  monthSelector.innerHTML = '';
+  
+  for (let m = 1; m <= 12; m++) {
+    const btn = document.createElement('button');
+    btn.className = 'month-btn';
+    btn.textContent = m + '月';
+    btn.dataset.month = m;
+    
+    // 检查该月份是否有数据
+    const hasData = availableDates.some(d => d.year === currentYear && d.month === m);
+    if (hasData) {
+      btn.classList.add('has-data');
+    }
+    
+    if (m === currentMonth) {
+      btn.classList.add('active');
+    }
+    
+    btn.onclick = () => {
+      document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentMonth = m;
+      renderDates();
+    };
+    
+    monthSelector.appendChild(btn);
+  }
+}
+
 // 渲染日期列表
-const dateList = document.getElementById('dateList');
-const emptyHint = document.getElementById('emptyHint');
+const dateGrid = document.getElementById('dateGrid');
+const monthTitle = document.getElementById('monthTitle');
 
 function renderDates() {
-  dateList.innerHTML = '';
+  dateGrid.innerHTML = '';
+  monthTitle.textContent = `${currentYear}年${currentMonth}月`;
   
-  const dates = datesByMonth[currentMonth] || [];
+  // 获取该月第一天是星期几
+  const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
   
-  if (dates.length === 0) {
-    emptyHint.style.display = 'block';
-    return;
+  // 获取该月有多少天
+  const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+  
+  // 填充空白（月初之前的空格）
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement('div');
+    dateGrid.appendChild(empty);
   }
   
-  emptyHint.style.display = 'none';
-  
-  dates.forEach(d => {
+  // 渲染每一天
+  for (let day = 1; day <= daysInMonth; day++) {
     const btn = document.createElement('button');
     btn.className = 'date-btn';
     
-    if (d.isToday) {
-      btn.className += ' today';
+    // 检查该日期是否有数据
+    const dateData = availableDates.find(d => 
+      d.year === currentYear && d.month === currentMonth && d.day === day
+    );
+    
+    if (dateData) {
+      btn.classList.add('has-data');
+      if (dateData.isToday) {
+        btn.classList.add('today');
+      }
+      btn.onclick = () => {
+        window.location.href = `${dateData.dateStr}.html`;
+      };
+    } else {
+      btn.disabled = true;
+      btn.style.opacity = '0.3';
+      btn.style.cursor = 'not-allowed';
     }
     
-    btn.innerHTML = `${d.day}<br><span style="font-size:.8rem;color:#7f8c8d">${d.weekday}</span>`;
-    btn.onclick = () => {
-      window.location.href = `${d.dateStr}.html`;
-    };
+    const weekday = ['日','一','二','三','四','五','六'][new Date(currentYear, currentMonth - 1, day).getDay()];
     
-    dateList.appendChild(btn);
-  });
+    btn.innerHTML = `
+      <span class="day">${day}</span>
+      <span class="weekday">${weekday}</span>
+    `;
+    
+    dateGrid.appendChild(btn);
+  }
 }
 
 // 初始渲染
+renderMonths();
 renderDates();
 
 // 从URL获取上次访问的页面
