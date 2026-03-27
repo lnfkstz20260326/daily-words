@@ -87,6 +87,13 @@
   }
   .btn-all:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(39,174,96,.4)}
   .btn-all:disabled{opacity:.55;cursor:not-allowed;transform:none}
+  .btn-back{
+    background:linear-gradient(135deg,#95a5a6,#7f8c8d);color:#fff;
+    font-size:.98rem;padding:11px 30px;border-radius:50px;border:none;cursor:pointer;
+    box-shadow:0 4px 14px rgba(127,140,141,.35);font-weight:700;letter-spacing:1px;transition:all .2s
+  }
+  .btn-back:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(127,140,141,.4)}
+  .play-all-wrap{display:flex;gap:12px;justify-content:center;align-items:center;margin:16px 0 24px}
   footer{text-align:center;color:#bdc3c7;font-size:.76rem;margin-top:8px}
 </style>
 </head>
@@ -98,6 +105,7 @@
 
 <div class="play-all-wrap">
   <button class="btn-all" id="btnAll" onclick="toggleAll()">▶ 开始循环朗读</button>
+  <button class="btn-back" id="btnBack" onclick="goToIndex()">↩ 返回选择</button>
 </div>
 
 <!-- CARD 1 -->
@@ -825,10 +833,14 @@ function stopAll() {
     }
   }
   
-  // 1秒后自动跳转到日期选择页（无参数，但index.html会等待5秒）
-  setTimeout(() => {
-    window.location.href = 'index.html';
-  }, 1000);
+}
+
+// 返回日期选择页
+function goToIndex() {
+  // 停止当前播放
+  stopAll();
+  // 跳转到日期选择页，并带上当前页面作为from参数
+  window.location.href = 'index.html?from=' + encodeURIComponent('2026-03-27.html');
 }
 
 // 切换循环播放
