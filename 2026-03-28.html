@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英语朗读 - 2026-03-28 周六</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .header .date {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .phrase-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .phrase-card:hover {
+            transform: translateY(-5px);
+        }
+        .phrase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .phrase-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .stop-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .stop-btn:hover {
+            background: #ee5a5a;
+        }
+        .stop-btn.stopped {
+            background: #4ecdc4;
+        }
+        .english-phrase {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .phonetic {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 12px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .chinese-meaning {
+            font-size: 1.2em;
+            color: #764ba2;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .scene {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 3px solid #667eea;
+        }
+        .memory-tip {
+            font-size: 0.9em;
+            color: #888;
+            background: #fff8e1;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        .memory-tip::before {
+            content: "💡 ";
+        }
+        .global-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .global-btn {
+            background: white;
+            color: #764ba2;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .global-btn:hover {
+            transform: scale(1.05);
+        }
+        .status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #764ba2;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 每日英语朗读</h1>
+            <div class="date">2026年3月28日 星期六 | 日常生活口语短句</div>
+        </div>
+
+        <div class="phrase-card" data-index="0">
+            <div class="phrase-header">
+                <div class="phrase-number">1</div>
+                <button class="stop-btn" onclick="togglePhrase(0)">停止朗读</button>
+            </div>
+            <div class="english-phrase">What time is it?</div>
+            <div class="phonetic">/wɒt taɪm ɪz ɪt/</div>
+            <div class="chinese-meaning">现在几点了？</div>
+            <div class="scene">场景：想知道时间的时候问爸爸妈妈或老师</div>
+            <div class="memory-tip">记住：what（什么）+ time（时间）= 问时间</div>
+        </div>
+
+        <div class="phrase-card" data-index="1">
+            <div class="phrase-header">
+                <div class="phrase-number">2</div>
+                <button class="stop-btn" onclick="togglePhrase(1)">停止朗读</button>
+            </div>
+            <div class="english-phrase">I'm hungry.</div>
+            <div class="phonetic">/aɪm ˈhʌŋɡri/</div>
+            <div class="chinese-meaning">我饿了。</div>
+            <div class="scene">场景：肚子咕咕叫，想吃东西的时候说</div>
+            <div class="memory-tip">hungry听起来像"杭格瑞"，肚子饿得慌（杭）就想要吃的</div>
+        </div>
+
+        <div class="phrase-card" data-index="2">
+            <div class="phrase-header">
+                <div class="phrase-number">3</div>
+                <button class="stop-btn" onclick="togglePhrase(2)">停止朗读</button>
+            </div>
+            <div class="english-phrase">Can you help me?</div>
+            <div class="phonetic">/kæn juː help miː/</div>
+            <div class="chinese-meaning">你能帮我一下吗？</div>
+            <div class="scene">场景：遇到困难需要帮忙时礼貌地请求</div>
+            <div class="memory-tip">help就是"帮助"的意思，很直接很好记</div>
+        </div>
+
+        <div class="phrase-card" data-index="3">
+            <div class="phrase-header">
+                <div class="phrase-number">4</div>
+                <button class="stop-btn" onclick="togglePhrase(3)">停止朗读</button>
+            </div>
+            <div class="english-phrase">I don't understand.</div>
+            <div class="phonetic">/aɪ dəʊnt ˌʌndəˈstænd/</div>
+            <div class="chinese-meaning">我不明白/我听不懂。</div>
+            <div class="scene">场景：老师讲课或别人说话没听懂时说</div>
+            <div class="memory-tip">understand是"理解"，don't understand就是"不理解"</div>
+        </div>
+
+        <div class="phrase-card" data-index="4">
+            <div class="phrase-header">
+                <div class="phrase-number">5</div>
+                <button class="stop-btn" onclick="togglePhrase(4)">停止朗读</button>
+            </div>
+            <div class="english-phrase">See you tomorrow!</div>
+            <div class="phonetic">/siː juː təˈmɒrəʊ/</div>
+            <div class="chinese-meaning">明天见！</div>
+            <div class="scene">场景：放学回家或告别时跟同学说</div>
+            <div class="memory-tip">tomorrow是"明天"，see you是"再见"，合起来就是明天见</div>
+        </div>
+    </div>
+
+    <div class="global-controls">
+        <button class="global-btn" onclick="stopAll()">⏹ 全部停止</button>
+        <button class="global-btn" onclick="startReading()">▶ 开始朗读</button>
+    </div>
+
+    <div class="status" id="status">准备就绪</div>
+
+    <script>
+        const phrases = [
+            {
+                en: "What time is it?",
+                zh: "现在几点了？"
+            },
+            {
+                en: "I'm hungry.",
+                zh: "我饿了。"
+            },
+            {
+                en: "Can you help me?",
+                zh: "你能帮我一下吗？"
+            },
+            {
+                en: "I don't understand.",
+                zh: "我不明白/我听不懂。"
+            },
+            {
+                en: "See you tomorrow!",
+                zh: "明天见！"
+            }
+        ];
+
+        let isPlaying = false;
+        let currentIndex = 0;
+        let phraseStates = [true, true, true, true, true];
+        let loopInterval = null;
+
+        function updateStatus(msg) {
+            document.getElementById('status').textContent = msg;
+        }
+
+        function speak(text, lang, rate = 0.85) {
+            return new Promise((resolve) => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = rate;
+                utterance.pitch = 1;
+                
+                // 设置语音优先级
+                const voices = speechSynthesis.getVoices();
+                if (lang === 'en-US' || lang === 'en') {
+                    const preferredVoice = voices.find(v => v.name.includes('Jenny')) ||
+                                          voices.find(v => v.name.includes('Aria')) ||
+                                          voices.find(v => v.name.includes('Google US English')) ||
+                                          voices.find(v => v.name.includes('Samantha')) ||
+                                          voices.find(v => v.lang.startsWith('en'));
+                    if (preferredVoice) utterance.voice = preferredVoice;
+                } else if (lang === 'zh-CN' || lang === 'zh') {
+                    const preferredVoice = voices.find(v => v.name.includes('Xiaoxiao')) ||
+                                          voices.find(v => v.name.includes('Huihui')) ||
+                                          voices.find(v => v.lang.startsWith('zh'));
+                    if (preferredVoice) utterance.voice = preferredVoice;
+                }
+                
+                utterance.onend = resolve;
+                speechSynthesis.speak(utterance);
+            });
+        }
+
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function readPhrase(index) {
+            if (!phraseStates[index]) return;
+            
+            const phrase = phrases[index];
+            const card = document.querySelector(`[data-index="${index}"]`);
+            card.style.boxShadow = '0 0 20px rgba(102, 126, 234, 0.6)';
+            
+            updateStatus(`正在朗读: ${phrase.en}`);
+            
+            // 读6遍，第3遍后插入汉语意思
+            for (let i = 0; i < 6; i++) {
+                if (!isPlaying || !phraseStates[index]) {
+                    card.style.boxShadow = '';
+                    return;
+                }
+                
+                await speak(phrase.en, 'en-US', 0.85);
+                
+                // 第3遍后读汉语（索引为2）
+                if (i === 2 && phraseStates[index] && isPlaying) {
+                    await wait(200);
+                    await speak(phrase.zh, 'zh-CN', 0.9);
+                }
+                
+                if (i < 5) await wait(500);
+            }
+            
+            card.style.boxShadow = '';
+        }
+
+        async function startReading() {
+            if (isPlaying) return;
+            isPlaying = true;
+            updateStatus('开始朗读...');
+            
+            // 先读一遍所有内容
+            for (let i = 0; i < phrases.length; i++) {
+                if (!isPlaying) break;
+                await readPhrase(i);
+                if (i < phrases.length - 1) await wait(1000);
+            }
+            
+            // 自动循环
+            if (isPlaying) {
+                updateStatus('进入循环模式...');
+                loopInterval = setInterval(async () => {
+                    if (!isPlaying) {
+                        clearInterval(loopInterval);
+                        return;
+                    }
+                    for (let i = 0; i < phrases.length; i++) {
+                        if (!isPlaying) break;
+                        await readPhrase(i);
+                        if (i < phrases.length - 1) await wait(1000);
+                    }
+                }, 1000);
+            }
+        }
+
+        function togglePhrase(index) {
+            phraseStates[index] = !phraseStates[index];
+            const btn = document.querySelector(`[data-index="${index}"] .stop-btn`);
+            if (phraseStates[index]) {
+                btn.textContent = '停止朗读';
+                btn.classList.remove('stopped');
+            } else {
+                btn.textContent = '开始朗读';
+                btn.classList.add('stopped');
+            }
+        }
+
+        function stopAll() {
+            isPlaying = false;
+            if (loopInterval) {
+                clearInterval(loopInterval);
+                loopInterval = null;
+            }
+            speechSynthesis.cancel();
+            updateStatus('已停止');
+            
+            // 清除所有高亮
+            document.querySelectorAll('.phrase-card').forEach(card => {
+                card.style.boxShadow = '';
+            });
+        }
+
+        // 页面加载3秒后自动开始
+        window.addEventListener('load', () => {
+            // 等待语音加载
+            speechSynthesis.getVoices();
+            setTimeout(() => {
+                startReading();
+            }, 3000);
+        });
+
+        // 确保语音列表加载
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+        }
+    </script>
+</body>
+</html>
