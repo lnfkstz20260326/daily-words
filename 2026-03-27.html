@@ -294,6 +294,8 @@ if (typeof speechSynthesis !== 'undefined') {
 }
 
 /* ── Core speak ── */
+let currentCardId = null; // 当前正在播放的卡片ID
+
 function speak(text, isZh, rate) {
   return new Promise(resolve => {
     if (typeof speechSynthesis === 'undefined') return resolve();
@@ -341,12 +343,14 @@ let cardBusy = [false, false, false, false, false];
 let stopRequested = false;
 
 function stopCard(i) {
-  stopRequested = true;
-  speechSynthesis.cancel();
-  setTimeout(() => speechSynthesis.cancel(), 50);
-  setTimeout(() => speechSynthesis.cancel(), 100);
+  // 只停止当前卡片，不停止所有播放
   cardBusy[i] = false;
-  allRunning = false;
+  // 如果是单个卡片播放，可以取消语音
+  // 如果是全循环播放，不能取消，因为会干扰循环
+  if (!allRunning) {
+    speechSynthesis.cancel();
+    setTimeout(() => speechSynthesis.cancel(), 50);
+  }
   const st = document.getElementById('st'+i);
   const pb = document.getElementById('pb'+i);
   const bw = document.getElementById('bw'+i);
@@ -357,8 +361,6 @@ function stopCard(i) {
   if (pf) { pf.style.width = '0%'; }
   if (bw) { bw.disabled = false; }
   if (be) { be.disabled = false; be.textContent = '🔁 例句×6遍'; }
-  document.getElementById('btnAll').textContent = '▶ 开始循环朗读';
-  document.getElementById('btnAll').disabled = false;
 }
 
 /* ── Single word: 6 reps ── */
