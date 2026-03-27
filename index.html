@@ -16,7 +16,7 @@
     background:#fff;border-radius:20px;
     box-shadow:0 10px 40px rgba(0,0,0,.3);
     padding:40px 30px;
-    max-width:500px;width:90%;
+    max-width:580px;width:90%;
     text-align:center
   }
   h1{
@@ -24,23 +24,59 @@
     color:#2c3e50;margin-bottom:10px
   }
   .subtitle{
-    font-size:.9rem;color:#7f8c8d;margin-bottom:30px
+    font-size:.9rem;color:#7f8c8d;margin-bottom:25px
   }
-  .date-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
-    gap:12px;
-    margin-bottom:30px
+  .month-selector{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:25px
   }
-  .date-btn{
-    padding:12px 8px;
+  .month-btn{
+    padding:10px 18px;
     border:none;
-    border-radius:12px;
+    border-radius:25px;
     font-size:.9rem;
     font-weight:600;
     cursor:pointer;
     transition:all .2s;
     background:#ecf0f1;
+    color:#2c3e50;
+    position:relative
+  }
+  .month-btn:hover{
+    background:#3498db;
+    color:#fff;
+    transform:translateY(-2px)
+  }
+  .month-btn.active{
+    background:#e74c3c;
+    color:#fff
+  }
+  .month-btn.has-data::after{
+    content:'●';
+    position:absolute;
+    top:3px;
+    right:3px;
+    font-size:12px;
+    color:#27ae60
+  }
+  .date-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+    gap:12px;
+    margin-bottom:25px
+  }
+  .date-btn{
+    padding:14px 10px;
+    border:none;
+    border-radius:12px;
+    font-size:.95rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .2s;
+    background:#f8f9fa;
     color:#2c3e50
   }
   .date-btn:hover{
@@ -69,15 +105,26 @@
   }
   .btn-back-to-page:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(230,126,34,.4)}
   .btn-back-to-page.visible{display:inline-block}
+  .empty-hint{
+    color:#95a5a6;
+    font-size:.9rem;
+    padding:30px 0;
+    font-style:italic
+  }
 </style>
 </head>
 <body>
 
 <div class="container">
   <h1>📚 每日英语单词</h1>
-  <p class="subtitle">选择日期开始学习</p>
+  <p class="subtitle">选择月份和日期开始学习</p>
   
-  <div class="date-grid" id="dateGrid"></div>
+  <!-- 月份选择器 -->
+  <div class="month-selector" id="monthSelector"></div>
+  
+  <!-- 日期列表 -->
+  <div class="date-list" id="dateList"></div>
+  <div class="empty-hint" id="emptyHint" style="display:none">该月份暂无内容</div>
   
   <button class="btn-back-to-page" id="btnBackToPage" onclick="goToLastPage()">🔄 返回上次学习</button>
   
@@ -85,10 +132,105 @@
 </div>
 
 <script>
-// 生成日期列表
-const dateGrid = document.getElementById('dateGrid');
-const today = new Date();
+// 可用日期列表（从3月27日开始往后30天）
+const today = new Date('2026-03-27');
 const availableDates = [];
+
+for (let i = 0; i < 30; i++) {
+  const date = new Date(today);
+  date.setDate(today.getDate() + i);
+  
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const dateStr = `${year}-${month}-${day}`;
+  
+  availableDates.push({
+    dateStr: dateStr,
+    year: year,
+    month: month,
+    day: day,
+    weekday: ['周日','周一','周二','周三','周四','周五','周六'][date.getDay()],
+    isToday: dateStr === '2026-03-27'
+  });
+}
+
+// 按月份分组
+const datesByMonth = {};
+availableDates.forEach(d => {
+  const key = `${d.year}-${d.month}`;
+  if (!datesByMonth[key]) {
+    datesByMonth[key] = [];
+  }
+  datesByMonth[key].push(d);
+});
+
+// 当前选中的月份
+let currentMonth = Object.keys(datesByMonth)[0];
+
+// 渲染月份选择器
+const monthSelector = document.getElementById('monthSelector');
+const months = Object.keys(datesByMonth).sort();
+
+months.forEach(monthKey => {
+  const [year, month] = monthKey.split('-');
+  const btn = document.createElement('button');
+  btn.className = 'month-btn';
+  btn.textContent = `${month}月`;
+  btn.dataset.month = monthKey;
+  
+  // 标记有数据的月份（所有月份都有数据）
+  btn.classList.add('has-data');
+  
+  if (monthKey === currentMonth) {
+    btn.classList.add('active');
+  }
+  
+  btn.onclick = () => {
+    document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMonth = monthKey;
+    renderDates();
+  };
+  
+  monthSelector.appendChild(btn);
+});
+
+// 渲染日期列表
+const dateList = document.getElementById('dateList');
+const emptyHint = document.getElementById('emptyHint');
+
+function renderDates() {
+  dateList.innerHTML = '';
+  
+  const dates = datesByMonth[currentMonth] || [];
+  
+  if (dates.length === 0) {
+    emptyHint.style.display = 'block';
+    return;
+  }
+  
+  emptyHint.style.display = 'none';
+  
+  dates.forEach(d => {
+    const btn = document.createElement('button');
+    btn.className = 'date-btn';
+    
+    if (d.isToday) {
+      btn.className += ' today';
+    }
+    
+    btn.innerHTML = `${d.day}<br><span style="font-size:.8rem;color:#7f8c8d">${d.weekday}</span>`;
+    btn.onclick = () => {
+      window.location.href = `${d.dateStr}.html`;
+    };
+    
+    dateList.appendChild(btn);
+  });
+}
+
+// 初始渲染
+renderDates();
 
 // 从URL获取上次访问的页面
 const urlParams = new URLSearchParams(window.location.search);
@@ -108,41 +250,6 @@ function goToLastPage() {
     window.location.href = lastPage;
   }
 }
-
-// 从3月27日开始往后生成30天的日期
-for (let i = 0; i < 30; i++) {
-  const date = new Date(today);
-  date.setDate(today.getDate() + i);
-  
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const dateStr = `${year}-${month}-${day}`;
-  
-  availableDates.push(dateStr);
-}
-
-// 渲染日期按钮
-availableDates.forEach((date, index) => {
-  const btn = document.createElement('button');
-  btn.className = 'date-btn';
-  
-  // 格式化日期显示
-  const [year, month, day] = date.split('-');
-  const weekday = ['周日','周一','周二','周三','周四','周五','周六'][new Date(date).getDay()];
-  
-  // 判断是否是今天
-  if (date === '2026-03-27') {
-    btn.className += ' today';
-  }
-  
-  btn.textContent = `${month}-${day}\n${weekday}`;
-  btn.onclick = () => {
-    window.location.href = `${date}.html`;
-  };
-  
-  dateGrid.appendChild(btn);
-});
 
 // 自动检测并跳转到今天（如果停留超过5秒）
 let autoJumpTimeout = setTimeout(() => {
