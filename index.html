@@ -59,207 +59,154 @@
             text-align: center;
             font-size: 0.9rem;
             color: #7f8c8d;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        .filter-buttons {
+        .top-actions {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
             justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background: #ecf0f1;
-            color: #7f8c8d;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .filter-btn:hover {
-            background: #d5dbdb;
-        }
-
-        .filter-btn.active {
-            background: #3498db;
-            color: #fff;
-            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
-        }
-
-        .day-item {
-            background: #fff;
-            border-radius: 12px;
-            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .day-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        }
-
-        .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ecf0f1;
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .day-date {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #2c3e50;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .day-date:hover {
-            color: #3498db;
-            text-decoration: underline;
-        }
-
-        .day-type {
+        .stay-link {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            color: #7f8c8d;
+            text-decoration: none;
             font-size: 0.85rem;
-            padding: 4px 12px;
-            border-radius: 12px;
-            background: #3498db;
-            color: #fff;
-            cursor: default;
-        }
-
-        .day-type.sentence {
-            background: #27ae60;
-        }
-
-        .open-page-btn {
-            padding: 6px 14px;
-            border: none;
-            border-radius: 15px;
-            background: #9b59b6;
-            color: #fff;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
             transition: all 0.2s;
         }
 
-        .open-page-btn:hover {
-            background: #8e44ad;
-            transform: translateY(-1px);
+        .stay-link:hover {
+            background: #fff;
+            color: #3498db;
         }
 
-        .word-list, .sentence-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .word-item, .sentence-item {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 3px solid #3498db;
-        }
-
-        .sentence-item {
-            border-left-color: #27ae60;
-        }
-
-        .word-en {
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: #2c3e50;
-            margin-bottom: 4px;
-        }
-
-        .word-zh, .sentence-zh {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
-
-        .sentence-en {
-            font-style: italic;
-            color: #34495e;
-            margin-bottom: 4px;
-        }
-
-        .action-buttons {
+        /* 月份选择器 */
+        .month-selector {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
         }
 
-        .btn {
-            padding: 10px 20px;
+        .month-btn {
+            padding: 8px 16px;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
+            background: #ecf0f1;
+            color: #7f8c8d;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            transition: all 0.2s;
+            font-size: 0.9rem;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
-        .btn-primary {
+        .month-btn:hover {
+            background: #d5dbdb;
+            transform: translateY(-2px);
+        }
+
+        .month-btn.active {
             background: #3498db;
             color: #fff;
-        }
-
-        .btn-primary:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
         }
 
-        .btn-success {
+        .month-btn.has-data::after {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
             background: #27ae60;
-            color: #fff;
+            border-radius: 50%;
+            margin-left: 6px;
         }
 
-        .btn-success:hover {
-            background: #229954;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
-        }
-
-        .btn-danger {
-            background: #e74c3c;
-            color: #fff;
-        }
-
-        .btn-danger:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
+        /* 日期列表 */
+        .date-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
+            border-radius: 15px;
+        }
+
+        .date-item {
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .date-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3498db;
+        }
+
+        .date-item.today {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: #fff;
+        }
+
+        .date-item.today:hover {
+            background: linear-gradient(135deg, #2980b9, #21618c);
+        }
+
+        .date-date {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .date-day {
+            font-size: 0.85rem;
             color: #7f8c8d;
-            font-size: 0.9rem;
+        }
+
+        .date-item.today .date-day {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .date-type {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 8px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .date-type.word {
+            background: #e8f4f8;
+            color: #3498db;
+        }
+
+        .date-type.sentence {
+            background: #e8f8f0;
+            color: #27ae60;
+        }
+
+        .date-item.today .date-type {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
         }
 
         /* 响应式设计 */
@@ -268,21 +215,27 @@
                 font-size: 1.5rem;
             }
 
-            .filter-buttons {
+            .month-selector {
+                gap: 6px;
+            }
+
+            .month-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .date-list {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
                 gap: 8px;
+                padding: 15px;
             }
 
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.85rem;
+            .date-item {
+                padding: 12px;
             }
 
-            .word-list {
-                grid-template-columns: 1fr;
-            }
-
-            .action-buttons {
-                flex-direction: column;
+            .date-date {
+                font-size: 1rem;
             }
         }
     </style>
@@ -292,24 +245,18 @@
         <h1>📚 每日英语词汇</h1>
         <p class="subtitle">坚持每天学习，一年掌握 1825 个单词！</p>
 
-        <div class="filter-buttons">
-            <a href="?stay=true" style="text-decoration: none; color: #7f8c8d; font-size: 0.85rem; align-self: center;">
-                🔗 固定链接（不跳转今日页面）
-            </a>
+        <div class="top-actions">
+            <a href="?stay=true" class="stay-link">🔗 固定链接（查看所有日期）</a>
         </div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn active" id="filterAll" onclick="setFilter('all')">全部</button>
-            <button class="filter-btn" id="filterWord" onclick="setFilter('word')">单词</button>
-            <button class="filter-btn" id="filterSentence" onclick="setFilter('sentence')">口语</button>
+        <!-- 月份选择器 -->
+        <div class="month-selector" id="monthSelector">
+            <!-- JavaScript 动态生成 -->
         </div>
 
-        <div id="content">
-            <!-- 内容将通过 JavaScript 动态加载 -->
-        </div>
-
-        <div class="footer">
-            🌟 坚持每天学习，一年掌握 1825 个单词！
+        <!-- 日期列表 -->
+        <div class="date-list" id="dateList">
+            <!-- JavaScript 动态生成 -->
         </div>
     </div>
 
@@ -349,8 +296,8 @@
                     { en: "share", zh: "分享；一起用" }
                 ],
                 sentences: [
-                    { en: "Let's prepare for the trip tomorrow.", zh: "我们来为明天的出行做好准备吧。" },
-                    { en: "I'm so excited about the weekend!", zh: "我对这个周末超级期待！" },
+                    { en: "Let's prepare for trip tomorrow.", zh: "我们来为明天的出行做好准备吧。" },
+                    { en: "I'm so excited about weekend!", zh: "我对这个周末超级期待！" },
                     { en: "We will arrive there in one hour.", zh: "我们一个小时后就到了。" },
                     { en: "You can choose what to wear today.", zh: "今天你可以自己选穿什么。" },
                     { en: "Can you share your snacks with me?", zh: "你能把零食分我一点吗？" }
@@ -358,415 +305,97 @@
             }
         ];
 
-        let currentFilter = 'all';
+        let currentMonth = null; // 当前选中的月份（1-12）
+        let currentYear = 2026;  // 当前年份
 
-        // 设置过滤器
-        function setFilter(filter) {
-            currentFilter = filter;
+        // 初始化
+        window.addEventListener('load', () => {
+            renderMonthSelector();
+            
+            // 默认显示今天所在的月份
+            const today = new Date();
+            const todayMonth = today.getMonth() + 1;
+            selectMonth(todayMonth);
+        });
 
+        // 渲染月份选择器
+        function renderMonthSelector() {
+            const selector = document.getElementById('monthSelector');
+            let html = '';
+            
+            // 统计每个月有多少条数据
+            const monthCounts = {};
+            DATA.forEach(item => {
+                const month = parseInt(item.date.split('-')[1]);
+                monthCounts[month] = (monthCounts[month] || 0) + 1;
+            });
+
+            // 生成12个月份的按钮
+            for (let i = 1; i <= 12; i++) {
+                const hasData = monthCounts[i] ? 'has-data' : '';
+                html += `
+                    <button class="month-btn ${hasData}" onclick="selectMonth(${i})">
+                        ${i}月
+                    </button>
+                `;
+            }
+
+            selector.innerHTML = html;
+        }
+
+        // 选择月份
+        function selectMonth(month) {
+            currentMonth = month;
+            
             // 更新按钮状态
-            document.querySelectorAll('.filter-btn').forEach(btn => {
+            document.querySelectorAll('.month-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            document.querySelectorAll('.month-btn')[month - 1].classList.add('active');
 
-            if (filter === 'all') {
-                document.getElementById('filterAll').classList.add('active');
-            } else if (filter === 'word') {
-                document.getElementById('filterWord').classList.add('active');
-            } else if (filter === 'sentence') {
-                document.getElementById('filterSentence').classList.add('active');
-            }
-
-            renderContent();
+            // 渲染该月的日期列表
+            renderDateList(month);
         }
 
-        // 渲染内容
-        function renderContent() {
-            const contentDiv = document.getElementById('content');
+        // 渲染日期列表
+        function renderDateList(month) {
+            const dateList = document.getElementById('dateList');
+            
+            // 筛选该月的数据
+            const monthData = DATA.filter(item => {
+                const itemMonth = parseInt(item.date.split('-')[1]);
+                return itemMonth === month;
+            });
+
+            // 按日期排序
+            monthData.sort((a, b) => a.date.localeCompare(b.date));
+
+            // 生成日期列表
+            if (monthData.length === 0) {
+                dateList.innerHTML = '<div class="no-data">📅 该月还没有内容</div>';
+                return;
+            }
+
+            // 检查今天
+            const today = new Date();
+            const todayDate = `${currentYear}-${String(month).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
             let html = '';
-
-            // 根据当前过滤器过滤数据
-            const filteredData = DATA.filter(item => {
-                if (currentFilter === 'all') return true;
-                return item.type === currentFilter;
-            });
-
-            // 渲染数据
-            filteredData.forEach(item => {
+            monthData.forEach(item => {
+                const isToday = item.date === todayDate;
+                const typeClass = item.type === 'word' ? 'word' : 'sentence';
+                const typeText = item.type === 'word' ? '单词' : '口语';
+                
                 html += `
-                    <div class="day-item">
-                        <div class="day-header">
-                            <div>
-                                <div class="day-date" onclick="openDayPage('${item.date}')" title="点击打开该日期页面">${item.date} (${item.day})</div>
-                                <div class="day-type ${item.type === 'sentence' ? 'sentence' : ''}">
-                                    ${item.type === 'word' ? '单词' : '口语'}
-                                </div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                                <div>${item.title}</div>
-                                <button class="open-page-btn" onclick="openDayPage('${item.date}')">
-                                    📄 打开页面
-                                </button>
-                            </div>
-                        </div>
-                `;
-
-                if (item.words && item.words.length > 0) {
-                    html += '<div class="word-list">';
-                    item.words.forEach(word => {
-                        html += `
-                            <div class="word-item">
-                                <div class="word-en">${word.en}</div>
-                                <div class="word-zh">${word.zh}</div>
-                            </div>
-                        `;
-                    });
-                    html += '</div>';
-                }
-
-                if (item.sentences && item.sentences.length > 0) {
-                    html += '<div class="sentence-list">';
-                    item.sentences.forEach(sentence => {
-                        html += `
-                            <div class="sentence-item">
-                                <div class="sentence-en">${sentence.en}</div>
-                                <div class="sentence-zh">${sentence.zh}</div>
-                            </div>
-                        `;
-                    });
-                    html += '</div>';
-                }
-
-                html += `
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" onclick="playWords('${item.date}')">
-                            <span>▶️</span> 单词播放
-                        </button>
-                        <button class="btn btn-success" onclick="playSentences('${item.date}')">
-                            <span>▶️</span> 口语播放
-                        </button>
-                        <button class="btn btn-danger" onclick="stopPlay()">
-                            <span>⏹️</span> 停止
-                        </button>
+                    <div class="date-item ${isToday ? 'today' : ''}" onclick="openDayPage('${item.date}')">
+                        <div class="date-date">${item.date.split('-')[2]}</div>
+                        <div class="date-day">${item.day}</div>
+                        <div class="date-type ${typeClass}">${typeText}</div>
                     </div>
-                </div>
                 `;
             });
 
-            contentDiv.innerHTML = html;
-        }
-
-        // ========== 语音合成相关 ==========
-        
-        // 语音初始化
-        function initSpeech() {
-            console.log('初始化语音合成...');
-            
-            // 检查浏览器是否支持语音合成
-            if (!('speechSynthesis' in window)) {
-                console.error('浏览器不支持语音合成');
-                alert('您的浏览器不支持语音合成功能，请使用 Edge 或 Chrome 浏览器');
-                return;
-            }
-            
-            // 预加载语音列表
-            let voices = speechSynthesis.getVoices();
-            console.log('可用语音数量:', voices.length);
-            
-            if (voices.length === 0) {
-                // 语音列表还没加载完成，等待加载
-                speechSynthesis.onvoiceschanged = () => {
-                    voices = speechSynthesis.getVoices();
-                    console.log('语音列表已加载，可用语音数量:', voices.length);
-                    logVoices(voices);
-                };
-            } else {
-                logVoices(voices);
-            }
-            
-            // Chrome 需要这个步骤来激活语音合成
-            const dummyUtterance = new SpeechSynthesisUtterance('');
-            dummyUtterance.volume = 0;
-            speechSynthesis.speak(dummyUtterance);
-            speechSynthesis.cancel();
-            
-            console.log('语音初始化完成');
-        }
-
-        // 记录可用语音
-        function logVoices(voices) {
-            // 显示可用的英语语音
-            const enVoices = voices.filter(v => v.lang.startsWith('en'));
-            console.log('可用英语语音:', enVoices.map(v => `${v.name} (${v.lang})`).join(', '));
-            
-            // 显示可用的中文语音
-            const zhVoices = voices.filter(v => v.lang.startsWith('zh'));
-            console.log('可用中文语音:', zhVoices.map(v => `${v.name} (${v.lang})`).join(', '));
-        }
-
-        // 获取最佳英语语音
-        function getBestEnglishVoice() {
-            const voices = speechSynthesis.getVoices();
-            
-            // 优先级列表（从高到低）
-            const preferredVoices = [
-                'Microsoft Jenny Online',
-                'Aria Online',
-                'Google US English',
-                'Microsoft Aria Online',
-                'Samantha',
-                'Microsoft David',
-                'en-US'
-            ];
-            
-            for (const preferred of preferredVoices) {
-                const voice = voices.find(v => v.name.includes(preferred));
-                if (voice) {
-                    console.log('选择语音:', voice.name);
-                    return voice;
-                }
-            }
-            
-            // 如果没有找到，选择第一个英语语音
-            const enVoice = voices.find(v => v.lang.startsWith('en'));
-            if (enVoice) {
-                console.log('选择语音:', enVoice.name);
-                return enVoice;
-            }
-            
-            return null;
-        }
-
-        // 获取最佳中文语音
-        function getBestChineseVoice() {
-            const voices = speechSynthesis.getVoices();
-            
-            // 优先级列表
-            const preferredVoices = [
-                'Microsoft Yaoyao Online',
-                'Microsoft Kangkang Online',
-                'Microsoft Huihui Online',
-                'zh-CN'
-            ];
-            
-            for (const preferred of preferredVoices) {
-                const voice = voices.find(v => v.name.includes(preferred));
-                if (voice) {
-                    console.log('选择中文语音:', voice.name);
-                    return voice;
-                }
-            }
-            
-            // 如果没有找到，选择第一个中文语音
-            const zhVoice = voices.find(v => v.lang.startsWith('zh'));
-            if (zhVoice) {
-                console.log('选择中文语音:', zhVoice.name);
-                return zhVoice;
-            }
-            
-            return null;
-        }
-
-        // 播放单词
-        async function playWords(date) {
-            console.log('playWords 被调用，日期:', date);
-            
-            const item = DATA.find(d => d.date === date);
-            if (!item || !item.words) {
-                console.error('未找到数据:', item);
-                return;
-            }
-
-            console.log('找到数据:', item);
-
-            // 确认播放
-            if (!confirm(`开始播放 ${item.date} 的单词？`)) {
-                console.log('用户取消播放');
-                return;
-            }
-
-            console.log('开始播放...');
-            
-            // 获取最佳语音
-            const voice = getBestEnglishVoice();
-            if (!voice) {
-                console.error('未找到英语语音');
-                alert('未找到英语语音，请检查浏览器设置');
-                return;
-            }
-
-            const zhVoice = getBestChineseVoice();
-
-            // 播放每个单词
-            for (let wordIndex = 0; wordIndex < item.words.length; wordIndex++) {
-                const word = item.words[wordIndex];
-                console.log(`播放第 ${wordIndex + 1} 个单词:`, word.en);
-
-                // 单词朗读规则：英语 × 6遍（第1遍后读汉语）
-                for (let i = 0; i < 6; i++) {
-                    console.log(`第 ${i + 1} 遍: ${word.en}`);
-                    
-                    const utterance = new SpeechSynthesisUtterance(word.en);
-                    utterance.voice = voice;
-                    utterance.lang = 'en-US';
-                    utterance.rate = 0.8;
-                    utterance.pitch = 1.0;
-                    utterance.volume = 1.0;
-
-                    await new Promise((resolve, reject) => {
-                        utterance.onend = () => {
-                            console.log('英语播放完成');
-                            resolve();
-                        };
-                        utterance.onerror = (error) => {
-                            console.error('语音合成错误:', error);
-                            reject(error);
-                        };
-                        speechSynthesis.speak(utterance);
-                    });
-
-                    // 第1遍后读汉语
-                    if (i === 0) {
-                        console.log(`读汉语: ${word.zh}`);
-                        await sleep(500);
-                        
-                        if (zhVoice) {
-                            const zhUtterance = new SpeechSynthesisUtterance(word.zh);
-                            zhUtterance.voice = zhVoice;
-                            zhUtterance.lang = 'zh-CN';
-                            zhUtterance.rate = 0.8;
-                            
-                            await new Promise((resolve, reject) => {
-                                zhUtterance.onend = () => {
-                                    console.log('中文播放完成');
-                                    resolve();
-                                };
-                                zhUtterance.onerror = (error) => {
-                                    console.error('中文语音合成错误:', error);
-                                    reject(error);
-                                };
-                                speechSynthesis.speak(zhUtterance);
-                            });
-                        }
-                    }
-
-                    // 间隔 0.5 秒
-                    await sleep(500);
-                }
-
-                // 单词之间的间隔
-                await sleep(1000);
-            }
-
-            console.log('播放完成');
-            alert('播放完成！');
-        }
-
-        // 播放句子
-        async function playSentences(date) {
-            console.log('playSentences 被调用，日期:', date);
-            
-            const item = DATA.find(d => d.date === date);
-            if (!item || !item.sentences) {
-                console.error('未找到数据:', item);
-                return;
-            }
-
-            console.log('找到数据:', item);
-
-            // 确认播放
-            if (!confirm(`开始播放 ${item.date} 的口语句子？`)) {
-                console.log('用户取消播放');
-                return;
-            }
-
-            console.log('开始播放...');
-            
-            // 获取最佳语音
-            const voice = getBestEnglishVoice();
-            if (!voice) {
-                console.error('未找到英语语音');
-                alert('未找到英语语音，请检查浏览器设置');
-                return;
-            }
-
-            const zhVoice = getBestChineseVoice();
-
-            // 播放每个句子
-            for (let sentenceIndex = 0; sentenceIndex < item.sentences.length; sentenceIndex++) {
-                const sentence = item.sentences[sentenceIndex];
-                console.log(`播放第 ${sentenceIndex + 1} 个句子:`, sentence.en);
-
-                // 句子朗读规则：英语 × 6遍（第1遍后读汉语）
-                for (let i = 0; i < 6; i++) {
-                    console.log(`第 ${i + 1} 遍: ${sentence.en}`);
-                    
-                    const utterance = new SpeechSynthesisUtterance(sentence.en);
-                    utterance.voice = voice;
-                    utterance.lang = 'en-US';
-                    utterance.rate = 0.7;
-                    utterance.pitch = 1.0;
-                    utterance.volume = 1.0;
-
-                    await new Promise((resolve, reject) => {
-                        utterance.onend = () => {
-                            console.log('英语播放完成');
-                            resolve();
-                        };
-                        utterance.onerror = (error) => {
-                            console.error('语音合成错误:', error);
-                            reject(error);
-                        };
-                        speechSynthesis.speak(utterance);
-                    });
-
-                    // 第1遍后读汉语
-                    if (i === 0) {
-                        console.log(`读汉语: ${sentence.zh}`);
-                        await sleep(500);
-                        
-                        if (zhVoice) {
-                            const zhUtterance = new SpeechSynthesisUtterance(sentence.zh);
-                            zhUtterance.voice = zhVoice;
-                            zhUtterance.lang = 'zh-CN';
-                            zhUtterance.rate = 0.8;
-                            
-                            await new Promise((resolve, reject) => {
-                                zhUtterance.onend = () => {
-                                    console.log('中文播放完成');
-                                    resolve();
-                                };
-                                zhUtterance.onerror = (error) => {
-                                    console.error('中文语音合成错误:', error);
-                                    reject(error);
-                                };
-                                speechSynthesis.speak(zhUtterance);
-                            });
-                        }
-                    }
-
-                    // 间隔 0.5 秒
-                    await sleep(500);
-                }
-
-                // 句子之间的间隔
-                await sleep(1000);
-            }
-
-            console.log('播放完成');
-            alert('播放完成！');
-        }
-
-        // 停止播放
-        function stopPlay() {
-            console.log('用户点击停止按钮');
-            speechSynthesis.cancel();
-            alert('已停止播放');
-        }
-
-        // 延迟函数
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+            dateList.innerHTML = html;
         }
 
         // 打开日期页面
@@ -774,12 +403,6 @@
             const filename = `${date}.html`;
             window.open(filename, '_blank');
         }
-
-        // 初始化
-        window.addEventListener('load', () => {
-            renderContent();
-            initSpeech();
-        });
     </script>
 </body>
 </html>
