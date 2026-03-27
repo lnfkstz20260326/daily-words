@@ -341,12 +341,13 @@ function sleepWithStop(ms) {
 /* ── Card-level control ── */
 let cardBusy = [false, false, false, false, false];
 let stopRequested = false;
+let currentPlayingCard = null; // 当前正在播放的卡片索引
 
 function stopCard(i) {
-  // 只停止当前卡片，不停止所有播放
+  // 只停止当前卡片的播放，不停止其他卡片
   cardBusy[i] = false;
-  // 如果是单个卡片播放，可以取消语音
-  // 如果是全循环播放，不能取消，因为会干扰循环
+  // 如果是单个卡片播放（不在循环模式下），才取消语音
+  // 在循环模式下，由循环控制统一管理，避免干扰
   if (!allRunning) {
     speechSynthesis.cancel();
     setTimeout(() => speechSynthesis.cancel(), 50);
@@ -361,6 +362,10 @@ function stopCard(i) {
   if (pf) { pf.style.width = '0%'; }
   if (bw) { bw.disabled = false; }
   if (be) { be.disabled = false; be.textContent = '🔁 例句×6遍'; }
+  // 清除当前播放状态
+  if (currentPlayingCard === i) {
+    currentPlayingCard = null;
+  }
 }
 
 /* ── Single word: 6 reps ── */
