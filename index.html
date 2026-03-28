@@ -284,7 +284,7 @@ function renderCalendar() {
     const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
     const typeText = hasData ? (hasData.type === 'word' ? '单词' : '口语') : '';
     
-    html += '<div class="' + cellClass + '" onclick="selectDate('' + dateStr + '', ' + !!hasData + ')">' +
+    html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
             '<span class="day-num">' + day + '</span>' +
             (typeText ? '<span class="day-type">' + typeText + '</span>' : '') +
             '</div>';
