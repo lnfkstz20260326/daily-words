@@ -6,41 +6,41 @@
 <title>📚 每日英语学习 - 日期选择</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
-.container{max-width:1000px;margin:0 auto}
-.header{text-align:center;margin-bottom:20px;color:white}
-.header h1{font-size:2.2em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
-.header p{font-size:1em;opacity:.9}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:10px}
+.container{max-width:900px;margin:0 auto}
+.header{text-align:center;margin-bottom:10px;color:white}
+.header h1{font-size:1.8em;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
+.header p{font-size:.9em;opacity:.9}
 
 /* 年份选择 */
-.year-selector{display:flex;justify-content:center;gap:15px;margin-bottom:20px;flex-wrap:wrap}
-.year-btn{padding:10px 25px;border:none;border-radius:25px;background:rgba(255,255,255,.3);color:white;font-size:1.1em;cursor:pointer;transition:all .3s}
+.year-selector{display:flex;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.year-btn{padding:8px 20px;border:none;border-radius:20px;background:rgba(255,255,255,.3);color:white;font-size:1em;cursor:pointer;transition:all .3s}
 .year-btn:hover,.year-btn.active{background:white;color:#667eea;transform:scale(1.05)}
 
 /* 月份选择 */
-.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto}
-.month-btn{padding:8px;border:none;border-radius:8px;background:rgba(255,255,255,.2);color:white;font-size:.9em;cursor:pointer;transition:all .3s}
+.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px;max-width:500px;margin-left:auto;margin-right:auto}
+.month-btn{padding:6px;border:none;border-radius:6px;background:rgba(255,255,255,.2);color:white;font-size:.8em;cursor:pointer;transition:all .3s}
 .month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
 
 /* 日历网格 */
-.calendar-container{background:white;border-radius:20px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee}
-.calendar-title{font-size:1.3em;color:#333;font-weight:bold}
-.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:10px;text-align:center;font-weight:bold;color:#666}
-.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;transition:all .3s;font-size:.85em;min-height:50px}
+.calendar-container{background:white;border-radius:15px;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:calc(100vh - 200px)}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #eee}
+.calendar-title{font-size:1.1em;color:#333;font-weight:bold}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px;text-align:center;font-weight:bold;color:#666;font-size:.8em}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;transition:all .3s;font-size:.75em;min-height:35px;padding:2px}
 .day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .day-cell.empty{background:transparent;cursor:default}
 .day-cell.empty:hover{transform:none;box-shadow:none}
 .day-cell.has-data{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
 .day-cell.no-data{background:#f5f5f5;color:#999}
-.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 3px #ff5722}
-.day-cell .day-num{font-weight:bold;font-size:1.1em}
-.day-cell .day-type{font-size:.7em;margin-top:2px}
+.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 2px #ff5722}
+.day-cell .day-num{font-weight:bold;font-size:1em}
+.day-cell .day-type{font-size:.65em;margin-top:1px}
 
 /* 底部按钮 */
-.bottom-controls{display:flex;justify-content:center;gap:20px;margin-top:20px}
-.control-btn{padding:12px 40px;border:none;border-radius:30px;font-size:1.1em;cursor:pointer;transition:all .3s}
+.bottom-controls{display:flex;justify-content:center;gap:15px;margin-top:10px}
+.control-btn{padding:10px 30px;border:none;border-radius:25px;font-size:1em;cursor:pointer;transition:all .3s}
 .btn-confirm{background:#4caf50;color:white}
 .btn-confirm:hover{background:#45a049;transform:scale(1.05)}
 .btn-confirm:disabled{background:#ccc;cursor:not-allowed;transform:none}
@@ -48,7 +48,7 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 .btn-today:hover{background:#1976d2;transform:scale(1.05)}
 
 /* 选中日期显示 */
-.selected-info{text-align:center;color:white;margin-top:15px;font-size:1.1em;min-height:30px}
+.selected-info{text-align:center;color:white;margin-top:8px;font-size:1em;min-height:25px}
 </style>
 </head>
 <body>
@@ -85,151 +85,19 @@ const DATA = [
     "date": "2026-03-26",
     "day": "周四",
     "type": "word",
-    "title": "每日单词",
-    "words": [
-      {
-        "en": "encourage",
-        "zh": "鼓励；给劲"
-      },
-      {
-        "en": "patient",
-        "zh": "有耐心的；不着急"
-      },
-      {
-        "en": "remind",
-        "zh": "提醒；告诉"
-      },
-      {
-        "en": "curious",
-        "zh": "好奇的；想知道"
-      },
-      {
-        "en": "tidy",
-        "zh": "整理；收拾"
-      }
-    ],
-    "sentences": [
-      {
-        "en": "You're doing great! I'll always encourage you.",
-        "zh": "你做得很好！我会一直鼓励你。"
-      },
-      {
-        "en": "Be patient. Learning takes time.",
-        "zh": "要有耐心。学习需要时间。"
-      },
-      {
-        "en": "Let me remind you. Pack your bag.",
-        "zh": "让我提醒你。收拾好你的书包。"
-      },
-      {
-        "en": "You're so curious. Keep asking!",
-        "zh": "你真好奇。继续问吧！"
-      },
-      {
-        "en": "Can you tidy up your room?",
-        "zh": "你能收拾一下你的房间吗？"
-      }
-    ]
+    "title": "每日单词"
   },
   {
     "date": "2026-03-27",
     "day": "周五",
     "type": "word",
-    "title": "每日单词",
-    "words": [
-      {
-        "en": "get up",
-        "zh": "起床"
-      },
-      {
-        "en": "wash face",
-        "zh": "洗脸"
-      },
-      {
-        "en": "brush teeth",
-        "zh": "刷牙"
-      },
-      {
-        "en": "eat breakfast",
-        "zh": "吃早饭"
-      },
-      {
-        "en": "go to school",
-        "zh": "去上学"
-      }
-    ],
-    "sentences": [
-      {
-        "en": "I get up at 7 o'clock every morning.",
-        "zh": "我每天早上7点起床。"
-      },
-      {
-        "en": "I wash my face with cold water.",
-        "zh": "我用冷水洗脸。"
-      },
-      {
-        "en": "I brush my teeth twice a day.",
-        "zh": "我每天刷两次牙。"
-      },
-      {
-        "en": "I eat breakfast at home.",
-        "zh": "我在家吃早饭。"
-      },
-      {
-        "en": "I go to school by bus.",
-        "zh": "我乘公交车去上学。"
-      }
-    ]
+    "title": "每日单词"
   },
   {
     "date": "2026-03-28",
     "day": "周六",
     "type": "phrase",
-    "title": "日常口语",
-    "words": [
-      {
-        "en": "What time is it?",
-        "zh": "现在几点了？"
-      },
-      {
-        "en": "I am hungry.",
-        "zh": "我饿了。"
-      },
-      {
-        "en": "Can you help me?",
-        "zh": "你能帮我吗？"
-      },
-      {
-        "en": "I do not understand.",
-        "zh": "我不明白。"
-      },
-      {
-        "en": "See you tomorrow!",
-        "zh": "明天见！"
-      }
-    ],
-    "sentences": [
-      {
-        "en": "What time is it now?",
-        "zh": "现在几点了？"
-      },
-      {
-        "en": "Mom, I am hungry, can I eat something?",
-        "zh": "妈妈我饿了，能吃点东西吗？"
-      },
-      {
-        "en": "Can you help me with this problem?",
-        "zh": "你能帮我解这道题吗？"
-      },
-      {
-        "en": "Sorry, I do not understand, can you say it again?",
-        "zh": "抱歉我不明白，能再说一遍吗？"
-      },
-      {
-        "en": "Bye! See you tomorrow!",
-        "zh": "再见！明天见！"
-      }
-    ]
+    "title": "每日英语口语"
   }
 ];
 const dataMap = {};
@@ -282,11 +150,10 @@ function renderCalendar() {
     const hasData = dataMap[dateStr];
     const isSelected = selectedDate === dateStr;
     const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
-    const typeText = hasData ? (hasData.type === 'word' ? '单词' : '口语') : '';
     
     html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
             '<span class="day-num">' + day + '</span>' +
-            (typeText ? '<span class="day-type">' + typeText + '</span>' : '') +
+            (hasData ? '<span class="day-type">听说</span>' : '') +
             '</div>';
   }
   
@@ -322,7 +189,7 @@ function selectDate(dateStr, hasData) {
   } else {
     selectedDate = dateStr;
     const d = dataMap[dateStr];
-    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · ' + (d.type === 'word' ? '单词' : '口语');
+    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · 听说';
     document.getElementById('confirmBtn').disabled = false;
   }
   renderCalendar();
