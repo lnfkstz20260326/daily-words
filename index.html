@@ -1,195 +1,100 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日英语单词 - 词汇索引</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            color: #1565c0;
-            margin-bottom: 10px;
-        }
-        .header p {
-            color: #666;
-            font-size: 1.1em;
-        }
-        .day-card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-        .day-card:hover {
-            transform: translateY(-3px);
-        }
-        .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        .day-title {
-            font-size: 1.3em;
-            color: #333;
-            font-weight: 600;
-        }
-        .day-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-        }
-        .day-badge.phrase {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-        .word-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .word-tag {
-            background: #f5f5f5;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.95em;
-            color: #555;
-        }
-        .word-tag .en {
-            font-weight: 600;
-            color: #1565c0;
-        }
-        .word-tag .zh {
-            color: #666;
-            margin-left: 5px;
-        }
-        .sentence-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .sentence-item {
-            background: #f5f5f5;
-            padding: 12px 16px;
-            border-radius: 10px;
-        }
-        .sentence-item .en {
-            font-weight: 600;
-            color: #1565c0;
-            margin-bottom: 5px;
-        }
-        .sentence-item .zh {
-            color: #666;
-            font-size: 0.9em;
-        }
-        .view-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #4caf50;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-        .view-link:hover {
-            background: #45a049;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📚 每日英语学习</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+.container{max-width:900px;margin:0 auto}
+.header{text-align:center;margin-bottom:30px;color:white}
+.header h1{font-size:2.5em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
+.header p{font-size:1.2em;opacity:.9}
+.calendar{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.day-card{background:white;border-radius:15px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,.2);cursor:pointer;transition:all .3s}
+.day-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
+.day-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee}
+.day-date{font-size:1.1em;color:#667eea;font-weight:bold}
+.day-type{background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:4px 12px;border-radius:15px;font-size:.85em}
+.day-type.phrase{background:linear-gradient(135deg,#f093fb,#f5576c)}
+.day-title{font-size:1.2em;color:#333;margin-bottom:10px}
+.word-tag{display:inline-block;background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;margin:2px;font-size:.85em}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📚 每日英语单词</h1>
-            <p>小学五年级水平 · 日积月累 · 轻松学英语</p>
-        </div>
-
-        <div id="content"></div>
-    </div>
-
-    <script>
-        const DATA = [
-            {
-                date: "2026-03-28",
-                day: "周六",
-                type: "phrase",
-                title: "日常生活口语短句",
-                words: [
-                    { en: "What time is it?", zh: "现在几点了？" },
-                    { en: "I'm hungry.", zh: "我饿了。" },
-                    { en: "Can you help me?", zh: "你能帮我一下吗？" },
-                    { en: "I don't understand.", zh: "我不明白/我听不懂。" },
-                    { en: "See you tomorrow!", zh: "明天见！" }
-                ],
-                sentences: []
-            }
-        ];
-
-        function renderContent() {
-            const container = document.getElementById('content');
-            
-            // 按日期倒序排列
-            const sortedData = [...DATA].reverse();
-            
-            sortedData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'day-card';
-                
-                const isPhrase = item.type === 'phrase';
-                const badgeClass = isPhrase ? 'day-badge phrase' : 'day-badge';
-                const badgeText = isPhrase ? '口语短句' : '单词学习';
-                
-                let contentHtml = `
-                    <div class="word-list">
-                        ${item.words.map(w => `
-                            <div class="word-tag">
-                                <span class="en">${w.en}</span>
-                                <span class="zh">${w.zh}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                
-                card.innerHTML = `
-                    <div class="day-header">
-                        <div class="day-title">${item.date} ${item.day} · ${item.title}</div>
-                        <span class="${badgeClass}">${badgeText}</span>
-                    </div>
-                    ${contentHtml}
-                    <a href="${item.date}.html" class="view-link">查看朗读页面 →</a>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
-
-        renderContent();
-    </script>
+<div class="container">
+  <div class="header">
+    <h1>📚 每日英语学习</h1>
+    <p>小学五年级水平 · 每天进步一点点</p>
+  </div>
+  <div class="calendar" id="calendar"></div>
+</div>
+<script>
+const DATA=[
+  {
+    "date": "2026-03-28",
+    "day": "周六",
+    "type": "phrase",
+    "title": "日常口语",
+    "words": [
+      {
+        "en": "What time is it?",
+        "zh": "现在几点了？"
+      },
+      {
+        "en": "I am hungry.",
+        "zh": "我饿了。"
+      },
+      {
+        "en": "Can you help me?",
+        "zh": "你能帮我吗？"
+      },
+      {
+        "en": "I do not understand.",
+        "zh": "我不明白。"
+      },
+      {
+        "en": "See you tomorrow!",
+        "zh": "明天见！"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "What time is it now?",
+        "zh": "现在几点了？"
+      },
+      {
+        "en": "Mom, I am hungry, can I eat something?",
+        "zh": "妈妈我饿了，能吃点东西吗？"
+      },
+      {
+        "en": "Can you help me with this problem?",
+        "zh": "你能帮我解这道题吗？"
+      },
+      {
+        "en": "Sorry, I do not understand, can you say it again?",
+        "zh": "抱歉我不明白，能再说一遍吗？"
+      },
+      {
+        "en": "Bye! See you tomorrow!",
+        "zh": "再见！明天见！"
+      }
+    ]
+  }
+];
+function renderCalendar(){
+  const cal=document.getElementById('calendar');
+  [...DATA].sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(day=>{
+    const card=document.createElement('div');
+    card.className='day-card';
+    card.onclick=()=>window.location.href=day.date+'.html';
+    const tags=day.words.slice(0,3).map(w=>'<span class="word-tag">'+w.en+'</span>').join('');
+    card.innerHTML='<div class="day-header"><span class="day-date">'+day.date+' '+day.day+'</span><span class="day-type '+day.type+'">'+(day.type==='word'?'单词':'口语')+'</span></div><div class="day-title">'+day.title+'</div><div>'+tags+'</div>';
+    cal.appendChild(card);
+  });
+}
+renderCalendar();
+</script>
 </body>
 </html>
