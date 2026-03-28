@@ -117,12 +117,14 @@ function speakWord(wordEn,wordZh,speed){
     if(v)u.voice=v;
     window.speechSynthesis.speak(u);
   }
-  // 播放汉语1遍（延迟1.5秒后）
-  setTimeout(()=>{
-    const u2=new SpeechSynthesisUtterance(wordZh);
-    u2.lang='zh-CN';u2.rate=1.0;
-    window.speechSynthesis.speak(u2);
-  },1500);
+  // 只有慢速才播放汉语（延迟1.5秒后）
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const u2=new SpeechSynthesisUtterance(wordZh);
+      u2.lang='zh-CN';u2.rate=1.0;
+      window.speechSynthesis.speak(u2);
+    },1500);
+  }
 }
 function speakSentence(exEn,exZh,speed){
   window.speechSynthesis.cancel();
@@ -136,12 +138,14 @@ function speakSentence(exEn,exZh,speed){
     if(v)u.voice=v;
     window.speechSynthesis.speak(u);
   }
-  // 播放汉语1遍（延迟2秒后）
-  setTimeout(()=>{
-    const u2=new SpeechSynthesisUtterance(exZh);
-    u2.lang='zh-CN';u2.rate=1.0;
-    window.speechSynthesis.speak(u2);
-  },2000);
+  // 只有慢速才播放汉语（延迟2秒后）
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const u2=new SpeechSynthesisUtterance(exZh);
+      u2.lang='zh-CN';u2.rate=1.0;
+      window.speechSynthesis.speak(u2);
+    },2000);
+  }
 }
 function stopSpeaking(){
   window.speechSynthesis.cancel();
@@ -261,7 +265,7 @@ def gen_daily_html(data_item):
 <div class="container">
   <div class="header">
     <h1>{title}</h1>
-    <div class="date-info">{date_str} {day_name} · 小学五年级日常听说</div>
+    <div class="date-info">{date_str} {day_name} · 碎片化听说，随时开口交流</div>
   </div>
   <div class="browser-tip">💡 建议使用 Chrome 或 Edge 浏览器，语音效果更好！</div>
   <div class="loop-status"></div>
