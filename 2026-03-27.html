@@ -206,10 +206,24 @@ async function startAutoPlay(){
     btn.textContent='⏸ 暂停循环';
     for(let c of cards){
       if(!isPlaying)break;
-      await sp(c.querySelector('.word-en').textContent,'slow');
-      await sl(600);
-      await sp(c.querySelector('.example-en').textContent,'normal');
-      await sl(1500);
+      const wordEn=c.querySelector('.word-en').textContent;
+      const wordZh=c.querySelector('.word-meaning').textContent;
+      const exEn=c.querySelector('.example-en').textContent;
+      const exZh=c.querySelector('.example-zh').textContent;
+      // 播放单词：慢速3遍+汉语
+      for(let i=0;i<3;i++){
+        if(!isPlaying)break;
+        await sp(wordEn,'slow');
+        await sl(500);
+      }
+      if(isPlaying){await sp(wordZh,'normal');await sl(500);}
+      // 播放例句：匀速3遍+汉语
+      for(let i=0;i<3;i++){
+        if(!isPlaying)break;
+        await sp(exEn,'normal');
+        await sl(500);
+      }
+      if(isPlaying){await sp(exZh,'normal');await sl(1000);}
     }
     if(currentLoop>=maxLoops){
       isPlaying=false;
@@ -218,7 +232,7 @@ async function startAutoPlay(){
     }
   }
 }
-function sp(t,s){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=s==='slow'?0.7:0.85;u.onend=r;window.speechSynthesis.speak(u);})}
+function sp(t,s){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=s==='slow'?0.4:s==='fast'?0.9:0.8;u.onend=r;window.speechSynthesis.speak(u);})}
 function sl(ms){return new Promise(r=>setTimeout(r,ms))}
 function goBack(){window.location.href='./index.html'}</script>
 </body>
