@@ -177,15 +177,15 @@ async function startAutoPlay(){
       // 1. 慢速词×3 + 汉语
       for(let i=0;i<3;i++){if(!isPlaying)break;await sp(wordEn,'slow');await sl(500);}
       if(isPlaying){await spZh(wordZh);await sl(500);}
-      // 2. 匀速词×3 + 汉语
+      // 2. 匀速词×3（不加汉语）
       for(let i=0;i<3;i++){if(!isPlaying)break;await sp(wordEn,'normal');await sl(500);}
-      if(isPlaying){await spZh(wordZh);await sl(500);}
+      await sl(500);
       // 3. 慢速句×3 + 汉语
       for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'slow');await sl(600);}
       if(isPlaying){await spZh(exZh);await sl(500);}
-      // 4. 匀速句×3 + 汉语
+      // 4. 匀速句×3（不加汉语）
       for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'normal');await sl(600);}
-      if(isPlaying){await spZh(exZh);await sl(500);}
+      await sl(500);
       // 5. 常速句×3（不加汉语）
       for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'fast');await sl(500);}
       await sl(1000);
