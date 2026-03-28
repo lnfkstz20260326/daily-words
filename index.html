@@ -31,7 +31,107 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   <div class="calendar" id="calendar"></div>
 </div>
 <script>
-const DATA=[
+const DATA = [
+  {
+    "date": "2026-03-26",
+    "day": "周四",
+    "type": "word",
+    "title": "每日单词",
+    "words": [
+      {
+        "en": "encourage",
+        "zh": "鼓励；给劲"
+      },
+      {
+        "en": "patient",
+        "zh": "有耐心的；不着急"
+      },
+      {
+        "en": "remind",
+        "zh": "提醒；告诉"
+      },
+      {
+        "en": "curious",
+        "zh": "好奇的；想知道"
+      },
+      {
+        "en": "tidy",
+        "zh": "整理；收拾"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "You're doing great! I'll always encourage you.",
+        "zh": "你做得很好！我会一直鼓励你。"
+      },
+      {
+        "en": "Be patient. Learning takes time.",
+        "zh": "要有耐心。学习需要时间。"
+      },
+      {
+        "en": "Let me remind you. Pack your bag.",
+        "zh": "让我提醒你。收拾好你的书包。"
+      },
+      {
+        "en": "You're so curious. Keep asking!",
+        "zh": "你真好奇。继续问吧！"
+      },
+      {
+        "en": "Can you tidy up your room?",
+        "zh": "你能收拾一下你的房间吗？"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-27",
+    "day": "周五",
+    "type": "word",
+    "title": "每日单词",
+    "words": [
+      {
+        "en": "get up",
+        "zh": "起床"
+      },
+      {
+        "en": "wash face",
+        "zh": "洗脸"
+      },
+      {
+        "en": "brush teeth",
+        "zh": "刷牙"
+      },
+      {
+        "en": "eat breakfast",
+        "zh": "吃早饭"
+      },
+      {
+        "en": "go to school",
+        "zh": "去上学"
+      }
+    ],
+    "sentences": [
+      {
+        "en": "I get up at 7 o'clock every morning.",
+        "zh": "我每天早上7点起床。"
+      },
+      {
+        "en": "I wash my face with cold water.",
+        "zh": "我用冷水洗脸。"
+      },
+      {
+        "en": "I brush my teeth twice a day.",
+        "zh": "我每天刷两次牙。"
+      },
+      {
+        "en": "I eat breakfast at home.",
+        "zh": "我在家吃早饭。"
+      },
+      {
+        "en": "I go to school by bus.",
+        "zh": "我乘公交车去上学。"
+      }
+    ]
+  },
   {
     "date": "2026-03-28",
     "day": "周六",
@@ -84,13 +184,16 @@ const DATA=[
   }
 ];
 function renderCalendar(){
-  const cal=document.getElementById('calendar');
-  [...DATA].sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(day=>{
-    const card=document.createElement('div');
-    card.className='day-card';
-    card.onclick=()=>window.location.href=day.date+'.html';
-    const tags=day.words.slice(0,3).map(w=>'<span class="word-tag">'+w.en+'</span>').join('');
-    card.innerHTML='<div class="day-header"><span class="day-date">'+day.date+' '+day.day+'</span><span class="day-type '+day.type+'">'+(day.type==='word'?'单词':'口语')+'</span></div><div class="day-title">'+day.title+'</div><div>'+tags+'</div>';
+  const cal = document.getElementById('calendar');
+  cal.innerHTML = '';
+  [...DATA].sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(day => {
+    const card = document.createElement('div');
+    card.className = 'day-card';
+    card.onclick = () => window.location.href = day.date + '.html';
+    const tags = day.words.slice(0,3).map(w => '<span class="word-tag">' + w.en + '</span>').join('');
+    const typeClass = day.type === 'phrase' ? 'day-type phrase' : 'day-type';
+    const typeText = day.type === 'word' ? '单词' : '口语';
+    card.innerHTML = '<div class="day-header"><span class="day-date">' + day.date + ' ' + day.day + '</span><span class="' + typeClass + '">' + typeText + '</span></div><div class="day-title">' + day.title + '</div><div>' + tags + '</div>';
     cal.appendChild(card);
   });
 }
