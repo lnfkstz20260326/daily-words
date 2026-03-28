@@ -1,223 +1,209 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>📚 每日英语听说 - 日期选择</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:10px}
-.container{max-width:900px;margin:0 auto}
-.header{text-align:center;margin-bottom:10px;color:white}
-.header h1{font-size:1.8em;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
-.header p{font-size:.9em;opacity:.9}
-
-/* 年份选择 */
-.year-selector{display:flex;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.year-btn{padding:8px 20px;border:none;border-radius:20px;background:rgba(255,255,255,.3);color:white;font-size:1em;cursor:pointer;transition:all .3s}
-.year-btn:hover,.year-btn.active{background:white;color:#667eea;transform:scale(1.05)}
-
-/* 月份选择 */
-.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px;max-width:500px;margin-left:auto;margin-right:auto}
-.month-btn{padding:6px;border:none;border-radius:6px;background:rgba(255,255,255,.2);color:white;font-size:.8em;cursor:pointer;transition:all .3s}
-.month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
-
-/* 日历网格 */
-.calendar-container{background:white;border-radius:12px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:4px;border-bottom:2px solid #eee}
-.calendar-title{font-size:1em;color:#333;font-weight:bold}
-.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;text-align:center;font-weight:bold;color:#666;font-size:.75em}
-.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:5px;cursor:pointer;transition:all .3s;font-size:.7em;min-height:28px;padding:1px}
-.day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
-.day-cell.empty{background:transparent;cursor:default}
-.day-cell.empty:hover{transform:none;box-shadow:none}
-.day-cell.has-data{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
-.day-cell.no-data{background:#f5f5f5;color:#999}
-.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 2px #ff5722}
-.day-cell .day-num{font-weight:bold;font-size:1em}
-.day-cell .day-type{font-size:.65em;margin-top:1px}
-
-/* 底部按钮 */
-.bottom-controls{display:flex;justify-content:center;gap:15px;margin-top:10px}
-.control-btn{padding:10px 30px;border:none;border-radius:25px;font-size:1em;cursor:pointer;transition:all .3s}
-.btn-confirm{background:#4caf50;color:white}
-.btn-confirm:hover{background:#45a049;transform:scale(1.05)}
-.btn-confirm:disabled{background:#ccc;cursor:not-allowed;transform:none}
-.btn-today{background:#2196f3;color:white}
-.btn-today:hover{background:#1976d2;transform:scale(1.05)}
-
-/* 选中日期显示 */
-.selected-info{text-align:center;color:white;margin-top:8px;font-size:1em;min-height:25px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英语单词 - 词汇索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .day-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .day-card:hover {
+            transform: translateY(-3px);
+        }
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .day-title {
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 600;
+        }
+        .day-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+        .day-badge.phrase {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .word-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .word-tag {
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        .word-tag .en {
+            font-weight: 600;
+            color: #1565c0;
+        }
+        .word-tag .zh {
+            color: #666;
+            margin-left: 5px;
+        }
+        .sentence-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .sentence-item {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            border-radius: 10px;
+        }
+        .sentence-item .en {
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 5px;
+        }
+        .sentence-item .zh {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .view-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .view-link:hover {
+            background: #45a049;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>📚 每日英语听说</h1>
-    <p>母语化练习，每日随听，明日常新</p>
-  </div>
-  
-  <div class="year-selector" id="yearSelector"></div>
-  <div class="month-selector" id="monthSelector"></div>
-  
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <span class="calendar-title" id="calendarTitle">2026年3月</span>
+    <div class="container">
+        <div class="header">
+            <h1>📚 每日英语单词</h1>
+            <p>小学五年级水平 · 日积月累 · 轻松学英语</p>
+        </div>
+
+        <div id="content"></div>
     </div>
-    <div class="weekdays">
-      <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
-    </div>
-    <div class="days-grid" id="daysGrid"></div>
-  </div>
-  
-  <div class="selected-info" id="selectedInfo"></div>
-  
-  <div class="bottom-controls">
-    <button class="control-btn btn-today" onclick="goToToday()">📅 今天</button>
-    <button class="control-btn btn-confirm" id="confirmBtn" onclick="confirmSelection()" disabled>✓ 确定</button>
-  </div>
-</div>
 
-<script>
-const DATA = [
-  {
-    "date": "2026-03-26",
-    "day": "周四",
-    "type": "word",
-    "title": "每日单词"
-  },
-  {
-    "date": "2026-03-27",
-    "day": "周五",
-    "type": "word",
-    "title": "每日单词"
-  },
-  {
-    "date": "2026-03-28",
-    "day": "周六",
-    "type": "phrase",
-    "title": "每日英语口语"
-  }
-];
-const dataMap = {};
-DATA.forEach(d => dataMap[d.date] = d);
+    <script>
+        const DATA = [
+            {
+                date: "2026-03-28",
+                day: "周六",
+                type: "phrase",
+                title: "日常生活口语短句",
+                words: [
+                    { en: "What time is it?", zh: "现在几点了？" },
+                    { en: "I'm hungry.", zh: "我饿了。" },
+                    { en: "Can you help me?", zh: "你能帮我一下吗？" },
+                    { en: "I don't understand.", zh: "我不明白/我听不懂。" },
+                    { en: "See you tomorrow!", zh: "明天见！" }
+                ],
+                sentences: []
+            },
+            {
+                date: "2026-03-29",
+                day: "周日",
+                type: "phrase",
+                title: "日常生活口语短句",
+                words: [
+                    { en: "Let's go!", zh: "走吧！我们出发吧！" },
+                    { en: "Good job!", zh: "干得好！做得好！" },
+                    { en: "Wait for me!", zh: "等等我！" },
+                    { en: "How about you?", zh: "你觉得怎么样？你呢？" },
+                    { en: "Have a nice day!", zh: "祝你有美好的一天！" }
+                ],
+                sentences: []
+            }
+        ];
 
-let currentYear = 2026;
-let currentMonth = 2; // 0-11
-let selectedDate = null;
+        function renderContent() {
+            const container = document.getElementById('content');
+            
+            // 按日期倒序排列
+            const sortedData = [...DATA].reverse();
+            
+            sortedData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'day-card';
+                
+                const isPhrase = item.type === 'phrase';
+                const badgeClass = isPhrase ? 'day-badge phrase' : 'day-badge';
+                const badgeText = isPhrase ? '口语短句' : '单词学习';
+                
+                let contentHtml = `
+                    <div class="word-list">
+                        ${item.words.map(w => `
+                            <div class="word-tag">
+                                <span class="en">${w.en}</span>
+                                <span class="zh">${w.zh}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                card.innerHTML = `
+                    <div class="day-header">
+                        <div class="day-title">${item.date} ${item.day} · ${item.title}</div>
+                        <span class="${badgeClass}">${badgeText}</span>
+                    </div>
+                    ${contentHtml}
+                    <a href="${item.date}.html" class="view-link">查看朗读页面 →</a>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
 
-const years = [2026, 2027, 2028]; // 三年时间
-const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-const startDate = '2026-03-26'; // 数据开始日期
-
-function init() {
-  renderYearSelector();
-  renderMonthSelector();
-  renderCalendar();
-}
-
-function renderYearSelector() {
-  const container = document.getElementById('yearSelector');
-  container.style.display = 'flex';
-  container.innerHTML = years.map(y => 
-    '<button class="year-btn ' + (y === currentYear ? 'active' : '') + '" onclick="selectYear(' + y + ')">' + y + '年</button>'
-  ).join('');
-}
-
-function renderMonthSelector() {
-  const container = document.getElementById('monthSelector');
-  container.innerHTML = monthNames.map((m, i) => 
-    '<button class="month-btn ' + (i === currentMonth ? 'active' : '') + '" onclick="selectMonth(' + i + ')">' + m + '</button>'
-  ).join('');
-}
-
-function renderCalendar() {
-  document.getElementById('calendarTitle').textContent = currentYear + '年' + monthNames[currentMonth];
-  
-  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  
-  let html = '';
-  // 空白格子
-  for (let i = 0; i < firstDay; i++) {
-    html += '<div class="day-cell empty"></div>';
-  }
-  
-  // 日期格子
-  for (let day = 1; day <= daysInMonth; day++) {
-    const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-    const hasData = dataMap[dateStr];
-    const isSelected = selectedDate === dateStr;
-    const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
-    
-    html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
-            '<span class="day-num">' + day + '</span>' +
-            (hasData ? '<span class="day-type">听说</span>' : '') +
-            '</div>';
-  }
-  
-  document.getElementById('daysGrid').innerHTML = html;
-}
-
-function selectYear(year) {
-  currentYear = year;
-  renderYearSelector();
-  renderCalendar();
-}
-
-function selectMonth(month) {
-  currentMonth = month;
-  renderMonthSelector();
-  renderCalendar();
-}
-
-function selectDate(dateStr, hasData) {
-  // 3月26日之前的日期不能选择
-  if (dateStr < startDate) {
-    document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容（3月26日开始）';
-    document.getElementById('confirmBtn').disabled = true;
-    selectedDate = null;
-    renderCalendar();
-    return;
-  }
-  
-  if (!hasData) {
-    selectedDate = dateStr;
-    document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容';
-    document.getElementById('confirmBtn').disabled = true;
-  } else {
-    selectedDate = dateStr;
-    const d = dataMap[dateStr];
-    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · 听说';
-    document.getElementById('confirmBtn').disabled = false;
-  }
-  renderCalendar();
-}
-
-function confirmSelection() {
-  if (selectedDate) {
-    window.location.href = selectedDate + '.html';
-  }
-}
-
-function goToToday() {
-  const today = new Date();
-  currentYear = today.getFullYear();
-  currentMonth = today.getMonth();
-  renderYearSelector();
-  renderMonthSelector();
-  renderCalendar();
-  
-  const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-  if (dataMap[dateStr]) {
-    selectDate(dateStr, true);
-  } else if (dateStr >= startDate) {
-    selectDate(dateStr, false);
-  }
-}
-
-init();
-</script>
+        renderContent();
+    </script>
 </body>
 </html>
