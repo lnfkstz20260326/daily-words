@@ -1,0 +1,80 @@
+name: Daily English Words Generator
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Generate daily content
+      env:
+        PYTHONIOENCODING: utf-8
+      run: |
+        cat > generate.py << 'PYEOF'
+import datetime, json, os, re
+
+def get_day_type():
+    w = datetime.datetime.utcnow().weekday()
+    return ("word", "单词") if w < 5 else ("phrase", "短语")
+
+WORDS = [
+    {"word":"breakfast","phonetic":"/ˈbrekfəst/","pos":"n.","meaning":"早饭，早餐","example":"I eat breakfast at 7 every morning.","example_zh":"我每天早上7点吃早饭。","tip":"break(打破)+fast(禁食)=打破禁食的第一餐"},
+    {"word":"homework","phonetic":"/ˈhəʊmwɜːk/","pos":"n.","meaning":"家庭作业","example":"I need to finish my homework before dinner.","example_zh":"我需要在晚饭前完成家庭作业。","tip":"home(家)+work(工作)=在家做的工作"},
+    {"word":"favorite","phonetic":"/ˈfeɪvərɪt/","pos":"adj./n.","meaning":"最喜欢的","example":"Blue is my favorite color.","example_zh":"蓝色是我最喜欢的颜色。","tip":"发音像'飞我锐特'"},
+    {"word":"weather","phonetic":"/ˈweðər/","pos":"n.","meaning":"天气","example":"What's the weather like today?","example_zh":"今天天气怎么样？","tip":"和whether(是否)同音"},
+    {"word":"together","phonetic":"/təˈɡeðər/","pos":"adv.","meaning":"一起，共同","example":"Let's play together after school.","example_zh":"放学后我们一起玩吧。","tip":"to+gether=去聚集在一起"}
+]
+
+PHRASES = [
+    {"phrase":"What time is it?","phonetic":"/wɒt taɪm ɪz ɪt/","meaning":"现在几点了？","scene":"想知道时间时","example":"What time is it? It's time for dinner.","example_zh":"现在几点了？该吃晚饭了。","tip":"time是时间，what是什么"},
+    {"phrase":"I'm hungry.","phonetic":"/aɪm ˈhʌŋɡri/","meaning":"我饿了。","scene":"肚子饿想吃东西时","example":"Mom, I'm hungry. Can I have a snack?","example_zh":"妈妈，我饿了。我能吃点零食吗？","tip":"hungry像航格瑞，肚子饿得咕咕叫"},
+    {"phrase":"Can you help me?","phonetic":"/kæn juː help miː/","meaning":"你能帮我一下吗？","scene":"遇到困难需要帮忙时","example":"Can you help me with this math problem?","example_zh":"你能帮我解这道数学题吗？","tip":"help就是帮助"},
+    {"phrase":"I don't understand.","phonetic":"/aɪ dəʊnt ˌʌndəˈstænd/","meaning":"我不明白。","scene":"老师讲课没听懂时","example":"Sorry, I don't understand. Can you say it again?","example_zh":"抱歉，我不明白。你能再说一遍吗？","tip":"understand是理解，don't是不"},
+    {"phrase":"See you tomorrow!","phonetic":"/siː juː təˈmɒrəʊ/","meaning":"明天见！","scene":"放学回家告别时","example":"Bye! See you tomorrow!","example_zh":"再见！明天见！","tip":"see(看见)+you(你)+tomorrow(明天)"}
+]
+
+def build_cards(items, day_type):
+    html = ""
+    for i, it in enumerate(items, 1):
+        if day_type == "word":
+            en = it["word"]; ph = it["phonetic"]; pos = it["pos"]
+            scene = ""
+        else:
+            en = it["phrase"]; ph = it["phonetic"]; pos = "日常用语"
+            scene = f'<div class="word-scene">📍 场景：{it["scene"]}</div>'
+        ex_en = it["example"]; ex_zh = it["example_zh"]; tip = it["tip"]
+        meaning = it["meaning"]
+        sp_en = en.replace("'", "\\'"); sp_ex = ex_en.replace("'", "\\'")
+        html += f"""
+<div class="word-card">
+  <div class="word-header">
+    <span class="word-number">0{i}</span>
+    <div class="word-title">
+      <div class="word-en">{en}</div>
+      <div class="word-phonetic">{ph}</div>
+      <div class="word-pos">{pos}</div>
+    </div>
+  </div>
+  <div class="word-meaning">{meaning}</div>
+  {scene}
+  <div class="word-example">
+    <div class="example-en">{ex_en}</div>
+    <div class="example-zh">{ex_zh}</div>
+  </div>
+  <div class="word-tip">💡 {tip}</div>
+  <div class="controls">
+    <button class="btn btn-slow" onclick="speak('{sp_en}','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speak('{sp_en}','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speak('{sp_ex}','slow')">
