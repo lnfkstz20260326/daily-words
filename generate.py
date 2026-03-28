@@ -25,6 +25,7 @@ PHRASES = [
     {"phrase":"I do not understand.","phonetic":"/ai dont understend/","meaning":"我不明白。","scene":"没听懂时","example":"Sorry, I do not understand, can you say it again?","example_zh":"抱歉我不明白，能再说一遍吗？","tip":"understand=理解"},
     {"phrase":"See you tomorrow!","phonetic":"/si ju temoro/","meaning":"明天见！","scene":"告别时","example":"Bye! See you tomorrow!","example_zh":"再见！明天见！","tip":"see=看见，tomorrow=明天"}
 ]
+
 CSS = """*{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#e0f7fa 0%,#bbdefb 100%);min-height:100vh;padding:20px}
 .container{max-width:800px;margin:0 auto}
@@ -85,6 +86,7 @@ async function startAutoPlay(){
 function sp(t,s){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=s==='slow'?0.7:0.85;u.onend=r;window.speechSynthesis.speak(u);})}
 function sl(ms){return new Promise(r=>setTimeout(r,ms))}
 function goBack(){window.location.href='./index.html'}"""
+
 def build_card(i, item, day_type):
     if day_type == "word":
         en = item["word"]
@@ -152,6 +154,7 @@ def gen_html(items, day_type, date_str, day_name):
 <script>{JS}</script>
 </body>
 </html>'''
+
 def gen_index(data):
     dj = json.dumps(data, ensure_ascii=False, indent=2)
     return f'''<!DOCTYPE html>
@@ -187,15 +190,18 @@ body{{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-grad
   <div class="calendar" id="calendar"></div>
 </div>
 <script>
-const DATA={dj};
+const DATA = {dj};
 function renderCalendar(){{
-  const cal=document.getElementById('calendar');
-  [...DATA].sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(day=>{{
-    const card=document.createElement('div');
-    card.className='day-card';
-    card.onclick=()=>window.location.href=day.date+'.html';
-    const tags=day.words.slice(0,3).map(w=>'<span class="word-tag">'+w.en+'</span>').join('');
-    card.innerHTML='<div class="day-header"><span class="day-date">'+day.date+' '+day.day+'</span><span class="day-type '+day.type+'">'+(day.type==='word'?'单词':'口语')+'</span></div><div class="day-title">'+day.title+'</div><div>'+tags+'</div>';
+  const cal = document.getElementById('calendar');
+  cal.innerHTML = '';
+  [...DATA].sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(day => {{
+    const card = document.createElement('div');
+    card.className = 'day-card';
+    card.onclick = () => window.location.href = day.date + '.html';
+    const tags = day.words.slice(0,3).map(w => '<span class="word-tag">' + w.en + '</span>').join('');
+    const typeClass = day.type === 'phrase' ? 'day-type phrase' : 'day-type';
+    const typeText = day.type === 'word' ? '单词' : '口语';
+    card.innerHTML = '<div class="day-header"><span class="day-date">' + day.date + ' ' + day.day + '</span><span class="' + typeClass + '">' + typeText + '</span></div><div class="day-title">' + day.title + '</div><div>' + tags + '</div>';
     cal.appendChild(card);
   }});
 }}
@@ -203,6 +209,50 @@ renderCalendar();
 </script>
 </body>
 </html>'''
+
+# 历史数据（3月26日和3月27日）
+HISTORY_DATA = [
+    {
+        "date": "2026-03-26",
+        "day": "周四",
+        "type": "word",
+        "title": "每日单词",
+        "words": [
+            {"en": "encourage", "zh": "鼓励；给劲"},
+            {"en": "patient", "zh": "有耐心的；不着急"},
+            {"en": "remind", "zh": "提醒；告诉"},
+            {"en": "curious", "zh": "好奇的；想知道"},
+            {"en": "tidy", "zh": "整理；收拾"}
+        ],
+        "sentences": [
+            {"en": "You're doing great! I'll always encourage you.", "zh": "你做得很好！我会一直鼓励你。"},
+            {"en": "Be patient. Learning takes time.", "zh": "要有耐心。学习需要时间。"},
+            {"en": "Let me remind you. Pack your bag.", "zh": "让我提醒你。收拾好你的书包。"},
+            {"en": "You're so curious. Keep asking!", "zh": "你真好奇。继续问吧！"},
+            {"en": "Can you tidy up your room?", "zh": "你能收拾一下你的房间吗？"}
+        ]
+    },
+    {
+        "date": "2026-03-27",
+        "day": "周五",
+        "type": "word",
+        "title": "每日单词",
+        "words": [
+            {"en": "get up", "zh": "起床"},
+            {"en": "wash face", "zh": "洗脸"},
+            {"en": "brush teeth", "zh": "刷牙"},
+            {"en": "eat breakfast", "zh": "吃早饭"},
+            {"en": "go to school", "zh": "去上学"}
+        ],
+        "sentences": [
+            {"en": "I get up at 7 o'clock every morning.", "zh": "我每天早上7点起床。"},
+            {"en": "I wash my face with cold water.", "zh": "我用冷水洗脸。"},
+            {"en": "I brush my teeth twice a day.", "zh": "我每天刷两次牙。"},
+            {"en": "I eat breakfast at home.", "zh": "我在家吃早饭。"},
+            {"en": "I go to school by bus.", "zh": "我乘公交车去上学。"}
+        ]
+    }
+]
 
 # Main program
 date_str, day_name, day_type = get_day_info()
@@ -215,17 +265,8 @@ with open(date_str + ".html", "w", encoding="utf-8") as f:
     f.write(html)
 print("Generated:", date_str + ".html")
 
-# Update index
-data = []
-if os.path.exists("index.html"):
-    with open("index.html", "r", encoding="utf-8") as f:
-        src = f.read()
-    m = re.search(r'const DATA=($$.*?$$);', src, re.DOTALL)
-    if m:
-        try:
-            data = json.loads(m.group(1))
-        except:
-            data = []
+# 构建数据：历史数据 + 今天数据
+data = list(HISTORY_DATA)  # 复制历史数据
 
 if day_type == "word":
     ww = [{"en": x["word"], "zh": x["meaning"]} for x in items]
@@ -236,9 +277,10 @@ else:
     ss = [{"en": x["example"], "zh": x["example_zh"]} for x in items]
     title = "日常口语"
 
+# 检查今天是否已存在，不存在则添加
 if not any(d["date"] == date_str for d in data):
     data.append({"date": date_str, "day": day_name, "type": day_type, "title": title, "words": ww, "sentences": ss})
 
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(gen_index(data))
-print("Updated index.html")
+print("Updated index.html with", len(data), "days of data")
