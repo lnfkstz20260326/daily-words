@@ -283,7 +283,7 @@ def gen_index(data):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>📚 每日英语学习 - 日期选择</title>
+<title>📚 每日英语听说 - 日期选择</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:10px}
@@ -334,8 +334,8 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 <body>
 <div class="container">
   <div class="header">
-    <h1>📚 每日英语学习</h1>
-    <p>小学五年级水平 · 选择日期开始学习</p>
+    <h1>📚 每日英语听说</h1>
+    <p>母语化练习，每日随听，明日常新</p>
   </div>
   
   <div class="year-selector" id="yearSelector"></div>
@@ -518,7 +518,7 @@ def build_data_from_history():
 
 # Main program
 print("=" * 50)
-print("每日英语学习页面生成器")
+print("每日英语听说页面生成器")
 print("=" * 50)
 
 # 获取已存在的日期
