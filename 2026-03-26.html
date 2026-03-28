@@ -187,7 +187,9 @@ function stopSpeaking(){
   window.speechSynthesis.cancel();
   isPlaying=false;
   currentLoop=0;
-  document.querySelector('.loop-status').style.display='none';
+  const statusDiv=document.querySelector('.loop-status');
+  statusDiv.style.display='block';
+  statusDiv.textContent='⏹ 已停止';
   document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
 }
 async function startAutoPlay(){

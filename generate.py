@@ -121,7 +121,9 @@ function stopSpeaking(){
   window.speechSynthesis.cancel();
   isPlaying=false;
   currentLoop=0;
-  document.querySelector('.loop-status').style.display='none';
+  const statusDiv=document.querySelector('.loop-status');
+  statusDiv.style.display='block';
+  statusDiv.textContent='⏹ 已停止';
   document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
 }
 async function startAutoPlay(){
@@ -259,12 +261,12 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 .month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
 
 /* 日历网格 */
-.calendar-container{background:white;border-radius:15px;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:calc(100vh - 200px)}
-.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #eee}
-.calendar-title{font-size:1.1em;color:#333;font-weight:bold}
-.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px;text-align:center;font-weight:bold;color:#666;font-size:.8em}
-.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;transition:all .3s;font-size:.75em;min-height:35px;padding:2px}
+.calendar-container{background:white;border-radius:12px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:4px;border-bottom:2px solid #eee}
+.calendar-title{font-size:1em;color:#333;font-weight:bold}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;text-align:center;font-weight:bold;color:#666;font-size:.75em}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:5px;cursor:pointer;transition:all .3s;font-size:.7em;min-height:28px;padding:1px}
 .day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .day-cell.empty{background:transparent;cursor:default}
 .day-cell.empty:hover{transform:none;box-shadow:none}
