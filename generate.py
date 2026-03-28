@@ -157,57 +157,57 @@ def gen_html(items, day_type, date_str, day_name):
 
 def gen_index(data):
     dj = json.dumps(data, ensure_ascii=False, indent=2)
-    return f'''<!DOCTYPE html>
+    html_template = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>📚 每日英语学习 - 日期选择</title>
 <style>
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}}
-.container{{max-width:1000px;margin:0 auto}}
-.header{{text-align:center;margin-bottom:20px;color:white}}
-.header h1{{font-size:2.2em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}}
-.header p{{font-size:1em;opacity:.9}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+.container{max-width:1000px;margin:0 auto}
+.header{text-align:center;margin-bottom:20px;color:white}
+.header h1{font-size:2.2em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
+.header p{font-size:1em;opacity:.9}
 
 /* 年份选择 */
-.year-selector{{display:flex;justify-content:center;gap:15px;margin-bottom:20px;flex-wrap:wrap}}
-.year-btn{{padding:10px 25px;border:none;border-radius:25px;background:rgba(255,255,255,.3);color:white;font-size:1.1em;cursor:pointer;transition:all .3s}}
-.year-btn:hover,.year-btn.active{{background:white;color:#667eea;transform:scale(1.05)}}
+.year-selector{display:flex;justify-content:center;gap:15px;margin-bottom:20px;flex-wrap:wrap}
+.year-btn{padding:10px 25px;border:none;border-radius:25px;background:rgba(255,255,255,.3);color:white;font-size:1.1em;cursor:pointer;transition:all .3s}
+.year-btn:hover,.year-btn.active{background:white;color:#667eea;transform:scale(1.05)}
 
 /* 月份选择 */
-.month-selector{{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto}}
-.month-btn{{padding:8px;border:none;border-radius:8px;background:rgba(255,255,255,.2);color:white;font-size:.9em;cursor:pointer;transition:all .3s}}
-.month-btn:hover,.month-btn.active{{background:#ff9800;transform:scale(1.05)}}
+.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto}
+.month-btn{padding:8px;border:none;border-radius:8px;background:rgba(255,255,255,.2);color:white;font-size:.9em;cursor:pointer;transition:all .3s}
+.month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
 
 /* 日历网格 */
-.calendar-container{{background:white;border-radius:20px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.3)}}
-.calendar-header{{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee}}
-.calendar-title{{font-size:1.3em;color:#333;font-weight:bold}}
-.weekdays{{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:10px;text-align:center;font-weight:bold;color:#666}}
-.days-grid{{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}}
-.day-cell{{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;transition:all .3s;font-size:.85em;min-height:50px}}
-.day-cell:hover{{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}}
-.day-cell.empty{{background:transparent;cursor:default}}
-.day-cell.empty:hover{{transform:none;box-shadow:none}}
-.day-cell.has-data{{background:linear-gradient(135deg,#667eea,#764ba2);color:white}}
-.day-cell.no-data{{background:#f5f5f5;color:#999}}
-.day-cell.selected{{background:#ff9800!important;color:white;box-shadow:0 0 0 3px #ff5722}}
-.day-cell .day-num{{font-weight:bold;font-size:1.1em}}
-.day-cell .day-type{{font-size:.7em;margin-top:2px}}
+.calendar-container{background:white;border-radius:20px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee}
+.calendar-title{font-size:1.3em;color:#333;font-weight:bold}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:10px;text-align:center;font-weight:bold;color:#666}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;transition:all .3s;font-size:.85em;min-height:50px}
+.day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.day-cell.empty{background:transparent;cursor:default}
+.day-cell.empty:hover{transform:none;box-shadow:none}
+.day-cell.has-data{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+.day-cell.no-data{background:#f5f5f5;color:#999}
+.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 3px #ff5722}
+.day-cell .day-num{font-weight:bold;font-size:1.1em}
+.day-cell .day-type{font-size:.7em;margin-top:2px}
 
 /* 底部按钮 */
-.bottom-controls{{display:flex;justify-content:center;gap:20px;margin-top:20px}}
-.control-btn{{padding:12px 40px;border:none;border-radius:30px;font-size:1.1em;cursor:pointer;transition:all .3s}}
-.btn-confirm{{background:#4caf50;color:white}}
-.btn-confirm:hover{{background:#45a049;transform:scale(1.05)}}
-.btn-confirm:disabled{{background:#ccc;cursor:not-allowed;transform:none}}
-.btn-today{{background:#2196f3;color:white}}
-.btn-today:hover{{background:#1976d2;transform:scale(1.05)}}
+.bottom-controls{display:flex;justify-content:center;gap:20px;margin-top:20px}
+.control-btn{padding:12px 40px;border:none;border-radius:30px;font-size:1.1em;cursor:pointer;transition:all .3s}
+.btn-confirm{background:#4caf50;color:white}
+.btn-confirm:hover{background:#45a049;transform:scale(1.05)}
+.btn-confirm:disabled{background:#ccc;cursor:not-allowed;transform:none}
+.btn-today{background:#2196f3;color:white}
+.btn-today:hover{background:#1976d2;transform:scale(1.05)}
 
 /* 选中日期显示 */
-.selected-info{{text-align:center;color:white;margin-top:15px;font-size:1.1em;min-height:30px}}
+.selected-info{text-align:center;color:white;margin-top:15px;font-size:1.1em;min-height:30px}
 </style>
 </head>
 <body>
@@ -239,8 +239,8 @@ body{{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-grad
 </div>
 
 <script>
-const DATA = {dj};
-const dataMap = {{}};
+const DATA = ''' + dj + ''';
+const dataMap = {};
 DATA.forEach(d => dataMap[d.date] = d);
 
 let currentYear = 2026;
@@ -251,28 +251,28 @@ const years = [2026, 2027, 2028]; // 三年时间
 const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
 const startDate = '2026-03-26'; // 数据开始日期
 
-function init() {{
+function init() {
   renderYearSelector();
   renderMonthSelector();
   renderCalendar();
-}}
+}
 
-function renderYearSelector() {{
+function renderYearSelector() {
   const container = document.getElementById('yearSelector');
   container.style.display = 'flex';
   container.innerHTML = years.map(y => 
     '<button class="year-btn ' + (y === currentYear ? 'active' : '') + '" onclick="selectYear(' + y + ')">' + y + '年</button>'
   ).join('');
-}}
+}
 
-function renderMonthSelector() {{
+function renderMonthSelector() {
   const container = document.getElementById('monthSelector');
   container.innerHTML = monthNames.map((m, i) => 
     '<button class="month-btn ' + (i === currentMonth ? 'active' : '') + '" onclick="selectMonth(' + i + ')">' + m + '</button>'
   ).join('');
-}}
+}
 
-function renderCalendar() {{
+function renderCalendar() {
   document.getElementById('calendarTitle').textContent = currentYear + '年' + monthNames[currentMonth];
   
   const firstDay = new Date(currentYear, currentMonth, 1).getDay();
@@ -280,69 +280,69 @@ function renderCalendar() {{
   
   let html = '';
   // 空白格子
-  for (let i = 0; i < firstDay; i++) {{
+  for (let i = 0; i < firstDay; i++) {
     html += '<div class="day-cell empty"></div>';
-  }}
+  }
   
   // 日期格子
-  for (let day = 1; day <= daysInMonth; day++) {{
+  for (let day = 1; day <= daysInMonth; day++) {
     const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
     const hasData = dataMap[dateStr];
     const isSelected = selectedDate === dateStr;
     const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
     const typeText = hasData ? (hasData.type === 'word' ? '单词' : '口语') : '';
     
-    html += '<div class="' + cellClass + '" onclick="selectDate(\'' + dateStr + '\', ' + !!hasData + ')">' +
+    html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
             '<span class="day-num">' + day + '</span>' +
             (typeText ? '<span class="day-type">' + typeText + '</span>' : '') +
             '</div>';
-  }}
+  }
   
   document.getElementById('daysGrid').innerHTML = html;
-}}
+}
 
-function selectYear(year) {{
+function selectYear(year) {
   currentYear = year;
   renderYearSelector();
   renderCalendar();
-}}
+}
 
-function selectMonth(month) {{
+function selectMonth(month) {
   currentMonth = month;
   renderMonthSelector();
   renderCalendar();
-}}
+}
 
-function selectDate(dateStr, hasData) {{
+function selectDate(dateStr, hasData) {
   // 3月26日之前的日期不能选择
-  if (dateStr < startDate) {{
+  if (dateStr < startDate) {
     document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容（3月26日开始）';
     document.getElementById('confirmBtn').disabled = true;
     selectedDate = null;
     renderCalendar();
     return;
-  }}
+  }
   
-  if (!hasData) {{
+  if (!hasData) {
     selectedDate = dateStr;
     document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容';
     document.getElementById('confirmBtn').disabled = true;
-  }} else {{
+  } else {
     selectedDate = dateStr;
     const d = dataMap[dateStr];
     document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · ' + (d.type === 'word' ? '单词' : '口语');
     document.getElementById('confirmBtn').disabled = false;
-  }}
+  }
   renderCalendar();
-}}
+}
 
-function confirmSelection() {{
-  if (selectedDate) {{
+function confirmSelection() {
+  if (selectedDate) {
     window.location.href = selectedDate + '.html';
-  }}
-}}
+  }
+}
 
-function goToToday() {{
+function goToToday() {
   const today = new Date();
   currentYear = today.getFullYear();
   currentMonth = today.getMonth();
@@ -351,17 +351,18 @@ function goToToday() {{
   renderCalendar();
   
   const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-  if (dataMap[dateStr]) {{
+  if (dataMap[dateStr]) {
     selectDate(dateStr, true);
-  }} else if (dateStr >= startDate) {{
+  } else if (dateStr >= startDate) {
     selectDate(dateStr, false);
-  }}
-}}
+  }
+}
 
 init();
 </script>
 </body>
 </html>'''
+    return html_template
 
 # 历史数据（3月26日和3月27日）
 HISTORY_DATA = [
