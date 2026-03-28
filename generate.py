@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 import re
+import glob
 
 def get_day_info():
     now = datetime.datetime.utcnow() + datetime.timedelta(hours=8)
@@ -26,37 +27,84 @@ PHRASES = [
     {"phrase":"See you tomorrow!","phonetic":"/si ju temoro/","meaning":"明天见！","scene":"告别时","example":"Bye! See you tomorrow!","example_zh":"再见！明天见！","tip":"see=看见，tomorrow=明天"}
 ]
 
+# 历史数据（3月26日和3月27日）- 用于生成历史HTML文件
+HISTORY_DATA = [
+    {
+        "date": "2026-03-26",
+        "day": "周四",
+        "type": "word",
+        "title": "每日单词",
+        "words": [
+            {"en": "encourage", "zh": "鼓励；给劲", "phonetic": "/inkaridz/", "pos": "v.", "example": "You're doing great! I'll always encourage you.", "example_zh": "你做得很好！我会一直鼓励你。", "tip": "en+courage=给勇气"},
+            {"en": "patient", "zh": "有耐心的；不着急", "phonetic": "/peishent/", "pos": "adj.", "example": "Be patient. Learning takes time.", "example_zh": "要有耐心。学习需要时间。", "tip": "发音像陪申特"},
+            {"en": "remind", "zh": "提醒；告诉", "phonetic": "/rimaind/", "pos": "v.", "example": "Let me remind you. Pack your bag.", "example_zh": "让我提醒你。收拾好你的书包。", "tip": "re+mind=再次进入脑海"},
+            {"en": "curious", "zh": "好奇的；想知道", "phonetic": "/kjurias/", "pos": "adj.", "example": "You're so curious. Keep asking!", "example_zh": "你真好奇。继续问吧！", "tip": "发音像Q瑞尔斯"},
+            {"en": "tidy", "zh": "整理；收拾", "phonetic": "/taidi/", "pos": "v.", "example": "Can you tidy up your room?", "example_zh": "你能收拾一下你的房间吗？", "tip": "发音像泰迪"}
+        ]
+    },
+    {
+        "date": "2026-03-27",
+        "day": "周五",
+        "type": "word",
+        "title": "每日单词",
+        "words": [
+            {"en": "get up", "zh": "起床", "phonetic": "/get ap/", "pos": "v.", "example": "I get up at 7 o'clock every morning.", "example_zh": "我每天早上7点起床。", "tip": "get得到，up向上"},
+            {"en": "wash face", "zh": "洗脸", "phonetic": "/wos feis/", "pos": "v.", "example": "I wash my face with cold water.", "example_zh": "我用冷水洗脸。", "tip": "wash洗，face脸"},
+            {"en": "brush teeth", "zh": "刷牙", "phonetic": "/bras ti:th/", "pos": "v.", "example": "I brush my teeth twice a day.", "example_zh": "我每天刷两次牙。", "tip": "brush刷子，teeth牙齿"},
+            {"en": "eat breakfast", "zh": "吃早饭", "phonetic": "/i:t brekfest/", "pos": "v.", "example": "I eat breakfast at home.", "example_zh": "我在家吃早饭。", "tip": "eat吃，breakfast早餐"},
+            {"en": "go to school", "zh": "去上学", "phonetic": "/gou tu sku:l/", "pos": "v.", "example": "I go to school by bus.", "example_zh": "我乘公交车去上学。", "tip": "go去，school学校"}
+        ]
+    }
+]
+
+# 3月28日的数据（今天）
+TODAY_DATA = {
+    "date": "2026-03-28",
+    "day": "周六",
+    "type": "phrase",
+    "title": "每日英语口语",
+    "words": [
+        {"en": "What time is it?", "zh": "现在几点了？", "phonetic": "/wot taim iz it/", "scene": "想知道时间时", "example": "What time is it now?", "example_zh": "现在几点了？", "tip": "time是时间，what是什么"},
+        {"en": "I am hungry.", "zh": "我饿了。", "phonetic": "/ai em hangri/", "scene": "肚子饿时", "example": "Mom, I am hungry, can I eat something?", "example_zh": "妈妈我饿了，能吃点东西吗？", "tip": "hungry=饿，像航格瑞"},
+        {"en": "Can you help me?", "zh": "你能帮我吗？", "phonetic": "/ken ju help mi/", "scene": "需要帮忙时", "example": "Can you help me with this problem?", "example_zh": "你能帮我解这道题吗？", "tip": "help=帮助"},
+        {"en": "I do not understand.", "zh": "我不明白。", "phonetic": "/ai dont understend/", "scene": "没听懂时", "example": "Sorry, I do not understand, can you say it again?", "example_zh": "抱歉我不明白，能再说一遍吗？", "tip": "understand=理解"},
+        {"en": "See you tomorrow!", "zh": "明天见！", "phonetic": "/si ju temoro/", "scene": "告别时", "example": "Bye! See you tomorrow!", "example_zh": "再见！明天见！", "tip": "see=看见，tomorrow=明天"}
+    ]
+}
+
 CSS = """*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#e0f7fa 0%,#bbdefb 100%);min-height:100vh;padding:20px}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#e0f7fa 0%,#bbdefb 100%);min-height:100vh;padding:10px}
 .container{max-width:800px;margin:0 auto}
-.header{text-align:center;margin-bottom:30px;padding:20px;background:white;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-.header h1{color:#1565c0;font-size:2.2em;margin-bottom:10px}
-.date-info{color:#666;font-size:1.1em}
-.top-controls{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
-.word-card{background:white;border-radius:15px;padding:20px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-.word-header{display:flex;align-items:center;gap:15px;margin-bottom:15px}
-.word-number{width:40px;height:40px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2em}
+.header{text-align:center;margin-bottom:15px;padding:15px;background:white;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+.header h1{color:#1565c0;font-size:1.8em;margin-bottom:8px}
+.date-info{color:#666;font-size:1em}
+.top-controls{display:flex;gap:10px;justify-content:center;margin-bottom:15px;flex-wrap:wrap}
+.browser-tip{background:#fff3e0;padding:10px 15px;border-radius:8px;margin-bottom:15px;text-align:center;color:#e65100;font-size:.9em}
+.loop-status{background:#e8f5e9;padding:10px 15px;border-radius:8px;margin-bottom:15px;text-align:center;color:#2e7d32;font-weight:bold;display:none}
+.word-card{background:white;border-radius:15px;padding:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+.word-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.word-number{width:35px;height:35px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1em}
 .word-title{flex:1}
-.word-en{font-size:1.8em;color:#333;font-weight:bold}
-.word-phonetic{color:#666;font-size:1em;margin-top:5px}
-.word-pos{color:#999;font-size:.9em;margin-top:3px}
-.word-meaning{background:#f5f5f5;padding:12px;border-radius:10px;font-size:1.3em;color:#333;margin-bottom:15px}
-.word-scene{background:#e3f2fd;padding:10px;border-radius:8px;color:#1565c0;margin-bottom:10px}
-.word-example{background:#fff3e0;padding:15px;border-radius:10px;margin-bottom:15px}
-.example-en{color:#333;font-size:1.1em;margin-bottom:8px}
-.example-zh{color:#666}
-.word-tip{background:#e8f5e9;padding:10px;border-radius:8px;color:#2e7d32;margin-bottom:15px}
-.controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.btn{padding:8px 16px;border:none;border-radius:20px;cursor:pointer;font-size:.9em;transition:all .3s}
+.word-en{font-size:1.6em;color:#333;font-weight:bold}
+.word-phonetic{color:#666;font-size:.9em;margin-top:3px}
+.word-pos{color:#999;font-size:.85em;margin-top:2px}
+.word-meaning{background:#f5f5f5;padding:10px;border-radius:8px;font-size:1.2em;color:#333;margin-bottom:12px}
+.word-scene{background:#e3f2fd;padding:8px 12px;border-radius:6px;color:#1565c0;margin-bottom:10px;font-size:.9em}
+.word-example{background:#fff3e0;padding:12px;border-radius:8px;margin-bottom:12px}
+.example-en{color:#333;font-size:1em;margin-bottom:6px}
+.example-zh{color:#666;font-size:.9em}
+.word-tip{background:#e8f5e9;padding:8px 12px;border-radius:6px;color:#2e7d32;margin-bottom:12px;font-size:.9em}
+.controls{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.btn{padding:6px 12px;border:none;border-radius:15px;cursor:pointer;font-size:.85em;transition:all .3s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,.2)}
 .btn-slow{background:#ff9800;color:white}
 .btn-normal{background:#2196f3;color:white}
 .btn-fast{background:#4caf50;color:white}
 .btn-stop{background:#f44336;color:white}
-.btn-primary{background:#667eea;color:white;padding:12px 24px;font-size:1em}
-.btn-secondary{background:#764ba2;color:white;padding:12px 24px;font-size:1em}"""
+.btn-primary{background:#667eea;color:white;padding:10px 20px;font-size:.95em}
+.btn-secondary{background:#764ba2;color:white;padding:10px 20px;font-size:.95em}"""
 
-JS = """let isPlaying=false;
+JS = """let isPlaying=false,currentLoop=0,maxLoops=10;
 function speak(text,speed){
   window.speechSynthesis.cancel();
   let rate=speed==='slow'?0.7:speed==='fast'?1.0:0.85;
@@ -69,17 +117,36 @@ function speak(text,speed){
     window.speechSynthesis.speak(u);
   }
 }
-function stopSpeaking(){window.speechSynthesis.cancel();isPlaying=false;}
+function stopSpeaking(){
+  window.speechSynthesis.cancel();
+  isPlaying=false;
+  currentLoop=0;
+  document.querySelector('.loop-status').style.display='none';
+  document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
+}
 async function startAutoPlay(){
-  if(isPlaying)return;isPlaying=true;
+  if(isPlaying)return;
+  isPlaying=true;
+  currentLoop=0;
+  const statusDiv=document.querySelector('.loop-status');
+  const btn=document.querySelector('.btn-primary');
+  statusDiv.style.display='block';
   const cards=document.querySelectorAll('.word-card');
-  while(isPlaying){
+  while(isPlaying&&currentLoop<maxLoops){
+    currentLoop++;
+    statusDiv.textContent='循环播放中（第'+currentLoop+'/'+maxLoops+'轮）';
+    btn.textContent='⏸ 暂停循环';
     for(let c of cards){
       if(!isPlaying)break;
       await sp(c.querySelector('.word-en').textContent,'slow');
-      await sl(800);
+      await sl(600);
       await sp(c.querySelector('.example-en').textContent,'normal');
-      await sl(2000);
+      await sl(1500);
+    }
+    if(currentLoop>=maxLoops){
+      isPlaying=false;
+      statusDiv.textContent='✓ 已完成'+maxLoops+'轮循环';
+      btn.textContent='▶️ 开始循环朗读';
     }
   }
 }
@@ -89,35 +156,35 @@ function goBack(){window.location.href='./index.html'}"""
 
 def build_card(i, item, day_type):
     if day_type == "word":
-        en = item["word"]
-        ph = item["phonetic"]
-        pos = item["pos"]
+        en = item["en"]
+        ph = item.get("phonetic", "")
+        pos = item.get("pos", "")
         scene_html = ""
     else:
-        en = item["phrase"]
-        ph = item["phonetic"]
+        en = item["en"]
+        ph = item.get("phonetic", "")
         pos = "日常用语"
-        scene_html = '<div class="word-scene">场景：' + item["scene"] + '</div>'
+        scene_html = '<div class="word-scene">场景：' + item.get("scene", "") + '</div>'
     
     sp_en = en.replace("'", " ")
-    sp_ex = item["example"].replace("'", " ")
+    sp_ex = item.get("example", "").replace("'", " ")
     
     return f'''<div class="word-card">
   <div class="word-header">
-    <span class="word-number">0{i}</span>
+    <span class="word-number">{i:02d}</span>
     <div class="word-title">
       <div class="word-en">{en}</div>
       <div class="word-phonetic">{ph}</div>
       <div class="word-pos">{pos}</div>
     </div>
   </div>
-  <div class="word-meaning">{item["meaning"]}</div>
+  <div class="word-meaning">{item["zh"]}</div>
   {scene_html}
   <div class="word-example">
-    <div class="example-en">{item["example"]}</div>
-    <div class="example-zh">{item["example_zh"]}</div>
+    <div class="example-en">{item.get("example", "")}</div>
+    <div class="example-zh">{item.get("example_zh", "")}</div>
   </div>
-  <div class="word-tip">💡 {item["tip"]}</div>
+  <div class="word-tip">💡 {item.get("tip", "")}</div>
   <div class="controls">
     <button class="btn btn-slow" onclick="speak('{sp_en}','slow')">🐢 慢速词×3</button>
     <button class="btn btn-normal" onclick="speak('{sp_en}','normal')">🚀 匀速词×3</button>
@@ -128,9 +195,16 @@ def build_card(i, item, day_type):
   </div>
 </div>'''
 
-def gen_html(items, day_type, date_str, day_name):
-    title = "📚 每日英语单词" if day_type == "word" else "💬 每日英语口语"
-    cards = "".join([build_card(j+1, item, day_type) for j, item in enumerate(items)])
+def gen_daily_html(data_item):
+    """生成每日播放页面HTML"""
+    date_str = data_item["date"]
+    day_name = data_item["day"]
+    day_type = data_item["type"]
+    title = data_item["title"]
+    words = data_item["words"]
+    
+    cards = "".join([build_card(j+1, word, day_type) for j, word in enumerate(words)])
+    
     return f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -143,8 +217,10 @@ def gen_html(items, day_type, date_str, day_name):
 <div class="container">
   <div class="header">
     <h1>{title}</h1>
-    <div class="date-info">{date_str} {day_name}</div>
+    <div class="date-info">{date_str} {day_name} · 小学五年级日常听说</div>
   </div>
+  <div class="browser-tip">💡 建议使用 Chrome 或 Edge 浏览器，语音效果更好！</div>
+  <div class="loop-status"></div>
   <div class="top-controls">
     <button class="btn btn-primary" onclick="startAutoPlay()">▶️ 开始循环朗读</button>
     <button class="btn btn-secondary" onclick="goBack()">⬅️ 返回选择</button>
@@ -156,6 +232,7 @@ def gen_html(items, day_type, date_str, day_name):
 </html>'''
 
 def gen_index(data):
+    """生成首页日历HTML"""
     dj = json.dumps(data, ensure_ascii=False, indent=2)
     html_template = '''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -165,41 +242,41 @@ def gen_index(data):
 <title>📚 每日英语学习 - 日期选择</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
-.container{max-width:1000px;margin:0 auto}
-.header{text-align:center;margin-bottom:20px;color:white}
-.header h1{font-size:2.2em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
-.header p{font-size:1em;opacity:.9}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:10px}
+.container{max-width:900px;margin:0 auto}
+.header{text-align:center;margin-bottom:10px;color:white}
+.header h1{font-size:1.8em;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
+.header p{font-size:.9em;opacity:.9}
 
 /* 年份选择 */
-.year-selector{display:flex;justify-content:center;gap:15px;margin-bottom:20px;flex-wrap:wrap}
-.year-btn{padding:10px 25px;border:none;border-radius:25px;background:rgba(255,255,255,.3);color:white;font-size:1.1em;cursor:pointer;transition:all .3s}
+.year-selector{display:flex;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.year-btn{padding:8px 20px;border:none;border-radius:20px;background:rgba(255,255,255,.3);color:white;font-size:1em;cursor:pointer;transition:all .3s}
 .year-btn:hover,.year-btn.active{background:white;color:#667eea;transform:scale(1.05)}
 
 /* 月份选择 */
-.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto}
-.month-btn{padding:8px;border:none;border-radius:8px;background:rgba(255,255,255,.2);color:white;font-size:.9em;cursor:pointer;transition:all .3s}
+.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px;max-width:500px;margin-left:auto;margin-right:auto}
+.month-btn{padding:6px;border:none;border-radius:6px;background:rgba(255,255,255,.2);color:white;font-size:.8em;cursor:pointer;transition:all .3s}
 .month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
 
 /* 日历网格 */
-.calendar-container{background:white;border-radius:20px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee}
-.calendar-title{font-size:1.3em;color:#333;font-weight:bold}
-.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:10px;text-align:center;font-weight:bold;color:#666}
-.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;transition:all .3s;font-size:.85em;min-height:50px}
+.calendar-container{background:white;border-radius:15px;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:calc(100vh - 200px)}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #eee}
+.calendar-title{font-size:1.1em;color:#333;font-weight:bold}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px;text-align:center;font-weight:bold;color:#666;font-size:.8em}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;transition:all .3s;font-size:.75em;min-height:35px;padding:2px}
 .day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .day-cell.empty{background:transparent;cursor:default}
 .day-cell.empty:hover{transform:none;box-shadow:none}
 .day-cell.has-data{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
 .day-cell.no-data{background:#f5f5f5;color:#999}
-.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 3px #ff5722}
-.day-cell .day-num{font-weight:bold;font-size:1.1em}
-.day-cell .day-type{font-size:.7em;margin-top:2px}
+.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 2px #ff5722}
+.day-cell .day-num{font-weight:bold;font-size:1em}
+.day-cell .day-type{font-size:.65em;margin-top:1px}
 
 /* 底部按钮 */
-.bottom-controls{display:flex;justify-content:center;gap:20px;margin-top:20px}
-.control-btn{padding:12px 40px;border:none;border-radius:30px;font-size:1.1em;cursor:pointer;transition:all .3s}
+.bottom-controls{display:flex;justify-content:center;gap:15px;margin-top:10px}
+.control-btn{padding:10px 30px;border:none;border-radius:25px;font-size:1em;cursor:pointer;transition:all .3s}
 .btn-confirm{background:#4caf50;color:white}
 .btn-confirm:hover{background:#45a049;transform:scale(1.05)}
 .btn-confirm:disabled{background:#ccc;cursor:not-allowed;transform:none}
@@ -207,7 +284,7 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 .btn-today:hover{background:#1976d2;transform:scale(1.05)}
 
 /* 选中日期显示 */
-.selected-info{text-align:center;color:white;margin-top:15px;font-size:1.1em;min-height:30px}
+.selected-info{text-align:center;color:white;margin-top:8px;font-size:1em;min-height:25px}
 </style>
 </head>
 <body>
@@ -290,11 +367,10 @@ function renderCalendar() {
     const hasData = dataMap[dateStr];
     const isSelected = selectedDate === dateStr;
     const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
-    const typeText = hasData ? (hasData.type === 'word' ? '单词' : '口语') : '';
     
     html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
             '<span class="day-num">' + day + '</span>' +
-            (typeText ? '<span class="day-type">' + typeText + '</span>' : '') +
+            (hasData ? '<span class="day-type">听说</span>' : '') +
             '</div>';
   }
   
@@ -330,7 +406,7 @@ function selectDate(dateStr, hasData) {
   } else {
     selectedDate = dateStr;
     const d = dataMap[dateStr];
-    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · ' + (d.type === 'word' ? '单词' : '口语');
+    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · 听说';
     document.getElementById('confirmBtn').disabled = false;
   }
   renderCalendar();
@@ -364,77 +440,79 @@ init();
 </html>'''
     return html_template
 
-# 历史数据（3月26日和3月27日）
-HISTORY_DATA = [
-    {
-        "date": "2026-03-26",
-        "day": "周四",
-        "type": "word",
-        "title": "每日单词",
-        "words": [
-            {"en": "encourage", "zh": "鼓励；给劲"},
-            {"en": "patient", "zh": "有耐心的；不着急"},
-            {"en": "remind", "zh": "提醒；告诉"},
-            {"en": "curious", "zh": "好奇的；想知道"},
-            {"en": "tidy", "zh": "整理；收拾"}
-        ],
-        "sentences": [
-            {"en": "You're doing great! I'll always encourage you.", "zh": "你做得很好！我会一直鼓励你。"},
-            {"en": "Be patient. Learning takes time.", "zh": "要有耐心。学习需要时间。"},
-            {"en": "Let me remind you. Pack your bag.", "zh": "让我提醒你。收拾好你的书包。"},
-            {"en": "You're so curious. Keep asking!", "zh": "你真好奇。继续问吧！"},
-            {"en": "Can you tidy up your room?", "zh": "你能收拾一下你的房间吗？"}
-        ]
-    },
-    {
-        "date": "2026-03-27",
-        "day": "周五",
-        "type": "word",
-        "title": "每日单词",
-        "words": [
-            {"en": "get up", "zh": "起床"},
-            {"en": "wash face", "zh": "洗脸"},
-            {"en": "brush teeth", "zh": "刷牙"},
-            {"en": "eat breakfast", "zh": "吃早饭"},
-            {"en": "go to school", "zh": "去上学"}
-        ],
-        "sentences": [
-            {"en": "I get up at 7 o'clock every morning.", "zh": "我每天早上7点起床。"},
-            {"en": "I wash my face with cold water.", "zh": "我用冷水洗脸。"},
-            {"en": "I brush my teeth twice a day.", "zh": "我每天刷两次牙。"},
-            {"en": "I eat breakfast at home.", "zh": "我在家吃早饭。"},
-            {"en": "I go to school by bus.", "zh": "我乘公交车去上学。"}
-        ]
-    }
-]
+def get_existing_dates():
+    """获取已存在的HTML文件日期列表"""
+    existing = []
+    for f in glob.glob("*.html"):
+        if f != "index.html" and re.match(r"\d{4}-\d{2}-\d{2}\.html", f):
+            date_str = f.replace(".html", "")
+            existing.append(date_str)
+    return sorted(existing)
+
+def build_data_from_history():
+    """从历史数据构建数据列表"""
+    data = []
+    
+    # 添加历史数据
+    for h in HISTORY_DATA:
+        data.append({
+            "date": h["date"],
+            "day": h["day"],
+            "type": h["type"],
+            "title": h["title"]
+        })
+    
+    # 添加今天的数据
+    data.append({
+        "date": TODAY_DATA["date"],
+        "day": TODAY_DATA["day"],
+        "type": TODAY_DATA["type"],
+        "title": TODAY_DATA["title"]
+    })
+    
+    return data
 
 # Main program
-date_str, day_name, day_type = get_day_info()
-items = WORDS if day_type == "word" else PHRASES
-print("Generating for", date_str, day_name, day_type)
+print("=" * 50)
+print("每日英语学习页面生成器")
+print("=" * 50)
 
-# Generate daily page
-html = gen_html(items, day_type, date_str, day_name)
-with open(date_str + ".html", "w", encoding="utf-8") as f:
-    f.write(html)
-print("Generated:", date_str + ".html")
+# 获取已存在的日期
+existing_dates = get_existing_dates()
+print(f"已存在的日期文件: {existing_dates}")
 
-# 构建数据：历史数据 + 今天数据
-data = list(HISTORY_DATA)  # 复制历史数据
+# 构建完整数据列表
+all_data = build_data_from_history()
 
-if day_type == "word":
-    ww = [{"en": x["word"], "zh": x["meaning"]} for x in items]
-    ss = [{"en": x["example"], "zh": x["example_zh"]} for x in items]
-    title = "每日单词"
+# 生成所有历史日期的HTML文件（如果不存在）
+for hist in HISTORY_DATA:
+    date_str = hist["date"]
+    filename = date_str + ".html"
+    
+    if date_str not in existing_dates:
+        print(f"生成历史文件: {filename}")
+        html = gen_daily_html(hist)
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(html)
+    else:
+        print(f"文件已存在，跳过: {filename}")
+
+# 生成今天的HTML文件
+today_filename = TODAY_DATA["date"] + ".html"
+if TODAY_DATA["date"] not in existing_dates:
+    print(f"生成今天文件: {today_filename}")
+    html = gen_daily_html(TODAY_DATA)
+    with open(today_filename, "w", encoding="utf-8") as f:
+        f.write(html)
 else:
-    ww = [{"en": x["phrase"], "zh": x["meaning"]} for x in items]
-    ss = [{"en": x["example"], "zh": x["example_zh"]} for x in items]
-    title = "日常口语"
+    print(f"今天文件已存在，跳过: {today_filename}")
 
-# 检查今天是否已存在，不存在则添加
-if not any(d["date"] == date_str for d in data):
-    data.append({"date": date_str, "day": day_name, "type": day_type, "title": title, "words": ww, "sentences": ss})
-
+# 生成/更新首页
+print(f"更新首页: index.html")
 with open("index.html", "w", encoding="utf-8") as f:
-    f.write(gen_index(data))
-print("Updated index.html with", len(data), "days of data")
+    f.write(gen_index(all_data))
+
+print("=" * 50)
+print(f"完成！共 {len(all_data)} 天的数据")
+print(f"生成的文件: {', '.join([d['date'] + '.html' for d in all_data])}, index.html")
+print("=" * 50)

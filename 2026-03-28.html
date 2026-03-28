@@ -7,9 +7,9 @@
 <style>*{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#e0f7fa 0%,#bbdefb 100%);min-height:100vh;padding:20px}
 .container{max-width:800px;margin:0 auto}
-.header{text-align:center;margin-bottom:30px;padding:20px;background:white;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-.header h1{color:#1565c0;font-size:2.2em;margin-bottom:10px}
-.date-info{color:#666;font-size:1.1em}
+.header{text-align:center;margin-bottom:20px;padding:20px;background:white;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+.header h1{color:#1565c0;font-size:2em;margin-bottom:10px}
+.date-info{color:#666;font-size:1em}
 .top-controls{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
 .word-card{background:white;border-radius:15px;padding:20px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
 .word-header{display:flex;align-items:center;gap:15px;margin-bottom:15px}
@@ -31,15 +31,19 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 .btn-normal{background:#2196f3;color:white}
 .btn-fast{background:#4caf50;color:white}
 .btn-stop{background:#f44336;color:white}
-.btn-primary{background:#667eea;color:white;padding:12px 24px;font-size:1em}
-.btn-secondary{background:#764ba2;color:white;padding:12px 24px;font-size:1em}</style>
+.btn-primary{background:#4caf50;color:white;padding:12px 24px;font-size:1em}
+.btn-secondary{background:#666;color:white;padding:12px 24px;font-size:1em}
+.loop-info{text-align:center;margin-bottom:15px;padding:10px;background:#e8f5e9;border-radius:10px;color:#2e7d32;font-weight:bold}
+.warning-info{text-align:center;margin-bottom:15px;padding:10px;background:#fff3e0;border-radius:10px;color:#e65100;font-size:.9em}</style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <h1>💬 每日英语口语</h1>
-    <div class="date-info">2026-03-28 周六</div>
+    <div class="date-info">2026-03-28 周六 · 小学五年级日常口语</div>
   </div>
+  <div class="warning-info">💡 建议使用 Chrome 或 Edge 浏览器，语音效果更好！</div>
+  <div class="loop-info" id="loopInfo">⏹ 已停止</div>
   <div class="top-controls">
     <button class="btn btn-primary" onclick="startAutoPlay()">▶️ 开始循环朗读</button>
     <button class="btn btn-secondary" onclick="goBack()">⬅️ 返回选择</button>
@@ -167,6 +171,8 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 </div>
 </div>
 <script>let isPlaying=false;
+let currentLoop=0;
+let maxLoops=10;
 function speak(text,speed){
   window.speechSynthesis.cancel();
   let rate=speed==='slow'?0.7:speed==='fast'?1.0:0.85;
@@ -179,11 +185,19 @@ function speak(text,speed){
     window.speechSynthesis.speak(u);
   }
 }
-function stopSpeaking(){window.speechSynthesis.cancel();isPlaying=false;}
+function stopSpeaking(){window.speechSynthesis.cancel();isPlaying=false;currentLoop=0;updateLoopInfo();}
+function updateLoopInfo(){
+  const info=document.getElementById('loopInfo');
+  if(info)info.textContent=isPlaying?'🔄 循环播放中（第'+currentLoop+'/'+maxLoops+'轮）':'⏹ 已停止';
+}
 async function startAutoPlay(){
-  if(isPlaying)return;isPlaying=true;
+  if(isPlaying)return;
+  isPlaying=true;
+  currentLoop=1;
+  updateLoopInfo();
   const cards=document.querySelectorAll('.word-card');
-  while(isPlaying){
+  while(isPlaying&&currentLoop<=maxLoops){
+    updateLoopInfo();
     for(let c of cards){
       if(!isPlaying)break;
       await sp(c.querySelector('.word-en').textContent,'slow');
@@ -191,7 +205,11 @@ async function startAutoPlay(){
       await sp(c.querySelector('.example-en').textContent,'normal');
       await sl(2000);
     }
+    if(isPlaying)currentLoop++;
   }
+  isPlaying=false;
+  currentLoop=0;
+  updateLoopInfo();
 }
 function sp(t,s){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=s==='slow'?0.7:0.85;u.onend=r;window.speechSynthesis.speak(u);})}
 function sl(ms){return new Promise(r=>setTimeout(r,ms))}
