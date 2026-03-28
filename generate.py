@@ -105,17 +105,43 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
 .btn-secondary{background:#764ba2;color:white;padding:10px 20px;font-size:.95em}"""
 
 JS = """let isPlaying=false,currentLoop=0,maxLoops=10;
-function speak(text,speed){
+function speakWord(wordEn,wordZh,speed){
   window.speechSynthesis.cancel();
-  let rate=speed==='slow'?0.7:speed==='fast'?1.0:0.85;
+  let rate=speed==='slow'?0.4:0.8;
+  // 播放英语3遍
   for(let i=0;i<3;i++){
-    const u=new SpeechSynthesisUtterance(text);
+    const u=new SpeechSynthesisUtterance(wordEn);
     u.lang='en-US';u.rate=rate;
     const vv=window.speechSynthesis.getVoices();
     const v=vv.find(v=>v.name.includes('Jenny'))||vv.find(v=>v.name.includes('Aria'))||vv.find(v=>v.name.includes('Google US English'))||vv[0];
     if(v)u.voice=v;
     window.speechSynthesis.speak(u);
   }
+  // 播放汉语1遍（延迟1.5秒后）
+  setTimeout(()=>{
+    const u2=new SpeechSynthesisUtterance(wordZh);
+    u2.lang='zh-CN';u2.rate=1.0;
+    window.speechSynthesis.speak(u2);
+  },1500);
+}
+function speakSentence(exEn,exZh,speed){
+  window.speechSynthesis.cancel();
+  let rate=speed==='slow'?0.6:speed==='fast'?0.9:0.8;
+  // 播放英语3遍
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(exEn);
+    u.lang='en-US';u.rate=rate;
+    const vv=window.speechSynthesis.getVoices();
+    const v=vv.find(v=>v.name.includes('Jenny'))||vv.find(v=>v.name.includes('Aria'))||vv.find(v=>v.name.includes('Google US English'))||vv[0];
+    if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+  }
+  // 播放汉语1遍（延迟2秒后）
+  setTimeout(()=>{
+    const u2=new SpeechSynthesisUtterance(exZh);
+    u2.lang='zh-CN';u2.rate=1.0;
+    window.speechSynthesis.speak(u2);
+  },2000);
 }
 function stopSpeaking(){
   window.speechSynthesis.cancel();
@@ -144,20 +170,21 @@ async function startAutoPlay(){
       const wordZh=c.querySelector('.word-meaning').textContent;
       const exEn=c.querySelector('.example-en').textContent;
       const exZh=c.querySelector('.example-zh').textContent;
-      // 播放单词：慢速3遍+汉语
-      for(let i=0;i<3;i++){
-        if(!isPlaying)break;
-        await sp(wordEn,'slow');
-        await sl(500);
-      }
-      if(isPlaying){await sp(wordZh,'normal');await sl(500);}
-      // 播放例句：匀速3遍+汉语
-      for(let i=0;i<3;i++){
-        if(!isPlaying)break;
-        await sp(exEn,'normal');
-        await sl(500);
-      }
-      if(isPlaying){await sp(exZh,'normal');await sl(1000);}
+      // 1. 慢速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(wordEn,'slow');await sl(500);}
+      if(isPlaying){await spZh(wordZh);await sl(500);}
+      // 2. 匀速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(wordEn,'normal');await sl(500);}
+      if(isPlaying){await spZh(wordZh);await sl(500);}
+      // 3. 慢速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'slow');await sl(600);}
+      if(isPlaying){await spZh(exZh);await sl(500);}
+      // 4. 匀速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'normal');await sl(600);}
+      if(isPlaying){await spZh(exZh);await sl(500);}
+      // 5. 常速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'fast');await sl(500);}
+      await sl(1000);
     }
     if(currentLoop>=maxLoops){
       isPlaying=false;
@@ -166,6 +193,7 @@ async function startAutoPlay(){
     }
   }
 }
+function spZh(text){return new Promise(r=>{const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=1.0;u.onend=r;window.speechSynthesis.speak(u);})}
 function sp(t,s){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=s==='slow'?0.4:s==='fast'?0.9:0.8;u.onend=r;window.speechSynthesis.speak(u);})}
 function sl(ms){return new Promise(r=>setTimeout(r,ms))}
 function goBack(){window.location.href='./index.html'}"""
@@ -202,11 +230,11 @@ def build_card(i, item, day_type):
   </div>
   <div class="word-tip">💡 {item.get("tip", "")}</div>
   <div class="controls">
-    <button class="btn btn-slow" onclick="speak('{sp_en}','slow')">🐢 慢速词×3</button>
-    <button class="btn btn-normal" onclick="speak('{sp_en}','normal')">🚀 匀速词×3</button>
-    <button class="btn btn-slow" onclick="speak('{sp_ex}','slow')">🐢 慢速句×3</button>
-    <button class="btn btn-normal" onclick="speak('{sp_ex}','normal')">🚀 匀速句×3</button>
-    <button class="btn btn-fast" onclick="speak('{sp_ex}','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-slow" onclick="speakWord('{sp_en}','{item["zh"]}','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakWord('{sp_en}','{item["zh"]}','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speakSentence('{sp_ex}','{item["example_zh"]}','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speakSentence('{sp_ex}','{item["example_zh"]}','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speakSentence('{sp_ex}','{item["example_zh"]}','fast')">⚡ 常速句×3</button>
     <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
   </div>
 </div>'''

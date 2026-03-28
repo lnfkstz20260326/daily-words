@@ -65,11 +65,11 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   </div>
   <div class="word-tip">💡 en+courage=给勇气</div>
   <div class="controls">
-    <button class="btn btn-slow" onclick="speak('encourage','slow')">🐢 慢速词×3</button>
-    <button class="btn btn-normal" onclick="speak('encourage','normal')">🚀 匀速词×3</button>
-    <button class="btn btn-slow" onclick="speak('You re doing great! I ll always encourage you.','slow')">🐢 慢速句×3</button>
-    <button class="btn btn-normal" onclick="speak('You re doing great! I ll always encourage you.','normal')">🚀 匀速句×3</button>
-    <button class="btn btn-fast" onclick="speak('You re doing great! I ll always encourage you.','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-slow" onclick="speakWord('encourage','鼓励；给劲','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakWord('encourage','鼓励；给劲','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speakSentence('You re doing great! I ll always encourage you.','你做得很好！我会一直鼓励你。','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speakSentence('You re doing great! I ll always encourage you.','你做得很好！我会一直鼓励你。','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speakSentence('You re doing great! I ll always encourage you.','你做得很好！我会一直鼓励你。','fast')">⚡ 常速句×3</button>
     <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
   </div>
 </div><div class="word-card">
@@ -89,11 +89,11 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   </div>
   <div class="word-tip">💡 发音像陪申特</div>
   <div class="controls">
-    <button class="btn btn-slow" onclick="speak('patient','slow')">🐢 慢速词×3</button>
-    <button class="btn btn-normal" onclick="speak('patient','normal')">🚀 匀速词×3</button>
-    <button class="btn btn-slow" onclick="speak('Be patient. Learning takes time.','slow')">🐢 慢速句×3</button>
-    <button class="btn btn-normal" onclick="speak('Be patient. Learning takes time.','normal')">🚀 匀速句×3</button>
-    <button class="btn btn-fast" onclick="speak('Be patient. Learning takes time.','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-slow" onclick="speakWord('patient','有耐心的；不着急','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakWord('patient','有耐心的；不着急','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speakSentence('Be patient. Learning takes time.','要有耐心。学习需要时间。','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speakSentence('Be patient. Learning takes time.','要有耐心。学习需要时间。','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speakSentence('Be patient. Learning takes time.','要有耐心。学习需要时间。','fast')">⚡ 常速句×3</button>
     <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
   </div>
 </div><div class="word-card">
@@ -113,11 +113,11 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   </div>
   <div class="word-tip">💡 re+mind=再次进入脑海</div>
   <div class="controls">
-    <button class="btn btn-slow" onclick="speak('remind','slow')">🐢 慢速词×3</button>
-    <button class="btn btn-normal" onclick="speak('remind','normal')">🚀 匀速词×3</button>
-    <button class="btn btn-slow" onclick="speak('Let me remind you. Pack your bag.','slow')">🐢 慢速句×3</button>
-    <button class="btn btn-normal" onclick="speak('Let me remind you. Pack your bag.','normal')">🚀 匀速句×3</button>
-    <button class="btn btn-fast" onclick="speak('Let me remind you. Pack your bag.','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-slow" onclick="speakWord('remind','提醒；告诉','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakWord('remind','提醒；告诉','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speakSentence('Let me remind you. Pack your bag.','让我提醒你。收拾好你的书包。','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speakSentence('Let me remind you. Pack your bag.','让我提醒你。收拾好你的书包。','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speakSentence('Let me remind you. Pack your bag.','让我提醒你。收拾好你的书包。','fast')">⚡ 常速句×3</button>
     <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
   </div>
 </div><div class="word-card">
@@ -137,11 +137,11 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   </div>
   <div class="word-tip">💡 发音像Q瑞尔斯</div>
   <div class="controls">
-    <button class="btn btn-slow" onclick="speak('curious','slow')">🐢 慢速词×3</button>
-    <button class="btn btn-normal" onclick="speak('curious','normal')">🚀 匀速词×3</button>
-    <button class="btn btn-slow" onclick="speak('You re so curious. Keep asking!','slow')">🐢 慢速句×3</button>
-    <button class="btn btn-normal" onclick="speak('You re so curious. Keep asking!','normal')">🚀 匀速句×3</button>
-    <button class="btn btn-fast" onclick="speak('You re so curious. Keep asking!','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-slow" onclick="speakWord('curious','好奇的；想知道','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakWord('curious','好奇的；想知道','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speakSentence('You re so curious. Keep asking!','你真好奇。继续问吧！','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speakSentence('You re so curious. Keep asking!','你真好奇。继续问吧！','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speakSentence('You re so curious. Keep asking!','你真好奇。继续问吧！','fast')">⚡ 常速句×3</button>
     <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
   </div>
 </div><div class="word-card">
@@ -161,27 +161,53 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   </div>
   <div class="word-tip">💡 发音像泰迪</div>
   <div class="controls">
-    <button class="btn btn-slow" onclick="speak('tidy','slow')">🐢 慢速词×3</button>
-    <button class="btn btn-normal" onclick="speak('tidy','normal')">🚀 匀速词×3</button>
-    <button class="btn btn-slow" onclick="speak('Can you tidy up your room?','slow')">🐢 慢速句×3</button>
-    <button class="btn btn-normal" onclick="speak('Can you tidy up your room?','normal')">🚀 匀速句×3</button>
-    <button class="btn btn-fast" onclick="speak('Can you tidy up your room?','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-slow" onclick="speakWord('tidy','整理；收拾','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakWord('tidy','整理；收拾','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speakSentence('Can you tidy up your room?','你能收拾一下你的房间吗？','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speakSentence('Can you tidy up your room?','你能收拾一下你的房间吗？','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speakSentence('Can you tidy up your room?','你能收拾一下你的房间吗？','fast')">⚡ 常速句×3</button>
     <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
   </div>
 </div>
 </div>
 <script>let isPlaying=false,currentLoop=0,maxLoops=10;
-function speak(text,speed){
+function speakWord(wordEn,wordZh,speed){
   window.speechSynthesis.cancel();
-  let rate=speed==='slow'?0.7:speed==='fast'?1.0:0.85;
+  let rate=speed==='slow'?0.4:0.8;
+  // 播放英语3遍
   for(let i=0;i<3;i++){
-    const u=new SpeechSynthesisUtterance(text);
+    const u=new SpeechSynthesisUtterance(wordEn);
     u.lang='en-US';u.rate=rate;
     const vv=window.speechSynthesis.getVoices();
     const v=vv.find(v=>v.name.includes('Jenny'))||vv.find(v=>v.name.includes('Aria'))||vv.find(v=>v.name.includes('Google US English'))||vv[0];
     if(v)u.voice=v;
     window.speechSynthesis.speak(u);
   }
+  // 播放汉语1遍（延迟1.5秒后）
+  setTimeout(()=>{
+    const u2=new SpeechSynthesisUtterance(wordZh);
+    u2.lang='zh-CN';u2.rate=1.0;
+    window.speechSynthesis.speak(u2);
+  },1500);
+}
+function speakSentence(exEn,exZh,speed){
+  window.speechSynthesis.cancel();
+  let rate=speed==='slow'?0.6:speed==='fast'?0.9:0.8;
+  // 播放英语3遍
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(exEn);
+    u.lang='en-US';u.rate=rate;
+    const vv=window.speechSynthesis.getVoices();
+    const v=vv.find(v=>v.name.includes('Jenny'))||vv.find(v=>v.name.includes('Aria'))||vv.find(v=>v.name.includes('Google US English'))||vv[0];
+    if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+  }
+  // 播放汉语1遍（延迟2秒后）
+  setTimeout(()=>{
+    const u2=new SpeechSynthesisUtterance(exZh);
+    u2.lang='zh-CN';u2.rate=1.0;
+    window.speechSynthesis.speak(u2);
+  },2000);
 }
 function stopSpeaking(){
   window.speechSynthesis.cancel();
@@ -210,20 +236,21 @@ async function startAutoPlay(){
       const wordZh=c.querySelector('.word-meaning').textContent;
       const exEn=c.querySelector('.example-en').textContent;
       const exZh=c.querySelector('.example-zh').textContent;
-      // 播放单词：慢速3遍+汉语
-      for(let i=0;i<3;i++){
-        if(!isPlaying)break;
-        await sp(wordEn,'slow');
-        await sl(500);
-      }
-      if(isPlaying){await sp(wordZh,'normal');await sl(500);}
-      // 播放例句：匀速3遍+汉语
-      for(let i=0;i<3;i++){
-        if(!isPlaying)break;
-        await sp(exEn,'normal');
-        await sl(500);
-      }
-      if(isPlaying){await sp(exZh,'normal');await sl(1000);}
+      // 1. 慢速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(wordEn,'slow');await sl(500);}
+      if(isPlaying){await spZh(wordZh);await sl(500);}
+      // 2. 匀速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(wordEn,'normal');await sl(500);}
+      if(isPlaying){await spZh(wordZh);await sl(500);}
+      // 3. 慢速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'slow');await sl(600);}
+      if(isPlaying){await spZh(exZh);await sl(500);}
+      // 4. 匀速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'normal');await sl(600);}
+      if(isPlaying){await spZh(exZh);await sl(500);}
+      // 5. 常速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await sp(exEn,'fast');await sl(500);}
+      await sl(1000);
     }
     if(currentLoop>=maxLoops){
       isPlaying=false;
@@ -232,6 +259,7 @@ async function startAutoPlay(){
     }
   }
 }
+function spZh(text){return new Promise(r=>{const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=1.0;u.onend=r;window.speechSynthesis.speak(u);})}
 function sp(t,s){return new Promise(r=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=s==='slow'?0.4:s==='fast'?0.9:0.8;u.onend=r;window.speechSynthesis.speak(u);})}
 function sl(ms){return new Promise(r=>setTimeout(r,ms))}
 function goBack(){window.location.href='./index.html'}</script>
