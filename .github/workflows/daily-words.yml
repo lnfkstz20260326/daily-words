@@ -2,7 +2,8 @@ name: Daily English Words Generator
 
 on:
   schedule:
-    - cron: '0 23 * * *'
+    # 北京时间 1:00 = UTC 17:00
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 jobs:
