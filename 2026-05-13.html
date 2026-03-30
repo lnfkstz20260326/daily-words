@@ -519,6 +519,9 @@ async function playSentence(exEn, exZh, speed) {
 
 // ========== 卡片按钮播放 ==========
 async function playCard(cardIndex, type, speed) {
+    // 设置播放状态，允许中途停止
+    isPlaying = true;
+    
     const cards = document.querySelectorAll('.card');
     const card = cards[cardIndex];
     if (!card) return;
