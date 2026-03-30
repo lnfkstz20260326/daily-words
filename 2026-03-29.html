@@ -5,159 +5,38 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>每日英语口语 - 2026-03-29</title>
 <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
-        .header .date { color: #666; font-size: 16px; }
-        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
-        
-        .top-controls {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-.card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-        }
-        .card:hover { transform: translateY(-2px); }
-        .word-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        .word-number {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .word-title { font-size: 32px; color: #333; font-weight: bold; }
-        .phonetic { color: #888; font-size: 18px; margin-left: 10px; font-family: Georgia, serif; }
-        .word-meaning {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-        .part-of-speech {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 14px;
-        }
-        .chinese-meaning {
-            background: #ffebee;
-            color: #c62828;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .memory-tip {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            padding: 12px 16px;
-            border-radius: 10px;
-            margin-bottom: 16px;
-            font-size: 15px;
-            color: #2e7d32;
-            border-left: 4px solid #4caf50;
-        }
-        .example-box {
-            background: #f5f5f5;
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 16px;
-        }
-        .example-label { color: #999; font-size: 12px; margin-bottom: 8px; text-transform: uppercase; }
-        .example-en { color: #333; font-size: 18px; margin-bottom: 6px; line-height: 1.6; }
-        .example-cn { color: #666; font-size: 15px; }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .btn:hover { transform: scale(1.05); }
-        .btn-slow { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: white; }
-        .btn-normal { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: white; }
-        .btn-fast { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: white; }
-        .btn-stop { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: white; }
-        .btn-loop { background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; }
-        .btn-secondary {
-            background: linear-gradient(135deg, #764ba2 0%, #6a3093 100%);
-            color: white;
-        }
-
-        .loop-status {
-            text-align: center;
-            margin-top: 20px;
-            padding: 12px;
-            background: #f3e5f5;
-            border-radius: 10px;
-            color: #7b1fa2;
-            font-weight: 500;
-        }
-        .nav-links {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .nav-links a {
-            color: #1976d2;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        .nav-links a:hover { background: #e3f2fd; }
-        @media (max-width: 600px) {
-            .word-title { font-size: 24px; }
-            .btn { padding: 8px 12px; font-size: 12px; }
-        }
-    </style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#e0f7fa 0%,#bbdefb 100%);min-height:100vh;padding:10px}
+.container{max-width:800px;margin:0 auto}
+.header{text-align:center;margin-bottom:15px;padding:15px;background:white;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+.header h1{color:#1565c0;font-size:1.8em;margin-bottom:8px}
+.date-info{color:#666;font-size:1em}
+.top-controls{display:flex;gap:10px;justify-content:center;margin-bottom:15px;flex-wrap:wrap}
+.browser-tip{background:#fff3e0;padding:10px 15px;border-radius:8px;margin-bottom:15px;text-align:center;color:#e65100;font-size:.9em}
+.loop-status{background:#e8f5e9;padding:10px 15px;border-radius:8px;margin-bottom:15px;text-align:center;color:#2e7d32;font-weight:bold;display:none}
+.word-card{background:white;border-radius:15px;padding:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+.word-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.word-number{width:35px;height:35px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1em}
+.word-title{flex:1}
+.word-en{font-size:1.6em;color:#333;font-weight:bold}
+.word-phonetic{color:#666;font-size:.9em;margin-top:3px}
+.word-pos{color:#999;font-size:.85em;margin-top:2px}
+.word-meaning{background:#f5f5f5;padding:10px;border-radius:8px;font-size:1.2em;color:#333;margin-bottom:12px}
+.word-scene{background:#e3f2fd;padding:8px 12px;border-radius:6px;color:#1565c0;margin-bottom:10px;font-size:.9em}
+.word-example{background:#fff3e0;padding:12px;border-radius:8px;margin-bottom:12px}
+.example-en{color:#333;font-size:1em;margin-bottom:6px}
+.example-zh{color:#666;font-size:.9em}
+.word-tip{background:#e8f5e9;padding:8px 12px;border-radius:6px;color:#2e7d32;margin-bottom:12px;font-size:.9em}
+.controls{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.btn{padding:6px 12px;border:none;border-radius:15px;cursor:pointer;font-size:.85em;transition:all .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,.2)}
+.btn-slow{background:#ff9800;color:white}
+.btn-normal{background:#2196f3;color:white}
+.btn-fast{background:#4caf50;color:white}
+.btn-stop{background:#f44336;color:white}
+.btn-primary{background:#667eea;color:white;padding:10px 20px;font-size:.95em}
+.btn-secondary{background:#764ba2;color:white;padding:10px 20px;font-size:.95em}
+</style>
 </head>
 <body>
 <div class="container">
@@ -167,7 +46,12 @@
   </div>
   <div class="browser-tip">💡 建议使用 Edge 浏览器，语音效果更好！</div>
   <div class="loop-status" id="loopStatus"></div>
-<div class="word-card">
+  <div class="top-controls">
+    <button class="btn btn-primary" onclick="startAutoPlay()">▶️ 开始循环朗读</button>
+    <button class="btn btn-secondary" onclick="goBack()">⬅️ 返回选择</button>
+  </div>
+  
+  <div class="word-card">
   <div class="word-header">
     <span class="word-number">01</span>
     <div class="word-title">
@@ -299,171 +183,128 @@
 
 </div>
 <script>
-        const phrases = [{"en": "shirt", "zh": "衬衫", "phonetic": "/ʃɜːt/", "type": "n.", "example": "I wear a blue shirt.", "example_zh": "我穿蓝色衬衫。"}, {"en": "pants", "zh": "裤子", "phonetic": "/pænts/", "type": "n.", "example": "These pants are too long.", "example_zh": "这条裤子太长了。"}, {"en": "shoes", "zh": "鞋子", "phonetic": "/ʃuːz/", "type": "n.", "example": "Clean your shoes.", "example_zh": "擦干净你的鞋子。"}, {"en": "socks", "zh": "袜子", "phonetic": "/sɒks/", "type": "n.", "example": "I have new socks.", "example_zh": "我有新袜子了。"}, {"en": "hat", "zh": "帽子", "phonetic": "/hæt/", "type": "n.", "example": "This hat is too small.", "example_zh": "这顶帽子太小了。"}];
-        let isLooping = false;
-        let loopCount = 0;
-        const MAX_LOOPS = 7;
-        let currentCardIndex = 0;
-
-        function speak(text, rate = 0.8, lang = 'en-US') {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang;
-                utterance.rate = rate;
-                utterance.pitch = 1;
-                return utterance;
-            }
-        }
-
-        function speakPhrase(index, type, rate, fromLoop = false) {
-            // 点击卡片按钮时，先停止循环播放
-            // 只有用户手动点击卡片按钮时才停止循环，循环播放内部调用不应停止
-            if (isLooping && !fromLoop) {
-                isLooping = false;
-                loopCount = MAX_LOOPS;
-                const statusEl = document.getElementById('loopStatus');
-                if (statusEl) statusEl.textContent = '⏹ 已切换到单卡片模式';
-            }
-
-            const phrase = phrases[index];
-            let text, lang;
-            
-            if (type === 'word') {
-                text = phrase.en;
-                lang = 'en-US';
-            } else {
-                text = phrase.example;
-                lang = 'en-US';
-            }
-            
-            window.speechSynthesis.cancel();
-            
-            let repeatCount = 0;
-            const maxRepeats = 3;
-            
-            function speakOnce() {
-                if (repeatCount >= maxRepeats) {
-                    if (rate <= 0.6 && type === 'word') {
-                        const cnUtterance = speak(phrase.zh, 0.9, 'zh-CN');
-                    } else if (rate <= 0.6 && type === 'sentence') {
-                        const cnUtterance = speak(phrase.example_zh, 0.9, 'zh-CN');
-                    }
-                    return;
-                }
-                
-                const utterance = speak(text, rate, lang);
-                utterance.onend = () => {
-                    repeatCount++;
-                    speakOnce();
-                };
-                window.speechSynthesis.speak(utterance);
-            }
-            
-            speakOnce();
-        }
-
-        // 切换循环播放状态
-        function toggleLoop() {
-            const btn = document.getElementById('loopBtn');
-            if (isLooping) {
-                // 正在播放 -> 停止
-                stopSpeaking();
-            } else {
-                // 未播放 -> 开始播放
-                startAutoLoop();
-            }
-        }
-
-
-        function stopSpeaking() {
-            window.speechSynthesis.cancel();
-            isLooping = false;
-            loopCount = MAX_LOOPS;
-            const statusEl = document.getElementById('loopStatus');
-            const btnEl = document.getElementById('loopBtn');
-            if (statusEl) statusEl.textContent = '⏹ 已停止';
-            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
-        }
-
-        function goBack() {
-            // 先停止所有语音播放
-            window.speechSynthesis.cancel();
-            isLooping = false;
-            loopCount = MAX_LOOPS;
-            
-            // 等待音频真正停止后再跳转（500ms确保语音中断）
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 500);
-        }
-
-
-
-        async function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        async function startAutoLoop() {
-            if (isLooping) return;
-            isLooping = true;
-            loopCount = 0;
-            
-            while (isLooping && loopCount < MAX_LOOPS) {
-                loopCount++;
-                document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
-                
-                for (let i = 0; i < phrases.length; i++) {
-                    if (!isLooping) break;
-                    currentCardIndex = i;
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.4, true);
-                        setTimeout(resolve, 8000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.8, true);
-                        setTimeout(resolve, 6000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.6, true);
-                        setTimeout(resolve, 9000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.8, true);
-                        setTimeout(resolve, 7000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.9, true);
-                        setTimeout(resolve, 6000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                }
-                
-                if (isLooping && loopCount < MAX_LOOPS) {
-                    await sleep(2000);
-                }
-            }
-            
-            isLooping = false;
-            document.getElementById('loopStatus').textContent = '✅ 循环播放完成';
-        }
-
-        setTimeout(() => {
-            startAutoLoop();
-        }, 3000);
-    </script>
+let isPlaying=false,currentLoop=0,maxLoops=7;
+function loadVoices(){
+  return new Promise(resolve=>{
+    let voices=window.speechSynthesis.getVoices();
+    if(voices.length>0){
+      resolve(voices);
+    }else{
+      window.speechSynthesis.onvoiceschanged=()=>{
+        voices=window.speechSynthesis.getVoices();
+        resolve(voices);
+      };
+    }
+  });
+}
+async function speakWord(wordEn,wordZh,speed){
+  window.speechSynthesis.cancel();
+  const voices=await loadVoices();
+  let rate=speed==='slow'?0.4:0.8;
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(wordEn);
+    u.lang='en-US';u.rate=rate;
+    const v=voices.find(v=>v.name.includes('Jenny'))||voices.find(v=>v.name.includes('Aria'))||voices.find(v=>v.name.includes('Google US English'))||voices[0];
+    if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+    await new Promise(r=>setTimeout(r,500));
+  }
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const u2=new SpeechSynthesisUtterance(wordZh);
+      u2.lang='zh-CN';u2.rate=1.0;
+      window.speechSynthesis.speak(u2);
+    },1500);
+  }
+}
+async function speakSentence(exEn,exZh,speed){
+  window.speechSynthesis.cancel();
+  const voices=await loadVoices();
+  let rate=speed==='slow'?0.6:speed==='fast'?0.9:0.8;
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(exEn);
+    u.lang='en-US';u.rate=rate;
+    const v=voices.find(v=>v.name.includes('Jenny'))||voices.find(v=>v.name.includes('Aria'))||voices.find(v=>v.name.includes('Google US English'))||voices[0];
+    if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+    await new Promise(r=>setTimeout(r,600));
+  }
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const u2=new SpeechSynthesisUtterance(exZh);
+      u2.lang='zh-CN';u2.rate=1.0;
+      window.speechSynthesis.speak(u2);
+    },2000);
+  }
+}
+function stopSpeaking(){
+  window.speechSynthesis.cancel();
+  isPlaying=false;
+  currentLoop=0;
+  const statusDiv=document.getElementById('loopStatus');
+  statusDiv.style.display='block';
+  statusDiv.textContent='⏹ 已停止';
+  document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
+}
+async function startAutoPlay(){
+  if(isPlaying){
+    // 正在播放 -> 暂停
+    isPlaying=false;
+    currentLoop=0;
+    window.speechSynthesis.cancel();
+    const statusDiv=document.getElementById('loopStatus');
+    statusDiv.textContent='⏸ 已暂停';
+    document.querySelector('.btn-primary').textContent='▶️ 继续朗读';
+    return;
+  }
+  // 开始播放
+  isPlaying=true;
+  currentLoop=0;
+  const statusDiv=document.getElementById('loopStatus');
+  const btn=document.querySelector('.btn-primary');
+  statusDiv.style.display='block';
+  const cards=document.querySelectorAll('.word-card');
+  while(isPlaying&&currentLoop<maxLoops){
+    currentLoop++;
+    statusDiv.textContent='🔄 第'+currentLoop+'/'+maxLoops+'轮';
+    btn.textContent='⏸ 暂停循环';
+    for(let c of cards){
+      if(!isPlaying)break;
+      const wordEn=c.querySelector('.word-en').textContent;
+      const wordZh=c.querySelector('.word-meaning').textContent;
+      const exEn=c.querySelector('.example-en').textContent;
+      const exZh=c.querySelector('.example-zh').textContent;
+      // 1. 慢速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'slow');await new Promise(r=>setTimeout(r,500));}
+      if(isPlaying){await new Promise(r=>setTimeout(r,500));}
+      // 2. 匀速词×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'normal');await new Promise(r=>setTimeout(r,500));}
+      await new Promise(r=>setTimeout(r,500));
+      // 3. 慢速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'slow');await new Promise(r=>setTimeout(r,600));}
+      if(isPlaying){await new Promise(r=>setTimeout(r,500));}
+      // 4. 匀速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'normal');await new Promise(r=>setTimeout(r,600));}
+      await new Promise(r=>setTimeout(r,500));
+      // 5. 常速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'fast');await new Promise(r=>setTimeout(r,500));}
+      await new Promise(r=>setTimeout(r,1000));
+    }
+    if(currentLoop>=maxLoops){
+      isPlaying=false;
+      statusDiv.textContent='✅ 已完成'+maxLoops+'轮';
+      btn.textContent='▶️ 开始循环朗读';
+    }
+  }
+}
+function goBack(){
+  window.speechSynthesis.cancel();
+  isPlaying=false;
+  currentLoop=0;
+  setTimeout(()=>{window.location.href='index.html';},100);
+}
+// 页面加载3秒后自动开始循环朗读
+setTimeout(()=>{startAutoPlay();},3000);
+</script>
 </body>
 </html>

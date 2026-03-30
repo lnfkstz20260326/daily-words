@@ -171,7 +171,7 @@
         
 
 <div class="top-controls">
-            <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
+            <button class="btn btn-loop" id="loopBtn" onclick="startAutoPlay()">
                 ▶️ 开始循环朗读
             </button>
             <button class="btn btn-secondary" onclick="goBack()">
@@ -342,171 +342,128 @@
     </div>
 
     <script>
-        const phrases = [{"en": "dinner", "zh": "晚餐", "phonetic": "/ˈdɪnə/", "type": "n.", "example": "Dinner is ready!", "example_zh": "晚餐准备好了！"}, {"en": "hungry", "zh": "饿的", "phonetic": "/ˈhʌŋɡri/", "type": "n.", "example": "I'm hungry.", "example_zh": "我饿了。"}, {"en": "thirsty", "zh": "渴的", "phonetic": "/ˈθɜːsti/", "type": "n.", "example": "I'm thirsty.", "example_zh": "我渴了。"}, {"en": "milk", "zh": "牛奶", "phonetic": "/mɪlk/", "type": "n.", "example": "I drink milk.", "example_zh": "我喝牛奶。"}, {"en": "bread", "zh": "面包", "phonetic": "/bred/", "type": "n.", "example": "I eat bread.", "example_zh": "我吃面包。"}];
-        let isLooping = false;
-        let loopCount = 0;
-        const MAX_LOOPS = 7;
-        let currentCardIndex = 0;
-
-        function speak(text, rate = 0.8, lang = 'en-US') {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang;
-                utterance.rate = rate;
-                utterance.pitch = 1;
-                return utterance;
-            }
-        }
-
-        function speakPhrase(index, type, rate, fromLoop = false) {
-            // 点击卡片按钮时，先停止循环播放
-            // 只有用户手动点击卡片按钮时才停止循环，循环播放内部调用不应停止
-            if (isLooping && !fromLoop) {
-                isLooping = false;
-                loopCount = MAX_LOOPS;
-                const statusEl = document.getElementById('loopStatus');
-                if (statusEl) statusEl.textContent = '⏹ 已切换到单卡片模式';
-            }
-
-            const phrase = phrases[index];
-            let text, lang;
-            
-            if (type === 'word') {
-                text = phrase.en;
-                lang = 'en-US';
-            } else {
-                text = phrase.example;
-                lang = 'en-US';
-            }
-            
-            window.speechSynthesis.cancel();
-            
-            let repeatCount = 0;
-            const maxRepeats = 3;
-            
-            function speakOnce() {
-                if (repeatCount >= maxRepeats) {
-                    if (rate <= 0.6 && type === 'word') {
-                        const cnUtterance = speak(phrase.zh, 0.9, 'zh-CN');
-                    } else if (rate <= 0.6 && type === 'sentence') {
-                        const cnUtterance = speak(phrase.example_zh, 0.9, 'zh-CN');
-                    }
-                    return;
-                }
-                
-                const utterance = speak(text, rate, lang);
-                utterance.onend = () => {
-                    repeatCount++;
-                    speakOnce();
-                };
-                window.speechSynthesis.speak(utterance);
-            }
-            
-            speakOnce();
-        }
-
-        // 切换循环播放状态
-        function toggleLoop() {
-            const btn = document.getElementById('loopBtn');
-            if (isLooping) {
-                // 正在播放 -> 停止
-                stopSpeaking();
-            } else {
-                // 未播放 -> 开始播放
-                startAutoLoop();
-            }
-        }
-
-
-        function stopSpeaking() {
-            window.speechSynthesis.cancel();
-            isLooping = false;
-            loopCount = MAX_LOOPS;
-            const statusEl = document.getElementById('loopStatus');
-            const btnEl = document.getElementById('loopBtn');
-            if (statusEl) statusEl.textContent = '⏹ 已停止';
-            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
-        }
-
-        function goBack() {
-            // 先停止所有语音播放
-            window.speechSynthesis.cancel();
-            isLooping = false;
-            loopCount = MAX_LOOPS;
-            
-            // 等待音频真正停止后再跳转（500ms确保语音中断）
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 500);
-        }
-
-
-
-        async function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        async function startAutoLoop() {
-            if (isLooping) return;
-            isLooping = true;
-            loopCount = 0;
-            
-            while (isLooping && loopCount < MAX_LOOPS) {
-                loopCount++;
-                document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
-                
-                for (let i = 0; i < phrases.length; i++) {
-                    if (!isLooping) break;
-                    currentCardIndex = i;
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.4, true);
-                        setTimeout(resolve, 8000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.8, true);
-                        setTimeout(resolve, 6000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.6, true);
-                        setTimeout(resolve, 9000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.8, true);
-                        setTimeout(resolve, 7000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                    
-                    await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.9, true);
-                        setTimeout(resolve, 6000);
-                    });
-                    if (!isLooping) break;
-                    await sleep(1000);
-                }
-                
-                if (isLooping && loopCount < MAX_LOOPS) {
-                    await sleep(2000);
-                }
-            }
-            
-            isLooping = false;
-            document.getElementById('loopStatus').textContent = '✅ 循环播放完成';
-        }
-
-        setTimeout(() => {
-            startAutoLoop();
-        }, 3000);
-    </script>
+let isPlaying=false,currentLoop=0,maxLoops=7;
+function loadVoices(){
+  return new Promise(resolve=>{
+    let voices=window.speechSynthesis.getVoices();
+    if(voices.length>0){
+      resolve(voices);
+    }else{
+      window.speechSynthesis.onvoiceschanged=()=>{
+        voices=window.speechSynthesis.getVoices();
+        resolve(voices);
+      };
+    }
+  });
+}
+async function speakWord(wordEn,wordZh,speed){
+  window.speechSynthesis.cancel();
+  const voices=await loadVoices();
+  let rate=speed==='slow'?0.4:0.8;
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(wordEn);
+    u.lang='en-US';u.rate=rate;
+    const v=voices.find(v=>v.name.includes('Jenny'))||voices.find(v=>v.name.includes('Aria'))||voices.find(v=>v.name.includes('Google US English'))||voices[0];
+    if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+    await new Promise(r=>setTimeout(r,500));
+  }
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const u2=new SpeechSynthesisUtterance(wordZh);
+      u2.lang='zh-CN';u2.rate=1.0;
+      window.speechSynthesis.speak(u2);
+    },1500);
+  }
+}
+async function speakSentence(exEn,exZh,speed){
+  window.speechSynthesis.cancel();
+  const voices=await loadVoices();
+  let rate=speed==='slow'?0.6:speed==='fast'?0.9:0.8;
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(exEn);
+    u.lang='en-US';u.rate=rate;
+    const v=voices.find(v=>v.name.includes('Jenny'))||voices.find(v=>v.name.includes('Aria'))||voices.find(v=>v.name.includes('Google US English'))||voices[0];
+    if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+    await new Promise(r=>setTimeout(r,600));
+  }
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const u2=new SpeechSynthesisUtterance(exZh);
+      u2.lang='zh-CN';u2.rate=1.0;
+      window.speechSynthesis.speak(u2);
+    },2000);
+  }
+}
+function stopSpeaking(){
+  window.speechSynthesis.cancel();
+  isPlaying=false;
+  currentLoop=0;
+  const statusDiv=document.getElementById('loopStatus');
+  statusDiv.style.display='block';
+  statusDiv.textContent='⏹ 已停止';
+  document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
+}
+async function startAutoPlay(){
+  if(isPlaying){
+    // 正在播放 -> 暂停
+    isPlaying=false;
+    currentLoop=0;
+    window.speechSynthesis.cancel();
+    const statusDiv=document.getElementById('loopStatus');
+    statusDiv.textContent='⏸ 已暂停';
+    document.querySelector('.btn-primary').textContent='▶️ 继续朗读';
+    return;
+  }
+  // 开始播放
+  isPlaying=true;
+  currentLoop=0;
+  const statusDiv=document.getElementById('loopStatus');
+  const btn=document.querySelector('.btn-primary');
+  statusDiv.style.display='block';
+  const cards=document.querySelectorAll('.word-card');
+  while(isPlaying&&currentLoop<maxLoops){
+    currentLoop++;
+    statusDiv.textContent='🔄 第'+currentLoop+'/'+maxLoops+'轮';
+    btn.textContent='⏸ 暂停循环';
+    for(let c of cards){
+      if(!isPlaying)break;
+      const wordEn=c.querySelector('.word-en').textContent;
+      const wordZh=c.querySelector('.word-meaning').textContent;
+      const exEn=c.querySelector('.example-en').textContent;
+      const exZh=c.querySelector('.example-zh').textContent;
+      // 1. 慢速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'slow');await new Promise(r=>setTimeout(r,500));}
+      if(isPlaying){await new Promise(r=>setTimeout(r,500));}
+      // 2. 匀速词×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'normal');await new Promise(r=>setTimeout(r,500));}
+      await new Promise(r=>setTimeout(r,500));
+      // 3. 慢速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'slow');await new Promise(r=>setTimeout(r,600));}
+      if(isPlaying){await new Promise(r=>setTimeout(r,500));}
+      // 4. 匀速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'normal');await new Promise(r=>setTimeout(r,600));}
+      await new Promise(r=>setTimeout(r,500));
+      // 5. 常速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'fast');await new Promise(r=>setTimeout(r,500));}
+      await new Promise(r=>setTimeout(r,1000));
+    }
+    if(currentLoop>=maxLoops){
+      isPlaying=false;
+      statusDiv.textContent='✅ 已完成'+maxLoops+'轮';
+      btn.textContent='▶️ 开始循环朗读';
+    }
+  }
+}
+function goBack(){
+  window.speechSynthesis.cancel();
+  isPlaying=false;
+  currentLoop=0;
+  setTimeout(()=>{window.location.href='index.html';},100);
+}
+// 页面加载3秒后自动开始循环朗读
+setTimeout(()=>{startAutoPlay();},3000);
+</script>
 </body>
 </html>
