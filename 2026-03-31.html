@@ -340,7 +340,6 @@
     </div>
 
     <script>let isPlaying=false,currentLoop=0,maxLoops=7;
-// 优化后的loadVoices函数
 function loadVoices(){
   return new Promise(resolve=>{
     let voices=window.speechSynthesis.getVoices();
@@ -354,87 +353,44 @@ function loadVoices(){
     }
   });
 }
-// 改进的voice selection - 优先选择高质量语音
-function selectVoice(voices, lang) {
-  // 英文高质量语音优先级
-  if(lang === 'en-US') {
-    const preferred = ['Jenny', 'Aria', 'Samantha', 'Microsoft Aria', 'Google US English', 'Microsoft David'];
-    for(const name of preferred) {
-      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('en'));
-      if(v) return v;
-    }
-    // 回退到任何英文语音
-    const enVoice = voices.find(v => v.lang.startsWith('en'));
-    return enVoice || voices[0];
-  }
-  // 中文语音选择
-  if(lang === 'zh-CN') {
-    const preferred = ['Huihui', 'Yaoyao', 'Kangkang', 'Wang', 'Microsoft Huihui'];
-    for(const name of preferred) {
-      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('zh'));
-      if(v) return v;
-    }
-    // 回退到任何中文语音
-    const zhVoice = voices.find(v => v.lang.startsWith('zh'));
-    return zhVoice || voices[0];
-  }
-  return voices[0];
-}
-// speakWord: 播放单词
 async function speakWord(wordEn,wordZh,speed){
   window.speechSynthesis.cancel();
   const voices=await loadVoices();
-  const voice=selectVoice(voices,'en-US');
   let rate=speed==='slow'?0.4:0.8;
   for(let i=0;i<3;i++){
     const u=new SpeechSynthesisUtterance(wordEn);
-    u.lang='en-US';u.rate=rate;u.voice=voice;
+    u.lang='en-US';u.rate=rate;
+    const v=voices.find(v=>v.name.includes('Jenny'))||voices.find(v=>v.name.includes('Aria'))||voices.find(v=>v.name.includes('Google US English'))||voices[0];
+    if(v)u.voice=v;
     window.speechSynthesis.speak(u);
     await new Promise(r=>setTimeout(r,500));
   }
   if(speed==='slow'){
     setTimeout(()=>{
-      const cnVoice=selectVoice(voices,'zh-CN');
       const u2=new SpeechSynthesisUtterance(wordZh);
-      u2.lang='zh-CN';u2.rate=1.0;u2.voice=cnVoice;
+      u2.lang='zh-CN';u2.rate=1.0;
       window.speechSynthesis.speak(u2);
     },1500);
   }
 }
-// speakSentence: 播放句子
 async function speakSentence(exEn,exZh,speed){
   window.speechSynthesis.cancel();
   const voices=await loadVoices();
-  const voice=selectVoice(voices,'en-US');
   let rate=speed==='slow'?0.6:speed==='fast'?0.9:0.8;
   for(let i=0;i<3;i++){
     const u=new SpeechSynthesisUtterance(exEn);
-    u.lang='en-US';u.rate=rate;u.voice=voice;
+    u.lang='en-US';u.rate=rate;
+    const v=voices.find(v=>v.name.includes('Jenny'))||voices.find(v=>v.name.includes('Aria'))||voices.find(v=>v.name.includes('Google US English'))||voices[0];
+    if(v)u.voice=v;
     window.speechSynthesis.speak(u);
     await new Promise(r=>setTimeout(r,600));
   }
   if(speed==='slow'){
     setTimeout(()=>{
-      const cnVoice=selectVoice(voices,'zh-CN');
       const u2=new SpeechSynthesisUtterance(exZh);
-      u2.lang='zh-CN';u2.rate=1.0;u2.voice=cnVoice;
+      u2.lang='zh-CN';u2.rate=1.0;
       window.speechSynthesis.speak(u2);
     },2000);
-  }
-}
-// speakPhrase: 卡片按钮调用的桥接函数
-async function speakPhrase(index, type, rate){
-  const card=document.querySelectorAll('.card')[index];
-  if(!card)return;
-  const wordEn=card.querySelector('.word-title').textContent;
-  const wordZh=card.querySelector('.chinese-meaning').textContent;
-  const exEn=card.querySelector('.example-en').textContent;
-  const exZh=card.querySelector('.example-cn').textContent;
-  const speed=rate<=0.6?'slow':rate<=0.7?'normal':'fast';
-  if(type==='word'){
-    await speakWord(wordEn,wordZh,speed);
-  }else{
-    await speakSentence(exEn,exZh,speed);
   }
 }
 function stopSpeaking(){
@@ -447,7 +403,14 @@ function stopSpeaking(){
   document.querySelector('.btn-loop').textContent='▶️ 开始循环朗读';
 }
 async function startAutoPlay(){
-  if(isPlaying)return;
+  if(isPlaying){
+    isPlaying=false;
+    window.speechSynthesis.cancel();
+    const statusDiv=document.getElementById('loopStatus');
+    statusDiv.textContent='⏸ 已暂停';
+    document.querySelector('.btn-loop').textContent='▶️ 继续朗读';
+    return;
+  }
   isPlaying=true;
   currentLoop=0;
   const statusDiv=document.getElementById('loopStatus');

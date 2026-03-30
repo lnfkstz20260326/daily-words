@@ -29,38 +29,33 @@
 | 例句英文 | `.example-en` |
 | 例句中文 | `.example-cn` |
 
-### 🔴 3月29日稳定架构
+### 🔴 3月29日稳定架构 + Voice Selection优化（20:30）
 ```javascript
-// 变量
-let isPlaying=false, currentLoop=0, maxLoops=7;
-
-// 顶部按钮
-onclick="startAutoPlay()"
-
-// 开始/暂停函数
-async function startAutoPlay(){
-  if(isPlaying){
-    // 暂停
-    isPlaying=false;
-    window.speechSynthesis.cancel();
-    ...
-    return;
+// 优化后的voice selection函数
+function selectVoice(voices, lang) {
+  if(lang === 'en-US') {
+    const preferred = ['Jenny', 'Aria', 'Samantha', 'Microsoft Aria', 'Google US English', 'Microsoft David'];
+    for(const name of preferred) {
+      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('en'));
+      if(v) return v;
+    }
+    return voices.find(v => v.lang.startsWith('en')) || voices[0];
   }
-  // 开始播放
-  isPlaying=true;
-  while(isPlaying && currentLoop < maxLoops){
-    // 播放逻辑
+  if(lang === 'zh-CN') {
+    const preferred = ['Huihui', 'Yaoyao', 'Kangkang', 'Wang', 'Microsoft Huihui'];
+    for(const name of preferred) {
+      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('zh'));
+      if(v) return v;
+    }
+    return voices.find(v => v.lang.startsWith('zh')) || voices[0];
   }
+  return voices[0];
 }
 
-// 汉语播放（异步）
-if(speed==='slow'){
-  setTimeout(()=>{
-    const u2=new SpeechSynthesisUtterance(wordZh);
-    u2.lang='zh-CN';u2.rate=1.0;
-    window.speechSynthesis.speak(u2);
-  },1500);
-}
+// speakWord中使用：
+const voice=selectVoice(voices,'en-US');
+// 中文播放使用：
+const cnVoice=selectVoice(voices,'zh-CN');
 ```
 
 ## 核心信息

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英语 - 5年级 - 2026年04月15日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
+        .header .date { color: #666; font-size: 16px; }
+        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
+        
+        .top-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+.card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); }
+        .word-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .word-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .word-title { font-size: 32px; color: #333; font-weight: bold; }
+        .phonetic { color: #888; font-size: 18px; margin-left: 10px; font-family: Georgia, serif; }
+        .word-meaning {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .part-of-speech {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        .chinese-meaning {
+            background: #ffebee;
+            color: #c62828;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .memory-tip {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+        .example-box {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+        .example-label { color: #999; font-size: 12px; margin-bottom: 8px; text-transform: uppercase; }
+        .example-en { color: #333; font-size: 18px; margin-bottom: 6px; line-height: 1.6; }
+        .example-cn { color: #666; font-size: 15px; }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .btn-slow { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: white; }
+        .btn-normal { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: white; }
+        .btn-fast { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: white; }
+        .btn-stop { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: white; }
+        .btn-loop { background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; }
+        .btn-secondary {
+            background: linear-gradient(135deg, #764ba2 0%, #6a3093 100%);
+            color: white;
+        }
+
+        .loop-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: #f3e5f5;
+            border-radius: 10px;
+            color: #7b1fa2;
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .nav-links a {
+            color: #1976d2;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-links a:hover { background: #e3f2fd; }
+        @media (max-width: 600px) {
+            .word-title { font-size: 24px; }
+            .btn { padding: 8px 12px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 每日英语听说</h1>
+            <div class="date">2026年04月15日 · 碎片化听说，随时开口交流</div>
+            <div class="grade">5年级</div>
+        </div>
+
+        
+        
+
+<div class="top-controls">
+            <button class="btn btn-loop" id="loopBtn" onclick="startAutoPlay()">
+                ▶️ 开始循环朗读
+            </button>
+            <button class="btn btn-secondary" onclick="goBack()">
+                ⬅️ 返回选择
+            </button>
+        </div>
+
+        
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">01</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">test</span>
+                        <span class="phonetic">/test/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">测试</span>
+            </div>
+            <div class：<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英语 - 5年级 - 2026年04月15日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, "helvetica neue", arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
+        .header .date { color: #666; font-size: 16px; }
+        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
+        
+        .top-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+.card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translatey(-2px); }
+        .word-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .word-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .word-title { font-size: 32px; color: #333; font-weight: bold; }
+        .phonetic { color: #888; font-size: 18px; margin-left: 10px; font-family: georgia, serif; }
+        .word-meaning {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .part-of-speech {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        .chinese-meaning {
+            background: #ffebee;
+            color: #c62828;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .memory-tip {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+        .example-box {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+        .example-label { color: #999; font-size: 12px; margin-bottom: 8px; text-transform: uppercase; }
+        .example-en { color: #333; font-size: 18px; margin-bottom: 6px; line-height: 1.6; }
+        .example-cn { color: #666; font-size: 15px; }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .btn-slow { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: white; }
+        .btn-normal { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: white; }
+        .btn-fast { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: white; }
+        .btn-stop { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: white; }
+        .btn-loop { background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; }
+        .btn-secondary {
+            background: linear-gradient(135deg, #764ba2 0%, #6a3093 100%);
+            color: white;
+        }
+
+        .loop-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: #f3e5f5;
+            border-radius: 10px;
+            color: #7b1fa2;
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .nav-links a {
+            color: #1976d2;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-links a:hover { background: #e3f2fd; }
+        @media (max-width: 600px) {
+            .word-title { font-size: 24px; }
+            .btn { padding: 8px 12px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 每日英语听说</h1>
+            <div class="date">2026年04月15日 · 碎片化听说，随时开口交流</div>
+            <div class="grade">5年级</div>
+        </div>
+
+        
+        
+
+<div class="top-controls">
+            <button class="btn btn-loop" id="loopbtn" onclick="toggleloop()">
+                ▶️ 开始循环朗读
+            </button>
+            <button class="btn btn-secondary" onclick="goback()">
+                ⬅️ 返回选择
+            </button>
+        </div>
+
+        
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">01</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">test</span>
+                        <span class="phonetic">/test/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">测试</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：test=测试</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">We have a test.</div>
+                <div class="example-cn">我们有测试。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(0, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(0, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(0, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(0, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(0, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="word-header">
+                <div class="word-number">02</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">exam</span>
+                        <span class="phonetic">/ɪɡˈzæm/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">考试</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：exam=考试，重要测试</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">Don't worry about exam.</div>
+                <div class="example-cn">不要担心考试。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(1, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(1, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(1, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(1, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(1, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">03</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">grade</span>
+                        <span class="phonetic">/ɡreɪd/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">年级</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：grade=年级/等级，分级标准</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">I'm in Grade Five.</div>
+                <div class="example-cn">我在五年级。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(2, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(2, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(2, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(2, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(2, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">04</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">class</span>
+                        <span class="phonetic">/klɑːs/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">班级</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：class=班级/课，一组学生/教学时段</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">We are in the same class.</div>
+                <div class="example-cn">我们在同一个班。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(3, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(3, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(3, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(3, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(3, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">05</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">listen</span>
+                        <span class="phonetic">/ˈlɪsən/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">听</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：listen=听，有目的地听</div><div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">Listen to the teacher.</div>
+                <div class="example-cn">听老师讲课。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+
+        <div class="loop-status" id="loopStatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-14.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">listen to the teacher.</div>
+                <div class="example-cn">听老师讲课。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+      +            <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-14.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
+
+    <script>let isPlaying=false,currentLoop=0,maxLoops=7;
+// 优化后的loadVoices函数
+function loadVoices(){
+  return new Promise(resolve=>{
+    let voices=window.speechSynthesis.getVoices();
+    if(voices.length>0){
+      resolve(voices);
+    }else{
+      window.speechSynthesis.onvoiceschanged=()=>{
+        voices=window.speechSynthesis.getVoices();
+        resolve(voices);
+      };
+    }
+  });
+}
+// 改进的voice selection - 优先选择高质量语音
+function selectVoice(voices, lang) {
+  // 英文高质量语音优先级
+  if(lang === 'en-US') {
+    const preferred = ['Jenny', 'Aria', 'Samantha', 'Microsoft Aria', 'Google US English', 'Microsoft David'];
+    for(const name of preferred) {
+      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('en'));
+      if(v) return v;
+    }
+    // 回退到任何英文语音
+    const enVoice = voices.find(v => v.lang.startsWith('en'));
+    return enVoice || voices[0];
+  }
+  // 中文语音选择
+  if(lang === 'zh-CN') {
+    const preferred = ['Huihui', 'Yaoyao', 'Kangkang', 'Wang', 'Microsoft Huihui'];
+    for(const name of preferred) {
+      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('zh'));
+      if(v) return v;
+    }
+    // 回退到任何中文语音
+    const zhVoice = voices.find(v => v.lang.startsWith('zh'));
+    return zhVoice || voices[0];
+  }
+  return voices[0];
+}
+// speakWord: 播放单词
+async function speakWord(wordEn,wordZh,speed){
+  window.speechSynthesis.cancel();
+  const voices=await loadVoices();
+  const voice=selectVoice(voices,'en-US');
+  let rate=speed==='slow'?0.4:0.8;
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(wordEn);
+    u.lang='en-US';u.rate=rate;u.voice=voice;
+    window.speechSynthesis.speak(u);
+    await new Promise(r=>setTimeout(r,500));
+  }
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const cnVoice=selectVoice(voices,'zh-CN');
+      const u2=new SpeechSynthesisUtterance(wordZh);
+      u2.lang='zh-CN';u2.rate=1.0;u2.voice=cnVoice;
+      window.speechSynthesis.speak(u2);
+    },1500);
+  }
+}
+// speakSentence: 播放句子
+async function speakSentence(exEn,exZh,speed){
+  window.speechSynthesis.cancel();
+  const voices=await loadVoices();
+  const voice=selectVoice(voices,'en-US');
+  let rate=speed==='slow'?0.6:speed==='fast'?0.9:0.8;
+  for(let i=0;i<3;i++){
+    const u=new SpeechSynthesisUtterance(exEn);
+    u.lang='en-US';u.rate=rate;u.voice=voice;
+    window.speechSynthesis.speak(u);
+    await new Promise(r=>setTimeout(r,600));
+  }
+  if(speed==='slow'){
+    setTimeout(()=>{
+      const cnVoice=selectVoice(voices,'zh-CN');
+      const u2=new SpeechSynthesisUtterance(exZh);
+      u2.lang='zh-CN';u2.rate=1.0;u2.voice=cnVoice;
+      window.speechSynthesis.speak(u2);
+    },2000);
+  }
+}
+// speakPhrase: 卡片按钮调用的桥接函数
+async function speakPhrase(index, type, rate){
+  const card=document.querySelectorAll('.card')[index];
+  if(!card)return;
+  const wordEn=card.querySelector('.word-title').textContent;
+  const wordZh=card.querySelector('.chinese-meaning').textContent;
+  const exEn=card.querySelector('.example-en').textContent;
+  const exZh=card.querySelector('.example-cn').textContent;
+  const speed=rate<=0.6?'slow':rate<=0.7?'normal':'fast';
+  if(type==='word'){
+    await speakWord(wordEn,wordZh,speed);
+  }else{
+    await speakSentence(exEn,exZh,speed);
+  }
+}
+function stopSpeaking(){
+  window.speechSynthesis.cancel();
+  isPlaying=false;
+  currentLoop=0;
+  const statusDiv=document.getElementById('loopStatus');
+  statusDiv.style.display='block';
+  statusDiv.textContent='⏹ 已停止';
+  document.querySelector('.btn-loop').textContent='▶️ 开始循环朗读';
+}
+async function startAutoPlay(){
+  if(isPlaying)return;
+  isPlaying=true;
+  currentLoop=0;
+  const statusDiv=document.getElementById('loopStatus');
+  const btn=document.querySelector('.btn-loop');
+  statusDiv.style.display='block';
+  const cards=document.querySelectorAll('.card');
+  while(isPlaying&&currentLoop<maxLoops){
+    currentLoop++;
+    statusDiv.textContent='🔄 第'+currentLoop+'/'+maxLoops+'轮';
+    btn.textContent='⏸ 暂停';
+    for(let c of cards){
+      if(!isPlaying)break;
+      const wordEn=c.querySelector('.word-title').textContent;
+      const wordZh=c.querySelector('.chinese-meaning').textContent;
+      const exEn=c.querySelector('.example-en').textContent;
+      const exZh=c.querySelector('.example-cn').textContent;
+      // 1. 慢速词×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'slow');await new Promise(r=>setTimeout(r,500));}
+      if(isPlaying){await new Promise(r=>setTimeout(r,500));}
+      // 2. 匀速词×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'normal');await new Promise(r=>setTimeout(r,500));}
+      await new Promise(r=>setTimeout(r,500));
+      // 3. 慢速句×3 + 汉语
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'slow');await new Promise(r=>setTimeout(r,600));}
+      if(isPlaying){await new Promise(r=>setTimeout(r,500));}
+      // 4. 匀速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'normal');await new Promise(r=>setTimeout(r,600));}
+      await new Promise(r=>setTimeout(r,500));
+      // 5. 常速句×3（不加汉语）
+      for(let i=0;i<3;i++){if(!isPlaying)break;await speakSentence(exEn,exZh,'fast');await new Promise(r=>setTimeout(r,600));}
+      await new Promise(r=>setTimeout(r,1000));
+    }
+  }
+  isPlaying=false;
+  statusDiv.textContent='✅ 完成';
+  btn.textContent='▶️ 开始循环朗读';
+}
+function goBack(){
+  stopSpeaking();
+  setTimeout(()=>location.href='index.html',100);
+}
+// 3秒后自动开始
+setTimeout(()=>{startAutoPlay();},3000);</script>
+</body>
+</html>
