@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">rule</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">规则</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：rule=规则/统治，规定或管理</div>
+        <div class="memory-tip">记忆小提示：rule=规则/统治，规定或管理</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Follow the rules.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">安静</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'silence'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'silence'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Silence, please.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">完成</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 start开始，finish=完成</div>
+        <div class="memory-tip">记忆小提示：反义 start开始，finish=完成</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Finish homework first.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">离开</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：leave=离开/留下，去或停</div>
+        <div class="memory-tip">记忆小提示：leave=离开/留下，去或停</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I leave school.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">家</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：home=家，居住的地方</div>
+        <div class="memory-tip">记忆小提示：home=家，居住的地方</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I'm going home.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

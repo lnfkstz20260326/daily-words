@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">discussion</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">讨论</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：discuss=讨论，-ion=行为，讨论</div>
+        <div class="memory-tip">记忆小提示：discuss=讨论，-ion=行为，讨论</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Join the discussion.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">合作</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'collaborate'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'collaborate'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">We collaborate.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">好奇的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'curious'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'curious'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Be curious about learning.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">参与</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'participate'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'participate'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Participate in class.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">达到</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：achieve=实现/达到，完成目标</div>
+        <div class="memory-tip">记忆小提示：achieve=实现/达到，完成目标</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Achieve good results.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

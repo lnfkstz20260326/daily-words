@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">theme park</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">主题公园</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：theme=主题，park=公园，主题公园</div>
+        <div class="memory-tip">记忆小提示：theme=主题，park=公园，主题公园</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Go to theme park.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">水族馆</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'aquarium'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'aquarium'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Visit aquarium.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">展览</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：exhibi=...，-tion=...行为/结果，exhibi的结果</div>
+        <div class="memory-tip">记忆小提示：exhibi=...，-tion=...行为/结果，exhibi的结果</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Art exhibition.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">音乐会</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'concert'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'concert'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Go to concert.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">节日</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'festival'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'festival'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Happy festival!</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

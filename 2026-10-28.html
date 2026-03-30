@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">communication</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">交流</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：communica=...，-tion=...行为/结果，communica的结果</div>
+        <div class="memory-tip">记忆小提示：communica=...，-tion=...行为/结果，communica的结果</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Good communication.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">优质时间</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'quality time'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'quality time'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Spend quality time.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">团结</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'togetherness'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'togetherness'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Family togetherness.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">珍惜</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'cherish'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'cherish'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Cherish family time.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">舒适的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：comfort=舒适，-able=能...的，舒适的</div>
+        <div class="memory-tip">记忆小提示：comfort=舒适，-able=能...的，舒适的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Comfortable bed.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

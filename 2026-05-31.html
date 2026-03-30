@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">special</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">特别的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：special=特别的，不一般</div>
+        <div class="memory-tip">记忆小提示：special=特别的，不一般</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's special today.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">烫的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 cold冷，hot=热的</div>
+        <div class="memory-tip">记忆小提示：反义 cold冷，hot=热的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's too hot.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">感冒</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 hot热，cold=冷的</div>
+        <div class="memory-tip">记忆小提示：反义 hot热，cold=冷的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I caught a cold.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">咸的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：咸的反义是sweet甜</div>
+        <div class="memory-tip">记忆小提示：咸的反义是sweet甜</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's too salty.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">预订</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，servation=...，重新servation</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，servation=...，重新servation</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I have a reservation.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

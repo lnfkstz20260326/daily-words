@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">renew</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">续借</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，new=...，重新new</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，new=...，重新new</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Renew the book.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">罚款</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：fine=好的/细，好的或细小的</div>
+        <div class="memory-tip">记忆小提示：fine=好的/细，好的或细小的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Pay the fine.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">数据库</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'database'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'database'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Search the database.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">独立的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'independent'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'independent'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Be more independent.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">负责任的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，sponsible=...，重新sponsible</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，sponsible=...，重新sponsible</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Be responsible.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

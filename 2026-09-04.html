@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">frequency</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">频率</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'frequency'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'frequency'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">High frequency.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">高峰时间</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'peak hour'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'peak hour'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Avoid peak hour.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">非高峰</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'off-peak'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'off-peak'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Off-peak time.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">换乘点</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'transfer point'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'transfer point'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Transfer point here.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">快速的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：express=表达/快车，说出或高速</div>
+        <div class="memory-tip">记忆小提示：express=表达/快车，说出或高速</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Express bus.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

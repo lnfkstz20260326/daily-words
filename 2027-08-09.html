@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">classroom</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">教室</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：class=课，room=房间，上课的'房间'</div>
+        <div class="memory-tip">记忆小提示：class=课，room=房间，上课的'房间'</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Our classroom is clean.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">桌子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：desk=桌子，有抽屉的工作台</div>
+        <div class="memory-tip">记忆小提示：desk=桌子，有抽屉的工作台</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is my desk.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">椅子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：chair=椅子，有腿的坐具</div>
+        <div class="memory-tip">记忆小提示：chair=椅子，有腿的坐具</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sit on your chair.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">黑板</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：black=黑，board=板，黑色的板</div>
+        <div class="memory-tip">记忆小提示：black=黑，board=板，黑色的板</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Write on the blackboard.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">粉笔</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'chalk'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'chalk'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Pass me the chalk.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

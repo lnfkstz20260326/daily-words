@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">dark</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">黑暗的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 light亮，dark=暗的</div>
+        <div class="memory-tip">记忆小提示：反义 light亮，dark=暗的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Don't be afraid of dark.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">明天</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'tomorrow'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'tomorrow'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">See you tomorrow.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">盖上</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：cover=覆盖/报道，盖住或包含</div>
+        <div class="memory-tip">记忆小提示：cover=覆盖/报道，盖住或包含</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Cover yourself.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">平静的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：peace=和平，-ful=充满...的，平静的</div>
+        <div class="memory-tip">记忆小提示：peace=和平，-ful=充满...的，平静的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's so peaceful.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">恢复精力</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，fresh=...，重新fresh</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，fresh=...，重新fresh</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sleep to refresh.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">fiction</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">小说</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：fic=...，-tion=...行为/结果，fic的结果</div>
+        <div class="memory-tip">记忆小提示：fic=...，-tion=...行为/结果，fic的结果</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like fiction.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">非小说类</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：non-fic=...，-tion=...行为/结果，non-fic的结果</div>
+        <div class="memory-tip">记忆小提示：non-fic=...，-tion=...行为/结果，non-fic的结果</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Read non-fiction.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">传记</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'biography'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'biography'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Read a biography.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">百科全书</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'encyclopedia'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'encyclopedia'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Check encyclopedia.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">文章</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'article'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'article'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Read this article.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

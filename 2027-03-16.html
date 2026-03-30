@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">yummy</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">好吃的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'yummy'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'yummy'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Yummy!</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">运动</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：sport=运动，体育活动</div>
+        <div class="memory-tip">记忆小提示：sport=运动，体育活动</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like sports.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">球</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'ball'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'ball'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Pass me the ball.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">篮球</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：basket=篮子，ball=球，投篮的球</div>
+        <div class="memory-tip">记忆小提示：basket=篮子，ball=球，投篮的球</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Play basketball.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">足球</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：foot=脚，ball=球，用脚踢的球</div>
+        <div class="memory-tip">记忆小提示：foot=脚，ball=球，用脚踢的球</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Play football.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

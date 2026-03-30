@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">class</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">班级</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：class=班级/课，一组学生/教学时段</div>
+        <div class="memory-tip">记忆小提示：class=班级/课，一组学生/教学时段</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">We are in the same class.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">听</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：listen=听，有目的地听</div>
+        <div class="memory-tip">记忆小提示：listen=听，有目的地听</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Listen to the teacher.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">说话</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：speak=说，语言表达</div>
+        <div class="memory-tip">记忆小提示：speak=说，语言表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">May I speak to Tom?</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">读</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：read=读，看文字理解</div>
+        <div class="memory-tip">记忆小提示：read=读，看文字理解</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like to read.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">写</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：write=写，书写</div>
+        <div class="memory-tip">记忆小提示：write=写，书写</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Write your name.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

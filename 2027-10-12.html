@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">strategy</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">策略</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：strategy=策略，计划</div>
+        <div class="memory-tip">记忆小提示：strategy=策略，计划</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Study strategy.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">放松</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，laxation=...，重新laxation</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，laxation=...，重新laxation</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Time for relaxation.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">平静的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'calm'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'calm'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Stay calm.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">平静的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：peace=和平，-ful=充满...的，平静的</div>
+        <div class="memory-tip">记忆小提示：peace=和平，-ful=充满...的，平静的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Peaceful night.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">舒适的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'cozy'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'cozy'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Cozy room.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">receipt</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">收据</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，ceipt=...，重新ceipt</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，ceipt=...，重新ceipt</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Keep the receipt.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">正宗的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'authentic'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'authentic'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Authentic product.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">真正的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'genuine'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'genuine'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Genuine leather.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">品牌</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'brand'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'brand'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">What brand?</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">百货商店</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：department=部门，store=店，百货商店</div>
+        <div class="memory-tip">记忆小提示：department=部门，store=店，百货商店</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Department store.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

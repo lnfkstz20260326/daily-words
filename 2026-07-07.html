@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">learn</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">学习</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：learn=学习，学会新东西</div>
+        <div class="memory-tip">记忆小提示：learn=学习，学会新东西</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">We learn English.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">学习</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：study=学习/研究，用功或探讨</div>
+        <div class="memory-tip">记忆小提示：study=学习/研究，用功或探讨</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I study at school.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">练习</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：practice=练习/实践，反复做</div>
+        <div class="memory-tip">记忆小提示：practice=练习/实践，反复做</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Practice makes perfect.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">重复</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，peat=...，重新peat</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，peat=...，重新peat</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Please repeat.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">记住</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 forget忘，remember=记得</div>
+        <div class="memory-tip">记忆小提示：反义 forget忘，remember=记得</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Remember to call me.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

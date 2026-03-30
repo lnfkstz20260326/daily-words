@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">progress</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">进步</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'progress'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'progress'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Make progress.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">鼓励</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'encourage'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'encourage'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Encourage each other.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">支持</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：support=支持，支撑</div>
+        <div class="memory-tip">记忆小提示：support=支持，支撑</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Mutual support.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">尊敬</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，spect=...，重新spect</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，spect=...，重新spect</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Respect teachers.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">责任</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：responsibility=责任，应尽的义务</div>
+        <div class="memory-tip">记忆小提示：responsibility=责任，应尽的义务</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take responsibility.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

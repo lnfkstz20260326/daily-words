@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">fork</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">叉子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'fork'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'fork'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Use the fork.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">勺子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'spoon'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'spoon'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I need a spoon.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">刀</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'knife'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'knife'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Be careful with knife.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">桌子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：table=桌子/表格，台面或数据</div>
+        <div class="memory-tip">记忆小提示：table=桌子/表格，台面或数据</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sit at the table.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">吃</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：eat=吃，把食物送入口</div>
+        <div class="memory-tip">记忆小提示：eat=吃，把食物送入口</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Let's eat!</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

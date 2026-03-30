@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">express</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">快速的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：express=表达/快车，说出或高速</div>
+        <div class="memory-tip">记忆小提示：express=表达/快车，说出或高速</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Express bus.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">普通的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：local=当地的，本地的</div>
+        <div class="memory-tip">记忆小提示：local=当地的，本地的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Local bus.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">售票员</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：conduct=指挥，-or=人，指挥家/售票员</div>
+        <div class="memory-tip">记忆小提示：conduct=指挥，-or=人，指挥家/售票员</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Pay the conductor.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">优先座位</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'priority seat'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'priority seat'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Priority seat.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">站位</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'standing room'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'standing room'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Only standing room.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

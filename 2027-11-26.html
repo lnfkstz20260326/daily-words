@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">platform</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">站台</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：plat=平，form=形状，平的月台</div>
+        <div class="memory-tip">记忆小提示：plat=平，form=形状，平的月台</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Wait on the platform.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">路线</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'route'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'route'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Change route.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">方向</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：direct=指导，-ion=行为，指导</div>
+        <div class="memory-tip">记忆小提示：direct=指导，-ion=行为，指导</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Which direction?</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">红绿灯</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：traffic=交通，light=灯，红绿灯</div>
+        <div class="memory-tip">记忆小提示：traffic=交通，light=灯，红绿灯</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Stop at traffic light.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">人行横道</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：zebra cross=...，-ing=正在...，正在zebra cross</div>
+        <div class="memory-tip">记忆小提示：zebra cross=...，-ing=正在...，正在zebra cross</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Cross at zebra crossing.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

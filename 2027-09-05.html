@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">accessible</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">可到达的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'accessible'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'accessible'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's easily accessible.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">科目</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：subject=主题/科目，主题或学习</div>
+        <div class="memory-tip">记忆小提示：subject=主题/科目，主题或学习</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Favorite subject?</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">教科书</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'textbook'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'textbook'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Open your textbook.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">词典</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'dictionary'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'dictionary'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Look it up in dictionary.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">投影仪</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'projector'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'projector'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Turn on projector.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

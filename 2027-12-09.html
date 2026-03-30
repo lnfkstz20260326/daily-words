@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">stretch legs</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">散步</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'stretch legs'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'stretch legs'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Let's stretch legs.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">呼吸</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'breathe'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'breathe'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take a deep breath.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">精神的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'mental'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'mental'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Mental rest is important.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">社交</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'socialize'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'socialize'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Socialize with classmates.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">联系</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'bond'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'bond'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Strengthen family bond.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

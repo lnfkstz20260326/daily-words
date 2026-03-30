@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">brush teeth</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">刷牙</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：brush=刷，teeth=牙齿，清洁牙齿</div>
+        <div class="memory-tip">记忆小提示：brush=刷，teeth=牙齿，清洁牙齿</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Brush your teeth.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">洗脸</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'wash face'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'wash face'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Wash your face.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">睡衣</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：pajama=睡衣，睡衣套装</div>
+        <div class="memory-tip">记忆小提示：pajama=睡衣，睡衣套装</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Change into pajamas.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">做梦</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'dream'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'dream'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sweet dreams!</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">晚上</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：night=夜，天黑到天亮</div>
+        <div class="memory-tip">记忆小提示：night=夜，天黑到天亮</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Good night!</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

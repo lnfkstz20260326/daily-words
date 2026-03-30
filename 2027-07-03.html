@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">plan</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">计划</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：plan=计划/打算，提前安排</div>
+        <div class="memory-tip">记忆小提示：plan=计划/打算，提前安排</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Make a plan.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">令人兴奋的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：excit=...，-ing=正在...，正在excit</div>
+        <div class="memory-tip">记忆小提示：excit=...，-ing=正在...，正在excit</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's exciting!</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">买</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 sell卖，buy=买</div>
+        <div class="memory-tip">记忆小提示：反义 sell卖，buy=买</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I want to buy this.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">卖</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 buy买，sell=卖</div>
+        <div class="memory-tip">记忆小提示：反义 buy买，sell=卖</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This shop sells toys.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">价格</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：price=价格，多少钱</div>
+        <div class="memory-tip">记忆小提示：price=价格，多少钱</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">What's the price?</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

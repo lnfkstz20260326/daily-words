@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">alarm clock</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">闹钟</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'alarm clock'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'alarm clock'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The alarm rings at 6.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">懒惰的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'lazy'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'lazy'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Don't be lazy.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">早</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 late晚，early=早的</div>
+        <div class="memory-tip">记忆小提示：反义 late晚，early=早的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Go to bed early.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">快速地</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：quick=快的，-ly=...地，迅速地</div>
+        <div class="memory-tip">记忆小提示：quick=快的，-ly=...地，迅速地</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Get dressed quickly!</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">镜子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：mirror=镜子，反映影像</div>
+        <div class="memory-tip">记忆小提示：mirror=镜子，反映影像</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Look in the mirror.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

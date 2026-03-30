@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">stand</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">站</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 sit坐，stand=站</div>
+        <div class="memory-tip">记忆小提示：反义 sit坐，stand=站</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Stand on the bus.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">打开</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 close关，open=打开</div>
+        <div class="memory-tip">记忆小提示：反义 close关，open=打开</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Open the window.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">关</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：close=合上/靠近</div>
+        <div class="memory-tip">记忆小提示：close=合上/靠近</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Close the door.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">窗户</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：wind=风，ow=眼，墙上的'通风眼'</div>
+        <div class="memory-tip">记忆小提示：wind=风，ow=眼，墙上的'通风眼'</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The window is open.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">门</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：door=门，进出口</div>
+        <div class="memory-tip">记忆小提示：door=门，进出口</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Close the door.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

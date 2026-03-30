@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">catch</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">接住</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：catch=抓住，截住</div>
+        <div class="memory-tip">记忆小提示：catch=抓住，截住</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Catch the ball!</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">踢</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'kick'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'kick'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Kick the ball.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">击打</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：hit=hit</div>
+        <div class="memory-tip">记忆小提示：hit=hit</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Hit the ball.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">赢</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 lose输，win=赢</div>
+        <div class="memory-tip">记忆小提示：反义 lose输，win=赢</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">We want to win.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">输</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 win赢，lose=输掉</div>
+        <div class="memory-tip">记忆小提示：反义 win赢，lose=输掉</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Don't be sad if we lose.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">share</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">分享</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：share=分享/份额，分开用或一部分</div>
+        <div class="memory-tip">记忆小提示：share=分享/份额，分开用或一部分</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Share with friends.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">传递</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：pass=通过/传递，经过或给予</div>
+        <div class="memory-tip">记忆小提示：pass=通过/传递，经过或给予</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Pass the dishes.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">一顿饭</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'meal'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'meal'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is a good meal.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">蔬菜</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：vegetable=蔬菜，植物类食物</div>
+        <div class="memory-tip">记忆小提示：vegetable=蔬菜，植物类食物</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Eat vegetables.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">鸡肉</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：chicken=鸡肉，小鸡肉</div>
+        <div class="memory-tip">记忆小提示：chicken=鸡肉，小鸡肉</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like chicken.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

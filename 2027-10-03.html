@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">etiquette</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">礼仪</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'etiquette'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'etiquette'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Table etiquette.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">有益健康的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'wholesome'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'wholesome'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Wholesome food.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">家里做的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'home-cooked'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'home-cooked'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Home-cooked meal.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">聚会</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：gather=...，-ing=正在...，正在gather</div>
+        <div class="memory-tip">记忆小提示：gather=...，-ing=正在...，正在gather</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Family gathering.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">交流</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：communica=...，-tion=...行为/结果，communica的结果</div>
+        <div class="memory-tip">记忆小提示：communica=...，-tion=...行为/结果，communica的结果</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Good communication.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

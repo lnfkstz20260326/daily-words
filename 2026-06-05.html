@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">boat</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">船</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'boat'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'boat'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Let's row a boat.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">长椅</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'bench'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'bench'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sit on the bench.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">秋千</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：sw=...，-ing=正在...，正在sw</div>
+        <div class="memory-tip">记忆小提示：sw=...，-ing=正在...，正在sw</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like the swing.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">滑梯</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'slide'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'slide'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Go down the slide.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">爬</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'climb'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'climb'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Don't climb the tree.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

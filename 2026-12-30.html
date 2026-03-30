@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">expression</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">表达</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：express=表达，-ion=方式，表达</div>
+        <div class="memory-tip">记忆小提示：express=表达，-ion=方式，表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Learn expressions.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">习语</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'idiom'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'idiom'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is an idiom.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">短语</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'phrase'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'phrase'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Remember this phrase.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">记笔记</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：note-tak=...，-ing=正在...，正在note-tak</div>
+        <div class="memory-tip">记忆小提示：note-tak=...，-ing=正在...，正在note-tak</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Practice note-taking.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">复习</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再，view=看，再看一遍=复习</div>
+        <div class="memory-tip">记忆小提示：re-再，view=看，再看一遍=复习</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Review before test.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">strength</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">力量</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：strength=力量，力气</div>
+        <div class="memory-tip">记忆小提示：strength=力量，力气</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Build strength.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">敏捷</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'agility'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'agility'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Improve agility.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">精神</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：spirit=精神/ spirit，气概或灵魂</div>
+        <div class="memory-tip">记忆小提示：spirit=精神/ spirit，气概或灵魂</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sports spirit.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">研究</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：research=研究，探索</div>
+        <div class="memory-tip">记忆小提示：research=研究，探索</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Do some research.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">参考</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，ference=...，重新ference</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，ference=...，重新ference</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Reference books.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

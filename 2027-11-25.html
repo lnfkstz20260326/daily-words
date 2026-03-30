@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">digest</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">消化</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'digest'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'digest'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Don't rush your digest.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">健康的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 sick生病，healthy=健康的</div>
+        <div class="memory-tip">记忆小提示：反义 sick生病，healthy=健康的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Healthy eating.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">通勤</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'commute'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'commute'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Long commute.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">地铁</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'subway'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'subway'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take the subway.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">车站</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：station=站，交通枢纽</div>
+        <div class="memory-tip">记忆小提示：station=站，交通枢纽</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The station is near.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

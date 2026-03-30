@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">schedule</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">时间表</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'schedule'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'schedule'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Check the schedule.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">旅行</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：travel=旅行，外出</div>
+        <div class="memory-tip">记忆小提示：travel=旅行，外出</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I want to travel.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">旅行</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：trip=旅行/绊倒，外出或摔倒</div>
+        <div class="memory-tip">记忆小提示：trip=旅行/绊倒，外出或摔倒</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Have a nice trip!</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">飞机</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'plane'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'plane'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I fly by plane.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">火车</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：train=火车/训练，铁路或培训</div>
+        <div class="memory-tip">记忆小提示：train=火车/训练，铁路或培训</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take the train.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

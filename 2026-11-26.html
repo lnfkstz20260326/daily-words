@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">duck</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">鸭子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'duck'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'duck'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Feed the ducks.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">天鹅</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'swan'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'swan'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Beautiful swan.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">划船</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'paddle'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'paddle'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Paddle the boat.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">微风</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'breeze'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'breeze'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Nice breeze.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">阴凉处</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'shade'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'shade'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sit in the shade.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

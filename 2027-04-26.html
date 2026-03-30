@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">get on</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">上车</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'get on'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'get on'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Get on the bus.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">下车</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：get=下来，off=离开，从交通工具上'下来'</div>
+        <div class="memory-tip">记忆小提示：get=下来，off=离开，从交通工具上'下来'</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Get off here.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">座位</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'seat'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'seat'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Find a seat.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">票</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'ticket'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'ticket'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Buy a ticket.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">司机</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：drive=驾驶，-er=人，驾驶的人</div>
+        <div class="memory-tip">记忆小提示：drive=驾驶，-er=人，驾驶的人</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The driver is kind.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

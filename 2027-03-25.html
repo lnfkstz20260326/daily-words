@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">room</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">房间</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：room=房间，屋内分隔空间</div>
+        <div class="memory-tip">记忆小提示：room=房间，屋内分隔空间</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is my room.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">浴室</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：bath=洗澡，room=房间，洗澡的房间</div>
+        <div class="memory-tip">记忆小提示：bath=洗澡，room=房间，洗澡的房间</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Use the bathroom.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">客厅</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：living=生活，room=房间，客厅</div>
+        <div class="memory-tip">记忆小提示：living=生活，room=房间，客厅</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Watch TV in living room.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">累的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：tired=累的，疲劳状态</div>
+        <div class="memory-tip">记忆小提示：tired=累的，疲劳状态</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I'm so tired.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">放松</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：re-再/重新，lax=...，重新lax</div>
+        <div class="memory-tip">记忆小提示：re-再/重新，lax=...，重新lax</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Relax in the park.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

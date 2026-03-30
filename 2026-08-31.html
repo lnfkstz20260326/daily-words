@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">train</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">火车</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：train=火车/训练，铁路或培训</div>
+        <div class="memory-tip">记忆小提示：train=火车/训练，铁路或培训</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take the train.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">船</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'ship'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'ship'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Go by ship.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">汽车</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'car'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'car'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Drive the car.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">出租车</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：taxi=出租车，meter=计程器，计程车</div>
+        <div class="memory-tip">记忆小提示：taxi=出租车，meter=计程器，计程车</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take a taxi.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">酒店</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：hotel=酒店，host=主人，待客的场所</div>
+        <div class="memory-tip">记忆小提示：hotel=酒店，host=主人，待客的场所</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Stay at the hotel.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

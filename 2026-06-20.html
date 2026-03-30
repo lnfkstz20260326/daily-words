@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">put on</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">穿上</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：put=放，on=在...表面，衣服'放'在身体表面</div>
+        <div class="memory-tip">记忆小提示：put=放，on=在...表面，衣服'放'在身体表面</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Put on your shoes.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">脱下</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：take=拿，off=离开，脱下=把东西'拿'走让它'离开'身体</div>
+        <div class="memory-tip">记忆小提示：take=拿，off=离开，脱下=把东西'拿'走让它'离开'身体</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take off your coat.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">衣服</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：cloth=布料，-es=复数，布料做的衣物总称</div>
+        <div class="memory-tip">记忆小提示：cloth=布料，-es=复数，布料做的衣物总称</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I need new clothes.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">衬衫</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：shirt=衬衫，短上衣</div>
+        <div class="memory-tip">记忆小提示：shirt=衬衫，短上衣</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I wear a blue shirt.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">裤子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：pant=下垂裤(古)，s=复数，下垂到腿的裤子</div>
+        <div class="memory-tip">记忆小提示：pant=下垂裤(古)，s=复数，下垂到腿的裤子</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">These pants are too long.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

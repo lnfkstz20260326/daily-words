@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">pencil</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">铅笔</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：pencil=铅笔，石墨书写</div>
+        <div class="memory-tip">记忆小提示：pencil=铅笔，石墨书写</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I write with a pencil.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">钢笔</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：pen=钢笔，写字工具</div>
+        <div class="memory-tip">记忆小提示：pen=钢笔，写字工具</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I have a blue pen.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">橡皮擦</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：eraser=橡皮，擦除工具</div>
+        <div class="memory-tip">记忆小提示：eraser=橡皮，擦除工具</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">May I use your eraser?</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">尺子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：ruler=尺子，rule=测量，直尺</div>
+        <div class="memory-tip">记忆小提示：ruler=尺子，rule=测量，直尺</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">My ruler is 30cm.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">包</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：bag=包，容纳物品的容器</div>
+        <div class="memory-tip">记忆小提示：bag=包，容纳物品的容器</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Pack your bag.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

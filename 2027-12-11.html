@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">cafeteria</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">食堂</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'cafeteria'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'cafeteria'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Meet at cafeteria.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">餐厅</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'canteen'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'canteen'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The canteen is crowded.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">自助餐</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：谐音'自助餐'，随意取食</div>
+        <div class="memory-tip">记忆小提示：谐音'自助餐'，随意取食</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is a buffet.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">特价</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：special=特别的，不一般</div>
+        <div class="memory-tip">记忆小提示：special=特别的，不一般</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Today's special.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">份量</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：por=...，-tion=...行为/结果，por的结果</div>
+        <div class="memory-tip">记忆小提示：por=...，-tion=...行为/结果，por的结果</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Big portion.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

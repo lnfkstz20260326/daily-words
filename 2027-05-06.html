@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">celebrate</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">庆祝</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'celebrate'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'celebrate'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Let's celebrate!</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">蛋糕</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'cake'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'cake'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Cut the cake.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">蜡烛</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：candle=蜡烛，can=能，dle=小，能发光的小东西</div>
+        <div class="memory-tip">记忆小提示：candle=蜡烛，can=能，dle=小，能发光的小东西</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Blow out the candles.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">气球</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：ball=球，oon=...，气球</div>
+        <div class="memory-tip">记忆小提示：ball=球，oon=...，气球</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like balloons.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">歌曲</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：song=歌曲，可唱的词曲</div>
+        <div class="memory-tip">记忆小提示：song=歌曲，可唱的词曲</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Sing a song.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

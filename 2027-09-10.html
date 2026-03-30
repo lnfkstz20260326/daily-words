@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">fluent</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">流利的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'fluent'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'fluent'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Speak fluent English.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">自信的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'confident'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'confident'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Be confident.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">理解</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'comprehension'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'comprehension'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Improve comprehension.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">分析</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'analysis'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'analysis'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Do an analysis.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">总结</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'summarize'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'summarize'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Summarize the text.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

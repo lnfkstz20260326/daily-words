@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">leave</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">离开</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：leave=离开/留下，去或停</div>
+        <div class="memory-tip">记忆小提示：leave=离开/留下，去或停</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I leave school.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">家</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：home=家，居住的地方</div>
+        <div class="memory-tip">记忆小提示：home=家，居住的地方</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I'm going home.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">房子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：house=房子，居住建筑</div>
+        <div class="memory-tip">记忆小提示：house=房子，居住建筑</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is my house.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">房间</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：room=房间，屋内分隔空间</div>
+        <div class="memory-tip">记忆小提示：room=房间，屋内分隔空间</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is my room.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">浴室</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：bath=洗澡，room=房间，洗澡的房间</div>
+        <div class="memory-tip">记忆小提示：bath=洗澡，room=房间，洗澡的房间</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Use the bathroom.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

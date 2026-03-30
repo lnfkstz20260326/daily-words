@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">careful</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">小心</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：care=关心，-ful=充满...的，充满关心的</div>
+        <div class="memory-tip">记忆小提示：care=关心，-ful=充满...的，充满关心的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Be careful.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">天气</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：weather=天气，气象状况</div>
+        <div class="memory-tip">记忆小提示：weather=天气，气象状况</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">What's the weather?</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">雨</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：雨，落下的水珠</div>
+        <div class="memory-tip">记忆小提示：雨，落下的水珠</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It will rain.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">雨伞</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：umbrella=雨伞，umb=阴影，遮阳挡雨</div>
+        <div class="memory-tip">记忆小提示：umbrella=雨伞，umb=阴影，遮阳挡雨</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Take an umbrella.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">同学</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：class=班，mate=伙伴，班上的伙伴</div>
+        <div class="memory-tip">记忆小提示：class=班，mate=伙伴，班上的伙伴</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">My classmates are nice.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

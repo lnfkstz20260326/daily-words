@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">storybook</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">故事书</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'storybook'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'storybook'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like storybooks.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">杂志</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'magazine'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'magazine'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Read the magazine.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">报纸</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：newspap=做...，-er=人，做newspap的人</div>
+        <div class="memory-tip">记忆小提示：newspap=做...，-er=人，做newspap的人</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Read newspaper.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">书架</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'shelf'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'shelf'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Put on the shelf.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">图书管理员</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'librarian'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'librarian'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The librarian is kind.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

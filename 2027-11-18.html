@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">towel</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">毛巾</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：towel=毛巾，擦干用</div>
+        <div class="memory-tip">记忆小提示：towel=毛巾，擦干用</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Use the towel to dry.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">梳子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：comb=梳子，头发梳</div>
+        <div class="memory-tip">记忆小提示：comb=梳子，头发梳</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Comb your hair.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">校服</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：uni=一，form=形式，统一形式</div>
+        <div class="memory-tip">记忆小提示：uni=一，form=形式，统一形式</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">We wear school uniform.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">毛衣</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：sweat=出汗，ter=...衣，编织衫</div>
+        <div class="memory-tip">记忆小提示：sweat=出汗，ter=...衣，编织衫</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Wear a sweater.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">裙子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：skirt=裙子，下摆服装</div>
+        <div class="memory-tip">记忆小提示：skirt=裙子，下摆服装</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">She wears a blue skirt.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

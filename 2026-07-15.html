@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">delicious</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">美味的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：delicious=美味的，味道好</div>
+        <div class="memory-tip">记忆小提示：delicious=美味的，味道好</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is delicious!</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">好吃的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'tasty'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'tasty'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">These noodles are tasty.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">甜的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 sour酸，sweet=甜的</div>
+        <div class="memory-tip">记忆小提示：反义 sour酸，sweet=甜的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This cake is sweet.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">酸的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：反义 sweet甜，sour=酸的</div>
+        <div class="memory-tip">记忆小提示：反义 sweet甜，sour=酸的</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is sour.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">辣的</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'spicy'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'spicy'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is spicy.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

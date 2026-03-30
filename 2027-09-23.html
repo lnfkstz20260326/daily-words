@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">teamwork</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">团队合作</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'teamwork'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'teamwork'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Good teamwork.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">训练</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：training=训练，培训</div>
+        <div class="memory-tip">记忆小提示：training=训练，培训</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Regular training.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">健康</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'fitness'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'fitness'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Physical fitness.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">持久力</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'endurance'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'endurance'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Build endurance.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">力量</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：strength=力量，力气</div>
+        <div class="memory-tip">记忆小提示：strength=力量，力气</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Build strength.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">jacket</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">外套</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：jack=千斤顶，et=小，短外套</div>
+        <div class="memory-tip">记忆小提示：jack=千斤顶，et=小，短外套</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Bring your jacket.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">大衣</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'coat'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'coat'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This is my winter coat.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">床</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：bed=床，躺卧休息的家具</div>
+        <div class="memory-tip">记忆小提示：bed=床，躺卧休息的家具</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I have a soft bed.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">枕头</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'pillow'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'pillow'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I hug my pillow.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">毯子</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'blanket'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'blanket'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">This blanket is warm.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

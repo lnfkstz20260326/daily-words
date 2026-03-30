@@ -174,8 +174,7 @@ body {
 
     <div class="loop-status" id="loopStatus">🔄 播放中</div>
 
-    
-    <div class="card">
+        <div class="card">
         <div class="word-header">
             <div class="word-number">01</div>
             <div class="word-title">egg</div>
@@ -185,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">鸡蛋</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：egg=鸡蛋，禽类卵</div>
+        <div class="memory-tip">记忆小提示：egg=鸡蛋，禽类卵</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I like eggs.</div>
@@ -210,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">米饭</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：rice=大米，稻谷</div>
+        <div class="memory-tip">记忆小提示：rice=大米，稻谷</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">We eat rice.</div>
@@ -235,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">面条</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'noodles'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'noodles'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I had noodles.</div>
@@ -260,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">水果</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：fruit=水果，植物的甜实</div>
+        <div class="memory-tip">记忆小提示：fruit=水果，植物的甜实</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Eat more fruit.</div>
@@ -285,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">苹果</span>
         </div>
-        <div class="memory-tip">💡 记忆小提示：记住'apple'的英文表达</div>
+        <div class="memory-tip">记忆小提示：记住'apple'的英文表达</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">An apple a day.</div>
@@ -450,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 ${currentLoop}/${maxLoops} 轮`;
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

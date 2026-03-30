@@ -267,25 +267,7 @@
       "phonetic": "/raɪs/",
       "pos": "n.",
       "word_zh": "米饭",
-      "example_en": "i like eggs.",
-      "example_zh": "我喜欢鸡蛋。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "rice",
-      "phonetic": "/raɪs/",
-      "pos": "n.",
-      "word_zh": "米饭",
       "example_en": "We eat rice.",
-      "example_zh": "我们吃米饭。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "noodles",
-      "phonetic": "/ˈnuːdlz/",
-      "pos": "n.",
-      "word_zh": "面条",
-      "example_en": "we eat rice.",
       "example_zh": "我们吃米饭。",
       "memory_tip": ""
     },
@@ -308,15 +290,6 @@
       "example_en": "Eat more fruit.",
       "example_zh": "多吃水果。",
       "memory_tip": "记忆小提示：fruit=水果，植物的甜实"
-    },
-    {
-      "word_en": "apple",
-      "phonetic": "/ˈæpl/",
-      "pos": "n.",
-      "word_zh": "苹果",
-      "example_en": "eat more fruit.",
-      "example_zh": "多吃水果。",
-      "memory_tip": ""
     },
     {
       "word_en": "apple",
@@ -379,15 +352,6 @@
       "phonetic": "/pleɪt/",
       "pos": "n.",
       "word_zh": "盘子",
-      "example_en": "mom is in the kitchen.",
-      "example_zh": "妈妈在厨房。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "plate",
-      "phonetic": "/pleɪt/",
-      "pos": "n.",
-      "word_zh": "盘子",
       "example_en": "Put food on the plate.",
       "example_zh": "把食物放盘子里。",
       "memory_tip": ""
@@ -397,26 +361,8 @@
       "phonetic": "/bəʊl/",
       "pos": "n.",
       "word_zh": "碗",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "bowl",
-      "phonetic": "/bəʊl/",
-      "pos": "n.",
-      "word_zh": "碗",
       "example_en": "I eat from a bowl.",
       "example_zh": "我用碗吃。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "cup",
-      "phonetic": "/kʌp/",
-      "pos": "n.",
-      "word_zh": "杯子",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -453,26 +399,8 @@
       "phonetic": "/baɪk/",
       "pos": "n.",
       "word_zh": "自行车",
-      "example_en": "take the bus.",
-      "example_zh": "乘公交车。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "bike",
-      "phonetic": "/baɪk/",
-      "pos": "n.",
-      "word_zh": "自行车",
       "example_en": "I ride my bike.",
       "example_zh": "我骑自行车。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "walk",
-      "phonetic": "/wɔːk/",
-      "pos": "n.",
-      "word_zh": "散步",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -518,15 +446,6 @@
       "phonetic": "/ˈtræfɪk/",
       "pos": "n.",
       "word_zh": "交通",
-      "example_en": "our school is on this street.",
-      "example_zh": "我们学校在这条街。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "traffic",
-      "phonetic": "/ˈtræfɪk/",
-      "pos": "n.",
-      "word_zh": "交通",
       "example_en": "Traffic is heavy.",
       "example_zh": "交通很拥挤。",
       "memory_tip": ""
@@ -539,15 +458,6 @@
       "example_en": "Turn off the light.",
       "example_zh": "关灯。",
       "memory_tip": "记忆小提示：反义 dark暗/heavy重，light=轻的/亮的"
-    },
-    {
-      "word_en": "wait",
-      "phonetic": "/weɪt/",
-      "pos": "n.",
-      "word_zh": "等待",
-      "example_en": "turn off the light.",
-      "example_zh": "关灯。",
-      "memory_tip": ""
     },
     {
       "word_en": "wait",
@@ -583,26 +493,8 @@
       "phonetic": "/fɑː/",
       "pos": "n.",
       "word_zh": "远",
-      "example_en": "it takes 10 minutes.",
-      "example_zh": "需要10分钟。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "far",
-      "phonetic": "/fɑː/",
-      "pos": "n.",
-      "word_zh": "远",
       "example_en": "Is it far?",
       "example_zh": "远吗？",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "near",
-      "phonetic": "/nɪə/",
-      "pos": "n.",
-      "word_zh": "近",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -686,15 +578,6 @@
       "phonetic": "/ˈprɪnsəpəl/",
       "pos": "n.",
       "word_zh": "校长",
-      "example_en": "our teacher is kind.",
-      "example_zh": "我们老师很和蔼。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "principal",
-      "phonetic": "/ˈprɪnsəpəl/",
-      "pos": "n.",
-      "word_zh": "校长",
       "example_en": "The principal spoke.",
       "example_zh": "校长讲话了。",
       "memory_tip": ""
@@ -736,15 +619,6 @@
       "example_en": "Write on the blackboard.",
       "example_zh": "在黑板上写。",
       "memory_tip": "记忆小提示：black=黑，board=板，黑色的板"
-    },
-    {
-      "word_en": "chalk",
-      "phonetic": "/tʃɔːk/",
-      "pos": "n.",
-      "word_zh": "粉笔",
-      "example_en": "write on the blackboard.",
-      "example_zh": "在黑板上写。",
-      "memory_tip": ""
     },
     {
       "word_en": "chalk",
@@ -836,15 +710,6 @@
       "phonetic": "/test/",
       "pos": "n.",
       "word_zh": "测试",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "test",
-      "phonetic": "/test/",
-      "pos": "n.",
-      "word_zh": "测试",
       "example_en": "We have a test.",
       "example_zh": "我们有测试。",
       "memory_tip": ""
@@ -910,25 +775,7 @@
       "phonetic": "/raɪt/",
       "pos": "n.",
       "word_zh": "写",
-      "example_en": "i like to read.",
-      "example_zh": "我喜欢读。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "write",
-      "phonetic": "/raɪt/",
-      "pos": "n.",
-      "word_zh": "写",
       "example_en": "Write your name.",
-      "example_zh": "写你的名字。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "spell",
-      "phonetic": "/spel/",
-      "pos": "n.",
-      "word_zh": "拼写",
-      "example_en": "write your name.",
       "example_zh": "写你的名字。",
       "memory_tip": ""
     },
@@ -1031,15 +878,6 @@
       "phonetic": "/peɪdʒ/",
       "pos": "n.",
       "word_zh": "页",
-      "example_en": "don't forget.",
-      "example_zh": "别忘了。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "page",
-      "phonetic": "/peɪdʒ/",
-      "pos": "n.",
-      "word_zh": "页",
       "example_en": "Open to page 10.",
       "example_zh": "翻到第10页。",
       "memory_tip": ""
@@ -1060,15 +898,6 @@
       "phonetic": "/ˈsentəns/",
       "pos": "n.",
       "word_zh": "句子",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "sentence",
-      "phonetic": "/ˈsentəns/",
-      "pos": "n.",
-      "word_zh": "句子",
       "example_en": "Read this sentence.",
       "example_zh": "读这个句子。",
       "memory_tip": ""
@@ -1078,25 +907,7 @@
       "phonetic": "/ˈstɔːri/",
       "pos": "n.",
       "word_zh": "故事",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "story",
-      "phonetic": "/ˈstɔːri/",
-      "pos": "n.",
-      "word_zh": "故事",
       "example_en": "Tell me a story.",
-      "example_zh": "给我讲个故事。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "picture",
-      "phonetic": "/ˈpɪktʃə/",
-      "pos": "n.",
-      "word_zh": "图片",
-      "example_en": "tell me a story.",
       "example_zh": "给我讲个故事。",
       "memory_tip": ""
     },
@@ -1143,15 +954,6 @@
       "phonetic": "/tɔːk/",
       "pos": "n.",
       "word_zh": "谈话",
-      "example_en": "we play games.",
-      "example_zh": "我们玩游戏。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "talk",
-      "phonetic": "/tɔːk/",
-      "pos": "n.",
-      "word_zh": "谈话",
       "example_en": "Don't talk in class.",
       "example_zh": "上课不要讲话。",
       "memory_tip": ""
@@ -1164,15 +966,6 @@
       "example_en": "Don't run.",
       "example_zh": "不要跑。",
       "memory_tip": "记忆小提示：run=跑，快速移动"
-    },
-    {
-      "word_en": "jump",
-      "phonetic": "/dʒʌmp/",
-      "pos": "n.",
-      "word_zh": "跳",
-      "example_en": "don't run.",
-      "example_zh": "不要跑。",
-      "memory_tip": ""
     },
     {
       "word_en": "jump",
@@ -1217,15 +1010,6 @@
       "phonetic": "/kləʊz/",
       "pos": "n.",
       "word_zh": "关",
-      "example_en": "open the window.",
-      "example_zh": "打开窗户。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "close",
-      "phonetic": "/kləʊz/",
-      "pos": "n.",
-      "word_zh": "关",
       "example_en": "Close the door.",
       "example_zh": "关门。",
       "memory_tip": ""
@@ -1255,26 +1039,8 @@
       "phonetic": "/ˈhɔːlweɪ/",
       "pos": "n.",
       "word_zh": "走廊",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "hallway",
-      "phonetic": "/ˈhɔːlweɪ/",
-      "pos": "n.",
-      "word_zh": "走廊",
       "example_en": "Don't run in hallway.",
       "example_zh": "走廊不要跑。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "ground",
-      "phonetic": "/ɡraʊnd/",
-      "pos": "n.",
-      "word_zh": "操场",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -1300,26 +1066,8 @@
       "phonetic": "/drɪŋk/",
       "pos": "n.",
       "word_zh": "喝",
-      "example_en": "where is the toilet?",
-      "example_zh": "厕所在哪？",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "drink",
-      "phonetic": "/drɪŋk/",
-      "pos": "n.",
-      "word_zh": "喝",
       "example_en": "What to drink?",
       "example_zh": "喝什么？",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "snack",
-      "phonetic": "/snæk/",
-      "pos": "n.",
-      "word_zh": "零食",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -1338,25 +1086,7 @@
       "phonetic": "/ˈtʃɒklət/",
       "pos": "n.",
       "word_zh": "巧克力",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "chocolate",
-      "phonetic": "/ˈtʃɒklət/",
-      "pos": "n.",
-      "word_zh": "巧克力",
       "example_en": "I like chocolate.",
-      "example_zh": "我喜欢巧克力。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "candy",
-      "phonetic": "/ˈkændi/",
-      "pos": "n.",
-      "word_zh": "糖果",
-      "example_en": "i like chocolate.",
       "example_zh": "我喜欢巧克力。",
       "memory_tip": ""
     },
@@ -1386,15 +1116,6 @@
       "example_en": "Pass the dishes.",
       "example_zh": "传递菜肴。",
       "memory_tip": "记忆小提示：pass=通过/传递，经过或给予"
-    },
-    {
-      "word_en": "meal",
-      "phonetic": "/miːl/",
-      "pos": "n.",
-      "word_zh": "一顿饭",
-      "example_en": "pass the dishes.",
-      "example_zh": "传递菜肴。",
-      "memory_tip": ""
     },
     {
       "word_en": "meal",
@@ -1486,15 +1207,6 @@
       "phonetic": "/ˈteɪsti/",
       "pos": "n.",
       "word_zh": "好吃的",
-      "example_en": "this is delicious!",
-      "example_zh": "真好吃！",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "tasty",
-      "phonetic": "/ˈteɪsti/",
-      "pos": "n.",
-      "word_zh": "好吃的",
       "example_en": "These noodles are tasty.",
       "example_zh": "面条很好吃。",
       "memory_tip": ""
@@ -1524,15 +1236,6 @@
       "phonetic": "/ˈspaɪsi/",
       "pos": "n.",
       "word_zh": "辣的",
-      "example_en": "this is sour.",
-      "example_zh": "这个很酸。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "spicy",
-      "phonetic": "/ˈspaɪsi/",
-      "pos": "n.",
-      "word_zh": "辣的",
       "example_en": "This is spicy.",
       "example_zh": "这个很辣。",
       "memory_tip": ""
@@ -1551,26 +1254,8 @@
       "phonetic": "/fɔːk/",
       "pos": "n.",
       "word_zh": "叉子",
-      "example_en": "i'm full.",
-      "example_zh": "我饱了。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "fork",
-      "phonetic": "/fɔːk/",
-      "pos": "n.",
-      "word_zh": "叉子",
       "example_en": "Use the fork.",
       "example_zh": "用叉子。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "spoon",
-      "phonetic": "/spuːn/",
-      "pos": "n.",
-      "word_zh": "勺子",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -1584,15 +1269,6 @@
     }
   ],
   "2026-04-27": [
-    {
-      "word_en": "knife",
-      "phonetic": "/naɪf/",
-      "pos": "n.",
-      "word_zh": "刀",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
     {
       "word_en": "knife",
       "phonetic": "/naɪf/",
@@ -1625,15 +1301,6 @@
       "phonetic": "/ˈjʌmi/",
       "pos": "n.",
       "word_zh": "好吃的",
-      "example_en": "let's eat!",
-      "example_zh": "我们吃吧！",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "yummy",
-      "phonetic": "/ˈjʌmi/",
-      "pos": "n.",
-      "word_zh": "好吃的",
       "example_en": "Yummy!",
       "example_zh": "好吃！",
       "memory_tip": ""
@@ -1649,15 +1316,6 @@
     }
   ],
   "2026-04-28": [
-    {
-      "word_en": "ball",
-      "phonetic": "/bɔːl/",
-      "pos": "n.",
-      "word_zh": "球",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
     {
       "word_en": "ball",
       "phonetic": "/bɔːl/",
@@ -1684,15 +1342,6 @@
       "example_en": "Play football.",
       "example_zh": "踢足球。",
       "memory_tip": "记忆小提示：foot=脚，ball=球，用脚踢的球"
-    },
-    {
-      "word_en": "ping-pong",
-      "phonetic": "/pɪŋ pɒŋ/",
-      "pos": "n.",
-      "word_zh": "乒乓球",
-      "example_en": "play football.",
-      "example_zh": "踢足球。",
-      "memory_tip": ""
     },
     {
       "word_en": "ping-pong",
@@ -1728,25 +1377,7 @@
       "phonetic": "/θrəʊ/",
       "pos": "n.",
       "word_zh": "扔",
-      "example_en": "birds can fly.",
-      "example_zh": "鸟会飞。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "throw",
-      "phonetic": "/θrəʊ/",
-      "pos": "n.",
-      "word_zh": "扔",
       "example_en": "Throw the ball.",
-      "example_zh": "扔球。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "catch",
-      "phonetic": "/kætʃ/",
-      "pos": "n.",
-      "word_zh": "接住",
-      "example_en": "throw the ball.",
       "example_zh": "扔球。",
       "memory_tip": ""
     },
@@ -1764,26 +1395,8 @@
       "phonetic": "/kɪk/",
       "pos": "n.",
       "word_zh": "踢",
-      "example_en": "catch the ball!",
-      "example_zh": "接住球！",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "kick",
-      "phonetic": "/kɪk/",
-      "pos": "n.",
-      "word_zh": "踢",
       "example_en": "Kick the ball.",
       "example_zh": "踢球。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "hit",
-      "phonetic": "/hɪt/",
-      "pos": "n.",
-      "word_zh": "击打",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -1844,15 +1457,6 @@
     }
   ],
   "2026-05-01": [
-    {
-      "word_en": "exercise",
-      "phonetic": "/ˈeksəsaɪz/",
-      "pos": "n.",
-      "word_zh": "锻炼",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
     {
       "word_en": "exercise",
       "phonetic": "/ˈeksəsaɪz/",
@@ -1923,15 +1527,6 @@
       "phonetic": "/ˈkwaɪət/",
       "pos": "n.",
       "word_zh": "安静的",
-      "example_en": "return the book.",
-      "example_zh": "还书。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "quiet",
-      "phonetic": "/ˈkwaɪət/",
-      "pos": "n.",
-      "word_zh": "安静的",
       "example_en": "Keep quiet.",
       "example_zh": "保持安静。",
       "memory_tip": ""
@@ -1941,26 +1536,8 @@
       "phonetic": "/ˈstɔːrɪbʊk/",
       "pos": "n.",
       "word_zh": "故事书",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "storybook",
-      "phonetic": "/ˈstɔːrɪbʊk/",
-      "pos": "n.",
-      "word_zh": "故事书",
       "example_en": "I like storybooks.",
       "example_zh": "我喜欢故事书。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "magazine",
-      "phonetic": "/ˌmæɡəˈziːn/",
-      "pos": "n.",
-      "word_zh": "杂志",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -1988,26 +1565,8 @@
       "phonetic": "/ʃelf/",
       "pos": "n.",
       "word_zh": "书架",
-      "example_en": "read newspaper.",
-      "example_zh": "读报纸。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "shelf",
-      "phonetic": "/ʃelf/",
-      "pos": "n.",
-      "word_zh": "书架",
       "example_en": "Put on the shelf.",
       "example_zh": "放书架上。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "librarian",
-      "phonetic": "/laɪˈbreəriən/",
-      "pos": "n.",
-      "word_zh": "图书管理员",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -2027,15 +1586,6 @@
       "example_en": "I can't find my book.",
       "example_zh": "找不到我的书了。",
       "memory_tip": "记忆小提示：反义 lose丢失，find=找到"
-    },
-    {
-      "word_en": "search",
-      "phonetic": "/sɜːtʃ/",
-      "pos": "n.",
-      "word_zh": "搜索",
-      "example_en": "i can't find my book.",
-      "example_zh": "找不到我的书了。",
-      "memory_tip": ""
     },
     {
       "word_en": "search",
@@ -2071,15 +1621,6 @@
       "phonetic": "/ˈɔːθə/",
       "pos": "n.",
       "word_zh": "作者",
-      "example_en": "it's boring.",
-      "example_zh": "真无聊。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "author",
-      "phonetic": "/ˈɔːθə/",
-      "pos": "n.",
-      "word_zh": "作者",
       "example_en": "Who is the author?",
       "example_zh": "作者是谁？",
       "memory_tip": ""
@@ -2092,15 +1633,6 @@
       "example_en": "I like this character.",
       "example_zh": "我喜欢这个人物。",
       "memory_tip": "记忆小提示：charact=做...，-er=人，做charact的人"
-    },
-    {
-      "word_en": "count",
-      "phonetic": "/kaʊnt/",
-      "pos": "n.",
-      "word_zh": "数",
-      "example_en": "i like this character.",
-      "example_zh": "我喜欢这个人物。",
-      "memory_tip": ""
     },
     {
       "word_en": "count",
@@ -2248,15 +1780,6 @@
       "phonetic": "/wɒʃ/",
       "pos": "n.",
       "word_zh": "洗",
-      "example_en": "here is your change.",
-      "example_zh": "找你的零钱。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "wash",
-      "phonetic": "/wɒʃ/",
-      "pos": "n.",
-      "word_zh": "洗",
       "example_en": "Wash your hands.",
       "example_zh": "洗手。",
       "memory_tip": ""
@@ -2268,26 +1791,8 @@
       "phonetic": "/mɒm/",
       "pos": "n.",
       "word_zh": "妈妈",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "mom",
-      "phonetic": "/mɒm/",
-      "pos": "n.",
-      "word_zh": "妈妈",
       "example_en": "I love my mom.",
       "example_zh": "我爱妈妈。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "dad",
-      "phonetic": "/dæd/",
-      "pos": "n.",
-      "word_zh": "爸爸",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -2304,15 +1809,6 @@
       "phonetic": "/ˈpeərənts/",
       "pos": "n.",
       "word_zh": "父母",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "parents",
-      "phonetic": "/ˈpeərənts/",
-      "pos": "n.",
-      "word_zh": "父母",
       "example_en": "My parents are home.",
       "example_zh": "我父母在家。",
       "memory_tip": ""
@@ -2322,26 +1818,8 @@
       "phonetic": "/ˈɡrænmɑː/",
       "pos": "n.",
       "word_zh": "奶奶",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "grandma",
-      "phonetic": "/ˈɡrænmɑː/",
-      "pos": "n.",
-      "word_zh": "奶奶",
       "example_en": "I visit grandma.",
       "example_zh": "我看望奶奶。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "grandpa",
-      "phonetic": "/ˈɡrænpɑː/",
-      "pos": "n.",
-      "word_zh": "爷爷",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -2387,15 +1865,6 @@
       "phonetic": "/ˈwelkəm/",
       "pos": "n.",
       "word_zh": "欢迎",
-      "example_en": "it's comfortable.",
-      "example_zh": "很舒适。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "welcome",
-      "phonetic": "/ˈwelkəm/",
-      "pos": "n.",
-      "word_zh": "欢迎",
       "example_en": "Welcome home!",
       "example_zh": "欢迎回家！",
       "memory_tip": ""
@@ -2411,15 +1880,6 @@
     }
   ],
   "2026-05-10": [
-    {
-      "word_en": "thank you",
-      "phonetic": "/θæŋk juː/",
-      "pos": "n.",
-      "word_zh": "谢谢你",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
     {
       "word_en": "thank you",
       "phonetic": "/θæŋk juː/",
@@ -2443,26 +1903,8 @@
       "phonetic": "/mɔː/",
       "pos": "n.",
       "word_zh": "更多",
-      "example_en": "",
-      "example_zh": "请再来米饭。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "more",
-      "phonetic": "/mɔː/",
-      "pos": "n.",
-      "word_zh": "更多",
       "example_en": "Can I have more?",
       "example_zh": "我能再来点吗？",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "enough",
-      "phonetic": "/ɪˈnʌf/",
-      "pos": "n.",
-      "word_zh": "足够了",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -2490,15 +1932,6 @@
       "phonetic": "/kʊk/",
       "pos": "n.",
       "word_zh": "做饭",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "cook",
-      "phonetic": "/kʊk/",
-      "pos": "n.",
-      "word_zh": "做饭",
       "example_en": "Mom cooks dinner.",
       "example_zh": "妈妈做晚饭。",
       "memory_tip": ""
@@ -2508,25 +1941,7 @@
       "phonetic": "/help/",
       "pos": "n.",
       "word_zh": "帮忙",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "help",
-      "phonetic": "/help/",
-      "pos": "n.",
-      "word_zh": "帮忙",
       "example_en": "Can I help?",
-      "example_zh": "我能帮忙吗？",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "set the table",
-      "phonetic": "/set ðə ˈteɪbəl/",
-      "pos": "n.",
-      "word_zh": "摆桌子",
-      "example_en": "can i help?",
       "example_zh": "我能帮忙吗？",
       "memory_tip": ""
     },
@@ -2544,26 +1959,8 @@
       "phonetic": "/ɡlɑːs/",
       "pos": "n.",
       "word_zh": "玻璃杯",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "glass",
-      "phonetic": "/ɡlɑːs/",
-      "pos": "n.",
-      "word_zh": "玻璃杯",
       "example_en": "A glass of water.",
       "example_zh": "一杯水。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "napkin",
-      "phonetic": "/ˈnæpkɪn/",
-      "pos": "n.",
-      "word_zh": "餐巾",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -2609,15 +2006,6 @@
       "phonetic": "/freʃ/",
       "pos": "n.",
       "word_zh": "新鲜的",
-      "example_en": "clean my room.",
-      "example_zh": "打扫房间。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "fresh",
-      "phonetic": "/freʃ/",
-      "pos": "n.",
-      "word_zh": "新鲜的",
       "example_en": "The air is fresh.",
       "example_zh": "空气很新鲜。",
       "memory_tip": ""
@@ -2638,15 +2026,6 @@
       "phonetic": "/ɑːsk fɔː/",
       "pos": "n.",
       "word_zh": "请求",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "ask for",
-      "phonetic": "/ɑːsk fɔː/",
-      "pos": "n.",
-      "word_zh": "请求",
       "example_en": "Ask for more.",
       "example_zh": "要更多。",
       "memory_tip": ""
@@ -2656,26 +2035,8 @@
       "phonetic": "/ɪnˈdʒɔɪ/",
       "pos": "n.",
       "word_zh": "享受",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "enjoy",
-      "phonetic": "/ɪnˈdʒɔɪ/",
-      "pos": "n.",
-      "word_zh": "享受",
       "example_en": "Enjoy yourself!",
       "example_zh": "玩得开心！",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "watch TV",
-      "phonetic": "/wɒtʃ ˌtiːˈviː/",
-      "pos": "n.",
-      "word_zh": "看电视",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
@@ -2692,26 +2053,8 @@
       "phonetic": "/ˈmuːvi/",
       "pos": "n.",
       "word_zh": "电影",
-      "example_en": "",
-      "example_zh": "",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "movie",
-      "phonetic": "/ˈmuːvi/",
-      "pos": "n.",
-      "word_zh": "电影",
       "example_en": "Let's watch a movie.",
       "example_zh": "我们看电影吧。",
-      "memory_tip": ""
-    },
-    {
-      "word_en": "chat",
-      "phonetic": "/tʃæt/",
-      "pos": "n.",
-      "word_zh": "聊天",
-      "example_en": "",
-      "example_zh": "",
       "memory_tip": ""
     },
     {
