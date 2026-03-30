@@ -107,6 +107,7 @@ phrase.example_zh = 例句的中文翻译
 3. **返回按钮**：添加返回首页按钮
 4. **幂等修复脚本**：修复脚本必须能多次运行而不产生重复
 5. **记忆提示优化**：用英文思维记忆法替换所有"记住xxx英文表达"和简单翻译
+6. **🔴 speakPhrase桥接函数**：卡片按钮调用speakPhrase(index, type, rate)，必须添加此函数调用speakWord/speakSentence
 
 ## 用户偏好
 - 用户非常注重细节，需要反复确认

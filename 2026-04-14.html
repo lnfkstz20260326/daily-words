@@ -428,12 +428,12 @@ function stopSpeaking(){
 
 // speakPhrase: 卡片按钮调用的桥接函数
 async function speakPhrase(index, type, rate){
-  const card=document.querySelectorAll('.word-card')[index];
+  const card=document.querySelectorAll('.card')[index];
   if(!card)return;
-  const wordEn=card.querySelector('.word-en').textContent;
-  const wordZh=card.querySelector('.word-meaning').textContent;
+  const wordEn=card.querySelector('.word-title').textContent;
+  const wordZh=card.querySelector('.chinese-meaning').textContent;
   const exEn=card.querySelector('.example-en').textContent;
-  const exZh=card.querySelector('.example-zh').textContent;
+  const exZh=card.querySelector('.example-cn').textContent;
   const speed=rate<=0.6?'slow':rate<=0.7?'normal':'fast';
   if(type==='word'){
     await speakWord(wordEn,wordZh,speed);
@@ -465,10 +465,10 @@ async function startAutoPlay(){
     btn.textContent='⏸ 暂停循环';
     for(let c of cards){
       if(!isPlaying)break;
-      const wordEn=c.querySelector('.word-en').textContent;
-      const wordZh=c.querySelector('.word-meaning').textContent;
+      const wordEn=c.querySelector('.word-title').textContent;
+      const wordZh=c.querySelector('.chinese-meaning').textContent;
       const exEn=c.querySelector('.example-en').textContent;
-      const exZh=c.querySelector('.example-zh').textContent;
+      const exZh=c.querySelector('.example-cn').textContent;
       // 1. 慢速词×3 + 汉语
       for(let i=0;i<3;i++){if(!isPlaying)break;await speakWord(wordEn,wordZh,'slow');await new Promise(r=>setTimeout(r,500));}
       if(isPlaying){await new Promise(r=>setTimeout(r,500));}
