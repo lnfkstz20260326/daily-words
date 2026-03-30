@@ -134,3 +134,18 @@
 - `content_backup/content_backup_old.json` - 原素材库备份
 - `regenerate_html.py` - 重新生成HTML的脚本
 - `fix_content_v2.py` - 素材库修复脚本
+
+## 🔴 2026-03-30 夜 轮数显示修复
+
+### 问题
+- 轮数显示区域显示 `{currentLoop}/{maxLoops}` 而不是实际数字
+- 原因：JS代码使用了模板字符串语法（反引号），可能不被所有浏览器支持
+
+### 修复措施
+- 将模板字符串改为字符串拼接方式
+- 修改前：`statusDiv.textContent = \`🔄 第 {currentLoop}/{maxLoops} 轮\`;`
+- 修改后：`statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';`
+- 批量修复了276个HTML文件
+
+### 验证
+- 修复后 Line 451: `statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';`
