@@ -253,8 +253,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">舒适的</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：comfort=舒适，-able=能...的，舒适的</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：comfort=舒适，-able=能...的，舒适的</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">It's comfortable.</div>
                 <div class="example-cn">很舒适。</div>
@@ -283,7 +282,36 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">欢迎</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：记住'welcome'的英文表达</div>
+            <div class：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">it's comfortable.</div>
+                <div class="example-cn">很舒适。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(2, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(2, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(2, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(2, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(2, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">04</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">welcome</span>
+                        <span class="phonetic">/ˈwelkəm/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">欢迎</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：记住'welcome'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Welcome home!</div>
@@ -313,8 +341,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">准备好了</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：ready=准备好的，已经OK</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：ready=准备好的，已经OK</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Dinner is ready!</div>
                 <div class="example-cn">晚餐好了！</div>
@@ -337,9 +364,30 @@
         <div class="nav-links">
             <a href="2026-05-08.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-05-10.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">dinner is ready!</div>
+                <div class="example-cn">晚餐好了！</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+         +         <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
+
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-05-08.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
 
     <script>let isPlaying=false,currentLoop=0,maxLoops=7;
 function loadVoices(){
@@ -393,6 +441,21 @@ async function speakSentence(exEn,exZh,speed){
       u2.lang='zh-CN';u2.rate=1.0;
       window.speechSynthesis.speak(u2);
     },2000);
+  }
+}
+function speakPhrase(index, type, rate){
+  const cards=document.querySelectorAll('.card');
+  const card=cards[index];
+  if(!card)return;
+  const wordEn=card.querySelector('.word-title').textContent;
+  const wordZh=card.querySelector('.chinese-meaning').textContent;
+  const exEn=card.querySelector('.example-en').textContent;
+  const exZh=card.querySelector('.example-cn').textContent;
+  const speed=rate<=0.6?'slow':rate>=0.9?'fast':'normal';
+  if(type==='word'){
+    speakWord(wordEn,wordZh,speed);
+  }else{
+    speakSentence(exEn,exZh,speed);
   }
 }
 function stopSpeaking(){

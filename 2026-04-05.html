@@ -458,6 +458,21 @@ async function speakSentence(exEn,exZh,speed){
     },2000);
   }
 }
+function speakPhrase(index, type, rate){
+  const cards=document.querySelectorAll('.card');
+  const card=cards[index];
+  if(!card)return;
+  const wordEn=card.querySelector('.word-title').textContent;
+  const wordZh=card.querySelector('.chinese-meaning').textContent;
+  const exEn=card.querySelector('.example-en').textContent;
+  const exZh=card.querySelector('.example-cn').textContent;
+  const speed=rate<=0.6?'slow':rate>=0.9?'fast':'normal';
+  if(type==='word'){
+    speakWord(wordEn,wordZh,speed);
+  }else{
+    speakSentence(exEn,exZh,speed);
+  }
+}
 function stopSpeaking(){
   window.speechSynthesis.cancel();
   isPlaying=false;

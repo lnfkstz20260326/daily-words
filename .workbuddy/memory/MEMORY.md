@@ -29,34 +29,11 @@
 | 例句英文 | `.example-en` |
 | 例句中文 | `.example-cn` |
 
-### 🔴 3月29日稳定架构 + Voice Selection优化（20:30）
-```javascript
-// 优化后的voice selection函数
-function selectVoice(voices, lang) {
-  if(lang === 'en-US') {
-    const preferred = ['Jenny', 'Aria', 'Samantha', 'Microsoft Aria', 'Google US English', 'Microsoft David'];
-    for(const name of preferred) {
-      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('en'));
-      if(v) return v;
-    }
-    return voices.find(v => v.lang.startsWith('en')) || voices[0];
-  }
-  if(lang === 'zh-CN') {
-    const preferred = ['Huihui', 'Yaoyao', 'Kangkang', 'Wang', 'Microsoft Huihui'];
-    for(const name of preferred) {
-      const v = voices.find(v => v.name.includes(name) && v.lang.startsWith('zh'));
-      if(v) return v;
-    }
-    return voices.find(v => v.lang.startsWith('zh')) || voices[0];
-  }
-  return voices[0];
-}
-
-// speakWord中使用：
-const voice=selectVoice(voices,'en-US');
-// 中文播放使用：
-const cnVoice=selectVoice(voices,'zh-CN');
-```
+### 🔴 3月30日修复总结
+1. 恢复3月29日JS语音逻辑（英文内容+记忆提示保留）
+2. 修复按钮选择器 `.btn-primary` → `.btn-loop`
+3. 修复卡片选择器 `.word-card` → `.card`
+4. 644个文件更新完成
 
 ## 核心信息
 
