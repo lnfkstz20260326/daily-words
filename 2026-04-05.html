@@ -21,6 +21,10 @@
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
+        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
+        .header .date { color: #666; font-size: 16px; }
+        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
+        
         .top-controls {
             display: flex;
             gap: 10px;
@@ -28,11 +32,7 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-
-        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
-        .header .date { color: #666; font-size: 16px; }
-        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
-        .card {
+.card {
             background: white;
             border-radius: 16px;
             padding: 24px;
@@ -164,18 +164,17 @@
         <div class="header">
             <h1>📚 每日英语听说</h1>
             <div class="date">2026年04月05日 · 碎片化听说，随时开口交流</div>
-            
+            <div class="grade">5年级</div>
+        </div>
 
-        <div class="top-controls">
+
+<div class="top-controls">
             <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
                 ▶️ 开始循环朗读
             </button>
             <button class="btn btn-secondary" onclick="goBack()">
                 ⬅️ 返回选择
             </button>
-        </div>
-
-        <div class="grade">5年级</div>
         </div>
 
         
@@ -208,8 +207,7 @@
                 <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
             </div>
         </div>
-
-        <div class="card">
+<div class="card">
             <div class="word-header">
                 <div class="word-number">02</div>
                 <div>
@@ -253,8 +251,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">鸡蛋</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：egg=鸡蛋，禽类卵</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：egg=鸡蛋，禽类卵</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">I like eggs.</div>
                 <div class="example-cn">我喜欢鸡蛋。</div>
@@ -283,8 +280,36 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">米饭</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：rice=大米，稻谷</div>
-            <div class="example-box">
+            <div class：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">i like eggs.</div>
+                <div class="example-cn">我喜欢鸡蛋。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(2, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(2, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(2, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(2, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(2, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">04</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">rice</span>
+                        <span class="phonetic">/raɪs/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">米饭</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：rice=大米</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">We eat rice.</div>
                 <div class="example-cn">我们吃米饭。</div>
@@ -313,13 +338,41 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">面条</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：noodles：面条，noodle的复数</div>
+            <div class：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">we eat rice.</div>
+                <div class="example-cn">我们吃米饭。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(3, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(3, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(3, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(3, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(3, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">05</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">noodles</span>
+                        <span class="phonetic">/ˈnuːdlz/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">面条</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：记住'noodles'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">I had noodles.</div>
                 <div class="example-cn">我吃了面条。</div>
-            </div>
-            <div class="button-group">
+            </div><div class="button-group">
                 <button class="btn btn-slow" onclick="speakPhrase(4, 'word', 0.4)">🐢 慢速词×3</button>
                 <button class="btn btn-normal" onclick="speakPhrase(4, 'word', 0.8)">🚀 匀速词×3</button>
                 <button class="btn btn-slow" onclick="speakPhrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
@@ -328,19 +381,31 @@
                 <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
             </div>
         </div>
-<div class="loop-status" id="loopStatus">
+
+
+        <div class="loop-status" id="loopStatus">
             🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
         </div>
 
         <div class="nav-links">
-            <a href="2026-04-04.html">← 前一天</a>
+            <a href="2026-03-31.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-06.html">后一天 →</a>
+            <a href="2026-04-02.html">后一天 →</a>
         </div>
     </div>
 
+
+        <div class="loop-status" id="loopStatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-03-31.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href="2026-04-02.html">后一天 →</a>
+        </div>
     <script>
-        const phrases = [{"en": "milk", "zh": "牛奶", "phonetic": "/mɪlk/", "type": "n.", "example": "I drink milk.", "example_zh": "我喝牛奶。"}, {"en": "bread", "zh": "面包", "phonetic": "/bred/", "type": "n.", "example": "I eat bread.", "example_zh": "我吃面包。"}, {"en": "egg", "zh": "鸡蛋", "phonetic": "/eɡ/", "type": "n.", "example": "I like eggs.", "example_zh": "我喜欢鸡蛋。"}, {"en": "rice", "zh": "米饭", "phonetic": "/raɪs/", "type": "n.", "example": "We eat rice.", "example_zh": "我们吃米饭。"}, {"en": "noodles", "zh": "面条", "phonetic": "/ˈnuːdlz/", "type": "n.", "example": "I had noodles.", "example_zh": "我吃了面条。"}];
+        const phrases = [{"en": "shirt", "zh": "衬衫", "phonetic": "/ʃɜːt/", "type": "n.", "example": "I wear a blue shirt.", "example_zh": "我穿蓝色衬衫。"}, {"en": "pants", "zh": "裤子", "phonetic": "/pænts/", "type": "n.", "example": "These pants are too long.", "example_zh": "这条裤子太长了。"}, {"en": "shoes", "zh": "鞋子", "phonetic": "/ʃuːz/", "type": "n.", "example": "Clean your shoes.", "example_zh": "擦干净你的鞋子。"}, {"en": "socks", "zh": "袜子", "phonetic": "/sɒks/", "type": "n.", "example": "I have new socks.", "example_zh": "我有新袜子了。"}, {"en": "hat", "zh": "帽子", "phonetic": "/hæt/", "type": "n.", "example": "This hat is too small.", "example_zh": "这顶帽子太小了。"}];
         let isLooping = false;
         let loopCount = 0;
         const MAX_LOOPS = 7;
@@ -357,6 +422,14 @@
         }
 
         function speakPhrase(index, type, rate) {
+            // 点击卡片按钮时，先停止循环播放
+            if (isLooping) {
+                isLooping = false;
+                loopCount = MAX_LOOPS;
+                const statusEl = document.getElementById('loopStatus');
+                if (statusEl) statusEl.textContent = '⏹ 已切换到单卡片模式';
+            }
+
             const phrase = phrases[index];
             let text, lang;
             
@@ -377,10 +450,8 @@
                 if (repeatCount >= maxRepeats) {
                     if (rate <= 0.6 && type === 'word') {
                         const cnUtterance = speak(phrase.zh, 0.9, 'zh-CN');
-                        window.speechSynthesis.speak(cnUtterance);
                     } else if (rate <= 0.6 && type === 'sentence') {
                         const cnUtterance = speak(phrase.example_zh, 0.9, 'zh-CN');
-                        window.speechSynthesis.speak(cnUtterance);
                     }
                     return;
                 }
@@ -399,41 +470,25 @@
         function stopSpeaking() {
             window.speechSynthesis.cancel();
             isLooping = false;
-            loopCount = 0;
-            document.getElementById('loopStatus').textContent = '⏹ 已停止';
-            document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
+            loopCount = MAX_LOOPS;
+            const statusEl = document.getElementById('loopStatus');
+            const btnEl = document.getElementById('loopBtn');
+            if (statusEl) statusEl.textContent = '⏹ 已停止';
+            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
         }
 
-function goBack() {
-    window.speechSynthesis.cancel();
-    isLooping = false;
-    loopCount = 0;
-    if (document.getElementById('loopStatus')) {
-        document.getElementById('loopStatus').textContent = '⏹ 已停止';
-    }
-    if (document.getElementById('loopBtn')) {
-        document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
-    }
-    window.location.href = 'index.html';
-}
-            
-            
-
-        function toggleLoop() {
-            const btn = document.getElementById('loopBtn');
-            if (isLooping) {
-                window.speechSynthesis.cancel();
-                isLooping = false;
-                document.getElementById('loopStatus').textContent = '⏹ 已停止';
-                btn.textContent = '▶️ 开始循环朗读';
-            } else {
-                if (loopCount === 0) {
-                    loopCount = 1;
-                }
-                startAutoLoop();
-                btn.textContent = '⏸ 暂停循环';
-            }
+        function goBack() {
+            window.speechSynthesis.cancel();
+            isLooping = false;
+            loopCount = MAX_LOOPS;
+            const statusEl = document.getElementById('loopStatus');
+            const btnEl = document.getElementById('loopBtn');
+            if (statusEl) statusEl.textContent = '⏹ 已停止';
+            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
+            window.location.href = 'index.html';
         }
+
+
 
         async function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));

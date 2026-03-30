@@ -21,6 +21,10 @@
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
+        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
+        .header .date { color: #666; font-size: 16px; }
+        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
+        
         .top-controls {
             display: flex;
             gap: 10px;
@@ -28,11 +32,7 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-
-        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
-        .header .date { color: #666; font-size: 16px; }
-        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
-        .card {
+.card {
             background: white;
             border-radius: 16px;
             padding: 24px;
@@ -164,18 +164,19 @@
         <div class="header">
             <h1>📚 每日英语听说</h1>
             <div class="date">2027年06月18日 · 碎片化听说，随时开口交流</div>
-            
+            <div class="grade">5年级</div>
+        </div>
 
-        <div class="top-controls">
+        
+        
+
+<div class="top-controls">
             <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
                 ▶️ 开始循环朗读
             </button>
             <button class="btn btn-secondary" onclick="goBack()">
                 ⬅️ 返回选择
             </button>
-        </div>
-
-        <div class="grade">5年级</div>
         </div>
 
         
@@ -193,7 +194,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">做饭</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：cook：烹饪，co=厨ok=做饭</div>
+            <div class="memory-tip">💡 记忆小提示：记住'cook'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Mom cooks dinner.</div>
@@ -208,8 +209,7 @@
                 <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
             </div>
         </div>
-
-        <div class="card">
+<div class="card">
             <div class="word-header">
                 <div class="word-number">02</div>
                 <div>
@@ -253,7 +253,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">摆桌子</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：set the table：摆桌子，set=摆table=桌</div>
+            <div class="memory-tip">💡 记忆小提示：记住'set the table'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Set the table.</div>
@@ -283,7 +283,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">玻璃杯</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：glass：玻璃杯，gl=玻璃ass=杯</div>
+            <div class="memory-tip">💡 记忆小提示：记住'glass'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">A glass of water.</div>
@@ -313,7 +313,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">餐巾</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：napkin：餐巾，nap=餐巾kin=小</div>
+            <div class="memory-tip">💡 记忆小提示：记住'napkin'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Use a napkin.</div>
@@ -328,7 +328,9 @@
                 <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
             </div>
         </div>
-<div class="loop-status" id="loopStatus">
+
+
+        <div class="loop-status" id="loopStatus">
             🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
         </div>
 
@@ -357,6 +359,14 @@
         }
 
         function speakPhrase(index, type, rate) {
+            // 点击卡片按钮时，先停止循环播放
+            if (isLooping) {
+                isLooping = false;
+                loopCount = MAX_LOOPS;
+                const statusEl = document.getElementById('loopStatus');
+                if (statusEl) statusEl.textContent = '⏹ 已切换到单卡片模式';
+            }
+
             const phrase = phrases[index];
             let text, lang;
             
@@ -377,10 +387,8 @@
                 if (repeatCount >= maxRepeats) {
                     if (rate <= 0.6 && type === 'word') {
                         const cnUtterance = speak(phrase.zh, 0.9, 'zh-CN');
-                        window.speechSynthesis.speak(cnUtterance);
                     } else if (rate <= 0.6 && type === 'sentence') {
                         const cnUtterance = speak(phrase.example_zh, 0.9, 'zh-CN');
-                        window.speechSynthesis.speak(cnUtterance);
                     }
                     return;
                 }
@@ -399,41 +407,25 @@
         function stopSpeaking() {
             window.speechSynthesis.cancel();
             isLooping = false;
-            loopCount = 0;
-            document.getElementById('loopStatus').textContent = '⏹ 已停止';
-            document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
+            loopCount = MAX_LOOPS;
+            const statusEl = document.getElementById('loopStatus');
+            const btnEl = document.getElementById('loopBtn');
+            if (statusEl) statusEl.textContent = '⏹ 已停止';
+            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
         }
 
-function goBack() {
-    window.speechSynthesis.cancel();
-    isLooping = false;
-    loopCount = 0;
-    if (document.getElementById('loopStatus')) {
-        document.getElementById('loopStatus').textContent = '⏹ 已停止';
-    }
-    if (document.getElementById('loopBtn')) {
-        document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
-    }
-    window.location.href = 'index.html';
-}
-            
-            
-
-        function toggleLoop() {
-            const btn = document.getElementById('loopBtn');
-            if (isLooping) {
-                window.speechSynthesis.cancel();
-                isLooping = false;
-                document.getElementById('loopStatus').textContent = '⏹ 已停止';
-                btn.textContent = '▶️ 开始循环朗读';
-            } else {
-                if (loopCount === 0) {
-                    loopCount = 1;
-                }
-                startAutoLoop();
-                btn.textContent = '⏸ 暂停循环';
-            }
+        function goBack() {
+            window.speechSynthesis.cancel();
+            isLooping = false;
+            loopCount = MAX_LOOPS;
+            const statusEl = document.getElementById('loopStatus');
+            const btnEl = document.getElementById('loopBtn');
+            if (statusEl) statusEl.textContent = '⏹ 已停止';
+            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
+            window.location.href = 'index.html';
         }
+
+
 
         async function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));

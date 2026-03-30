@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日英语 - 5年级 - 2026年04月01日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .header h1 { color: #1976d2; font-size: 28px; margin-bottom: 8px; }
+        .header .date { color: #666; font-size: 16px; }
+        .header .grade { color: #ff6b6b; font-size: 14px; margin-top: 5px; }
+        
+        .top-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+.card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); }
+        .word-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .word-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .word-title { font-size: 32px; color: #333; font-weight: bold; }
+        .phonetic { color: #888; font-size: 18px; margin-left: 10px; font-family: Georgia, serif; }
+        .word-meaning {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .part-of-speech {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        .chinese-meaning {
+            background: #ffebee;
+            color: #c62828;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .memory-tip {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+        .example-box {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+        .example-label { color: #999; font-size: 12px; margin-bottom: 8px; text-transform: uppercase; }
+        .example-en { color: #333; font-size: 18px; margin-bottom: 6px; line-height: 1.6; }
+        .example-cn { color: #666; font-size: 15px; }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .btn-slow { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: white; }
+        .btn-normal { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: white; }
+        .btn-fast { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: white; }
+        .btn-stop { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: white; }
+        .btn-loop { background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; }
+        .btn-secondary {
+            background: linear-gradient(135deg, #764ba2 0%, #6a3093 100%);
+            color: white;
+        }
+
+        .loop-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: #f3e5f5;
+            border-radius: 10px;
+            color: #7b1fa2;
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .nav-links a {
+            color: #1976d2;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-links a:hover { background: #e3f2fd; }
+        @media (max-width: 600px) {
+            .word-title { font-size: 24px; }
+            .btn { padding: 8px 12px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 每日英语听说</h1>
+            <div class="date">2026年04月01日 · 碎片化听说，随时开口交流</div>
+            <div class="grade">5年级</div>
+        </div>
+
+        <div class="top-controls">
+            <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
+                ▶️ 开始循环朗读
+            </button>
+            <button class="btn btn-secondary" onclick="goBack()">
+                ⬅️ 返回选择
+            </button>
+        </div>
+
+        
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">01</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">shirt</span>
+                        <span class="phonetic">/ʃɜːt/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">衬衫</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：shirt=衬衫，短上衣</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">I wear a blue shirt.</div>
+                <div class="example-cn">我穿蓝色衬衫。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(0, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(0, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(0, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(0, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(0, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+        <div class="top-controls">
+            <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
+                ▶️ 开始循环朗读
+            </button>
+            <button class="btn btn-secondary" onclick="goBack()">
+                ⬅️ 返回选择
+            </button>
+        </div>
+
+
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">02</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">pants</span>
+                        <span class="phonetic">/pænts/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">裤子</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：pant=下垂裤(古)，s=复数，下垂到腿的裤子</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">These pants are too long.</div>
+                <div class="example-cn">这条裤子太长了。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(1, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(1, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(1, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(1, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(1, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">03</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">shoes</span>
+                        <span class="phonetic">/ʃuːz/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">鞋子</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：记住'shoes'的英文表达</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">Clean your shoes.</div>
+                <div class="example-cn">擦干净你的鞋子。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(2, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(2, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(2, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(2, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(2, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">04</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">socks</span>
+                        <span class="phonetic">/sɒks/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">袜子</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：sock=袜子，s=复数，袜子</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">I have new socks.</div>
+                <div class="example-cn">我有新袜子了。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(3, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(3, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(3, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(3, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(3, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">05</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">hat</span>
+                        <span class="phonetic">/hæt/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">帽子</span>
+            </div>
+            <div class="memory-tip">💡 记忆小提示：hat=帽子，头部遮盖</div>
+            <div class="example-box">
+                <div class="example-label">例句 Example</div>
+                <div class="example-en">This hat is too small.</div>
+                <div class="example-cn">这顶帽子太小了。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakPhrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakPhrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakPhrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakPhrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+
+        <div class="loop-status" id="loopStatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-03-31.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href="2026-04-02.html">后一天 →</a>
+        </div>
+    </div>
+
+    <script>
+        const phrases = [{"en": "shirt", "zh": "衬衫", "phonetic": "/ʃɜːt/", "type": "n.", "example": "I wear a blue shirt.", "example_zh": "我穿蓝色衬衫。"}, {"en": "pants", "zh": "裤子", "phonetic": "/pænts/", "type": "n.", "example": "These pants are too long.", "example_zh": "这条裤子太长了。"}, {"en": "shoes", "zh": "鞋子", "phonetic": "/ʃuːz/", "type": "n.", "example": "Clean your shoes.", "example_zh": "擦干净你的鞋子。"}, {"en": "socks", "zh": "袜子", "phonetic": "/sɒks/", "type": "n.", "example": "I have new socks.", "example_zh": "我有新袜子了。"}, {"en": "hat", "zh": "帽子", "phonetic": "/hæt/", "type": "n.", "example": "This hat is too small.", "example_zh": "这顶帽子太小了。"}];
+        let isLooping = false;
+        let loopCount = 0;
+        const MAX_LOOPS = 7;
+        let currentCardIndex = 0;
+
+        function speak(text, rate = 0.8, lang = 'en-US') {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = rate;
+                utterance.pitch = 1;
+                return utterance;
+            }
+        }
+
+        function speakPhrase(index, type, rate) {
+            // 点击卡片按钮时，先停止循环播放
+            if (isLooping) {
+                isLooping = false;
+                loopCount = MAX_LOOPS;
+                const statusEl = document.getElementById('loopStatus');
+                if (statusEl) statusEl.textContent = '⏹ 已切换到单卡片模式';
+            }
+
+            const phrase = phrases[index];
+            let text, lang;
+            
+            if (type === 'word') {
+                text = phrase.en;
+                lang = 'en-US';
+            } else {
+                text = phrase.example;
+                lang = 'en-US';
+            }
+            
+            window.speechSynthesis.cancel();
+            
+            let repeatCount = 0;
+            const maxRepeats = 3;
+            
+            function speakOnce() {
+                if (repeatCount >= maxRepeats) {
+                    if (rate <= 0.6 && type === 'word') {
+                        const cnUtterance = speak(phrase.zh, 0.9, 'zh-CN');
+                    } else if (rate <= 0.6 && type === 'sentence') {
+                        const cnUtterance = speak(phrase.example_zh, 0.9, 'zh-CN');
+                    }
+                    return;
+                }
+                
+                const utterance = speak(text, rate, lang);
+                utterance.onend = () => {
+                    repeatCount++;
+                    speakOnce();
+                };
+                window.speechSynthesis.speak(utterance);
+            }
+            
+            speakOnce();
+        }
+
+        function stopSpeaking() {
+            window.speechSynthesis.cancel();
+            isLooping = false;
+            loopCount = MAX_LOOPS;
+            const statusEl = document.getElementById('loopStatus');
+            const btnEl = document.getElementById('loopBtn');
+            if (statusEl) statusEl.textContent = '⏹ 已停止';
+            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
+        }
+
+        function goBack() {
+            window.speechSynthesis.cancel();
+            isLooping = false;
+            loopCount = MAX_LOOPS;
+            const statusEl = document.getElementById('loopStatus');
+            const btnEl = document.getElementById('loopBtn');
+            if (statusEl) statusEl.textContent = '⏹ 已停止';
+            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
+            window.location.href = 'index.html';
+        }
+
+
+
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function startAutoLoop() {
+            if (isLooping) return;
+            isLooping = true;
+            loopCount = 0;
+            
+            while (isLooping && loopCount < MAX_LOOPS) {
+                loopCount++;
+                document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
+                
+                for (let i = 0; i < phrases.length; i++) {
+                    if (!isLooping) break;
+                    currentCardIndex = i;
+                    
+                    await new Promise(resolve => {
+                        speakPhrase(i, 'word', 0.4);
+                        setTimeout(resolve, 8000);
+                    });
+                    if (!isLooping) break;
+                    await sleep(1000);
+                    
+                    await new Promise(resolve => {
+                        speakPhrase(i, 'word', 0.8);
+                        setTimeout(resolve, 6000);
+                    });
+                    if (!isLooping) break;
+                    await sleep(1000);
+                    
+                    await new Promise(resolve => {
+                        speakPhrase(i, 'sentence', 0.6);
+                        setTimeout(resolve, 9000);
+                    });
+                    if (!isLooping) break;
+                    await sleep(1000);
+                    
+                    await new Promise(resolve => {
+                        speakPhrase(i, 'sentence', 0.8);
+                        setTimeout(resolve, 7000);
+                    });
+                    if (!isLooping) break;
+                    await sleep(1000);
+                    
+                    await new Promise(resolve => {
+                        speakPhrase(i, 'sentence', 0.9);
+                        setTimeout(resolve, 6000);
+                    });
+                    if (!isLooping) break;
+                    await sleep(1000);
+                }
+                
+                if (isLooping && loopCount < MAX_LOOPS) {
+                    await sleep(2000);
+                }
+            }
+            
+            isLooping = false;
+            document.getElementById('loopStatus').textContent = '✅ 循环播放完成';
+        }
+
+        setTimeout(() => {
+            startAutoLoop();
+        }, 3000);
+    </script>
+</body>
+</html>

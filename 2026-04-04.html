@@ -164,18 +164,19 @@
         <div class="header">
             <h1>📚 每日英语听说</h1>
             <div class="date">2026年04月04日 · 碎片化听说，随时开口交流</div>
-            
+<div class="grade">5年级</div>
+        </div>
 
-        <div class="top-controls">
+        
+        
+
+<div class="top-controls">
             <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
                 ▶️ 开始循环朗读
             </button>
             <button class="btn btn-secondary" onclick="goBack()">
                 ⬅️ 返回选择
             </button>
-        </div>
-
-        <div class="grade">5年级</div>
         </div>
 
         
@@ -313,8 +314,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">渴的</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：thirsty：口渴想喝，thirst=渴-y=...的</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：thirsty：口渴想喝，thirst=渴-y=...的</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">I'm thirsty.</div>
                 <div class="example-cn">我渴了。</div>
@@ -335,9 +335,28 @@
         <div class="nav-links">
             <a href="2026-04-03.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-05.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">i'm thirsty.</div>
+                <div class="example-cn">我渴了。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+       +           <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
+<div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-03.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
 
     <script>
         const phrases = [{"en": "breakfast", "zh": "早餐", "phonetic": "/ˈbrekfəst/", "type": "n.", "example": "I eat breakfast at 7:30.", "example_zh": "我7:30吃早餐。"}, {"en": "lunch", "zh": "午餐", "phonetic": "/lʌntʃ/", "type": "n.", "example": "We have lunch at school.", "example_zh": "我们在学校吃午餐。"}, {"en": "dinner", "zh": "晚餐", "phonetic": "/ˈdɪnə/", "type": "n.", "example": "Dinner is ready!", "example_zh": "晚餐准备好了！"}, {"en": "hungry", "zh": "饿的", "phonetic": "/ˈhʌŋɡri/", "type": "n.", "example": "I'm hungry.", "example_zh": "我饿了。"}, {"en": "thirsty", "zh": "渴的", "phonetic": "/ˈθɜːsti/", "type": "n.", "example": "I'm thirsty.", "example_zh": "我渴了。"}];
@@ -357,6 +376,13 @@
         }
 
         function speakPhrase(index, type, rate) {
+            // 点击卡片按钮时，先停止循环播放
+            if (isLooping) {
+                isLooping = false;
+                loopCount = MAX_LOOPS; // 让循环自然结束
+                document.getElementById('loopStatus').textContent = '⏹ 已切换到单卡片模式';
+            }
+            
             const phrase = phrases[index];
             let text, lang;
             
@@ -399,7 +425,7 @@
         function stopSpeaking() {
             window.speechSynthesis.cancel();
             isLooping = false;
-            loopCount = 0;
+            loopCount = MAX_LOOPS;
             document.getElementById('loopStatus').textContent = '⏹ 已停止';
             document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
         }
@@ -407,13 +433,11 @@
 function goBack() {
     window.speechSynthesis.cancel();
     isLooping = false;
-    loopCount = 0;
-    if (document.getElementById('loopStatus')) {
-        document.getElementById('loopStatus').textContent = '⏹ 已停止';
-    }
-    if (document.getElementById('loopBtn')) {
-        document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
-    }
+    loopCount = MAX_LOOPS;
+    const statusEl = document.getElementById('loopStatus');
+    const btnEl = document.getElementById('loopBtn');
+    if (statusEl) statusEl.textContent = '⏹ 已停止';
+    if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
     window.location.href = 'index.html';
 }
             
