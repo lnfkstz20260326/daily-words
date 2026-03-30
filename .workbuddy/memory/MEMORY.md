@@ -149,3 +149,27 @@
 
 ### 验证
 - 修复后 Line 451: `statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';`
+
+## 🔴 2026-03-30 深夜 记忆小提示清理
+
+### 问题
+- 用户反馈"记住xxx的英文表达"这种记忆小提示是废话
+- 1433个记忆提示属于这种废话类型
+
+### 修复措施
+1. 编写 `fix_memory_tips_simple.py` 清理脚本
+2. 128个废话被替换为英语思维提示
+3. 1305个废话被删除（留空）
+4. 重新生成641个HTML文件
+
+### 英语思维提示示例
+- shoes → "Like 'shush' - shoes help you walk quietly"
+- dog → "Man's best friend, wags tail"
+- apple → "Red and crispy, an apple a day"
+- happy → "Smile when you're happy"
+
+### 只修改记忆小提示
+- ✅ 未触碰任何功能键
+- ✅ 未修改任何JS代码
+- ✅ 未修改HTML结构
+- ✅ 只清理了记忆小提示内容
