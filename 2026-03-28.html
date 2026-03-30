@@ -84,8 +84,7 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
   <div class="word-meaning">我饿了。</div>
   <div class="word-scene">场景：肚子饿时</div>
   <div class="word-example">
-    <div class="example-en">Mom, I am hungry, can I eat something?</div>
-    <div class="example-zh">妈妈我饿了，能吃点东西吗？</div>
+    <div class="example-en">Mom, I am hungry, can I eat something?</div><div class="example-zh">妈妈我饿了，能吃点东西吗？</div>
   </div>
   <div class="word-tip">💡 hungry=饿，像航格瑞</div>
   <div class="controls">
@@ -106,7 +105,28 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
     </div>
   </div>
   <div class="word-meaning">你能帮我吗？</div>
-  <div class="word-scene">场景：需要帮忙时</div>
+  <div class：<div class="example-zh">妈妈我饿了，能吃点东西吗？</div>
+  </div>
+  <div class="word-tip">💡 hungry=饿，像航格瑞</div>
+  <div class="controls">
+    <button class="btn btn-slow" onclick="speakword('i am hungry.','我饿了。','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakword('i am hungry.','我饿了。','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speaksentence('mom, i am hungry, can i eat something?','妈妈我饿了，能吃点东西吗？','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speaksentence('mom, i am hungry, can i eat something?','妈妈我饿了，能吃点东西吗？','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speaksentence('mom, i am hungry, can i eat something?','妈妈我饿了，能吃点东西吗？','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+  </div>
+</div><div class="word-card">
+  <div class="word-header">
+    <span class="word-number">03</span>
+    <div class="word-title">
+      <div class="word-en">can you help me?</div>
+      <div class="word-phonetic">/ken ju help mi/</div>
+      <div class="word-pos">日常用语</div>
+    </div>
+  </div>
+  <div class="word-meaning">你能帮我吗？</div>
+  <div clas + s() = "word-scene">场景：需要帮忙时</div>
   <div class="word-example">
     <div class="example-en">Can you help me with this problem?</div>
     <div class="example-zh">你能帮我解这道题吗？</div>
@@ -159,17 +179,19 @@ body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradi
     <div class="example-en">Bye! See you tomorrow!</div>
     <div class="example-zh">再见！明天见！</div>
   </div>
-  <div class="word-tip">💡 see=看见，tomorrow=明天</div>
-  <div class="controls">
+  <div class="word-tip">💡 see=看见，tomorrow=明天</div><div class="controls">
     <button class="btn btn-slow" onclick="speakWord('See you tomorrow!','明天见！','slow')">🐢 慢速词×3</button>
     <button class="btn btn-normal" onclick="speakWord('See you tomorrow!','明天见！','normal')">🚀 匀速词×3</button>
     <button class="btn btn-slow" onclick="speakSentence('Bye! See you tomorrow!','再见！明天见！','slow')">🐢 慢速句×3</button>
     <button class="btn btn-normal" onclick="speakSentence('Bye! See you tomorrow!','再见！明天见！','normal')">🚀 匀速句×3</button>
     <button class="btn btn-fast" onclick="speakSentence('Bye! See you tomorrow!','再见！明天见！','fast')">⚡ 常速句×3</button>
-    <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
-  </div>
-</div>
-</div>
+    <button class="btn btn-stop" onclick：拆开记：<div class="controls">
+    <button class="btn btn-slow" onclick="speakword('see you tomorrow!','明天见！','slow')">🐢 慢速词×3</button>
+    <button class="btn btn-normal" onclick="speakword('see you tomorrow!','明天见！','normal')">🚀 匀速词×3</button>
+    <button class="btn btn-slow" onclick="speaksentence('bye! see you tomorrow! + ','再见！明天见！','slow')">🐢 慢速句×3</button>
+    <button class="btn btn-normal" onclick="speaksentence('bye! see you tomorrow!','再见！明天见！','normal')">🚀 匀速句×3</button>
+    <button class="btn btn-fast" onclick="speaksentence('bye! see you tomorrow!','再见！明天见！','fast')">⚡ 常速句×3</button>
+    <button class="btn btn-stop" onclick</div>
 <script>let isPlaying=false,currentLoop=0,maxLoops=10;
 function speakWord(wordEn,wordZh,speed){
   window.speechSynthesis.cancel();
