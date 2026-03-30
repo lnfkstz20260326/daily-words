@@ -431,15 +431,16 @@
         }
 
 function goBack() {
-    window.speechSynthesis.cancel();
-    isLooping = false;
-    loopCount = MAX_LOOPS;
-    const statusEl = document.getElementById('loopStatus');
-    const btnEl = document.getElementById('loopBtn');
-    if (statusEl) statusEl.textContent = '⏹ 已停止';
-    if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
-    window.location.href = 'index.html';
-}
+            // 先停止所有语音播放
+            window.speechSynthesis.cancel();
+            isLooping = false;
+            loopCount = MAX_LOOPS;
+            
+            // 等待音频真正停止后再跳转（500ms确保语音中断）
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
+        }
             
             
 

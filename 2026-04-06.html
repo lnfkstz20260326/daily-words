@@ -168,18 +168,6 @@
         </div>
 
         
-        
-
-<div class="top-controls">
-            <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
-                ▶️ 开始循环朗读
-            </button>
-            <button class="btn btn-secondary" onclick="goBack()">
-                ⬅️ 返回选择
-            </button>
-        </div>
-
-        
         <div class="card">
             <div class="word-header">
                 <div class="word-number">01</div>
@@ -194,8 +182,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">水果</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：fruit=水果，植物的甜实</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：fruit=水果，植物的甜实</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Eat more fruit.</div>
                 <div class="example-cn">多吃水果。</div>
@@ -209,7 +196,18 @@
                 <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
             </div>
         </div>
-<div class="card">
+        <div class="top-controls">
+            <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
+                ▶️ 开始循环朗读
+            </button>
+            <button class="btn btn-secondary" onclick="goBack()">
+                ⬅️ 返回选择
+            </button>
+        </div>
+
+
+
+        <div class="card">
             <div class="word-header">
                 <div class="word-number">02</div>
                 <div>
@@ -223,7 +221,46 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">苹果</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：记住'apple'的英文表达</div>
+            <div class：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">eat more fruit.</div>
+                <div class="example-cn">多吃水果。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(0, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(0, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(0, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(0, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(0, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+        <div class="top-controls">
+            <button class="btn btn-loop" id="loopbtn" onclick="toggleloop()">
+                ▶️ 开始循环朗读
+            </button>
+            <button class="btn btn-secondary" onclick="goback()">
+                ⬅️ 返回选择
+            </button>
+        </div>
+
+
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">02</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">apple</span>
+                        <span class="phonetic">/ˈæpl/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">苹果</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：记住'apple'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">An apple a day.</div>
@@ -313,8 +350,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">水</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：water=水，H2O</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：water=水，H2O</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Drink more water.</div>
                 <div class="example-cn">多喝水。</div>
@@ -337,9 +373,30 @@
         <div class="nav-links">
             <a href="2026-04-05.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-07.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">drink more water.</div>
+                <div class="example-cn">多喝水。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+         +         <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
+
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-05.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
 
     <script>
         const phrases = [{"en": "fruit", "zh": "水果", "phonetic": "/fruːt/", "type": "n.", "example": "Eat more fruit.", "example_zh": "多吃水果。"}, {"en": "apple", "zh": "苹果", "phonetic": "/ˈæpl/", "type": "n.", "example": "An apple a day.", "example_zh": "一天一苹果。"}, {"en": "banana", "zh": "香蕉", "phonetic": "/bəˈnɑːnə/", "type": "n.", "example": "I like bananas.", "example_zh": "我喜欢香蕉。"}, {"en": "orange", "zh": "橙子", "phonetic": "/ˈɒrɪndʒ/", "type": "n.", "example": "This orange is sweet.", "example_zh": "这个橙子很甜。"}, {"en": "water", "zh": "水", "phonetic": "/ˈwɔːtə/", "type": "n.", "example": "Drink more water.", "example_zh": "多喝水。"}];
@@ -415,14 +472,15 @@
         }
 
         function goBack() {
+            // 先停止所有语音播放
             window.speechSynthesis.cancel();
             isLooping = false;
             loopCount = MAX_LOOPS;
-            const statusEl = document.getElementById('loopStatus');
-            const btnEl = document.getElementById('loopBtn');
-            if (statusEl) statusEl.textContent = '⏹ 已停止';
-            if (btnEl) btnEl.textContent = '▶️ 开始循环朗读';
-            window.location.href = 'index.html';
+            
+            // 等待音频真正停止后再跳转（500ms确保语音中断）
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
         }
 
 
