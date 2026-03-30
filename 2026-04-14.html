@@ -313,8 +313,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">作业</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：home=家，work=工作，在家完成的工作</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：home=家，work=工作，在家完成的工作</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">I have homework.</div>
                 <div class="example-cn">我有作业。</div>
@@ -337,9 +336,30 @@
         <div class="nav-links">
             <a href="2026-04-13.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-15.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">i have homework.</div>
+                <div class="example-cn">我有作业。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+         +         <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
+
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-13.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
 
     <script>
         const phrases = [{"en": "ruler", "zh": "尺子", "phonetic": "/ˈruːlə/", "type": "n.", "example": "My ruler is 30cm.", "example_zh": "我的尺子30厘米。"}, {"en": "bag", "zh": "包", "phonetic": "/bæɡ/", "type": "n.", "example": "Pack your bag.", "example_zh": "收拾行李。"}, {"en": "book", "zh": "书", "phonetic": "/bʊk/", "type": "n.", "example": "I love reading books.", "example_zh": "我喜欢读书。"}, {"en": "notebook", "zh": "笔记本", "phonetic": "/ˈnəʊtbʊk/", "type": "n.", "example": "Write in your notebook.", "example_zh": "在笔记本上写。"}, {"en": "homework", "zh": "作业", "phonetic": "/ˈhəʊmwɜːk/", "type": "n.", "example": "I have homework.", "example_zh": "我有作业。"}];
@@ -358,9 +378,10 @@
             }
         }
 
-        function speakPhrase(index, type, rate) {
+        function speakPhrase(index, type, rate, fromLoop = false) {
             // 点击卡片按钮时，先停止循环播放
-            if (isLooping) {
+            // 只有用户手动点击卡片按钮时才停止循环，循环播放内部调用不应停止
+            if (isLooping && !fromLoop) {
                 isLooping = false;
                 loopCount = MAX_LOOPS;
                 const statusEl = document.getElementById('loopStatus');
@@ -459,35 +480,35 @@
                     currentCardIndex = i;
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.4);
+                        speakPhrase(i, 'word', 0.4, true);
                         setTimeout(resolve, 8000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.8);
+                        speakPhrase(i, 'word', 0.8, true);
                         setTimeout(resolve, 6000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.6);
+                        speakPhrase(i, 'sentence', 0.6, true);
                         setTimeout(resolve, 9000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.8);
+                        speakPhrase(i, 'sentence', 0.8, true);
                         setTimeout(resolve, 7000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.9);
+                        speakPhrase(i, 'sentence', 0.9, true);
                         setTimeout(resolve, 6000);
                     });
                     if (!isLooping) break;

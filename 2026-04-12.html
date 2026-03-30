@@ -194,8 +194,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">老师</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：teach=教，-er=人，教的人</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：teach=教，-er=人，教的人</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Our teacher is kind.</div>
                 <div class="example-cn">我们老师很和蔼。</div>
@@ -223,7 +222,35 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">校长</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：记住'principal'的英文表达</div>
+            <div class：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">our teacher is kind.</div>
+                <div class="example-cn">我们老师很和蔼。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(0, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(0, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(0, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(0, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(0, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="word-header">
+                <div class="word-number">02</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">principal</span>
+                        <span class="phonetic">/ˈprɪnsəpəl/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">校长</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：记住'principal'的英文表达</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">The principal spoke.</div>
@@ -313,8 +340,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">椅子</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：chair=椅子，有腿的坐具</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：chair=椅子，有腿的坐具</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Sit on your chair.</div>
                 <div class="example-cn">坐在椅子上。</div>
@@ -337,9 +363,30 @@
         <div class="nav-links">
             <a href="2026-04-11.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-13.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">sit on your chair.</div>
+                <div class="example-cn">坐在椅子上。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+        +          <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
+
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-11.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
 
     <script>
         const phrases = [{"en": "teacher", "zh": "老师", "phonetic": "/ˈtiːtʃə/", "type": "n.", "example": "Our teacher is kind.", "example_zh": "我们老师很和蔼。"}, {"en": "principal", "zh": "校长", "phonetic": "/ˈprɪnsəpəl/", "type": "n.", "example": "The principal spoke.", "example_zh": "校长讲话了。"}, {"en": "classroom", "zh": "教室", "phonetic": "/ˈklɑːsrʊm/", "type": "n.", "example": "Our classroom is clean.", "example_zh": "我们教室很干净。"}, {"en": "desk", "zh": "桌子", "phonetic": "/desk/", "type": "n.", "example": "This is my desk.", "example_zh": "这是我的桌子。"}, {"en": "chair", "zh": "椅子", "phonetic": "/tʃeə/", "type": "n.", "example": "Sit on your chair.", "example_zh": "坐在椅子上。"}];
@@ -358,9 +405,10 @@
             }
         }
 
-        function speakPhrase(index, type, rate) {
+        function speakPhrase(index, type, rate, fromLoop = false) {
             // 点击卡片按钮时，先停止循环播放
-            if (isLooping) {
+            // 只有用户手动点击卡片按钮时才停止循环，循环播放内部调用不应停止
+            if (isLooping && !fromLoop) {
                 isLooping = false;
                 loopCount = MAX_LOOPS;
                 const statusEl = document.getElementById('loopStatus');
@@ -459,35 +507,35 @@
                     currentCardIndex = i;
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.4);
+                        speakPhrase(i, 'word', 0.4, true);
                         setTimeout(resolve, 8000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.8);
+                        speakPhrase(i, 'word', 0.8, true);
                         setTimeout(resolve, 6000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.6);
+                        speakPhrase(i, 'sentence', 0.6, true);
                         setTimeout(resolve, 9000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.8);
+                        speakPhrase(i, 'sentence', 0.8, true);
                         setTimeout(resolve, 7000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.9);
+                        speakPhrase(i, 'sentence', 0.9, true);
                         setTimeout(resolve, 6000);
                     });
                     if (!isLooping) break;

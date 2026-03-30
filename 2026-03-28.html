@@ -306,9 +306,10 @@
             }
         }
 
-        function speakPhrase(index, type, rate) {
+        function speakPhrase(index, type, rate, fromLoop = false) {
             // 点击卡片按钮时，先停止循环播放
-            if (isLooping) {
+            // 只有用户手动点击卡片按钮时才停止循环，循环播放内部调用不应停止
+            if (isLooping && !fromLoop) {
                 isLooping = false;
                 loopCount = MAX_LOOPS;
                 const statusEl = document.getElementById('loopStatus');
@@ -407,35 +408,35 @@
                     currentCardIndex = i;
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.4);
+                        speakPhrase(i, 'word', 0.4, true);
                         setTimeout(resolve, 8000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'word', 0.8);
+                        speakPhrase(i, 'word', 0.8, true);
                         setTimeout(resolve, 6000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.6);
+                        speakPhrase(i, 'sentence', 0.6, true);
                         setTimeout(resolve, 9000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.8);
+                        speakPhrase(i, 'sentence', 0.8, true);
                         setTimeout(resolve, 7000);
                     });
                     if (!isLooping) break;
                     await sleep(1000);
                     
                     await new Promise(resolve => {
-                        speakPhrase(i, 'sentence', 0.9);
+                        speakPhrase(i, 'sentence', 0.9, true);
                         setTimeout(resolve, 6000);
                     });
                     if (!isLooping) break;
