@@ -404,6 +404,19 @@
             speakOnce();
         }
 
+        // 切换循环播放状态
+        function toggleLoop() {
+            const btn = document.getElementById('loopBtn');
+            if (isLooping) {
+                // 正在播放 -> 停止
+                stopSpeaking();
+            } else {
+                // 未播放 -> 开始播放
+                startAutoLoop();
+            }
+        }
+
+
         function stopSpeaking() {
             window.speechSynthesis.cancel();
             isLooping = false;
