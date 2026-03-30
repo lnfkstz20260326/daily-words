@@ -306,6 +306,14 @@
         </div>
 
 
+        
+        <div class="button-group" style="justify-content: center; margin-bottom: 20px;">
+            <button class="btn btn-loop" id="loopBtn" onclick="toggleLoop()">
+                ▶️ 开始循环朗读
+            </button>
+        </div>
+    
+
         <div class="loop-status" id="loopStatus">
             🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
         </div>
@@ -355,8 +363,10 @@
                 if (repeatCount >= maxRepeats) {
                     if (rate <= 0.6 && type === 'word') {
                         const cnUtterance = speak(phrase.zh, 0.9, 'zh-CN');
+                        window.speechSynthesis.speak(cnUtterance);
                     } else if (rate <= 0.6 && type === 'sentence') {
                         const cnUtterance = speak(phrase.example_zh, 0.9, 'zh-CN');
+                        window.speechSynthesis.speak(cnUtterance);
                     }
                     return;
                 }
@@ -377,6 +387,23 @@
             isLooping = false;
             loopCount = 0;
             document.getElementById('loopStatus').textContent = '⏹ 已停止';
+            document.getElementById('loopBtn').textContent = '▶️ 开始循环朗读';
+        }
+
+        function toggleLoop() {
+            const btn = document.getElementById('loopBtn');
+            if (isLooping) {
+                window.speechSynthesis.cancel();
+                isLooping = false;
+                document.getElementById('loopStatus').textContent = '⏹ 已停止';
+                btn.textContent = '▶️ 开始循环朗读';
+            } else {
+                if (loopCount === 0) {
+                    loopCount = 1;
+                }
+                startAutoLoop();
+                btn.textContent = '⏸ 暂停循环';
+            }
         }
 
         async function sleep(ms) {
