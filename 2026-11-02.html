@@ -184,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">分析</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'analyze'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Analyze the data.</div>
@@ -209,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">评估</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'evaluate'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Evaluate the result.</div>
@@ -234,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">说明</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'illustrate'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Illustrate your point.</div>
@@ -284,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">演示</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'demonstrate'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Demonstrate your understanding.</div>
@@ -449,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

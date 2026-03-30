@@ -184,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">整洁的</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'neat'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Look neat today.</div>
@@ -209,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">整齐的</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'tidy'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Keep your room tidy.</div>
@@ -259,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">精力充沛的</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'energetic'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">I'm energetic.</div>
@@ -284,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">习惯</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'habit'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">It's a good habit.</div>
@@ -449,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

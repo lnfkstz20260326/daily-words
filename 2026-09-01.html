@@ -184,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">保护</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'preserve'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Preserve nature.</div>
@@ -209,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">野生动物</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'wildlife'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Observe wildlife.</div>
@@ -234,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">生态系统</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'ecosystem'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Protect ecosystem.</div>
@@ -259,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">松鼠</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'squirrel'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">See a squirrel.</div>
@@ -284,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">鸭子</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'duck'的英文表达</div>
+        <div class="memory-tip">Says quack, swims in pond</div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Feed the ducks.</div>
@@ -449,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

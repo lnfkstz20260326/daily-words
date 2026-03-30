@@ -184,7 +184,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">教练</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'coach'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">The coach is strict.</div>
@@ -209,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">锻炼</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'exercise'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Do more exercise.</div>
@@ -234,7 +234,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">热身</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'warm up'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Warm up first.</div>
@@ -259,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">肌肉</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'muscle'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Build muscle.</div>
@@ -284,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">耐力</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'stamina'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Build stamina.</div>
@@ -449,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

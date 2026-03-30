@@ -4,7 +4,7 @@ import re
 
 # 读取修复后的素材库
 print("读取修复后的素材库...")
-with open('content_backup/content_backup_fixed.json', 'r', encoding='utf-8') as f:
+with open('content_backup/content_backup.json', 'r', encoding='utf-8') as f:
     all_data = json.load(f)
 
 print(f"共有 {len(all_data)} 天的数据")

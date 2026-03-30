@@ -209,7 +209,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">交换礼物</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'exchange gifts'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Exchange gifts.</div>
@@ -259,7 +259,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">惯例</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'routine'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Bedtime routine.</div>
@@ -284,7 +284,7 @@ body {
             <span class="part-of-speech">n.</span>
             <span class="chinese-meaning">拉伸</span>
         </div>
-        <div class="memory-tip">记忆小提示：记住'stretch'的英文表达</div>
+        <div class="memory-tip">💡 </div>
         <div class="example-box">
             <div class="example-label">例句 Example</div>
             <div class="example-en">Stretch before running.</div>
@@ -449,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
+        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;
