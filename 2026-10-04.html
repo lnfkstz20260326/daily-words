@@ -67,7 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">咨询</span>
     </div>
-    <div class="memory-tip">🧠 💡 记住consult就是'咨询'</div>
+    <div class="memory-tip">🧠 💡 consult = 咨询</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Consult with me.</div>
@@ -93,7 +93,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">简短地说</span>
     </div>
-    <div class="memory-tip">🧠 💡 记住brief就是'简短地说'</div>
+    <div class="memory-tip">🧠 💡 brief = 简短地说</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Be brief.</div>
@@ -119,7 +119,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">庆祝</span>
     </div>
-    <div class="memory-tip">🧠 📝 celebration = 庆祝</div>
+    <div class="memory-tip">🧠 💡 celebration = 庆祝</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Big celebration.</div>
@@ -145,7 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">传统</span>
     </div>
-    <div class="memory-tip">🧠 💡 记住tradition就是'传统'</div>
+    <div class="memory-tip">🧠 💡 tradition = 传统</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Family tradition.</div>
@@ -171,7 +171,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">习俗</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ custom就是'习俗'</div>
+    <div class="memory-tip">🧠 💡 custom = 习俗</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Local custom.</div>
@@ -217,7 +217,6 @@ function speakPhrase(index, type, rate) {
         }
     }
 
-    // 慢速时加播汉语
     if (rate <= 0.6) {
         const zhText = WORDS[index].zh;
         setTimeout(() => {
@@ -276,31 +275,26 @@ async function runLoop() {
     }
 
     loopCount++;
-    loopStatus.textContent = '🔄 第 ' + loopCount + '/7 轮';
+    document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
 
     for (let i = 0; i < WORDS.length; i++) {
         if (!isLooping) return;
-        // 1. 慢速词 3遍 + 汉语
         await speakPhraseWait(i, 'word', 0.4);
         await delay(1000);
 
         if (!isLooping) return;
-        // 2. 匀速词 3遍
         await speakPhraseWait(i, 'word', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 3. 慢速句 3遍 + 汉语
         await speakPhraseWait(i, 'sentence', 0.6);
         await delay(1000);
 
         if (!isLooping) return;
-        // 4. 匀速句 3遍
         await speakPhraseWait(i, 'sentence', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 5. 常速句 3遍
         await speakPhraseWait(i, 'sentence', 0.9);
         await delay(1000);
     }
@@ -329,7 +323,6 @@ function speakPhraseWait(index, type, rate) {
             utterance.onend = () => {
                 completed++;
                 if (completed >= total) {
-                    // 慢速时加播汉语
                     if (rate <= 0.6) {
                         const zhUtterance = new SpeechSynthesisUtterance(WORDS[index].zh);
                         zhUtterance.rate = 0.7;

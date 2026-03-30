@@ -67,7 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">过敏的</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ allergic就是'过敏的'</div>
+    <div class="memory-tip">🧠 💡 allergic = 过敏的</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">I'm allergic to seafood.</div>
@@ -93,7 +93,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">素食者</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ vegetarian就是'素食者'</div>
+    <div class="memory-tip">🧠 💡 vegetarian = 素食者</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">I'm a vegetarian.</div>
@@ -119,7 +119,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">营养</span>
     </div>
-    <div class="memory-tip">🧠 💡 记住nutrition就是'营养'</div>
+    <div class="memory-tip">🧠 💡 nutrition = 营养</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Good nutrition.</div>
@@ -145,7 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">卡路里</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ calorie就是'卡路里'</div>
+    <div class="memory-tip">🧠 💡 calorie = 卡路里</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Low calorie.</div>
@@ -171,7 +171,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">有机的</span>
     </div>
-    <div class="memory-tip">🧠 🎯 organic的中文是'有机的'</div>
+    <div class="memory-tip">🧠 💡 organic = 有机的</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Organic food.</div>
@@ -217,7 +217,6 @@ function speakPhrase(index, type, rate) {
         }
     }
 
-    // 慢速时加播汉语
     if (rate <= 0.6) {
         const zhText = WORDS[index].zh;
         setTimeout(() => {
@@ -276,31 +275,26 @@ async function runLoop() {
     }
 
     loopCount++;
-    loopStatus.textContent = '🔄 第 ' + loopCount + '/7 轮';
+    document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
 
     for (let i = 0; i < WORDS.length; i++) {
         if (!isLooping) return;
-        // 1. 慢速词 3遍 + 汉语
         await speakPhraseWait(i, 'word', 0.4);
         await delay(1000);
 
         if (!isLooping) return;
-        // 2. 匀速词 3遍
         await speakPhraseWait(i, 'word', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 3. 慢速句 3遍 + 汉语
         await speakPhraseWait(i, 'sentence', 0.6);
         await delay(1000);
 
         if (!isLooping) return;
-        // 4. 匀速句 3遍
         await speakPhraseWait(i, 'sentence', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 5. 常速句 3遍
         await speakPhraseWait(i, 'sentence', 0.9);
         await delay(1000);
     }
@@ -329,7 +323,6 @@ function speakPhraseWait(index, type, rate) {
             utterance.onend = () => {
                 completed++;
                 if (completed >= total) {
-                    // 慢速时加播汉语
                     if (rate <= 0.6) {
                         const zhUtterance = new SpeechSynthesisUtterance(WORDS[index].zh);
                         zhUtterance.rate = 0.7;

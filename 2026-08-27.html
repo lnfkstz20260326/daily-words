@@ -67,7 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">车站</span>
     </div>
-    <div class="memory-tip">🧠 🎯 stop的中文是'车站'</div>
+    <div class="memory-tip">🧠 ↔️ start开始，stop停</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">The bus stop is near.</div>
@@ -93,7 +93,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">上车</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ get on就是'上车'</div>
+    <div class="memory-tip">🧠 🚌 车门打开，Get on! 上车！</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Get on the bus.</div>
@@ -119,7 +119,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">下车</span>
     </div>
-    <div class="memory-tip">🧠 🎯 get off的中文是'下车'</div>
+    <div class="memory-tip">🧠 🚏 到站了，Get off! 下车！</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Get off here.</div>
@@ -145,7 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">座位</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ seat就是'座位'</div>
+    <div class="memory-tip">🧠 💡 seat = 座位</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Find a seat.</div>
@@ -171,7 +171,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">票</span>
     </div>
-    <div class="memory-tip">🧠 🏷️ ticket就是'票'</div>
+    <div class="memory-tip">🧠 💡 ticket = 票</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Buy a ticket.</div>
@@ -217,7 +217,6 @@ function speakPhrase(index, type, rate) {
         }
     }
 
-    // 慢速时加播汉语
     if (rate <= 0.6) {
         const zhText = WORDS[index].zh;
         setTimeout(() => {
@@ -276,31 +275,26 @@ async function runLoop() {
     }
 
     loopCount++;
-    loopStatus.textContent = '🔄 第 ' + loopCount + '/7 轮';
+    document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
 
     for (let i = 0; i < WORDS.length; i++) {
         if (!isLooping) return;
-        // 1. 慢速词 3遍 + 汉语
         await speakPhraseWait(i, 'word', 0.4);
         await delay(1000);
 
         if (!isLooping) return;
-        // 2. 匀速词 3遍
         await speakPhraseWait(i, 'word', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 3. 慢速句 3遍 + 汉语
         await speakPhraseWait(i, 'sentence', 0.6);
         await delay(1000);
 
         if (!isLooping) return;
-        // 4. 匀速句 3遍
         await speakPhraseWait(i, 'sentence', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 5. 常速句 3遍
         await speakPhraseWait(i, 'sentence', 0.9);
         await delay(1000);
     }
@@ -329,7 +323,6 @@ function speakPhraseWait(index, type, rate) {
             utterance.onend = () => {
                 completed++;
                 if (completed >= total) {
-                    // 慢速时加播汉语
                     if (rate <= 0.6) {
                         const zhUtterance = new SpeechSynthesisUtterance(WORDS[index].zh);
                         zhUtterance.rate = 0.7;

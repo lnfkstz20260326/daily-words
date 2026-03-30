@@ -67,7 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">时间</span>
     </div>
-    <div class="memory-tip">🧠 📝 time = 时间</div>
+    <div class="memory-tip">🧠 💡 time = 时间</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">What time should I call?</div>
@@ -93,7 +93,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">开心的</span>
     </div>
-    <div class="memory-tip">🧠 🌟 词根：un-不 + happy开心 = unhappy不开心</div>
+    <div class="memory-tip">🧠 ↔️ sad难过，happy开心</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">We are happy.</div>
@@ -119,7 +119,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">打扫</span>
     </div>
-    <div class="memory-tip">🧠 🎯 clean的中文是'打扫'</div>
+    <div class="memory-tip">🧠 💡 clean = 打扫</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Clean my room.</div>
@@ -145,7 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">新鲜的</span>
     </div>
-    <div class="memory-tip">🧠 💡 记住fresh就是'新鲜的'</div>
+    <div class="memory-tip">🧠 💡 fresh = 新鲜的</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">The air is fresh.</div>
@@ -171,7 +171,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
         <span class="tag tag-type">n.</span>
         <span class="tag tag-meaning">上菜</span>
     </div>
-    <div class="memory-tip">🧠 🎯 serve的中文是'上菜'</div>
+    <div class="memory-tip">🧠 💡 serve = 上菜</div>
     <div class="sentence-section">
         <div class="sentence-label">例句 Example</div>
         <div class="sentence-en">Serve the food.</div>
@@ -217,7 +217,6 @@ function speakPhrase(index, type, rate) {
         }
     }
 
-    // 慢速时加播汉语
     if (rate <= 0.6) {
         const zhText = WORDS[index].zh;
         setTimeout(() => {
@@ -276,31 +275,26 @@ async function runLoop() {
     }
 
     loopCount++;
-    loopStatus.textContent = '🔄 第 ' + loopCount + '/7 轮';
+    document.getElementById('loopStatus').textContent = '🔄 第 ' + loopCount + '/7 轮';
 
     for (let i = 0; i < WORDS.length; i++) {
         if (!isLooping) return;
-        // 1. 慢速词 3遍 + 汉语
         await speakPhraseWait(i, 'word', 0.4);
         await delay(1000);
 
         if (!isLooping) return;
-        // 2. 匀速词 3遍
         await speakPhraseWait(i, 'word', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 3. 慢速句 3遍 + 汉语
         await speakPhraseWait(i, 'sentence', 0.6);
         await delay(1000);
 
         if (!isLooping) return;
-        // 4. 匀速句 3遍
         await speakPhraseWait(i, 'sentence', 0.8);
         await delay(1000);
 
         if (!isLooping) return;
-        // 5. 常速句 3遍
         await speakPhraseWait(i, 'sentence', 0.9);
         await delay(1000);
     }
@@ -329,7 +323,6 @@ function speakPhraseWait(index, type, rate) {
             utterance.onend = () => {
                 completed++;
                 if (completed >= total) {
-                    // 慢速时加播汉语
                     if (rate <= 0.6) {
                         const zhUtterance = new SpeechSynthesisUtterance(WORDS[index].zh);
                         zhUtterance.rate = 0.7;
