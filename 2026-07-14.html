@@ -449,7 +449,7 @@ async function startAutoPlay() {
     
     while (isPlaying && currentLoop < maxLoops) {
         currentLoop++;
-        statusDiv.textContent = `🔄 第 {currentLoop}/{maxLoops} 轮`;
+        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
         
         for (let i = 0; i < cards.length; i++) {
             if (!isPlaying) break;

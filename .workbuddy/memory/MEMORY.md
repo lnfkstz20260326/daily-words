@@ -102,3 +102,35 @@
 - **2026年**：3月31日-12月31日（276天，每天5个词汇）
 - **2027年**：1月1日-12月31日（365天，每天5个词汇）
 - **总计**：641天内容
+
+## 🔴 2026-03-30 晚 素材库修复
+
+### 问题发现
+- 用户反馈2026-04-29有9个词，其中4个重复
+- 单词和例句不对应
+
+### 排查结果
+- **73个问题**：涉及32个日期
+  - 36个例句为空
+  - 37个例句与上一个词重复
+- **根本原因**：素材库数据本身有错误
+
+### 修复措施
+1. 编写 `fix_content_v2.py` 智能修复脚本
+2. 去除73个重复词条
+3. 用修复后的素材库重新生成641个HTML文件
+4. 备份原素材库：`content_backup/content_backup_old.json`
+
+### 修复后验证
+2026-04-29 现在正确显示5个词：
+- fly → "Birds can fly."
+- throw → "Throw the ball."
+- catch → "Catch the ball!"
+- kick → "Kick the ball."
+- hit → "Hit the ball."
+
+### 相关文件
+- `content_backup/content_backup.json` - 修复后的素材库
+- `content_backup/content_backup_old.json` - 原素材库备份
+- `regenerate_html.py` - 重新生成HTML的脚本
+- `fix_content_v2.py` - 素材库修复脚本
