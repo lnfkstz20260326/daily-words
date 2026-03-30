@@ -462,6 +462,22 @@ function stopSpeaking(){
   statusDiv.textContent='⏹ 已停止';
   document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
 }
+
+// speakPhrase: 卡片按钮调用的桥接函数
+async function speakPhrase(index, type, rate){
+  const card=document.querySelectorAll('.word-card')[index];
+  if(!card)return;
+  const wordEn=card.querySelector('.word-en').textContent;
+  const wordZh=card.querySelector('.word-meaning').textContent;
+  const exEn=card.querySelector('.example-en').textContent;
+  const exZh=card.querySelector('.example-zh').textContent;
+  const speed=rate<=0.6?'slow':rate<=0.7?'normal':'fast';
+  if(type==='word'){
+    await speakWord(wordEn,wordZh,speed);
+  }else{
+    await speakSentence(exEn,exZh,speed);
+  }
+}
 async function startAutoPlay(){
   if(isPlaying){
     // 正在播放 -> 暂停

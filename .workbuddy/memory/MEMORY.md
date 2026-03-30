@@ -10,30 +10,47 @@
 2. **幂等修复脚本**：修复脚本必须能多次运行而不产生重复内容
 3. **模板法修复**：使用正确的文件作为模板，然后用脚本批量应用到其他文件
 
-### JS控制逻辑要点
-- `speakPhrase(index, type, rate, fromLoop = false)`：第四个参数区分调用来源
-  - `fromLoop = false`（默认）：用户点击卡片按钮，**会停止循环**
-  - `fromLoop = true`：循环播放内部调用，**不会停止循环**
-- `stopSpeaking()`：停止语音+重置循环状态+更新按钮文字
-- `goBack()`：停止语音+重置循环状态+500ms延迟后返回首页
-- `toggleLoop()`：切换循环播放状态（暂停/继续）
+### JS控制逻辑要点（3月29日稳定版）
+- **变量**：`isPlaying`, `currentLoop`, `maxLoops=7`
+- **函数**：
+  - `speakWord(wordEn, wordZh, speed)`：播放单词，slow播放后异步播放汉语
+  - `speakSentence(exEn, exZh, speed)`：播放句子，slow播放后异步播放汉语
+  - `startAutoPlay()`：开始/暂停循环（检查isPlaying状态）
+  - `stopSpeaking()`：停止所有播放
+  - `goBack()`：停止播放+100ms延迟后跳转
 
-### 🔴 2026-03-30 重要修复（19:38）
-**问题**：循环播放只读第一个卡片的第一个慢速词就停止了
-**原因**：`speakPhrase` 检测到 `isLooping === true` 就立即停止循环
-**修复**：添加 `fromLoop` 参数区分"循环调用"和"用户点击"
+### 🔴 3月29日稳定架构
 ```javascript
-function speakPhrase(index, type, rate, fromLoop = false) {
-    // 只有用户手动点击卡片按钮时才停止循环
-    if (isLooping && !fromLoop) {
-        isLooping = false;
-        loopCount = MAX_LOOPS;
-        ...
-    }
+// 变量
+let isPlaying=false, currentLoop=0, maxLoops=7;
+
+// 顶部按钮
+onclick="startAutoPlay()"
+
+// 开始/暂停函数
+async function startAutoPlay(){
+  if(isPlaying){
+    // 暂停
+    isPlaying=false;
+    window.speechSynthesis.cancel();
     ...
+    return;
+  }
+  // 开始播放
+  isPlaying=true;
+  while(isPlaying && currentLoop < maxLoops){
+    // 播放逻辑
+  }
 }
-// 循环播放调用时传递 true
-speakPhrase(i, 'word', 0.4, true);
+
+// 汉语播放（异步）
+if(speed==='slow'){
+  setTimeout(()=>{
+    const u2=new SpeechSynthesisUtterance(wordZh);
+    u2.lang='zh-CN';u2.rate=1.0;
+    window.speechSynthesis.speak(u2);
+  },1500);
+}
 ```
 
 ## 核心信息

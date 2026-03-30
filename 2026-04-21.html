@@ -223,8 +223,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">打开</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：反义 close关，open=打开</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：反义 close关，open=打开</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Open the window.</div>
                 <div class="example-cn">打开窗户。</div>
@@ -253,7 +252,36 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">关</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：close=合上/靠近</div>
+            <div class：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">open the window.</div>
+                <div class="example-cn">打开窗户。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(1, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(1, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(1, 'sentence', 0.6)">🐢 慢速句×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(1, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(1, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-header">
+                <div class="word-number">03</div>
+                <div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="word-title">close</span>
+                        <span class="phonetic">/kləʊz/</span>
+                    </div>
+                </div>
+            </div>
+            <div class="word-meaning">
+                <span class="part-of-speech">n.</span>
+                <span class="chinese-meaning">关</span>
+            </div>
+            <div clas + s() = "memory-tip">💡 记忆小提示：close=合上/靠近</div>
             <div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Close the door.</div>
@@ -313,8 +341,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">门</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：door=门，进出口</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：door=门，进出口</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">Close the door.</div>
                 <div class="example-cn">关门。</div>
@@ -337,9 +364,30 @@
         <div class="nav-links">
             <a href="2026-04-20.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-22.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">close the door.</div>
+                <div class="example-cn">关门。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+           +       <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
+
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-20.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
 
     <script>
 let isPlaying=false,currentLoop=0,maxLoops=7;
@@ -404,6 +452,22 @@ function stopSpeaking(){
   statusDiv.style.display='block';
   statusDiv.textContent='⏹ 已停止';
   document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
+}
+
+// speakPhrase: 卡片按钮调用的桥接函数
+async function speakPhrase(index, type, rate){
+  const card=document.querySelectorAll('.word-card')[index];
+  if(!card)return;
+  const wordEn=card.querySelector('.word-en').textContent;
+  const wordZh=card.querySelector('.word-meaning').textContent;
+  const exEn=card.querySelector('.example-en').textContent;
+  const exZh=card.querySelector('.example-zh').textContent;
+  const speed=rate<=0.6?'slow':rate<=0.7?'normal':'fast';
+  if(type==='word'){
+    await speakWord(wordEn,wordZh,speed);
+  }else{
+    await speakSentence(exEn,exZh,speed);
+  }
 }
 async function startAutoPlay(){
   if(isPlaying){
