@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>语音诊断</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; max-width: 800px; margin: 0 auto; }
+    h1 { color: #4F46E5; }
+    .section { margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 8px; }
+    .voice-item { padding: 8px; margin: 5px 0; background: white; border-radius: 4px; }
+    .voice-item.good { border-left: 4px solid green; }
+    .voice-item.bad { border-left: 4px solid red; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; background: #4F46E5; color: white; border: none; border-radius: 5px; }
+    button:hover { background: #4338CA; }
+    pre { background: #1f1f1f; color: #0f0; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    .test-section { margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <h1>🔊 语音合成诊断工具</h1>
+  
+  <div class="section">
+    <h2>可用语音列表</h2>
+    <div id="voices-list">加载中...</div>
+  </div>
+  
+  <div class="section">
+    <h2>测试语音播放</h2>
+    <div class="test-section">
+      <h3>英文语音测试</h3>
+      <button onclick="testVoice('en-US', 'Jenny')">英文-Jenny</button>
+      <button onclick="testVoice('en-US', 'Aria')">英文-Aria</button>
+      <button onclick="testVoice('en-US', 'Google US English')">英文-Google</button>
+      <button onclick="testVoice('en-US', null)">英文-默认</button>
+    </div>
+    <div class="test-section">
+      <h3>中文语音测试</h3>
+      <button onclick="testVoice('zh-CN', 'Huihui')">中文-Huihui</button>
+      <button onclick="testVoice('zh-CN', 'Yaoyao')">中文-Yaoyao</button>
+      <button onclick="testVoice('zh-CN', 'Kangkang')">中文-Kangkang</button>
+      <button onclick="testVoice('zh-CN', null)">中文-默认</button>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>当前代码推荐的Voice Selection</h2>
+    <pre id="recommended-code">点击按钮测试推荐逻辑</pre>
+  </div>
+
+  <script>
+    let voices = [];
+    
+    function loadVoices() {
+      return new Promise(resolve => {
+        voices = window.speechSynthesis.getVoices();
+        if (voices.length > 0) {
+          resolve(voices);
+        } else {
+          window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            resolve(voices);
+          };
+        }
+      });
+    }
+    
+    async function init() {
+      await loadVoices();
+      displayVoices();
+      updateRecommendedCode();
+    }
+    
+    function displayVoices() {
+      const container = document.getElementById('voices-list');
+      if (voices.length === 0) {
+        container.innerHTML = '<p>没有检测到语音，请确保浏览器支持Web Speech API</p>';
+        return;
+      }
+      
+      let html = `<p>共 ${voices.length} 个语音：</p>`;
+      
+      // 英文语音
+      const enVoices = voices.filter(v => v.lang.startsWith('en'));
+      html += `<h4>英文语音 (${enVoices.length}个)</h4>`;
+      enVoices.forEach(v => {
+        const isGood = v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Google');
+        html += `<div class="voice-item ${isGood ? 'good' : ''}">${v.name} (${v.lang}) ${isGood ? '⭐推荐' : ''}</div>`;
+      });
+      
+      // 中文语音
+      const zhVoices = voices.filter(v => v.lang.startsWith('zh'));
+      html += `<h4>中文语音 (${zhVoices.length}个)</h4>`;
+      zhVoices.forEach(v => {
+        html += `<div class="voice-item">${v.name} (${v.lang})</div>`;
+      });
+      
+      container.innerHTML = html;
+    }
+    
+    function updateRecommendedCode() {
+      const code = document.getElementById('recommended-code');
+      code.textContent = `// 英文voice selection:
+const enVoice = voices.find(v => v.name.includes('Jenny'))
+  || voices.find(v => v.name.includes('Aria'))
+  || voices.find(v => v.name.includes('Google US English'))
+  || voices[0];
+
+// 中文voice selection:
+const zhVoice = voices.find(v => v.lang === 'zh-CN')
+  || voices.find(v => v.lang.startsWith('zh'))
+  || voices[0];`;
+    }
+    
+    function testVoice(lang, preferredName) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance('Hello World 你好世界');
+      utterance.lang = lang;
+      if (preferredName) {
+        const v = voices.find(voice => voice.name.includes(preferredName));
+        if (v) {
+          utterance.voice = v;
+          alert(`使用: ${v.name}`);
+        } else {
+          alert(`未找到包含 "${preferredName}" 的语音`);
+        }
+      } else {
+        alert('使用默认语音');
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+    
+    init();
+  </script>
+</body>
+</html>
