@@ -313,8 +313,7 @@
                 <span class="part-of-speech">n.</span>
                 <span class="chinese-meaning">汤</span>
             </div>
-            <div class="memory-tip">💡 记忆小提示：soup=汤，液体的食物</div>
-            <div class="example-box">
+            <div class="memory-tip">💡 记忆小提示：soup=汤，液体的食物</div><div class="example-box">
                 <div class="example-label">例句 Example</div>
                 <div class="example-en">This soup is hot.</div>
                 <div class="example-cn">汤很烫。</div>
@@ -337,12 +336,32 @@
         <div class="nav-links">
             <a href="2026-04-23.html">← 前一天</a>
             <a href="index.html">📅 返回首页</a>
-            <a href="2026-04-25.html">后一天 →</a>
+            <a href：拆开记：<div class="example-box">
+                <div class="example-label">例句 example</div>
+                <div class="example-en">this soup is hot.</div>
+                <div class="example-cn">汤很烫。</div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-slow" onclick="speakphrase(4, 'word', 0.4)">🐢 慢速词×3</button>
+                <button class="btn btn-normal" onclick="speakphrase(4, 'word', 0.8)">🚀 匀速词×3</button>
+                <button class="btn btn-slow" onclick="speakphrase(4, 'sentence', 0.6)">🐢 慢速句×3</button>
+         +         <button class="btn btn-normal" onclick="speakphrase(4, 'sentence', 0.8)">🚀 匀速句×3</button>
+                <button class="btn btn-fast" onclick="speakphrase(4, 'sentence', 0.9)">⚡ 常速句×3</button>
+                <button class="btn btn-stop" onclick="stopspeaking()">⏹ 停止</button>
+            </div>
         </div>
-    </div>
 
-    <script>
-let isPlaying=false,currentLoop=0,maxLoops=7;
+
+        <div class="loop-status" id="loopstatus">
+            🔄 点击卡片下方按钮开始朗读 · 页面加载3秒后自动循环播放
+        </div>
+
+        <div class="nav-links">
+            <a href="2026-04-23.html">← 前一天</a>
+            <a href="index.html">📅 返回首页</a>
+            <a href</div>
+
+    <script>let isPlaying=false,currentLoop=0,maxLoops=7;
 function loadVoices(){
   return new Promise(resolve=>{
     let voices=window.speechSynthesis.getVoices();
@@ -405,7 +424,6 @@ function stopSpeaking(){
   statusDiv.textContent='⏹ 已停止';
   document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
 }
-
 // speakPhrase: 卡片按钮调用的桥接函数
 async function speakPhrase(index, type, rate){
   const card=document.querySelectorAll('.card')[index];
@@ -422,27 +440,17 @@ async function speakPhrase(index, type, rate){
   }
 }
 async function startAutoPlay(){
-  if(isPlaying){
-    // 正在播放 -> 暂停
-    isPlaying=false;
-    currentLoop=0;
-    window.speechSynthesis.cancel();
-    const statusDiv=document.getElementById('loopStatus');
-    statusDiv.textContent='⏸ 已暂停';
-    document.querySelector('.btn-primary').textContent='▶️ 继续朗读';
-    return;
-  }
-  // 开始播放
+  if(isPlaying)return;
   isPlaying=true;
   currentLoop=0;
   const statusDiv=document.getElementById('loopStatus');
   const btn=document.querySelector('.btn-primary');
   statusDiv.style.display='block';
-  const cards=document.querySelectorAll('.word-card');
+  const cards=document.querySelectorAll('.card');
   while(isPlaying&&currentLoop<maxLoops){
     currentLoop++;
     statusDiv.textContent='🔄 第'+currentLoop+'/'+maxLoops+'轮';
-    btn.textContent='⏸ 暂停循环';
+    btn.textContent='⏸ 暂停';
     for(let c of cards){
       if(!isPlaying)break;
       const wordEn=c.querySelector('.word-title').textContent;
@@ -476,10 +484,9 @@ function goBack(){
   window.speechSynthesis.cancel();
   isPlaying=false;
   currentLoop=0;
-  setTimeout(()=>{window.location.href='index.html';},100);
+  window.location.href='index.html';
 }
 // 页面加载3秒后自动开始循环朗读
-setTimeout(()=>{startAutoPlay();},3000);
-</script>
+setTimeout(()=>{startAutoPlay();},3000);</script>
 </body>
 </html>

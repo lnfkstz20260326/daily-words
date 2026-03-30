@@ -625,8 +625,7 @@
             <a href="index.html">📅 返回首页</a>
             <a href</div>
 
-    <script>
-let isPlaying=false,currentLoop=0,maxLoops=7;
+    <script>let isPlaying=false,currentLoop=0,maxLoops=7;
 function loadVoices(){
   return new Promise(resolve=>{
     let voices=window.speechSynthesis.getVoices();
@@ -689,28 +688,33 @@ function stopSpeaking(){
   statusDiv.textContent='⏹ 已停止';
   document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
 }
-async function startAutoPlay(){
-  if(isPlaying){
-    // 正在播放 -> 暂停
-    isPlaying=false;
-    currentLoop=0;
-    window.speechSynthesis.cancel();
-    const statusDiv=document.getElementById('loopStatus');
-    statusDiv.textContent='⏸ 已暂停';
-    document.querySelector('.btn-primary').textContent='▶️ 继续朗读';
-    return;
+// speakPhrase: 卡片按钮调用的桥接函数
+async function speakPhrase(index, type, rate){
+  const card=document.querySelectorAll('.card')[index];
+  if(!card)return;
+  const wordEn=card.querySelector('.word-title').textContent;
+  const wordZh=card.querySelector('.chinese-meaning').textContent;
+  const exEn=card.querySelector('.example-en').textContent;
+  const exZh=card.querySelector('.example-cn').textContent;
+  const speed=rate<=0.6?'slow':rate<=0.7?'normal':'fast';
+  if(type==='word'){
+    await speakWord(wordEn,wordZh,speed);
+  }else{
+    await speakSentence(exEn,exZh,speed);
   }
-  // 开始播放
+}
+async function startAutoPlay(){
+  if(isPlaying)return;
   isPlaying=true;
   currentLoop=0;
   const statusDiv=document.getElementById('loopStatus');
   const btn=document.querySelector('.btn-primary');
   statusDiv.style.display='block';
-  const cards=document.querySelectorAll('.word-card');
+  const cards=document.querySelectorAll('.card');
   while(isPlaying&&currentLoop<maxLoops){
     currentLoop++;
     statusDiv.textContent='🔄 第'+currentLoop+'/'+maxLoops+'轮';
-    btn.textContent='⏸ 暂停循环';
+    btn.textContent='⏸ 暂停';
     for(let c of cards){
       if(!isPlaying)break;
       const wordEn=c.querySelector('.word-title').textContent;
@@ -744,10 +748,9 @@ function goBack(){
   window.speechSynthesis.cancel();
   isPlaying=false;
   currentLoop=0;
-  setTimeout(()=>{window.location.href='index.html';},100);
+  window.location.href='index.html';
 }
 // 页面加载3秒后自动开始循环朗读
-setTimeout(()=>{startAutoPlay();},3000);
-</script>
+setTimeout(()=>{startAutoPlay();},3000);</script>
 </body>
 </html>
