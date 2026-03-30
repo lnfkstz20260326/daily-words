@@ -473,7 +473,7 @@ function stopSpeaking(){
   const statusDiv=document.getElementById('loopStatus');
   statusDiv.style.display='block';
   statusDiv.textContent='⏹ 已停止';
-  document.querySelector('.btn-primary').textContent='▶️ 开始循环朗读';
+  document.querySelector('.btn-loop').textContent='▶️ 开始循环朗读';
 }
 // speakPhrase: 卡片按钮调用的桥接函数
 async function speakPhrase(index, type, rate){
@@ -495,7 +495,7 @@ async function startAutoPlay(){
   isPlaying=true;
   currentLoop=0;
   const statusDiv=document.getElementById('loopStatus');
-  const btn=document.querySelector('.btn-primary');
+  const btn=document.querySelector('.btn-loop');
   statusDiv.style.display='block';
   const cards=document.querySelectorAll('.card');
   while(isPlaying&&currentLoop<maxLoops){

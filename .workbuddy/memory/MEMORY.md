@@ -15,9 +15,19 @@
 - **函数**：
   - `speakWord(wordEn, wordZh, speed)`：播放单词，slow播放后异步播放汉语
   - `speakSentence(exEn, exZh, speed)`：播放句子，slow播放后异步播放汉语
-  - `startAutoPlay()`：开始/暂停循环（检查isPlaying状态）
+  - `speakPhrase(index, type, rate)`：**卡片按钮调用的桥接函数**
+  - `startAutoPlay()`：开始循环播放（如果正在播放则直接返回）
   - `stopSpeaking()`：停止所有播放
-  - `goBack()`：停止播放+100ms延迟后跳转
+  - `goBack()`：停止播放后跳转首页
+
+### 🔴 CSS选择器（HTML实际使用的类名）
+| 功能 | 正确类名 |
+|------|----------|
+| 卡片 | `.card` |
+| 单词英文 | `.word-title` |
+| 中文意思 | `.chinese-meaning` |
+| 例句英文 | `.example-en` |
+| 例句中文 | `.example-cn` |
 
 ### 🔴 3月29日稳定架构
 ```javascript
