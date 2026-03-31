@@ -2,262 +2,222 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日英语朗读 · 词汇索引</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📚 每日英语听说 - 日期选择</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #1e293b;
-  }
-  header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  header h1 { font-size: 1.8rem; color: #0369a1; font-weight: 700; }
-  header p { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
-  .stats {
-    text-align: center;
-    margin-bottom: 24px;
-    color: #64748b;
-    font-size: 0.85rem;
-  }
-  .stats span { font-weight: 600; color: #0369a1; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .day-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 18px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    border-top: 4px solid #38bdf8;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-  }
-  .day-card.phrase { border-top-color: #a78bfa; }
-  .day-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
-  .day-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .day-date { font-size: 0.85rem; color: #64748b; }
-  .day-badge {
-    font-size: 0.75rem;
-    padding: 2px 8px;
-    border-radius: 10px;
-    background: #dbeafe;
-    color: #1d4ed8;
-    font-weight: 600;
-  }
-  .day-badge.phrase { background: #ede9fe; color: #6d28d9; }
-  .day-title { font-size: 1rem; font-weight: 700; color: #0369a1; margin-bottom: 8px; }
-  .day-card.phrase .day-title { color: #6d28d9; }
-  .word-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    font-size: 0.78rem;
-    padding: 3px 10px;
-    border-radius: 12px;
-    background: #f1f5f9;
-    color: #475569;
-  }
-  .chip span { color: #94a3b8; margin-left: 3px; font-size: 0.72rem; }
-  footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #94a3b8;
-    font-size: 0.8rem;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:10px}
+.container{max-width:900px;margin:0 auto}
+.header{text-align:center;margin-bottom:10px;color:white}
+.header h1{font-size:1.8em;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
+.header p{font-size:.9em;opacity:.9}
+
+/* 年份选择 */
+.year-selector{display:flex;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.year-btn{padding:8px 20px;border:none;border-radius:20px;background:rgba(255,255,255,.3);color:white;font-size:1em;cursor:pointer;transition:all .3s}
+.year-btn:hover,.year-btn.active{background:white;color:#667eea;transform:scale(1.05)}
+
+/* 月份选择 */
+.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px;max-width:500px;margin-left:auto;margin-right:auto}
+.month-btn{padding:6px;border:none;border-radius:6px;background:rgba(255,255,255,.2);color:white;font-size:.8em;cursor:pointer;transition:all .3s}
+.month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
+
+/* 日历网格 */
+.calendar-container{background:white;border-radius:12px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:4px;border-bottom:2px solid #eee}
+.calendar-title{font-size:1em;color:#333;font-weight:bold}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;text-align:center;font-weight:bold;color:#666;font-size:.75em}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:5px;cursor:pointer;transition:all .3s;font-size:.7em;min-height:28px;padding:1px}
+.day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.day-cell.empty{background:transparent;cursor:default}
+.day-cell.empty:hover{transform:none;box-shadow:none}
+.day-cell.has-data{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+.day-cell.no-data{background:#f5f5f5;color:#999}
+.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 2px #ff5722}
+.day-cell .day-num{font-weight:bold;font-size:1em}
+.day-cell .day-type{font-size:.65em;margin-top:1px}
+
+/* 底部按钮 */
+.bottom-controls{display:flex;justify-content:center;gap:15px;margin-top:10px}
+.control-btn{padding:10px 30px;border:none;border-radius:25px;font-size:1em;cursor:pointer;transition:all .3s}
+.btn-confirm{background:#4caf50;color:white}
+.btn-confirm:hover{background:#45a049;transform:scale(1.05)}
+.btn-confirm:disabled{background:#ccc;cursor:not-allowed;transform:none}
+.btn-today{background:#2196f3;color:white}
+.btn-today:hover{background:#1976d2;transform:scale(1.05)}
+
+/* 选中日期显示 */
+.selected-info{text-align:center;color:white;margin-top:8px;font-size:1em;min-height:25px}
 </style>
 </head>
 <body>
-
-<header>
-  <h1>📚 每日英语朗读</h1>
-  <p>母语化练习 · 每日随听 · 明日常新</p>
-</header>
-
-<div class="stats" id="statsBar"></div>
-
-<div class="grid" id="grid"></div>
-
-<footer>
-  <p>点击卡片进入当日朗读页面 · 语速 0.85 · 美式发音优先</p>
-</footer>
+<div class="container">
+  <div class="header">
+    <h1>📚 每日英语听说</h1>
+    <p>母语化练习，每日随听，明日常新</p>
+  </div>
+  
+  <div class="year-selector" id="yearSelector"></div>
+  <div class="month-selector" id="monthSelector"></div>
+  
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <span class="calendar-title" id="calendarTitle">2026年3月</span>
+    </div>
+    <div class="weekdays">
+      <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+    </div>
+    <div class="days-grid" id="daysGrid"></div>
+  </div>
+  
+  <div class="selected-info" id="selectedInfo"></div>
+  
+  <div class="bottom-controls">
+    <button class="control-btn btn-today" onclick="goToToday()">📅 今天</button>
+    <button class="control-btn btn-confirm" id="confirmBtn" onclick="confirmSelection()" disabled>✓ 确定</button>
+  </div>
+</div>
 
 <script>
-// ===================== 词汇数据（按时间顺序，最新在末尾） =====================
-var DATA = [
+const DATA = [
   {
-    date: "2026-03-26",
-    day: "周四",
-    type: "word",
-    title: "亲子日常对话词",
-    words: [
-      { en: "encourage", zh: "鼓励、给劲" },
-      { en: "patient", zh: "有耐心的" },
-      { en: "remind", zh: "提醒、告诉" },
-      { en: "curious", zh: "好奇的" },
-      { en: "tidy", zh: "整理、收拾" }
-    ],
-    sentences: [
-      { en: "You're doing great! I'll always encourage you.", zh: "你做得很好！我会一直鼓励你。" },
-      { en: "Be patient. Learning takes time.", zh: "要有耐心。学习需要时间。" },
-      { en: "Let me remind you. Pack your bag.", zh: "让我提醒你。收拾好你的书包。" },
-      { en: "You're so curious. Keep asking!", zh: "你真好奇。继续问吧！" },
-      { en: "Can you tidy up your room?", zh: "你能收拾一下你的房间吗？" }
-    ]
+    "date": "2026-03-26",
+    "day": "周四",
+    "type": "word",
+    "title": "每日单词"
   },
   {
-    date: "2026-03-27",
-    day: "周五",
-    type: "word",
-    title: "早晨起床流程",
-    words: [
-      { en: "get up", zh: "起床" },
-      { en: "wash face", zh: "洗脸" },
-      { en: "brush teeth", zh: "刷牙" },
-      { en: "eat breakfast", zh: "吃早饭" },
-      { en: "go to school", zh: "去上学" }
-    ],
-    sentences: [
-      { en: "I get up at 7 o'clock every morning.", zh: "我每天早上7点起床。" },
-      { en: "I wash my face with cold water.", zh: "我用冷水洗脸。" },
-      { en: "I brush my teeth twice a day.", zh: "我每天刷两次牙。" },
-      { en: "I eat breakfast at home.", zh: "我在家吃早饭。" },
-      { en: "I go to school by bus.", zh: "我乘公交车去上学。" }
-    ]
+    "date": "2026-03-27",
+    "day": "周五",
+    "type": "word",
+    "title": "每日单词"
   },
   {
-    date: "2026-03-28",
-    day: "周六",
-    type: "phrase",
-    title: "日常生活口语句",
-    words: [
-      { en: "What time is it?", zh: "现在几点了？" },
-      { en: "I am hungry.", zh: "我饿了。" },
-      { en: "Can you help me?", zh: "你能帮我吗？" },
-      { en: "I do not understand.", zh: "我不明白。" },
-      { en: "See you tomorrow!", zh: "明天见！" }
-    ],
-    sentences: [
-      { en: "What time is it now?", zh: "现在几点了？" },
-      { en: "Mom, I am hungry, can I eat something?", zh: "妈妈我饿了，能吃点东西吗？" },
-      { en: "Can you help me with this problem?", zh: "你能帮我解这道题吗？" },
-      { en: "Sorry, I do not understand, can you say it again?", zh: "抱歉我不明白，能再说一遍吗？" },
-      { en: "Bye! See you tomorrow!", zh: "再见！明天见！" }
-    ]
-  },
-  {
-    date: "2026-03-29",
-    day: "周日",
-    type: "phrase",
-    title: "开心出门短句",
-    words: [
-      { en: "Let's go!", zh: "走吧！" },
-      { en: "Good job!", zh: "干得好！" },
-      { en: "Wait for me!", zh: "等等我！" },
-      { en: "How about you?", zh: "你呢？" },
-      { en: "Have a nice day!", zh: "祝你愉快！" }
-    ],
-    sentences: [
-      { en: "Let's go to the park!", zh: "我们一起去公园吧！" },
-      { en: "You did it! Good job!", zh: "你做到了！干得好！" },
-      { en: "Hey, wait for me! I'm coming!", zh: "嘿，等等我！我来了！" },
-      { en: "I like ice cream. How about you?", zh: "我喜欢冰淇淋。你呢？" },
-      { en: "Goodbye! Have a nice day!", zh: "再见！祝你有美好的一天！" }
-    ]
-  },
-  {
-    date: "2026-03-30",
-    day: "周一",
-    type: "word",
-    title: "在学校的一天",
-    words: [
-      { en: "share", zh: "分享、一起用" },
-      { en: "finish", zh: "完成、做完" },
-      { en: "careful", zh: "小心、仔细" },
-      { en: "clean", zh: "打扫、干净的" },
-      { en: "practice", zh: "练习、训练" }
-    ],
-    sentences: [
-      { en: "Can you share your pencil with me?", zh: "你能把铅笔借我用一下吗？" },
-      { en: "Have you finished your homework yet?", zh: "你作业做完了吗？" },
-      { en: "Be careful! The floor is wet.", zh: "小心！地板湿了。" },
-      { en: "Let's clean the classroom together!", zh: "我们一起打扫教室吧！" },
-      { en: "Practice makes perfect!", zh: "熟能生巧！" }
-    ]
-  },
-  {
-    date: "2026-03-31",
-    day: "周二",
-    type: "word",
-    title: "早晨起床啦！",
-    words: [
-      { en: "breakfast", zh: "早饭、早餐" },
-      { en: "hurry", zh: "快点、赶快" },
-      { en: "forget", zh: "忘记、忘了" },
-      { en: "brush", zh: "刷（牙）" },
-      { en: "ready", zh: "准备好了" }
-    ],
-    sentences: [
-      { en: "Time for breakfast! Come downstairs!", zh: "该吃早饭啦！快下来！" },
-      { en: "Hurry up! We're going to be late!", zh: "快点！我们要迟到了！" },
-      { en: "Don't forget your homework!", zh: "别忘了带作业！" },
-      { en: "Have you brushed your teeth yet?", zh: "你刷牙了吗？" },
-      { en: "Are you ready? Let's go to school!", zh: "准备好了吗？我们出发上学！" }
-    ]
+    "date": "2026-03-28",
+    "day": "周六",
+    "type": "phrase",
+    "title": "每日英语口语"
   }
 ];
+const dataMap = {};
+DATA.forEach(d => dataMap[d.date] = d);
 
-// ===================== 渲染 =====================
-function render() {
-  var grid = document.getElementById('grid');
-  var statsBar = document.getElementById('statsBar');
-  grid.innerHTML = '';
+let currentYear = 2026;
+let currentMonth = 2; // 0-11
+let selectedDate = null;
 
-  // 统计
-  var wordDays = DATA.filter(function(d){ return d.type === 'word'; }).length;
-  var phraseDays = DATA.filter(function(d){ return d.type === 'phrase'; }).length;
-  statsBar.innerHTML = '共 <span>' + DATA.length + '</span> 天记录 · <span>' + wordDays + '</span> 天单词 · <span>' + phraseDays + '</span> 天短句';
+const years = [2026, 2027, 2028]; // 三年时间
+const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const startDate = '2026-03-26'; // 数据开始日期
 
-  // 最新的显示在前面
-  var sorted = DATA.slice().reverse();
-  sorted.forEach(function(item) {
-    var a = document.createElement('a');
-    a.className = 'day-card' + (item.type === 'phrase' ? ' phrase' : '');
-    a.href = item.date + '.html';
-    var chips = '';
-    item.words.forEach(function(w) {
-      chips += '<div class="chip">' + w.en + '<span>' + w.zh + '</span></div>';
-    });
-    var badgeClass = item.type === 'phrase' ? ' phrase' : '';
-    var badgeText = item.type === 'phrase' ? '短句' : '单词';
-    var icon = item.type === 'phrase' ? '💬' : '🌟';
-    a.innerHTML =
-      '<div class="day-card-header">' +
-        '<span class="day-date">' + item.date + ' ' + item.day + '</span>' +
-        '<span class="day-badge' + badgeClass + '">' + badgeText + '</span>' +
-      '</div>' +
-      '<div class="day-title">' + icon + ' ' + item.title + '</div>' +
-      '<div class="word-chips">' + chips + '</div>';
-    grid.appendChild(a);
-  });
+function init() {
+  renderYearSelector();
+  renderMonthSelector();
+  renderCalendar();
 }
 
-render();
+function renderYearSelector() {
+  const container = document.getElementById('yearSelector');
+  container.style.display = 'flex';
+  container.innerHTML = years.map(y => 
+    '<button class="year-btn ' + (y === currentYear ? 'active' : '') + '" onclick="selectYear(' + y + ')">' + y + '年</button>'
+  ).join('');
+}
+
+function renderMonthSelector() {
+  const container = document.getElementById('monthSelector');
+  container.innerHTML = monthNames.map((m, i) => 
+    '<button class="month-btn ' + (i === currentMonth ? 'active' : '') + '" onclick="selectMonth(' + i + ')">' + m + '</button>'
+  ).join('');
+}
+
+function renderCalendar() {
+  document.getElementById('calendarTitle').textContent = currentYear + '年' + monthNames[currentMonth];
+  
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  
+  let html = '';
+  // 空白格子
+  for (let i = 0; i < firstDay; i++) {
+    html += '<div class="day-cell empty"></div>';
+  }
+  
+  // 日期格子
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    const hasData = dataMap[dateStr];
+    const isSelected = selectedDate === dateStr;
+    const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
+    
+    html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
+            '<span class="day-num">' + day + '</span>' +
+            (hasData ? '<span class="day-type">听说</span>' : '') +
+            '</div>';
+  }
+  
+  document.getElementById('daysGrid').innerHTML = html;
+}
+
+function selectYear(year) {
+  currentYear = year;
+  renderYearSelector();
+  renderCalendar();
+}
+
+function selectMonth(month) {
+  currentMonth = month;
+  renderMonthSelector();
+  renderCalendar();
+}
+
+function selectDate(dateStr, hasData) {
+  // 3月26日之前的日期不能选择
+  if (dateStr < startDate) {
+    document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容（3月26日开始）';
+    document.getElementById('confirmBtn').disabled = true;
+    selectedDate = null;
+    renderCalendar();
+    return;
+  }
+  
+  if (!hasData) {
+    selectedDate = dateStr;
+    document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容';
+    document.getElementById('confirmBtn').disabled = true;
+  } else {
+    selectedDate = dateStr;
+    const d = dataMap[dateStr];
+    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · 听说';
+    document.getElementById('confirmBtn').disabled = false;
+  }
+  renderCalendar();
+}
+
+function confirmSelection() {
+  if (selectedDate) {
+    window.location.href = selectedDate + '.html';
+  }
+}
+
+function goToToday() {
+  const today = new Date();
+  currentYear = today.getFullYear();
+  currentMonth = today.getMonth();
+  renderYearSelector();
+  renderMonthSelector();
+  renderCalendar();
+  
+  const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+  if (dataMap[dateStr]) {
+    selectDate(dateStr, true);
+  } else if (dateStr >= startDate) {
+    selectDate(dateStr, false);
+  }
+}
+
+init();
 </script>
 </body>
 </html>
