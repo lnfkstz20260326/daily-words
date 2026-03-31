@@ -19,6 +19,13 @@
   }
   header h1 { font-size: 1.8rem; color: #0369a1; font-weight: 700; }
   header p { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
+  .stats {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #64748b;
+    font-size: 0.85rem;
+  }
+  .stats span { font-weight: 600; color: #0369a1; }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -38,6 +45,7 @@
     display: block;
     color: inherit;
   }
+  .day-card.phrase { border-top-color: #a78bfa; }
   .day-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
   .day-card-header {
     display: flex;
@@ -54,7 +62,9 @@
     color: #1d4ed8;
     font-weight: 600;
   }
+  .day-badge.phrase { background: #ede9fe; color: #6d28d9; }
   .day-title { font-size: 1rem; font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+  .day-card.phrase .day-title { color: #6d28d9; }
   .word-chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip {
     font-size: 0.78rem;
@@ -79,6 +89,8 @@
   <p>母语化练习 · 每日随听 · 明日常新</p>
 </header>
 
+<div class="stats" id="statsBar"></div>
+
 <div class="grid" id="grid"></div>
 
 <footer>
@@ -86,8 +98,88 @@
 </footer>
 
 <script>
-// ===================== 词汇数据 =====================
+// ===================== 词汇数据（按时间顺序，最新在末尾） =====================
 var DATA = [
+  {
+    date: "2026-03-26",
+    day: "周四",
+    type: "word",
+    title: "亲子日常对话词",
+    words: [
+      { en: "encourage", zh: "鼓励、给劲" },
+      { en: "patient", zh: "有耐心的" },
+      { en: "remind", zh: "提醒、告诉" },
+      { en: "curious", zh: "好奇的" },
+      { en: "tidy", zh: "整理、收拾" }
+    ],
+    sentences: [
+      { en: "You're doing great! I'll always encourage you.", zh: "你做得很好！我会一直鼓励你。" },
+      { en: "Be patient. Learning takes time.", zh: "要有耐心。学习需要时间。" },
+      { en: "Let me remind you. Pack your bag.", zh: "让我提醒你。收拾好你的书包。" },
+      { en: "You're so curious. Keep asking!", zh: "你真好奇。继续问吧！" },
+      { en: "Can you tidy up your room?", zh: "你能收拾一下你的房间吗？" }
+    ]
+  },
+  {
+    date: "2026-03-27",
+    day: "周五",
+    type: "word",
+    title: "早晨起床流程",
+    words: [
+      { en: "get up", zh: "起床" },
+      { en: "wash face", zh: "洗脸" },
+      { en: "brush teeth", zh: "刷牙" },
+      { en: "eat breakfast", zh: "吃早饭" },
+      { en: "go to school", zh: "去上学" }
+    ],
+    sentences: [
+      { en: "I get up at 7 o'clock every morning.", zh: "我每天早上7点起床。" },
+      { en: "I wash my face with cold water.", zh: "我用冷水洗脸。" },
+      { en: "I brush my teeth twice a day.", zh: "我每天刷两次牙。" },
+      { en: "I eat breakfast at home.", zh: "我在家吃早饭。" },
+      { en: "I go to school by bus.", zh: "我乘公交车去上学。" }
+    ]
+  },
+  {
+    date: "2026-03-28",
+    day: "周六",
+    type: "phrase",
+    title: "日常生活口语句",
+    words: [
+      { en: "What time is it?", zh: "现在几点了？" },
+      { en: "I am hungry.", zh: "我饿了。" },
+      { en: "Can you help me?", zh: "你能帮我吗？" },
+      { en: "I do not understand.", zh: "我不明白。" },
+      { en: "See you tomorrow!", zh: "明天见！" }
+    ],
+    sentences: [
+      { en: "What time is it now?", zh: "现在几点了？" },
+      { en: "Mom, I am hungry, can I eat something?", zh: "妈妈我饿了，能吃点东西吗？" },
+      { en: "Can you help me with this problem?", zh: "你能帮我解这道题吗？" },
+      { en: "Sorry, I do not understand, can you say it again?", zh: "抱歉我不明白，能再说一遍吗？" },
+      { en: "Bye! See you tomorrow!", zh: "再见！明天见！" }
+    ]
+  },
+  {
+    date: "2026-03-29",
+    day: "周日",
+    type: "phrase",
+    title: "开心出门短句",
+    words: [
+      { en: "Let's go!", zh: "走吧！" },
+      { en: "Good job!", zh: "干得好！" },
+      { en: "Wait for me!", zh: "等等我！" },
+      { en: "How about you?", zh: "你呢？" },
+      { en: "Have a nice day!", zh: "祝你愉快！" }
+    ],
+    sentences: [
+      { en: "Let's go to the park!", zh: "我们一起去公园吧！" },
+      { en: "You did it! Good job!", zh: "你做到了！干得好！" },
+      { en: "Hey, wait for me! I'm coming!", zh: "嘿，等等我！我来了！" },
+      { en: "I like ice cream. How about you?", zh: "我喜欢冰淇淋。你呢？" },
+      { en: "Goodbye! Have a nice day!", zh: "再见！祝你有美好的一天！" }
+    ]
+  },
   {
     date: "2026-03-31",
     day: "周二",
@@ -113,23 +205,33 @@ var DATA = [
 // ===================== 渲染 =====================
 function render() {
   var grid = document.getElementById('grid');
+  var statsBar = document.getElementById('statsBar');
   grid.innerHTML = '';
+
+  // 统计
+  var wordDays = DATA.filter(function(d){ return d.type === 'word'; }).length;
+  var phraseDays = DATA.filter(function(d){ return d.type === 'phrase'; }).length;
+  statsBar.innerHTML = '共 <span>' + DATA.length + '</span> 天记录 · <span>' + wordDays + '</span> 天单词 · <span>' + phraseDays + '</span> 天短句';
+
   // 最新的显示在前面
   var sorted = DATA.slice().reverse();
   sorted.forEach(function(item) {
     var a = document.createElement('a');
-    a.className = 'day-card';
+    a.className = 'day-card' + (item.type === 'phrase' ? ' phrase' : '');
     a.href = item.date + '.html';
     var chips = '';
     item.words.forEach(function(w) {
       chips += '<div class="chip">' + w.en + '<span>' + w.zh + '</span></div>';
     });
+    var badgeClass = item.type === 'phrase' ? ' phrase' : '';
+    var badgeText = item.type === 'phrase' ? '短句' : '单词';
+    var icon = item.type === 'phrase' ? '💬' : '🌟';
     a.innerHTML =
       '<div class="day-card-header">' +
         '<span class="day-date">' + item.date + ' ' + item.day + '</span>' +
-        '<span class="day-badge">' + (item.type === 'word' ? '单词' : '短句') + '</span>' +
+        '<span class="day-badge' + badgeClass + '">' + badgeText + '</span>' +
       '</div>' +
-      '<div class="day-title">🌟 ' + item.title + '</div>' +
+      '<div class="day-title">' + icon + ' ' + item.title + '</div>' +
       '<div class="word-chips">' + chips + '</div>';
     grid.appendChild(a);
   });
