@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日英语朗读 · 2026-03-30 周一</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #1e293b;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  header h1 {
+    font-size: 1.6rem;
+    color: #0369a1;
+    font-weight: 700;
+  }
+  header p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  .status-bar {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 0.95rem;
+    color: #475569;
+  }
+  .status-bar span#statusText {
+    font-weight: 600;
+    color: #0369a1;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 9px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-start { background: #22c55e; color: #fff; }
+  .btn-start:hover { background: #16a34a; }
+  .btn-stop-all { background: #ef4444; color: #fff; }
+  .btn-stop-all:hover { background: #dc2626; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-left: 4px solid #38bdf8;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .card.active {
+    box-shadow: 0 4px 20px rgba(3,105,161,0.25);
+    border-left-color: #0369a1;
+  }
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .word-en {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #0369a1;
+  }
+  .word-phonetic {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    font-style: italic;
+  }
+  .word-pos {
+    font-size: 0.8rem;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .word-zh {
+    font-size: 1.1rem;
+    color: #334155;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .example {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+  }
+  .example-en {
+    font-size: 1rem;
+    color: #1e293b;
+    font-style: italic;
+  }
+  .example-zh {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  .memory-tip {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: #a16207;
+    background: #fefce8;
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  .card-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 6px;
+  }
+  .btn-card {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .btn-play-card { background: #dbeafe; color: #1d4ed8; }
+  .btn-play-card:hover { background: #bfdbfe; }
+  .btn-stop-card { background: #fee2e2; color: #dc2626; }
+  .btn-stop-card:hover { background: #fecaca; }
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 每日英语朗读</h1>
+  <p>2026-03-30 · 周一 · 今日主题：在学校的一天</p>
+</header>
+
+<div class="status-bar">
+  状态：<span id="statusText">等待开始（3秒后自动播放）</span>
+</div>
+
+<div class="controls">
+  <button class="btn btn-start" onclick="startAll()">▶ 开始循环朗读</button>
+  <button class="btn btn-stop-all" onclick="stopAll()">■ 停止</button>
+</div>
+
+<!-- 卡片1: share -->
+<div class="card" id="card-0">
+  <div class="card-actions">
+    <button class="btn-card btn-play-card" onclick="playCard(0)">▶ 朗读</button>
+    <button class="btn-card btn-stop-card" onclick="stopCard(0)">■ 停</button>
+  </div>
+  <div class="card-header">
+    <span class="word-en">share</span>
+    <span class="word-phonetic">/ʃer/</span>
+    <span class="word-pos">v.</span>
+  </div>
+  <div class="word-zh">分享、一起用</div>
+  <div class="example">
+    <div class="example-en">"Can you share your pencil with me?"</div>
+    <div class="example-zh">你能把铅笔借我用一下吗？</div>
+  </div>
+  <div class="memory-tip">💡 想象把零食分给好朋友，一起"share"——分享快乐！</div>
+</div>
+
+<!-- 卡片2: finish -->
+<div class="card" id="card-1">
+  <div class="card-actions">
+    <button class="btn-card btn-play-card" onclick="playCard(1)">▶ 朗读</button>
+    <button class="btn-card btn-stop-card" onclick="stopCard(1)">■ 停</button>
+  </div>
+  <div class="card-header">
+    <span class="word-en">finish</span>
+    <span class="word-phonetic">/ˈfɪnɪʃ/</span>
+    <span class="word-pos">v.</span>
+  </div>
+  <div class="word-zh">完成、做完</div>
+  <div class="example">
+    <div class="example-en">"Have you finished your homework yet?"</div>
+    <div class="example-zh">你作业做完了吗？</div>
+  </div>
+  <div class="memory-tip">💡 "finish" 像终点线的旗子，一到终点就"完成"啦！</div>
+</div>
+
+<!-- 卡片3: careful -->
+<div class="card" id="card-2">
+  <div class="card-actions">
+    <button class="btn-card btn-play-card" onclick="playCard(2)">▶ 朗读</button>
+    <button class="btn-card btn-stop-card" onclick="stopCard(2)">■ 停</button>
+  </div>
+  <div class="card-header">
+    <span class="word-en">careful</span>
+    <span class="word-phonetic">/ˈkerfəl/</span>
+    <span class="word-pos">adj.</span>
+  </div>
+  <div class="word-zh">小心、仔细</div>
+  <div class="example">
+    <div class="example-en">"Be careful! The floor is wet."</div>
+    <div class="example-zh">小心！地板湿了。</div>
+  </div>
+  <div class="memory-tip">💡 care（关心）+ ful（满的）→ 满满的关心 = 小心谨慎</div>
+</div>
+
+<!-- 卡片4: clean -->
+<div class="card" id="card-3">
+  <div class="card-actions">
+    <button class="btn-card btn-play-card" onclick="playCard(3)">▶ 朗读</button>
+    <button class="btn-card btn-stop-card" onclick="stopCard(3)">■ 停</button>
+  </div>
+  <div class="card-header">
+    <span class="word-en">clean</span>
+    <span class="word-phonetic">/kliːn/</span>
+    <span class="word-pos">v./adj.</span>
+  </div>
+  <div class="word-zh">打扫、干净的</div>
+  <div class="example">
+    <div class="example-en">"Let's clean the classroom together!"</div>
+    <div class="example-zh">我们一起打扫教室吧！</div>
+  </div>
+  <div class="memory-tip">💡 "clean" 听起来像"克林"——克服脏乱，让环境变干净！</div>
+</div>
+
+<!-- 卡片5: practice -->
+<div class="card" id="card-4">
+  <div class="card-actions">
+    <button class="btn-card btn-play-card" onclick="playCard(4)">▶ 朗读</button>
+    <button class="btn-card btn-stop-card" onclick="stopCard(4)">■ 停</button>
+  </div>
+  <div class="card-header">
+    <span class="word-en">practice</span>
+    <span class="word-phonetic">/ˈpræktɪs/</span>
+    <span class="word-pos">v./n.</span>
+  </div>
+  <div class="word-zh">练习、训练</div>
+  <div class="example">
+    <div class="example-en">"Practice makes perfect!"</div>
+    <div class="example-zh">熟能生巧！（多练就会好！）</div>
+  </div>
+  <div class="memory-tip">💡 "practice" 就是反复做——就像练琴练球，越练越棒！</div>
+</div>
+
+<footer>
+  🔊 语音由 Web Speech API 提供 · 语速 0.85 · 美式发音优先
+</footer>
+
+<script>
+// ===================== 数据 =====================
+var cards = [
+  {
+    word: "share",
+    wordZh: "分享、一起用",
+    example: "Can you share your pencil with me?",
+    exampleZh: "你能把铅笔借我用一下吗？"
+  },
+  {
+    word: "finish",
+    wordZh: "完成、做完",
+    example: "Have you finished your homework yet?",
+    exampleZh: "你作业做完了吗？"
+  },
+  {
+    word: "careful",
+    wordZh: "小心、仔细",
+    example: "Be careful! The floor is wet.",
+    exampleZh: "小心！地板湿了。"
+  },
+  {
+    word: "clean",
+    wordZh: "打扫、干净的",
+    example: "Let's clean the classroom together!",
+    exampleZh: "我们一起打扫教室吧！"
+  },
+  {
+    word: "practice",
+    wordZh: "练习、训练",
+    example: "Practice makes perfect!",
+    exampleZh: "熟能生巧！"
+  }
+];
+
+// ===================== 语音配置 =====================
+var RATE = 0.85;
+var enVoice = null;
+var zhVoice = null;
+var stopFlag = false;
+var autoTimer = null;
+
+function loadVoices() {
+  var voices = window.speechSynthesis.getVoices();
+  var enPriority = [
+    "Microsoft Jenny Online (Natural)",
+    "Microsoft Aria Online",
+    "Google US English",
+    "Samantha"
+  ];
+  var zhPriority = [
+    "Microsoft Xiaoxiao Online (Natural)",
+    "Microsoft Huihui"
+  ];
+  for (var i = 0; i < enPriority.length; i++) {
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].name === enPriority[i]) { enVoice = voices[j]; break; }
+    }
+    if (enVoice) break;
+  }
+  if (!enVoice) {
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].lang === 'en-US') { enVoice = voices[j]; break; }
+    }
+  }
+  for (var i = 0; i < zhPriority.length; i++) {
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].name === zhPriority[i]) { zhVoice = voices[j]; break; }
+    }
+    if (zhVoice) break;
+  }
+  if (!zhVoice) {
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].lang.indexOf('zh') === 0) { zhVoice = voices[j]; break; }
+    }
+  }
+}
+
+window.speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+// ===================== 基础语音函数 =====================
+function speak(text, isZh, rate) {
+  return new Promise(function(resolve) {
+    var utt = new SpeechSynthesisUtterance(text);
+    utt.rate = rate || RATE;
+    utt.pitch = 1.0;
+    utt.volume = 1.0;
+    if (isZh && zhVoice) utt.voice = zhVoice;
+    else if (!isZh && enVoice) utt.voice = enVoice;
+    utt.lang = isZh ? 'zh-CN' : 'en-US';
+    utt.onend = function() { resolve(); };
+    utt.onerror = function() { resolve(); };
+    window.speechSynthesis.speak(utt);
+  });
+}
+
+function delay(ms) {
+  return new Promise(function(resolve) { setTimeout(resolve, ms); });
+}
+
+// ===================== 播放单张卡片 =====================
+async function playCardContent(idx, stopFlagFn) {
+  var card = cards[idx];
+  var cardEl = document.getElementById('card-' + idx);
+  if (cardEl) cardEl.classList.add('active');
+
+  // 单词读6遍，第1遍后插入汉语
+  for (var i = 0; i < 6; i++) {
+    if (stopFlagFn()) break;
+    await speak(card.word, false);
+    if (i === 0 && !stopFlagFn()) {
+      await delay(300);
+      await speak(card.wordZh, true);
+    }
+    if (i < 5 && !stopFlagFn()) await delay(500);
+  }
+
+  if (!stopFlagFn()) await delay(800);
+
+  // 例句读6遍，第3遍后插入汉语
+  for (var i = 0; i < 6; i++) {
+    if (stopFlagFn()) break;
+    await speak(card.example, false);
+    if (i === 2 && !stopFlagFn()) {
+      await delay(300);
+      await speak(card.exampleZh, true);
+    }
+    if (i < 5 && !stopFlagFn()) await delay(500);
+  }
+
+  if (cardEl) cardEl.classList.remove('active');
+}
+
+// ===================== 单卡片独立控制 =====================
+var cardAbort = [false, false, false, false, false];
+
+async function playCard(idx) {
+  window.speechSynthesis.cancel();
+  cardAbort = [false, false, false, false, false];
+  stopFlag = false;
+  cardAbort[idx] = false;
+  setStatus('正在朗读：' + cards[idx].word);
+  await playCardContent(idx, function() { return cardAbort[idx]; });
+  setStatus('朗读完毕');
+}
+
+function stopCard(idx) {
+  cardAbort[idx] = true;
+  window.speechSynthesis.cancel();
+  var cardEl = document.getElementById('card-' + idx);
+  if (cardEl) cardEl.classList.remove('active');
+  setStatus('已停止');
+}
+
+// ===================== 全部循环朗读 =====================
+var loopCount = 0;
+
+async function runLoop() {
+  loopCount++;
+  setStatus('第 ' + loopCount + ' 轮循环朗读中...');
+  for (var i = 0; i < cards.length; i++) {
+    if (stopFlag) return;
+    await playCardContent(i, function() { return stopFlag; });
+    if (!stopFlag) await delay(1000);
+  }
+  if (!stopFlag) {
+    await delay(1500);
+    setStatus('第 ' + loopCount + ' 轮结束，继续下一轮...');
+    runLoop();
+  }
+}
+
+function startAll() {
+  window.speechSynthesis.cancel();
+  stopFlag = false;
+  cardAbort = [false, false, false, false, false];
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  runLoop();
+}
+
+function stopAll() {
+  stopFlag = true;
+  cardAbort = [true, true, true, true, true];
+  window.speechSynthesis.cancel();
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  for (var i = 0; i < cards.length; i++) {
+    var cardEl = document.getElementById('card-' + i);
+    if (cardEl) cardEl.classList.remove('active');
+  }
+  setStatus('已停止');
+}
+
+function setStatus(txt) {
+  var el = document.getElementById('statusText');
+  if (el) el.textContent = txt;
+}
+
+// ===================== 3秒后自动开始 =====================
+var countdown = 3;
+function tick() {
+  setStatus('等待开始（' + countdown + ' 秒后自动播放）');
+  countdown--;
+  if (countdown < 0) {
+    startAll();
+  } else {
+    autoTimer = setTimeout(tick, 1000);
+  }
+}
+autoTimer = setTimeout(tick, 1000);
+</script>
+</body>
+</html>
