@@ -2,222 +2,462 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>📚 每日英语听说 - 日期选择</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>姣忔棩鑻辫鏈楄 路 璇嶆眹绱㈠紩</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:10px}
-.container{max-width:900px;margin:0 auto}
-.header{text-align:center;margin-bottom:10px;color:white}
-.header h1{font-size:1.8em;margin-bottom:5px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
-.header p{font-size:.9em;opacity:.9}
-
-/* 年份选择 */
-.year-selector{display:flex;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.year-btn{padding:8px 20px;border:none;border-radius:20px;background:rgba(255,255,255,.3);color:white;font-size:1em;cursor:pointer;transition:all .3s}
-.year-btn:hover,.year-btn.active{background:white;color:#667eea;transform:scale(1.05)}
-
-/* 月份选择 */
-.month-selector{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px;max-width:500px;margin-left:auto;margin-right:auto}
-.month-btn{padding:6px;border:none;border-radius:6px;background:rgba(255,255,255,.2);color:white;font-size:.8em;cursor:pointer;transition:all .3s}
-.month-btn:hover,.month-btn.active{background:#ff9800;transform:scale(1.05)}
-
-/* 日历网格 */
-.calendar-container{background:white;border-radius:12px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:4px;border-bottom:2px solid #eee}
-.calendar-title{font-size:1em;color:#333;font-weight:bold}
-.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;text-align:center;font-weight:bold;color:#666;font-size:.75em}
-.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-.day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:5px;cursor:pointer;transition:all .3s;font-size:.7em;min-height:28px;padding:1px}
-.day-cell:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.2)}
-.day-cell.empty{background:transparent;cursor:default}
-.day-cell.empty:hover{transform:none;box-shadow:none}
-.day-cell.has-data{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
-.day-cell.no-data{background:#f5f5f5;color:#999}
-.day-cell.selected{background:#ff9800!important;color:white;box-shadow:0 0 0 2px #ff5722}
-.day-cell .day-num{font-weight:bold;font-size:1em}
-.day-cell .day-type{font-size:.65em;margin-top:1px}
-
-/* 底部按钮 */
-.bottom-controls{display:flex;justify-content:center;gap:15px;margin-top:10px}
-.control-btn{padding:10px 30px;border:none;border-radius:25px;font-size:1em;cursor:pointer;transition:all .3s}
-.btn-confirm{background:#4caf50;color:white}
-.btn-confirm:hover{background:#45a049;transform:scale(1.05)}
-.btn-confirm:disabled{background:#ccc;cursor:not-allowed;transform:none}
-.btn-today{background:#2196f3;color:white}
-.btn-today:hover{background:#1976d2;transform:scale(1.05)}
-
-/* 选中日期显示 */
-.selected-info{text-align:center;color:white;margin-top:8px;font-size:1em;min-height:25px}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #1e293b;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  header h1 { font-size: 1.8rem; color: #0369a1; font-weight: 700; }
+  header p { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
+  .stats {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #64748b;
+    font-size: 0.85rem;
+  }
+  .stats span { font-weight: 600; color: #0369a1; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .day-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-top: 4px solid #38bdf8;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .day-card.phrase { border-top-color: #a78bfa; }
+  .day-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
+  .day-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .day-date { font-size: 0.85rem; color: #64748b; }
+  .day-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-weight: 600;
+  }
+  .day-badge.phrase { background: #ede9fe; color: #6d28d9; }
+  .day-title { font-size: 1rem; font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+  .day-card.phrase .day-title { color: #6d28d9; }
+  .word-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    color: #475569;
+  }
+  .chip span { color: #94a3b8; margin-left: 3px; font-size: 0.72rem; }
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+  }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>📚 每日英语听说</h1>
-    <p>母语化练习，每日随听，明日常新</p>
-  </div>
-  
-  <div class="year-selector" id="yearSelector"></div>
-  <div class="month-selector" id="monthSelector"></div>
-  
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <span class="calendar-title" id="calendarTitle">2026年3月</span>
-    </div>
-    <div class="weekdays">
-      <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
-    </div>
-    <div class="days-grid" id="daysGrid"></div>
-  </div>
-  
-  <div class="selected-info" id="selectedInfo"></div>
-  
-  <div class="bottom-controls">
-    <button class="control-btn btn-today" onclick="goToToday()">📅 今天</button>
-    <button class="control-btn btn-confirm" id="confirmBtn" onclick="confirmSelection()" disabled>✓ 确定</button>
-  </div>
-</div>
+
+<header>
+  <h1>馃摎 姣忔棩鑻辫鏈楄</h1>
+  <p>姣嶈鍖栫粌涔?路 姣忔棩闅忓惉 路 鏄庢棩甯告柊</p>
+</header>
+
+<div class="stats" id="statsBar"></div>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  <p>鐐瑰嚮鍗＄墖杩涘叆褰撴棩鏈楄椤甸潰 路 璇€?0.85 路 缇庡紡鍙戦煶浼樺厛</p>
+</footer>
 
 <script>
-const DATA = [
+// ===================== 璇嶆眹鏁版嵁锛堟寜鏃堕棿椤哄簭锛屾渶鏂板湪鏈熬锛?=====================
+var DATA = [
   {
-    "date": "2026-03-26",
-    "day": "周四",
-    "type": "word",
-    "title": "每日单词"
+    date: "2026-03-26",
+    day: "鍛ㄥ洓",
+    type: "word",
+    title: "浜插瓙鏃ュ父瀵硅瘽璇?,
+    words: [
+      { en: "encourage", zh: "榧撳姳銆佺粰鍔? },
+      { en: "patient", zh: "鏈夎€愬績鐨? },
+      { en: "remind", zh: "鎻愰啋銆佸憡璇? },
+      { en: "curious", zh: "濂藉鐨? },
+      { en: "tidy", zh: "鏁寸悊銆佹敹鎷? }
+    ],
+    sentences: [
+      { en: "You're doing great! I'll always encourage you.", zh: "浣犲仛寰楀緢濂斤紒鎴戜細涓€鐩撮紦鍔变綘銆? },
+      { en: "Be patient. Learning takes time.", zh: "瑕佹湁鑰愬績銆傚涔犻渶瑕佹椂闂淬€? },
+      { en: "Let me remind you. Pack your bag.", zh: "璁╂垜鎻愰啋浣犮€傛敹鎷惧ソ浣犵殑涔﹀寘銆? },
+      { en: "You're so curious. Keep asking!", zh: "浣犵湡濂藉銆傜户缁棶鍚э紒" },
+      { en: "Can you tidy up your room?", zh: "浣犺兘鏀舵嬀涓€涓嬩綘鐨勬埧闂村悧锛? }
+    ]
   },
   {
-    "date": "2026-03-27",
-    "day": "周五",
-    "type": "word",
-    "title": "每日单词"
+    date: "2026-03-27",
+    day: "鍛ㄤ簲",
+    type: "word",
+    title: "鏃╂櫒璧峰簥娴佺▼",
+    words: [
+      { en: "get up", zh: "璧峰簥" },
+      { en: "wash face", zh: "娲楄劯" },
+      { en: "brush teeth", zh: "鍒风墮" },
+      { en: "eat breakfast", zh: "鍚冩棭楗? },
+      { en: "go to school", zh: "鍘讳笂瀛? }
+    ],
+    sentences: [
+      { en: "I get up at 7 o'clock every morning.", zh: "鎴戞瘡澶╂棭涓?鐐硅捣搴娿€? },
+      { en: "I wash my face with cold water.", zh: "鎴戠敤鍐锋按娲楄劯銆? },
+      { en: "I brush my teeth twice a day.", zh: "鎴戞瘡澶╁埛涓ゆ鐗欍€? },
+      { en: "I eat breakfast at home.", zh: "鎴戝湪瀹跺悆鏃╅キ銆? },
+      { en: "I go to school by bus.", zh: "鎴戜箻鍏氦杞﹀幓涓婂銆? }
+    ]
   },
   {
-    "date": "2026-03-28",
-    "day": "周六",
-    "type": "phrase",
-    "title": "每日英语口语"
+    date: "2026-03-28",
+    day: "鍛ㄥ叚",
+    type: "phrase",
+    title: "鏃ュ父鐢熸椿鍙ｈ鍙?,
+    words: [
+      { en: "What time is it?", zh: "鐜板湪鍑犵偣浜嗭紵" },
+      { en: "I am hungry.", zh: "鎴戦タ浜嗐€? },
+      { en: "Can you help me?", zh: "浣犺兘甯垜鍚楋紵" },
+      { en: "I do not understand.", zh: "鎴戜笉鏄庣櫧銆? },
+      { en: "See you tomorrow!", zh: "鏄庡ぉ瑙侊紒" }
+    ],
+    sentences: [
+      { en: "What time is it now?", zh: "鐜板湪鍑犵偣浜嗭紵" },
+      { en: "Mom, I am hungry, can I eat something?", zh: "濡堝鎴戦タ浜嗭紝鑳藉悆鐐逛笢瑗垮悧锛? },
+      { en: "Can you help me with this problem?", zh: "浣犺兘甯垜瑙ｈ繖閬撻鍚楋紵" },
+      { en: "Sorry, I do not understand, can you say it again?", zh: "鎶辨瓑鎴戜笉鏄庣櫧锛岃兘鍐嶈涓€閬嶅悧锛? },
+      { en: "Bye! See you tomorrow!", zh: "鍐嶈锛佹槑澶╄锛? }
+    ]
+  },
+  {
+    date: "2026-03-29",
+    day: "鍛ㄦ棩",
+    type: "phrase",
+    title: "寮€蹇冨嚭闂ㄧ煭鍙?,
+    words: [
+      { en: "Let's go!", zh: "璧板惂锛? },
+      { en: "Good job!", zh: "骞插緱濂斤紒" },
+      { en: "Wait for me!", zh: "绛夌瓑鎴戯紒" },
+      { en: "How about you?", zh: "浣犲憿锛? },
+      { en: "Have a nice day!", zh: "绁濅綘鎰夊揩锛? }
+    ],
+    sentences: [
+      { en: "Let's go to the park!", zh: "鎴戜滑涓€璧峰幓鍏洯鍚э紒" },
+      { en: "You did it! Good job!", zh: "浣犲仛鍒颁簡锛佸共寰楀ソ锛? },
+      { en: "Hey, wait for me! I'm coming!", zh: "鍢匡紝绛夌瓑鎴戯紒鎴戞潵浜嗭紒" },
+      { en: "I like ice cream. How about you?", zh: "鎴戝枩娆㈠啺娣囨穻銆備綘鍛紵" },
+      { en: "Goodbye! Have a nice day!", zh: "鍐嶈锛佺浣犳湁缇庡ソ鐨勪竴澶╋紒" }
+    ]
+  },
+  {
+    date: "2026-03-30",
+    day: "鍛ㄤ竴",
+    type: "word",
+    title: "鍦ㄥ鏍＄殑涓€澶?,
+    words: [
+      { en: "share", zh: "鍒嗕韩銆佷竴璧风敤" },
+      { en: "finish", zh: "瀹屾垚銆佸仛瀹? },
+      { en: "careful", zh: "灏忓績銆佷粩缁? },
+      { en: "clean", zh: "鎵撴壂銆佸共鍑€鐨? },
+      { en: "practice", zh: "缁冧範銆佽缁? }
+    ],
+    sentences: [
+      { en: "Can you share your pencil with me?", zh: "浣犺兘鎶婇搮绗斿€熸垜鐢ㄤ竴涓嬪悧锛? },
+      { en: "Have you finished your homework yet?", zh: "浣犱綔涓氬仛瀹屼簡鍚楋紵" },
+      { en: "Be careful! The floor is wet.", zh: "灏忓績锛佸湴鏉挎箍浜嗐€? },
+      { en: "Let's clean the classroom together!", zh: "鎴戜滑涓€璧锋墦鎵暀瀹ゅ惂锛? },
+      { en: "Practice makes perfect!", zh: "鐔熻兘鐢熷阀锛? }
+    ]
+  },
+  {
+    date: "2026-03-31",
+    day: "鍛ㄤ簩",
+    type: "word",
+    title: "鏃╂櫒璧峰簥鍟︼紒",
+    words: [
+      { en: "breakfast", zh: "鏃╅キ銆佹棭椁? },
+      { en: "hurry", zh: "蹇偣銆佽刀蹇? },
+      { en: "forget", zh: "蹇樿銆佸繕浜? },
+      { en: "brush", zh: "鍒凤紙鐗欙級" },
+      { en: "ready", zh: "鍑嗗濂戒簡" }
+    ],
+    sentences: [
+      { en: "Time for breakfast! Come downstairs!", zh: "璇ュ悆鏃╅キ鍟︼紒蹇笅鏉ワ紒" },
+      { en: "Hurry up! We're going to be late!", zh: "蹇偣锛佹垜浠杩熷埌浜嗭紒" },
+      { en: "Don't forget your homework!", zh: "鍒繕浜嗗甫浣滀笟锛? },
+      { en: "Have you brushed your teeth yet?", zh: "浣犲埛鐗欎簡鍚楋紵" },
+      { en: "Are you ready? Let's go to school!", zh: "鍑嗗濂戒簡鍚楋紵鎴戜滑鍑哄彂涓婂锛? }
+    ]
+  },
+  {
+    date: "2026-04-01",
+    day: "鍛ㄤ笁",
+    type: "word",
+    title: "璇鹃棿浼戞伅鏃跺厜",
+    words: [
+      { en: "snack", zh: "闆堕銆佸皬鐐瑰績" },
+      { en: "borrow", zh: "鍊熸潵銆佸€熺敤" },
+      { en: "quiet", zh: "瀹夐潤鐨勩€佷繚鎸佸畨闈? },
+      { en: "together", zh: "涓€璧枫€佸叡鍚? },
+      { en: "excited", zh: "鍏村鐨勩€佹縺鍔ㄧ殑" }
+    ],
+    sentences: [
+      { en: "Can I have a snack? I'm a little hungry.", zh: "鎴戣兘鍚冪偣闆堕鍚楋紵鎴戞湁鐐归タ浜嗐€? },
+      { en: "Can I borrow your eraser? I left mine at home.", zh: "鎴戣兘鍊熺敤涓€涓嬩綘鐨勬鐨悧锛熸垜鐨勫繕鍦ㄥ閲屼簡銆? },
+      { en: "Please be quiet. The teacher is coming!", zh: "璇峰畨闈欙紝鑰佸笀鏉ヤ簡锛? },
+      { en: "Let's play together! It's more fun.", zh: "鎴戜滑涓€璧风帺鍚э紒杩欐牱鏇存湁鎰忔€濄€? },
+      { en: "I'm so excited! We have PE class today!", zh: "鎴戝ソ鍏村锛佷粖澶╂湁浣撹偛璇撅紒" }
+    ]
+  },
+  {
+    date: "2026-04-02",
+    day: "鍛ㄥ洓",
+    type: "word",
+    title: "鏍″洯灏忔棩甯?,
+    words: [
+      { en: "friend", zh: "鏈嬪弸锛屼紮浼? },
+      { en: "learn", zh: "瀛︿範锛屽浼? },
+      { en: "write", zh: "鍐欙紝涔﹀啓锛屽啓瀛? },
+      { en: "listen", zh: "鍚紝鍊惧惉" },
+      { en: "answer", zh: "鍥炵瓟锛岀瓟澶? }
+    ],
+    sentences: [
+      { en: "Amy is my best friend.", zh: "Amy鏄垜鏈€濂界殑鏈嬪弸銆? },
+      { en: "I want to learn English.", zh: "鎴戞兂瀛﹁嫳璇€? },
+      { en: "Please write your name on the paper.", zh: "璇锋妸浣犵殑鍚嶅瓧鍐欏湪绾镐笂銆? },
+      { en: "Listen carefully in class.", zh: "涓婅瑕佽鐪熷惉璁层€? },
+      { en: "Can you answer my question?", zh: "浣犺兘鍥炵瓟鎴戠殑闂鍚楋紵" }
+    ]
+  },
+  {
+    date: "2026-04-03",
+    day: "鍛ㄤ簲",
+    type: "word",
+    title: "瀛︽牎鐢熸椿璇嶆眹",
+    words: [
+      { en: "homework", zh: "瀹跺涵浣滀笟銆佸姛璇? },
+      { en: "question", zh: "闂銆佺枒闂? },
+      { en: "library", zh: "鍥句功棣嗐€佽棌涔﹀" },
+      { en: "lunch", zh: "鍗堥銆佸崍楗? },
+      { en: "dinner", zh: "鏅氶銆佹椁? }
+    ],
+    sentences: [
+      { en: "I need to finish my homework before dinner.", zh: "鎴戦渶瑕佸湪鏅氶キ鍓嶅畬鎴愭垜鐨勫搴綔涓氥€? },
+      { en: "I have a question about this math problem.", zh: "鍏充簬杩欓亾鏁板棰樻垜鏈変竴涓棶棰樸€? },
+      { en: "I like to read books in the school library.", zh: "鎴戝枩娆㈠湪瀛︽牎鍥句功棣嗛噷鐪嬩功銆? },
+      { en: "What do you want for lunch today?", zh: "浣犱粖澶╁崍椁愭兂鍚冧粈涔堬紵" },
+      { en: "We usually have dinner at 6 o'clock.", zh: "鎴戜滑閫氬父6鐐归挓鍚冩櫄椁愩€? }
+    ]
+  },
+  {
+    date: "2026-04-04",
+    day: "鍛ㄥ叚",
+    type: "phrase",
+    title: "鍛ㄦ湯鍦ㄥ鐭彞",
+    words: [
+      { en: "It's time to get up!", zh: "璇ヨ捣搴婁簡锛? },
+      { en: "Can I play outside?", zh: "鎴戣兘鍑哄幓鐜╁悧锛? },
+      { en: "I want to watch TV.", zh: "鎴戞兂鐪嬬數瑙嗐€? },
+      { en: "I'm so tired today.", zh: "鎴戜粖澶╁ソ绱憖銆? },
+      { en: "Let me help you.", zh: "璁╂垜鏉ュ府浣犲惂銆? }
+    ],
+    sentences: [
+      { en: "It's time to get up! The sun is shining.", zh: "璇ヨ捣搴婂暒锛佸お闃抽兘鏅掑眮鑲′簡銆? },
+      { en: "Can I play outside after I finish my homework?", zh: "鎴戝仛瀹屼綔涓氬悗鑳藉嚭鍘荤帺鍚楋紵" },
+      { en: "I want to watch TV for a little while, please!", zh: "鎴戞兂鐪嬩竴灏忎細鍎跨數瑙嗭紝鎷滄墭鍟︼紒" },
+      { en: "I'm so tired today. Can I go to bed early?", zh: "鎴戜粖澶╁ソ绱憖锛屽彲浠ユ棭鐐圭潯瑙夊悧锛? },
+      { en: "Let me help you with that heavy bag!", zh: "璁╂垜鏉ュ府浣犳彁閭ｄ釜閲嶈瀛愬惂锛? }
+    ]
+  },
+  {
+    date: "2026-04-05",
+    day: "鍛ㄦ棩",
+    type: "phrase",
+    title: "鍛ㄦ棩鐢熸椿鐭彞",
+    words: [
+      { en: "I'm home!", zh: "鎴戝洖鏉ュ暒锛? },
+      { en: "What's for dinner?", zh: "鏅氶キ鍚冧粈涔堝憖锛? },
+      { en: "Can I have a snack?", zh: "鎴戣兘鍚冪偣闆堕鍚楋紵" },
+      { en: "This is so much fun!", zh: "杩欎篃澶繃鐦句簡鍚э紒" },
+      { en: "Good night! Sweet dreams!", zh: "鏅氬畨锛佸ソ姊︼紒" }
+    ],
+    sentences: [
+      { en: "Hi Mom! I'm home! I had a great day at school.", zh: "濡堝鎴戝洖鏉ュ暒锛佷粖澶╁湪瀛︽牎杩囧緱瓒呭紑蹇冿紒" },
+      { en: "Mom, what's for dinner? I'm getting hungry!", zh: "濡堝锛屾櫄楗悆浠€涔堝憖锛熸垜鑲氬瓙鍜曞挄鍙簡锛? },
+      { en: "Can I have a snack before dinner? Just a little one!", zh: "鏅氶キ鍓嶆垜鑳藉悆鐐归浂椋熷悧锛熷氨涓€鐐圭偣锛? },
+      { en: "This game is so much fun! Can we play again?", zh: "杩欎釜娓告垙澶ソ鐜╁暒锛佹垜浠兘鍐嶇帺涓€灞€鍚楋紵" },
+      { en: "Good night! Sweet dreams! See you tomorrow morning.", zh: "鏅氬畨锛佸ソ姊︼紒鏄庡ぉ鏃╀笂瑙佸暒锛? }
+    ]
+  },
+  {
+    date: "2026-04-06",
+    day: "鍛ㄤ竴",
+    type: "word",
+    title: "璇惧爞瀛︿範璇嶆眹",
+    words: [
+      { en: "subject", zh: "绉戠洰锛屽绉? },
+      { en: "desk", zh: "璇炬锛屼功妗? },
+      { en: "classmate", zh: "鍚岀彮鍚屽" },
+      { en: "ruler", zh: "灏哄瓙" },
+      { en: "eraser", zh: "姗＄毊鎿? }
+    ],
+    sentences: [
+      { en: "My favorite subject is math. What about you?", zh: "鎴戞渶鍠滄鐨勭鐩槸鏁板銆備綘鍛紵" },
+      { en: "Please put your book on the desk.", zh: "璇锋妸涔︽斁鍦ㄨ妗屼笂銆? },
+      { en: "She is my classmate. We sit together in class.", zh: "濂规槸鎴戠殑鍚岀彮鍚屽锛屾垜浠湪鐝噷鍧愬湪涓€璧枫€? },
+      { en: "Can I borrow your ruler? I need to draw a line.", zh: "鎴戣兘鍊熶竴涓嬩綘鐨勫昂瀛愬悧锛熸垜闇€瑕佺敾涓€鏉＄嚎銆? },
+      { en: "Oops! I made a mistake. Do you have an eraser?", zh: "鍝庡憖锛佹垜鍐欓敊浜嗐€備綘鏈夋鐨摝鍚楋紵" }
+    ]
+  },
+  {
+    date: "2026-04-07",
+    day: "鍛ㄤ簩",
+    type: "word",
+    title: "璇惧爞甯哥敤鐗╁搧",
+    words: [
+      { en: "chalk", zh: "绮夌瑪" },
+      { en: "blackboard", zh: "榛戞澘" },
+      { en: "bell", zh: "閾冨０" },
+      { en: "copy", zh: "鎶勫啓" },
+      { en: "pass", zh: "浼犻€? }
+    ],
+    sentences: [
+      { en: "The teacher picked up a piece of chalk and wrote on the board.", zh: "鑰佸笀鎹¤捣涓€鏀矇绗旓紝鍦ㄩ粦鏉夸笂鍐欎簡璧锋潵銆? },
+      { en: "Please look at the blackboard. I will write the math problem there.", zh: "璇风湅榛戞澘銆傛垜浼氭妸鏁板棰樺啓鍦ㄩ偅閲屻€? },
+      { en: "The school bell rang. It's time to go to class!", zh: "瀛︽牎閾冨０鍝嶄簡锛佽鍘讳笂璇句簡锛? },
+      { en: "Please copy the new words in your notebook three times.", zh: "璇锋妸鏂板崟璇嶅湪浣犵殑绗旇鏈笂鎶勫啓涓夐亶銆? },
+      { en: "Please pass me the eraser. I need to correct my mistake.", zh: "璇锋妸姗＄毊浼犵粰鎴戙€傛垜闇€瑕佹敼姝ｉ敊璇€? }
+    ]
+  },
+  {
+    date: "2026-04-08",
+    day: "鍛ㄤ笁",
+    type: "word",
+    title: "璇鹃棿涓庤鍚庢椿鍔ㄨ瘝姹?,
+    words: [
+      { en: "organize", zh: "鏁寸悊銆佸畨鎺掋€佺粍缁? },
+      { en: "prefer", zh: "鏇村枩娆€佸畞鎰? },
+      { en: "notice", zh: "娉ㄦ剰鍒帮紱閫氱煡" },
+      { en: "collect", zh: "鏀堕泦銆侀噰闆? },
+      { en: "explain", zh: "瑙ｉ噴銆佽鏄? }
+    ],
+    sentences: [
+      { en: "Let's organize the books on the shelf by color.", zh: "鎴戜滑鏉ユ寜棰滆壊鏁寸悊涔︽灦涓婄殑涔﹀惂銆? },
+      { en: "I prefer reading books to watching TV.", zh: "姣旇捣鐪嬬數瑙嗭紝鎴戞洿鍠滄鐪嬩功銆? },
+      { en: "Did you notice the new poster on the wall?", zh: "浣犳敞鎰忓埌澧欎笂鐨勬柊娴锋姤浜嗗悧锛? },
+      { en: "I like to collect stamps from different countries.", zh: "鎴戝枩娆㈡敹闆嗕笉鍚屽浗瀹剁殑閭エ銆? },
+      { en: "Can you explain this math problem to me?", zh: "浣犺兘缁欐垜璁茶В涓€涓嬭繖閬撴暟瀛﹂鍚楋紵" }
+    ]
+  },
+  {
+    date: "2026-04-09",
+    day: "鍛ㄥ洓",
+    type: "word",
+    title: "瀹堕噷鐨勫帹鎴夸笌椁愬巺",
+    words: [
+      { en: "kitchen", zh: "鍘ㄦ埧" },
+      { en: "fridge", zh: "鍐扮" },
+      { en: "mirror", zh: "闀滃瓙" },
+      { en: "beside", zh: "鍦?..鏃佽竟" },
+      { en: "pour", zh: "鍊掞紙娑蹭綋锛? }
+    ],
+    sentences: [
+      { en: "Mom is cooking in the kitchen. It smells so good!", zh: "濡堝鍦ㄥ帹鎴垮仛楗紝濂介鍟婏紒" },
+      { en: "Can I get some juice from the fridge? I'm thirsty.", zh: "鎴戣兘浠庡啺绠遍噷鎷跨偣鏋滄眮鍚楋紵鎴戞复浜嗐€? },
+      { en: "I look in the mirror every morning before going to school.", zh: "鎴戞瘡澶╂棭涓婁笂瀛﹀墠閮借鐓т竴涓嬮暅瀛愩€? },
+      { en: "My schoolbag is beside the door. Don't forget it!", zh: "鎴戠殑涔﹀寘鍦ㄩ棬鏃佽竟锛屽埆蹇樹簡甯︼紒" },
+      { en: "Can you pour me a glass of water, please?", zh: "浣犺兘甯垜鍊掍竴鏉按鍚楋紵" }
+    ]
+  },
+  {
+    date: "2026-04-10",
+    day: "鍛ㄤ簲",
+    type: "word",
+    title: "鍗у閲岀殑鐗╁搧",
+    words: [
+      { en: "bedroom", zh: "鍗у锛屾埧闂? },
+      { en: "pillow", zh: "鏋曞ご" },
+      { en: "blanket", zh: "琚瓙锛屾瀛? },
+      { en: "lamp", zh: "鍙扮伅锛岀伅" },
+      { en: "window", zh: "绐楁埛" }
+    ],
+    sentences: [
+      { en: "My bedroom is clean and tidy. I like reading books there.", zh: "鎴戠殑鍗у骞插噣鏁存磥銆傛垜鍠滄鍦ㄩ偅閲岀湅涔︺€? },
+      { en: "I hug my pillow when I sleep. It feels so soft!", zh: "鎴戠潯瑙夌殑鏃跺€欐姳鐫€鏋曞ご銆傚畠鎽歌捣鏉ヨ蒋杞殑锛? },
+      { en: "It's cold tonight. I need a warm blanket.", zh: "浠婃櫄鏈夌偣鍐枫€傛垜闇€瑕佷竴鏉℃殩鍜岀殑琚瓙銆? },
+      { en: "Turn on the lamp please. It's getting dark.", zh: "璇锋妸鍙扮伅鎵撳紑鍚с€傚ぉ榛戜簡銆? },
+      { en: "Open the window and let some fresh air in.", zh: "鎶婄獥鎴锋墦寮€锛岃鏂伴矞绌烘皵杩涙潵銆? }
+    ]
   }
 ];
-const dataMap = {};
-DATA.forEach(d => dataMap[d.date] = d);
 
-let currentYear = 2026;
-let currentMonth = 2; // 0-11
-let selectedDate = null;
+// ===================== 娓叉煋 =====================
+function render() {
+  var grid = document.getElementById('grid');
+  var statsBar = document.getElementById('statsBar');
+  grid.innerHTML = '';
 
-const years = [2026, 2027, 2028]; // 三年时间
-const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-const startDate = '2026-03-26'; // 数据开始日期
+  // 缁熻
+  var wordDays = DATA.filter(function(d){ return d.type === 'word'; }).length;
+  var phraseDays = DATA.filter(function(d){ return d.type === 'phrase'; }).length;
+  statsBar.innerHTML = '鍏?<span>' + DATA.length + '</span> 澶╄褰?路 <span>' + wordDays + '</span> 澶╁崟璇?路 <span>' + phraseDays + '</span> 澶╃煭鍙?;
 
-function init() {
-  renderYearSelector();
-  renderMonthSelector();
-  renderCalendar();
+  // 鏈€鏂扮殑鏄剧ず鍦ㄥ墠闈?
+  var sorted = DATA.slice().reverse();
+  sorted.forEach(function(item) {
+    var a = document.createElement('a');
+    a.className = 'day-card' + (item.type === 'phrase' ? ' phrase' : '');
+    a.href = item.date + '.html';
+    var chips = '';
+    item.words.forEach(function(w) {
+      chips += '<div class="chip">' + w.en + '<span>' + w.zh + '</span></div>';
+    });
+    var badgeClass = item.type === 'phrase' ? ' phrase' : '';
+    var badgeText = item.type === 'phrase' ? '鐭彞' : '鍗曡瘝';
+    var icon = item.type === 'phrase' ? '馃挰' : '馃専';
+    a.innerHTML =
+      '<div class="day-card-header">' +
+        '<span class="day-date">' + item.date + ' ' + item.day + '</span>' +
+        '<span class="day-badge' + badgeClass + '">' + badgeText + '</span>' +
+      '</div>' +
+      '<div class="day-title">' + icon + ' ' + item.title + '</div>' +
+      '<div class="word-chips">' + chips + '</div>';
+    grid.appendChild(a);
+  });
 }
 
-function renderYearSelector() {
-  const container = document.getElementById('yearSelector');
-  container.style.display = 'flex';
-  container.innerHTML = years.map(y => 
-    '<button class="year-btn ' + (y === currentYear ? 'active' : '') + '" onclick="selectYear(' + y + ')">' + y + '年</button>'
-  ).join('');
-}
-
-function renderMonthSelector() {
-  const container = document.getElementById('monthSelector');
-  container.innerHTML = monthNames.map((m, i) => 
-    '<button class="month-btn ' + (i === currentMonth ? 'active' : '') + '" onclick="selectMonth(' + i + ')">' + m + '</button>'
-  ).join('');
-}
-
-function renderCalendar() {
-  document.getElementById('calendarTitle').textContent = currentYear + '年' + monthNames[currentMonth];
-  
-  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  
-  let html = '';
-  // 空白格子
-  for (let i = 0; i < firstDay; i++) {
-    html += '<div class="day-cell empty"></div>';
-  }
-  
-  // 日期格子
-  for (let day = 1; day <= daysInMonth; day++) {
-    const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-    const hasData = dataMap[dateStr];
-    const isSelected = selectedDate === dateStr;
-    const cellClass = 'day-cell ' + (hasData ? 'has-data' : 'no-data') + (isSelected ? ' selected' : '');
-    
-    html += '<div class="' + cellClass + '" onclick="selectDate(' + "'" + dateStr + "'" + ', ' + !!hasData + ')">' +
-            '<span class="day-num">' + day + '</span>' +
-            (hasData ? '<span class="day-type">听说</span>' : '') +
-            '</div>';
-  }
-  
-  document.getElementById('daysGrid').innerHTML = html;
-}
-
-function selectYear(year) {
-  currentYear = year;
-  renderYearSelector();
-  renderCalendar();
-}
-
-function selectMonth(month) {
-  currentMonth = month;
-  renderMonthSelector();
-  renderCalendar();
-}
-
-function selectDate(dateStr, hasData) {
-  // 3月26日之前的日期不能选择
-  if (dateStr < startDate) {
-    document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容（3月26日开始）';
-    document.getElementById('confirmBtn').disabled = true;
-    selectedDate = null;
-    renderCalendar();
-    return;
-  }
-  
-  if (!hasData) {
-    selectedDate = dateStr;
-    document.getElementById('selectedInfo').textContent = '⚠️ ' + dateStr + ' 暂无学习内容';
-    document.getElementById('confirmBtn').disabled = true;
-  } else {
-    selectedDate = dateStr;
-    const d = dataMap[dateStr];
-    document.getElementById('selectedInfo').textContent = '✓ 已选择：' + dateStr + ' ' + d.day + ' · 听说';
-    document.getElementById('confirmBtn').disabled = false;
-  }
-  renderCalendar();
-}
-
-function confirmSelection() {
-  if (selectedDate) {
-    window.location.href = selectedDate + '.html';
-  }
-}
-
-function goToToday() {
-  const today = new Date();
-  currentYear = today.getFullYear();
-  currentMonth = today.getMonth();
-  renderYearSelector();
-  renderMonthSelector();
-  renderCalendar();
-  
-  const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-  if (dataMap[dateStr]) {
-    selectDate(dateStr, true);
-  } else if (dateStr >= startDate) {
-    selectDate(dateStr, false);
-  }
-}
-
-init();
+render();
 </script>
 </body>
 </html>
