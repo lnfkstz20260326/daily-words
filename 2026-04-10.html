@@ -2,540 +2,543 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>每日英语口语 - 2026-04-10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-04-10 路 姣忔棩鑻辫鏈楄</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
     min-height: 100vh;
-    padding: 10px;
-}
-.container { max-width: 800px; margin: 0 auto; }
-.header {
+    padding: 20px;
+    color: #1e293b;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  header {
     text-align: center;
-    margin-bottom: 15px;
-    padding: 15px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.1);
-}
-.header h1 { color: #1565c0; font-size: 1.8em; margin-bottom: 8px; }
-.date-info { color: #666; font-size: 1em; }
-
-/* 顶部控制按钮 */
-.top-controls {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+  }
+  header h1 { font-size: 1.6rem; color: #0369a1; font-weight: 700; }
+  header p { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
+  .date-badge {
+    display: inline-block;
+    background: #38bdf8;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-left: 4px solid #38bdf8;
+  }
+  .word-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .word-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0369a1;
+  }
+  .phonetic {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-top: 2px;
+  }
+  .pos {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .chinese-meaning {
+    color: #334155;
+    font-size: 1rem;
+    margin: 12px 0;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+  .example-en {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .example-cn {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  .memory-tip {
+    color: #059669;
+    font-size: 0.85rem;
+    padding: 10px;
+    background: #ecfdf5;
+    border-radius: 8px;
+    border-left: 3px solid #10b981;
+  }
+  .controls {
     display: flex;
     gap: 10px;
-    justify-content: center;
-    margin-bottom: 15px;
+    margin-top: 16px;
     flex-wrap: wrap;
-}
-.loop-status {
-    background: #e8f5e9;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    text-align: center;
-    color: #2e7d32;
-    font-weight: bold;
-    display: none;
-}
-
-/* 卡片 */
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.1);
-}
-.word-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-.word-number {
-    width: 35px;
-    height: 35px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1em;
-}
-.word-title {
-    flex: 1;
-    font-size: 1.6em;
-    color: #333;
-    font-weight: bold;
-}
-.phonetic {
-    color: #666;
-    font-size: 0.9em;
-}
-.word-meaning {
-    background: #f5f5f5;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 12px;
-}
-.part-of-speech {
-    background: #e3f2fd;
-    color: #1976d2;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 14px;
-}
-.chinese-meaning {
-    background: #ffebee;
-    color: #c62828;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 500;
-}
-.memory-tip {
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-    padding: 12px 16px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-    font-size: 15px;
-    color: #2e7d32;
-    border-left: 4px solid #4caf50;
-}
-.example-box {
-    background: #f5f5f5;
-    padding: 16px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-}
-.example-label {
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 6px;
-}
-.example-en {
-    color: #333;
-    font-size: 1em;
-    margin-bottom: 6px;
-}
-.example-cn {
-    color: #666;
-    font-size: 0.9em;
-}
-
-/* 按钮 */
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-}
-.btn {
-    padding: 6px 12px;
+  }
+  .btn {
+    padding: 8px 16px;
     border: none;
-    border-radius: 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
     cursor: pointer;
-    font-size: 0.85em;
-    transition: all 0.3s;
-}
-.btn:hover { transform: scale(1.05); }
-.btn-slow { background: linear-gradient(135deg, #ff9800, #f57c00); color: white; }
-.btn-normal { background: linear-gradient(135deg, #2196f3, #1976d2); color: white; }
-.btn-fast { background: linear-gradient(135deg, #4caf50, #388e3c); color: white; }
-.btn-stop { background: linear-gradient(135deg, #f44336, #d32f2f); color: white; }
-.btn-loop { background: linear-gradient(135deg, #9c27b0, #7b1fa2); color: white; padding: 10px 20px; }
-.btn-secondary { background: linear-gradient(135deg, #764ba2, #6a3093); color: white; }
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+  .btn-play {
+    background: #38bdf8;
+    color: white;
+  }
+  .btn-play:hover { background: #0ea5e9; }
+  .btn-stop {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  .btn-stop:hover { background: #e2e8f0; }
+  .btn-loop {
+    background: #38bdf8;
+    color: white;
+  }
+  .btn-loop:hover { background: #0ea5e9; }
+  .status {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 20px 0;
+    min-height: 24px;
+  }
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover { color: #0369a1; }
 </style>
 </head>
 <body>
+
 <div class="container">
-    <div class="header">
-        <h1>📚 每日英语听说</h1>
-        <div class="date-info">2026-04-10</div>
+  <a href="index.html" class="back-link">&#8592; 杩斿洖璇嶆眹绱㈠紩</a>
+
+  <header>
+    <h1>&#128218; 姣忔棩鑻辫鍚</h1>
+    <p>姣嶈鍖栫粌涔狅紝姣忔棩闅忓惉锛屾槑鏃ュ父鏂?/p>
+    <div class="date-badge">2026-04-10 &middot; 鍛ㄤ簲</div>
+  </header>
+
+  <div class="status" id="status">&#127925; 椤甸潰鍔犺浇鍚?3 绉掕嚜鍔ㄥ紑濮嬫湕璇?..</div>
+
+  <div class="controls" style="justify-content: center; margin-bottom: 20px;">
+    <button class="btn btn-loop" onclick="startAutoPlay()">&#9654; 寮€濮嬪惊鐜湕璇?/button>
+    <button class="btn btn-stop" onclick="stopAll()">&#9209; 鍋滄鏈楄</button>
+  </div>
+
+  <div id="cards">
+    <div class="card" data-index="0">
+      <div class="word-header">
+        <div>
+          <div class="word-title">bedroom</div>
+          <div class="phonetic">/藞bedru藧m/</div>
+          <span class="pos">n. 鍚嶈瘝</span>
+        </div>
+      </div>
+      <div class="chinese-meaning">鍗у锛屾埧闂?/div>
+      <div class="example-en">My bedroom is clean and tidy. I like reading books there.</div>
+      <div class="example-cn">鎴戠殑鍗у骞插噣鏁存磥銆傛垜鍠滄鍦ㄩ偅閲岀湅涔︺€?/div>
+      <div class="memory-tip">&#128161; 鑱旀兂锛歜ed锛堝簥锛? room锛堟埧闂达級锛屾斁搴婄殑鎴块棿灏辨槸鍗у</div>
+      <div class="controls">
+        <button class="btn btn-play" onclick="speakItem(0)">&#128266; 鏈楄</button>
+        <button class="btn btn-stop" onclick="stopSpeaking()">&#9209; 鍋滄</button>
+      </div>
     </div>
 
-    <div class="top-controls">
-        <button class="btn btn-loop" onclick="startAutoPlay()">
-            ▶️ 开始循环朗读
-        </button>
-        <button class="btn btn-secondary" onclick="goBack()">
-            ⬅️ 返回选择
-        </button>
+    <div class="card" data-index="1">
+      <div class="word-header">
+        <div>
+          <div class="word-title">pillow</div>
+          <div class="phonetic">/藞p瑟lo蕣/</div>
+          <span class="pos">n. 鍚嶈瘝</span>
+        </div>
+      </div>
+      <div class="chinese-meaning">鏋曞ご</div>
+      <div class="example-en">I hug my pillow when I sleep. It feels so soft!</div>
+      <div class="example-cn">鎴戠潯瑙夌殑鏃跺€欐姳鐫€鏋曞ご銆傚畠鎽歌捣鏉ヨ蒋杞殑锛?/div>
+      <div class="memory-tip">&#128161; 鑱旀兂锛歱illow 鍙戦煶鍍?鐨煍"锛屾灂澶存槸鐢ㄦ煍杞殑鐨垨甯冨仛鐨?/div>
+      <div class="controls">
+        <button class="btn btn-play" onclick="speakItem(1)">&#128266; 鏈楄</button>
+        <button class="btn btn-stop" onclick="stopSpeaking()">&#9209; 鍋滄</button>
+      </div>
     </div>
 
-    <div class="loop-status" id="loopStatus">🔄 播放中</div>
-
-        <div class="card">
-        <div class="word-header">
-            <div class="word-number">01</div>
-            <div class="word-title">friend</div>
-            <span class="phonetic">/frend/</span>
+    <div class="card" data-index="2">
+      <div class="word-header">
+        <div>
+          <div class="word-title">blanket</div>
+          <div class="phonetic">/藞bl忙艐k瑟t/</div>
+          <span class="pos">n. 鍚嶈瘝</span>
         </div>
-        <div class="word-meaning">
-            <span class="part-of-speech">n.</span>
-            <span class="chinese-meaning">朋友</span>
-        </div>
-        <div class="memory-tip">记忆小提示：friend=朋友，友好的关系人</div>
-        <div class="example-box">
-            <div class="example-label">例句 Example</div>
-            <div class="example-en">I meet my friend.</div>
-            <div class="example-cn">我遇到朋友。</div>
-        </div>
-        <div class="button-group">
-            <button class="btn btn-slow" onclick="playCard(0, 'word', 'slow')">🐢 慢速词×3</button>
-            <button class="btn btn-normal" onclick="playCard(0, 'word', 'normal')">🚀 匀速词×3</button>
-            <button class="btn btn-slow" onclick="playCard(0, 'sentence', 'slow')">🐢 慢速句×3</button>
-            <button class="btn btn-normal" onclick="playCard(0, 'sentence', 'normal')">🚀 匀速句×3</button>
-            <button class="btn btn-fast" onclick="playCard(0, 'sentence', 'fast')">⚡ 常速句×3</button>
-            <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="word-header">
-            <div class="word-number">02</div>
-            <div class="word-title">minute</div>
-            <span class="phonetic">/ˈmɪnɪt/</span>
-        </div>
-        <div class="word-meaning">
-            <span class="part-of-speech">n.</span>
-            <span class="chinese-meaning">分钟</span>
-        </div>
-        <div class="memory-tip">记忆小提示：minute=分钟/微小的，60秒或很小</div>
-        <div class="example-box">
-            <div class="example-label">例句 Example</div>
-            <div class="example-en">It takes 10 minutes.</div>
-            <div class="example-cn">需要10分钟。</div>
-        </div>
-        <div class="button-group">
-            <button class="btn btn-slow" onclick="playCard(1, 'word', 'slow')">🐢 慢速词×3</button>
-            <button class="btn btn-normal" onclick="playCard(1, 'word', 'normal')">🚀 匀速词×3</button>
-            <button class="btn btn-slow" onclick="playCard(1, 'sentence', 'slow')">🐢 慢速句×3</button>
-            <button class="btn btn-normal" onclick="playCard(1, 'sentence', 'normal')">🚀 匀速句×3</button>
-            <button class="btn btn-fast" onclick="playCard(1, 'sentence', 'fast')">⚡ 常速句×3</button>
-            <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="word-header">
-            <div class="word-number">03</div>
-            <div class="word-title">far</div>
-            <span class="phonetic">/fɑː/</span>
-        </div>
-        <div class="word-meaning">
-            <span class="part-of-speech">n.</span>
-            <span class="chinese-meaning">远</span>
-        </div>
-        <div class="memory-tip">💡 </div>
-        <div class="example-box">
-            <div class="example-label">例句 Example</div>
-            <div class="example-en">Is it far?</div>
-            <div class="example-cn">远吗？</div>
-        </div>
-        <div class="button-group">
-            <button class="btn btn-slow" onclick="playCard(2, 'word', 'slow')">🐢 慢速词×3</button>
-            <button class="btn btn-normal" onclick="playCard(2, 'word', 'normal')">🚀 匀速词×3</button>
-            <button class="btn btn-slow" onclick="playCard(2, 'sentence', 'slow')">🐢 慢速句×3</button>
-            <button class="btn btn-normal" onclick="playCard(2, 'sentence', 'normal')">🚀 匀速句×3</button>
-            <button class="btn btn-fast" onclick="playCard(2, 'sentence', 'fast')">⚡ 常速句×3</button>
-            <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="word-header">
-            <div class="word-number">04</div>
-            <div class="word-title">near</div>
-            <span class="phonetic">/nɪə/</span>
-        </div>
-        <div class="word-meaning">
-            <span class="part-of-speech">n.</span>
-            <span class="chinese-meaning">近</span>
-        </div>
-        <div class="memory-tip">💡 </div>
-        <div class="example-box">
-            <div class="example-label">例句 Example</div>
-            <div class="example-en">It's near.</div>
-            <div class="example-cn">很近。</div>
-        </div>
-        <div class="button-group">
-            <button class="btn btn-slow" onclick="playCard(3, 'word', 'slow')">🐢 慢速词×3</button>
-            <button class="btn btn-normal" onclick="playCard(3, 'word', 'normal')">🚀 匀速词×3</button>
-            <button class="btn btn-slow" onclick="playCard(3, 'sentence', 'slow')">🐢 慢速句×3</button>
-            <button class="btn btn-normal" onclick="playCard(3, 'sentence', 'normal')">🚀 匀速句×3</button>
-            <button class="btn btn-fast" onclick="playCard(3, 'sentence', 'fast')">⚡ 常速句×3</button>
-            <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="word-header">
-            <div class="word-number">05</div>
-            <div class="word-title">safe</div>
-            <span class="phonetic">/seɪf/</span>
-        </div>
-        <div class="word-meaning">
-            <span class="part-of-speech">n.</span>
-            <span class="chinese-meaning">安全的</span>
-        </div>
-        <div class="memory-tip">记忆小提示：反义 dangerous危险，safe=安全的</div>
-        <div class="example-box">
-            <div class="example-label">例句 Example</div>
-            <div class="example-en">Be safe.</div>
-            <div class="example-cn">注意安全。</div>
-        </div>
-        <div class="button-group">
-            <button class="btn btn-slow" onclick="playCard(4, 'word', 'slow')">🐢 慢速词×3</button>
-            <button class="btn btn-normal" onclick="playCard(4, 'word', 'normal')">🚀 匀速词×3</button>
-            <button class="btn btn-slow" onclick="playCard(4, 'sentence', 'slow')">🐢 慢速句×3</button>
-            <button class="btn btn-normal" onclick="playCard(4, 'sentence', 'normal')">🚀 匀速句×3</button>
-            <button class="btn btn-fast" onclick="playCard(4, 'sentence', 'fast')">⚡ 常速句×3</button>
-            <button class="btn btn-stop" onclick="stopSpeaking()">⏹ 停止</button>
-        </div>
+      </div>
+      <div class="chinese-meaning">琚瓙锛屾瀛?/div>
+      <div class="example-en">It's cold tonight. I need a warm blanket.</div>
+      <div class="example-cn">浠婃櫄鏈夌偣鍐枫€傛垜闇€瑕佷竴鏉℃殩鍜岀殑琚瓙銆?/div>
+      <div class="memory-tip">&#128161; 鑱旀兂锛歜lank锛堢┖鐧斤級+ et锛岃瀛愬儚涓€寮犲ぇ绌虹櫧绾哥洊鍦ㄨ韩涓?/div>
+      <div class="controls">
+        <button class="btn btn-play" onclick="speakItem(2)">&#128266; 鏈楄</button>
+        <button class="btn btn-stop" onclick="stopSpeaking()">&#9209; 鍋滄</button>
+      </div>
     </div>
 
+    <div class="card" data-index="3">
+      <div class="word-header">
+        <div>
+          <div class="word-title">lamp</div>
+          <div class="phonetic">/l忙mp/</div>
+          <span class="pos">n. 鍚嶈瘝</span>
+        </div>
+      </div>
+      <div class="chinese-meaning">鍙扮伅锛岀伅</div>
+      <div class="example-en">Turn on the lamp please. It's getting dark.</div>
+      <div class="example-cn">璇锋妸鍙扮伅鎵撳紑鍚с€傚ぉ榛戜簡銆?/div>
+      <div class="memory-tip">&#128161; 鑱旀兂锛歭amp 鍙戦煶鍍?鏉ユ瘝鎶?锛屽彴鐏儚濡堝涓€鏍峰甫鏉ュ厜浜?/div>
+      <div class="controls">
+        <button class="btn btn-play" onclick="speakItem(3)">&#128266; 鏈楄</button>
+        <button class="btn btn-stop" onclick="stopSpeaking()">&#9209; 鍋滄</button>
+      </div>
+    </div>
+
+    <div class="card" data-index="4">
+      <div class="word-header">
+        <div>
+          <div class="word-title">window</div>
+          <div class="phonetic">/藞w瑟ndo蕣/</div>
+          <span class="pos">n. 鍚嶈瘝</span>
+        </div>
+      </div>
+      <div class="chinese-meaning">绐楁埛</div>
+      <div class="example-en">Open the window and let some fresh air in.</div>
+      <div class="example-cn">鎶婄獥鎴锋墦寮€锛岃鏂伴矞绌烘皵杩涙潵銆?/div>
+      <div class="memory-tip">&#128161; 鑱旀兂锛歸ind锛堥锛? ow锛堝櫌锛夛紝椋庝粠绐楁埛鍚硅繘鏉ワ紝鍙戝嚭"鍣?鐨勫０闊?/div>
+      <div class="controls">
+        <button class="btn btn-play" onclick="speakItem(4)">&#128266; 鏈楄</button>
+        <button class="btn btn-stop" onclick="stopSpeaking()">&#9209; 鍋滄</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>璇€?0.85 &middot; 缇庡紡鍙戦煶 &middot; 鐐瑰嚮鍗＄墖涓婄殑鏈楄鎸夐挳鍙崟鐙挱鏀?/p>
+  </footer>
 </div>
 
 <script>
-// ========== 全局变量 ==========
-let isPlaying = false;
-let currentLoop = 0;
-const maxLoops = 7;
-let allVoices = [];
+var PHRASES = [
+  {
+    en: "bedroom",
+    phonetic: "/藞bedru藧m/",
+    pos: "n. 鍚嶈瘝",
+    zh: "鍗у锛屾埧闂?,
+    example: "My bedroom is clean and tidy. I like reading books there.",
+    example_zh: "鎴戠殑鍗у骞插噣鏁存磥銆傛垜鍠滄鍦ㄩ偅閲岀湅涔︺€?,
+    memory_tip: "鑱旀兂锛歜ed锛堝簥锛? room锛堟埧闂达級锛屾斁搴婄殑鎴块棿灏辨槸鍗у"
+  },
+  {
+    en: "pillow",
+    phonetic: "/藞p瑟lo蕣/",
+    pos: "n. 鍚嶈瘝",
+    zh: "鏋曞ご",
+    example: "I hug my pillow when I sleep. It feels so soft!",
+    example_zh: "鎴戠潯瑙夌殑鏃跺€欐姳鐫€鏋曞ご銆傚畠鎽歌捣鏉ヨ蒋杞殑锛?,
+    memory_tip: "鑱旀兂锛歱illow 鍙戦煶鍍廫"鐨煍\"锛屾灂澶存槸鐢ㄦ煍杞殑鐨垨甯冨仛鐨?
+  },
+  {
+    en: "blanket",
+    phonetic: "/藞bl忙艐k瑟t/",
+    pos: "n. 鍚嶈瘝",
+    zh: "琚瓙锛屾瀛?,
+    example: "It's cold tonight. I need a warm blanket.",
+    example_zh: "浠婃櫄鏈夌偣鍐枫€傛垜闇€瑕佷竴鏉℃殩鍜岀殑琚瓙銆?,
+    memory_tip: "鑱旀兂锛歜lank锛堢┖鐧斤級+ et锛岃瀛愬儚涓€寮犲ぇ绌虹櫧绾哥洊鍦ㄨ韩涓?
+  },
+  {
+    en: "lamp",
+    phonetic: "/l忙mp/",
+    pos: "n. 鍚嶈瘝",
+    zh: "鍙扮伅锛岀伅",
+    example: "Turn on the lamp please. It's getting dark.",
+    example_zh: "璇锋妸鍙扮伅鎵撳紑鍚с€傚ぉ榛戜簡銆?,
+    memory_tip: "鑱旀兂锛歭amp 鍙戦煶鍍廫"鏉ユ瘝鎶盶"锛屽彴鐏儚濡堝涓€鏍峰甫鏉ュ厜浜?
+  },
+  {
+    en: "window",
+    phonetic: "/藞w瑟ndo蕣/",
+    pos: "n. 鍚嶈瘝",
+    zh: "绐楁埛",
+    example: "Open the window and let some fresh air in.",
+    example_zh: "鎶婄獥鎴锋墦寮€锛岃鏂伴矞绌烘皵杩涙潵銆?,
+    memory_tip: "鑱旀兂锛歸ind锛堥锛? ow锛堝櫌锛夛紝椋庝粠绐楁埛鍚硅繘鏉ワ紝鍙戝嚭\"鍣"鐨勫０闊?
+  }
+];
 
-// ========== 语音初始化 ==========
+var RATE = 0.85;
+var EN_VOICES = [];
+var ZH_VOICES = [];
+var currentUtterance = null;
+var isPlaying = false;
+var autoPlayTimeout = null;
+var currentLoop = 0;
+var maxLoops = 6;
+
 function initVoices() {
-    return new Promise((resolve) => {
-        allVoices = window.speechSynthesis.getVoices();
-        if (allVoices.length > 0) {
-            resolve();
-        } else {
-            window.speechSynthesis.onvoiceschanged = () => {
-                allVoices = window.speechSynthesis.getVoices();
-                resolve();
-            };
-        }
-    });
-}
-
-// ========== 播放单个内容 ==========
-function speak(text, lang, rate) {
-    return new Promise((resolve) => {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang;
-        utterance.rate = rate;
-        
-        // 选择语音
-        if (lang === 'en-US') {
-            const voice = allVoices.find(v => v.lang.startsWith('en')) || allVoices[0];
-            if (voice) utterance.voice = voice;
-        } else if (lang === 'zh-CN') {
-            const voice = allVoices.find(v => v.lang.startsWith('zh')) || allVoices[0];
-            if (voice) utterance.voice = voice;
-        }
-        
-        utterance.onend = () => resolve();
-        utterance.onerror = () => resolve();
-        
-        window.speechSynthesis.speak(utterance);
-    });
-}
-
-// ========== 播放单词 ==========
-async function playWord(wordEn, wordZh, speed) {
-    const isSlow = speed === 'slow';
-    const rate = isSlow ? 0.4 : 0.8;
-    
-    // 播放3遍英语
-    for (let i = 0; i < 3; i++) {
-        if (!isPlaying) return;
-        await speak(wordEn, 'en-US', rate);
-        await sleep(300);
+  var voices = speechSynthesis.getVoices();
+  var enPriority = ['Microsoft Jenny Online (Natural)', 'Microsoft Aria Online (Natural)', 'Google US English', 'Samantha'];
+  for (var i = 0; i < enPriority.length; i++) {
+    var v = voices.find(function(voice) { return voice.name === enPriority[i]; });
+    if (v) EN_VOICES.push(v);
+  }
+  voices.forEach(function(v) {
+    if (v.lang && v.lang.startsWith('en') && !EN_VOICES.includes(v)) {
+      EN_VOICES.push(v);
     }
-    
-    // 如果是慢速，播放汉语
-    if (isSlow) {
-        await sleep(500);
-        if (isPlaying) {
-            await speak(wordZh, 'zh-CN', 1.0);
-        }
+  });
+  var zhPriority = ['Microsoft Xiaoxiao Online (Natural)', 'Microsoft Huihui'];
+  for (var i = 0; i < zhPriority.length; i++) {
+    var v = voices.find(function(voice) { return voice.name === zhPriority[i]; });
+    if (v) ZH_VOICES.push(v);
+  }
+  voices.forEach(function(v) {
+    if (v.lang && (v.lang.startsWith('zh') || v.lang.startsWith('cmn')) && !ZH_VOICES.includes(v)) {
+      ZH_VOICES.push(v);
     }
+  });
 }
 
-// ========== 播放句子 ==========
-async function playSentence(exEn, exZh, speed) {
-    const isSlow = speed === 'slow';
-    const isFast = speed === 'fast';
-    let rate = isSlow ? 0.6 : (isFast ? 0.9 : 0.8);
-    
-    // 播放3遍英语
-    for (let i = 0; i < 3; i++) {
-        if (!isPlaying) return;
-        await speak(exEn, 'en-US', rate);
-        await sleep(400);
-    }
-    
-    // 如果是慢速，播放汉语
-    if (isSlow) {
-        await sleep(500);
-        if (isPlaying) {
-            await speak(exZh, 'zh-CN', 1.0);
-        }
-    }
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = initVoices;
 }
-
-// ========== 卡片按钮播放 ==========
-async function playCard(cardIndex, type, speed) {
-    // 设置播放状态，允许中途停止
-    isPlaying = true;
-    
-    const cards = document.querySelectorAll('.card');
-    const card = cards[cardIndex];
-    if (!card) return;
-    
-    const wordEn = card.querySelector('.word-title').textContent.trim();
-    const wordZh = card.querySelector('.chinese-meaning').textContent.trim();
-    const exEn = card.querySelector('.example-en').textContent.trim();
-    const exZh = card.querySelector('.example-cn').textContent.trim();
-    
-    if (type === 'word') {
-        await playWord(wordEn, wordZh, speed);
-    } else {
-        await playSentence(exEn, exZh, speed);
-    }
-}
-
-// ========== 停止播放 ==========
-function stopSpeaking() {
-    isPlaying = false;
-    window.speechSynthesis.cancel();
-    const statusDiv = document.getElementById('loopStatus');
-    if (statusDiv) {
-        statusDiv.style.display = 'block';
-        statusDiv.textContent = '⏹ 已停止';
-    }
-    const btn = document.querySelector('.btn-loop');
-    if (btn) btn.textContent = '▶️ 开始循环朗读';
-}
-
-// ========== 自动循环播放 ==========
-async function startAutoPlay() {
-    // 如果已经在播放，点击变为暂停
-    if (isPlaying) {
-        stopSpeaking();
-        return;
-    }
-    
-    // 等待语音初始化
-    await initVoices();
-    
-    isPlaying = true;
-    currentLoop = 0;
-    
-    const statusDiv = document.getElementById('loopStatus');
-    const btn = document.querySelector('.btn-loop');
-    
-    statusDiv.style.display = 'block';
-    btn.textContent = '⏸ 暂停';
-    
-    const cards = document.querySelectorAll('.card');
-    
-    while (isPlaying && currentLoop < maxLoops) {
-        currentLoop++;
-        statusDiv.textContent = '🔄 第 ' + currentLoop + '/' + maxLoops + ' 轮';
-        
-        for (let i = 0; i < cards.length; i++) {
-            if (!isPlaying) break;
-            
-            const card = cards[i];
-            const wordEn = card.querySelector('.word-title').textContent.trim();
-            const wordZh = card.querySelector('.chinese-meaning').textContent.trim();
-            const exEn = card.querySelector('.example-en').textContent.trim();
-            const exZh = card.querySelector('.example-cn').textContent.trim();
-            
-            // 1. 慢速词×3 + 汉语
-            for (let j = 0; j < 3; j++) {
-                if (!isPlaying) break;
-                await speak(wordEn, 'en-US', 0.4);
-                await sleep(300);
-            }
-            if (isPlaying) {
-                await sleep(500);
-                await speak(wordZh, 'zh-CN', 1.0);
-                await sleep(300);
-            }
-            
-            // 2. 匀速词×3
-            for (let j = 0; j < 3; j++) {
-                if (!isPlaying) break;
-                await speak(wordEn, 'en-US', 0.8);
-                await sleep(300);
-            }
-            await sleep(300);
-            
-            // 3. 慢速句×3 + 汉语
-            for (let j = 0; j < 3; j++) {
-                if (!isPlaying) break;
-                await speak(exEn, 'en-US', 0.6);
-                await sleep(400);
-            }
-            if (isPlaying) {
-                await sleep(500);
-                await speak(exZh, 'zh-CN', 1.0);
-                await sleep(300);
-            }
-            
-            // 4. 匀速句×3
-            for (let j = 0; j < 3; j++) {
-                if (!isPlaying) break;
-                await speak(exEn, 'en-US', 0.8);
-                await sleep(400);
-            }
-            await sleep(300);
-            
-            // 5. 常速句×3
-            for (let j = 0; j < 3; j++) {
-                if (!isPlaying) break;
-                await speak(exEn, 'en-US', 0.9);
-                await sleep(400);
-            }
-            await sleep(500);
-        }
-        
-        // 每轮结束后等待2秒
-        if (isPlaying && currentLoop < maxLoops) {
-            await sleep(2000);
-        }
-    }
-    
-    // 播放结束
-    isPlaying = false;
-    statusDiv.textContent = '✅ 完成';
-    btn.textContent = '▶️ 开始循环朗读';
-}
-
-// ========== 返回首页 ==========
-function goBack() {
-    stopSpeaking();
-    setTimeout(() => {
-        location.href = 'index.html';
-    }, 100);
-}
-
-// ========== 工具函数 ==========
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// ========== 页面加载后初始化 ==========
 initVoices();
+
+function speakEnglish(text, onend) {
+  if (!text) { if (onend) onend(); return; }
+  var utter = new SpeechSynthesisUtterance(text);
+  utter.rate = RATE;
+  utter.pitch = 1;
+  if (EN_VOICES.length > 0) utter.voice = EN_VOICES[0];
+  utter.lang = 'en-US';
+  utter.onend = onend;
+  utter.onerror = function() { if (onend) onend(); };
+  currentUtterance = utter;
+  speechSynthesis.speak(utter);
+}
+
+function speakChinese(text, onend) {
+  if (!text) { if (onend) onend(); return; }
+  var utter = new SpeechSynthesisUtterance(text);
+  utter.rate = RATE;
+  utter.pitch = 1;
+  if (ZH_VOICES.length > 0) utter.voice = ZH_VOICES[0];
+  utter.lang = 'zh-CN';
+  utter.onend = onend;
+  utter.onerror = function() { if (onend) onend(); };
+  currentUtterance = utter;
+  speechSynthesis.speak(utter);
+}
+
+function stopSpeaking() {
+  speechSynthesis.cancel();
+  isPlaying = false;
+  if (autoPlayTimeout) {
+    clearTimeout(autoPlayTimeout);
+    autoPlayTimeout = null;
+  }
+  updateStatus('');
+}
+
+function stopAll() {
+  stopSpeaking();
+  currentLoop = 0;
+}
+
+function updateStatus(text) {
+  document.getElementById('status').textContent = text || '';
+}
+
+function speakWordSequence(phrase, onComplete) {
+  var count = 0;
+  var maxCount = 6;
+
+  function next() {
+    if (!isPlaying) return;
+    count++;
+    if (count > maxCount) {
+      if (onComplete) onComplete();
+      return;
+    }
+
+    if (count === 2) {
+      speakEnglish(phrase.en, function() {
+        setTimeout(function() {
+          speakChinese(phrase.zh, function() {
+            setTimeout(next, 500);
+          });
+        }, 300);
+      });
+    } else {
+      speakEnglish(phrase.en, function() {
+        setTimeout(next, 500);
+      });
+    }
+  }
+
+  next();
+}
+
+function speakSentenceSequence(phrase, onComplete) {
+  var count = 0;
+  var maxCount = 6;
+
+  function next() {
+    if (!isPlaying) return;
+    count++;
+    if (count > maxCount) {
+      if (onComplete) onComplete();
+      return;
+    }
+
+    if (count === 4) {
+      speakEnglish(phrase.example, function() {
+        setTimeout(function() {
+          speakChinese(phrase.example_zh, function() {
+            setTimeout(next, 500);
+          });
+        }, 300);
+      });
+    } else {
+      speakEnglish(phrase.example, function() {
+        setTimeout(next, 500);
+      });
+    }
+  }
+
+  next();
+}
+
+function speakItem(index) {
+  stopSpeaking();
+  isPlaying = true;
+  var phrase = PHRASES[index];
+  updateStatus('馃攰 鏈楄锛? + phrase.en);
+
+  speakWordSequence(phrase, function() {
+    setTimeout(function() {
+      speakSentenceSequence(phrase, function() {
+        isPlaying = false;
+        updateStatus('鉁?鏈楄瀹屾垚锛? + phrase.en);
+      });
+    }, 500);
+  });
+}
+
+function playAllSequentially(onComplete) {
+  var index = 0;
+
+  function playNextCard() {
+    if (!isPlaying) return;
+    if (index >= PHRASES.length) {
+      if (onComplete) onComplete();
+      return;
+    }
+
+    var phrase = PHRASES[index];
+    updateStatus('馃攧 绗?' + currentLoop + '/' + maxLoops + ' 杞?路 鏈楄锛? + phrase.en);
+
+    speakWordSequence(phrase, function() {
+      if (!isPlaying) return;
+      setTimeout(function() {
+        speakSentenceSequence(phrase, function() {
+          index++;
+          if (isPlaying) {
+            setTimeout(playNextCard, 1000);
+          }
+        });
+      }, 500);
+    });
+  }
+
+  playNextCard();
+}
+
+function startAutoPlay() {
+  stopSpeaking();
+  isPlaying = true;
+  currentLoop = 1;
+  updateStatus('馃幍 寮€濮嬪惊鐜湕璇?..');
+
+  function runLoop() {
+    if (!isPlaying) return;
+    if (currentLoop > maxLoops) {
+      currentLoop = 0;
+      isPlaying = false;
+      updateStatus('鉁?鍏ㄩ儴鏈楄瀹屾垚锛? + maxLoops + '杞級');
+      return;
+    }
+
+    playAllSequentially(function() {
+      if (isPlaying) {
+        currentLoop++;
+        if (currentLoop <= maxLoops) {
+          updateStatus('鈴?绗?' + (currentLoop-1) + ' 杞畬鎴愶紝' + (currentLoop) + ' 绉掑悗缁х画...');
+          autoPlayTimeout = setTimeout(runLoop, 2000);
+        } else {
+          currentLoop = 0;
+          isPlaying = false;
+          updateStatus('鉁?鍏ㄩ儴鏈楄瀹屾垚锛? + maxLoops + '杞級');
+        }
+      }
+    });
+  }
+
+  runLoop();
+}
+
+window.onload = function() {
+  autoPlayTimeout = setTimeout(function() {
+    startAutoPlay();
+  }, 3000);
+};
 </script>
+
 </body>
 </html>
