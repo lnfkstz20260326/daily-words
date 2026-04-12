@@ -718,9 +718,10 @@ buildYearTabs();
 buildMonthTabs();
 buildCalendar();
 
-// 自动跳今天（如果有内容）
+// 今天有内容时，高亮今天并显示"今日学习"提示，不自动跳转
 if (dateSet[todayStr]) {
-  window.location.href = todayStr + '.html';
+  selDate = todayStr;
+  updateStatus(todayStr);
 }
 </script>
 </body>
