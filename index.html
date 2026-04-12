@@ -3,99 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日英语朗读 · 词汇索引</title>
+<title>每日英语听说 · 日期选择</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #1e293b;
-  }
-  header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  header h1 { font-size: 1.8rem; color: #0369a1; font-weight: 700; }
-  header p { color: #64748b; font-size: 0.9rem; margin-top: 6px; }
-  .stats {
-    text-align: center;
-    margin-bottom: 24px;
-    color: #64748b;
-    font-size: 0.85rem;
-  }
-  .stats span { font-weight: 600; color: #0369a1; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .day-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 18px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    border-top: 4px solid #38bdf8;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-  }
-  .day-card.phrase { border-top-color: #a78bfa; }
-  .day-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
-  .day-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .day-date { font-size: 0.85rem; color: #64748b; }
-  .day-badge {
-    font-size: 0.75rem;
-    padding: 2px 8px;
-    border-radius: 10px;
-    background: #dbeafe;
-    color: #1d4ed8;
-    font-weight: 600;
-  }
-  .day-badge.phrase { background: #ede9fe; color: #6d28d9; }
-  .day-title { font-size: 1rem; font-weight: 700; color: #0369a1; margin-bottom: 8px; }
-  .day-card.phrase .day-title { color: #6d28d9; }
-  .word-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    font-size: 0.78rem;
-    padding: 3px 10px;
-    border-radius: 12px;
-    background: #f1f5f9;
-    color: #475569;
-  }
-  .chip span { color: #94a3b8; margin-left: 3px; font-size: 0.72rem; }
-  footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #94a3b8;
-    font-size: 0.8rem;
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+}
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+header p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+.year-tabs, .month-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.tab-btn {
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  transition: all 0.2s;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.35); }
+.tab-btn.active { background: #ff9800; color: #fff; }
+
+.calendar-wrap {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 720px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  color: #1e293b;
+}
+.cal-header {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #4a3f8f;
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-weekday {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+  padding: 4px 0;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: default;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  transition: all 0.15s;
+  position: relative;
+  min-height: 54px;
+}
+.cal-day.has-content {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.35);
+}
+.cal-day.has-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102,126,234,0.5);
+}
+.cal-day.today {
+  background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(255,152,0,0.5) !important;
+}
+.cal-day .day-num { font-size: 1rem; }
+.cal-day .day-label { font-size: 0.6rem; margin-top: 2px; opacity: 0.9; }
+.cal-day.empty { background: transparent; cursor: default; }
+
+.bottom-bar {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.status-tip {
+  font-size: 0.85rem;
+  color: #ff9800;
+  flex: 1;
+  min-width: 160px;
+}
+.btn-row { display: flex; gap: 10px; }
+.btn {
+  padding: 10px 24px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.btn-today {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+}
+.btn-today:hover { opacity: 0.9; }
+.btn-confirm {
+  background: #e2e8f0;
+  color: #64748b;
+}
+.btn-confirm.ready {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #fff;
+}
+.btn-confirm.ready:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>📚 每日英语朗读</h1>
-  <p>母语化练习 · 每日随听 · 明日常新</p>
+  <h1>🎓 每日英语听说</h1>
+  <p>母语化练习，每日随听，明日常新</p>
 </header>
 
-<div class="stats" id="statsBar"></div>
+<div class="year-tabs" id="yearTabs"></div>
+<div class="month-tabs" id="monthTabs"></div>
 
-<div class="grid" id="grid"></div>
-
-<footer>
-  <p>点击卡片进入当日朗读页面 · 语速 0.85 · 美式发音优先</p>
-</footer>
+<div class="calendar-wrap">
+  <div class="cal-header" id="calHeader"></div>
+  <div class="cal-grid" id="calGrid"></div>
+  <div class="bottom-bar">
+    <div class="status-tip" id="statusTip"></div>
+    <div class="btn-row">
+      <button class="btn btn-today" onclick="goToday()">📅 今天</button>
+      <button class="btn btn-confirm" id="confirmBtn" onclick="goSelected()">✓ 确定</button>
+    </div>
+  </div>
+</div>
 
 <script>
 // ===================== 词汇数据（按时间顺序，最新在末尾） =====================
@@ -462,42 +544,184 @@ var DATA = [
   }
 ];
 
-// ===================== 渲染 =====================
-function render() {
-  var grid = document.getElementById('grid');
-  var statsBar = document.getElementById('statsBar');
-  grid.innerHTML = '';
+// ===================== 主逻辑 =====================
+var dateSet = {};
+DATA.forEach(function(d) { dateSet[d.date] = d; });
 
-  // 统计
-  var wordDays = DATA.filter(function(d){ return d.type === 'word'; }).length;
-  var phraseDays = DATA.filter(function(d){ return d.type === 'phrase'; }).length;
-  statsBar.innerHTML = '共 <span>' + DATA.length + '</span> 天记录 · <span>' + wordDays + '</span> 天单词 · <span>' + phraseDays + '</span> 天短句';
+var today = new Date();
+var todayStr = today.getFullYear() + '-' +
+  String(today.getMonth()+1).padStart(2,'0') + '-' +
+  String(today.getDate()).padStart(2,'0');
 
-  // 最新的显示在前面
-  var sorted = DATA.slice().reverse();
-  sorted.forEach(function(item) {
-    var a = document.createElement('a');
-    a.className = 'day-card' + (item.type === 'phrase' ? ' phrase' : '');
-    a.href = item.date + '.html';
-    var chips = '';
-    item.words.forEach(function(w) {
-      chips += '<div class="chip">' + w.en + '<span>' + w.zh + '</span></div>';
-    });
-    var badgeClass = item.type === 'phrase' ? ' phrase' : '';
-    var badgeText = item.type === 'phrase' ? '短句' : '单词';
-    var icon = item.type === 'phrase' ? '💬' : '🌟';
-    a.innerHTML =
-      '<div class="day-card-header">' +
-        '<span class="day-date">' + item.date + ' ' + item.day + '</span>' +
-        '<span class="day-badge' + badgeClass + '">' + badgeText + '</span>' +
-      '</div>' +
-      '<div class="day-title">' + icon + ' ' + item.title + '</div>' +
-      '<div class="word-chips">' + chips + '</div>';
-    grid.appendChild(a);
+var selYear = today.getFullYear();
+var selMonth = today.getMonth() + 1; // 1-12
+var selDate = null; // 当前选中的日期字符串
+
+// 收集有内容的年份
+var years = [];
+DATA.forEach(function(d) {
+  var y = parseInt(d.date.split('-')[0]);
+  if (years.indexOf(y) < 0) years.push(y);
+});
+if (years.indexOf(today.getFullYear()) < 0) years.push(today.getFullYear());
+years.sort();
+
+function buildYearTabs() {
+  var wrap = document.getElementById('yearTabs');
+  wrap.innerHTML = '';
+  years.forEach(function(y) {
+    var btn = document.createElement('button');
+    btn.className = 'tab-btn' + (y === selYear ? ' active' : '');
+    btn.textContent = y + '年';
+    btn.onclick = function() { selYear = y; selMonth = 1; buildMonthTabs(); buildCalendar(); };
+    wrap.appendChild(btn);
   });
 }
 
-render();
+function buildMonthTabs() {
+  var wrap = document.getElementById('monthTabs');
+  wrap.innerHTML = '';
+  for (var m = 1; m <= 12; m++) {
+    var btn = document.createElement('button');
+    btn.className = 'tab-btn' + (m === selMonth ? ' active' : '');
+    btn.textContent = m + '月';
+    (function(mm) {
+      btn.onclick = function() { selMonth = mm; buildMonthTabs(); buildCalendar(); };
+    })(m);
+    wrap.appendChild(btn);
+  }
+}
+
+var weekdays = ['日','一','二','三','四','五','六'];
+
+function buildCalendar() {
+  document.getElementById('calHeader').textContent = selYear + '年' + selMonth + '月';
+  var grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  // 星期标题
+  weekdays.forEach(function(w) {
+    var d = document.createElement('div');
+    d.className = 'cal-weekday';
+    d.textContent = w;
+    grid.appendChild(d);
+  });
+
+  var firstDay = new Date(selYear, selMonth-1, 1).getDay(); // 0=日
+  var daysInMonth = new Date(selYear, selMonth, 0).getDate();
+
+  // 空格
+  for (var i = 0; i < firstDay; i++) {
+    var e = document.createElement('div');
+    e.className = 'cal-day empty';
+    grid.appendChild(e);
+  }
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var dateStr = selYear + '-' +
+      String(selMonth).padStart(2,'0') + '-' +
+      String(d).padStart(2,'0');
+    var cell = document.createElement('div');
+    cell.className = 'cal-day';
+
+    var isToday = (dateStr === todayStr);
+    var hasContent = !!dateSet[dateStr];
+
+    if (isToday) {
+      cell.classList.add('today');
+      cell.classList.add('has-content'); // always clickable for today
+    } else if (hasContent) {
+      cell.classList.add('has-content');
+    }
+
+    var numDiv = document.createElement('div');
+    numDiv.className = 'day-num';
+    numDiv.textContent = d;
+    cell.appendChild(numDiv);
+
+    if (hasContent) {
+      var labelDiv = document.createElement('div');
+      labelDiv.className = 'day-label';
+      labelDiv.textContent = dateSet[dateStr].type === 'phrase' ? '短句' : '听说';
+      cell.appendChild(labelDiv);
+    }
+
+    if (hasContent || isToday) {
+      (function(ds) {
+        cell.onclick = function() {
+          selDate = ds;
+          // 清除旧选中
+          document.querySelectorAll('.cal-day.selected').forEach(function(el) {
+            el.classList.remove('selected');
+          });
+          cell.classList.add('selected');
+          updateStatus(ds);
+        };
+      })(dateStr);
+    }
+
+    grid.appendChild(cell);
+  }
+
+  updateStatus(selDate);
+}
+
+function updateStatus(ds) {
+  var tip = document.getElementById('statusTip');
+  var btn = document.getElementById('confirmBtn');
+  if (!ds) {
+    if (dateSet[todayStr]) {
+      tip.textContent = '';
+      btn.className = 'btn btn-confirm';
+    } else {
+      tip.textContent = '▲ ' + todayStr + ' 暂无学习内容';
+      btn.className = 'btn btn-confirm';
+    }
+    return;
+  }
+  if (dateSet[ds]) {
+    var item = dateSet[ds];
+    var label = item.type === 'phrase' ? '口语短句' : '词汇练习';
+    tip.textContent = '✓ ' + ds + ' · ' + label + ' · ' + item.title;
+    btn.className = 'btn btn-confirm ready';
+  } else {
+    tip.textContent = '▲ ' + ds + ' 暂无学习内容';
+    btn.className = 'btn btn-confirm';
+  }
+}
+
+function goToday() {
+  var d = new Date();
+  selYear = d.getFullYear();
+  selMonth = d.getMonth() + 1;
+  selDate = todayStr;
+  buildYearTabs();
+  buildMonthTabs();
+  buildCalendar();
+  if (dateSet[todayStr]) {
+    window.location.href = todayStr + '.html';
+  } else {
+    updateStatus(todayStr);
+  }
+}
+
+function goSelected() {
+  if (selDate && dateSet[selDate]) {
+    window.location.href = selDate + '.html';
+  } else if (!selDate && dateSet[todayStr]) {
+    window.location.href = todayStr + '.html';
+  }
+}
+
+// 初始化
+buildYearTabs();
+buildMonthTabs();
+buildCalendar();
+
+// 自动跳今天（如果有内容）
+if (dateSet[todayStr]) {
+  window.location.href = todayStr + '.html';
+}
 </script>
 </body>
 </html>
